@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../../styles/topnav.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
 const TopHeader = () => {
   return (
@@ -27,6 +28,12 @@ const TopHeader = () => {
           </li>
         </ul>
       </nav>
+      <div className={styles.auth}>
+        <Image src={"/user.svg"} width={14} height={18} alt="user icon" />
+        <Link href={"#"}>Войти</Link>
+        <p> | </p>
+        <Link href={"#"}>Зарегестрироваться</Link>
+      </div>
     </div>
   );
 };

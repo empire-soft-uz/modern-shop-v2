@@ -1,7 +1,49 @@
 import Head from "next/head";
 import styles from "../styles/home.module.css";
+import TopHeader from "./components/TopHeader";
+import Header from "./components/Header";
+import Categories from "./components/Categories";
+import Image from "next/image";
 
 export default function Home() {
+  const fakeObj = [
+    {
+      image: "/phone.svg",
+      title: "Телефоны",
+      height: 29,
+      width: 52,
+    },
+    {
+      image: "/uniform.svg",
+      title: "Одежда",
+      height: 51,
+      width: 65,
+    },
+    {
+      image: "/home.svg",
+      title: "Для дома",
+      height: 51,
+      width: 52,
+    },
+    {
+      image: "/pc.svg",
+      title: "Компютеры",
+      height: 47,
+      width: 49,
+    },
+    {
+      image: "/toys.svg",
+      title: "Игрушки",
+      height: 51,
+      width: 52,
+    },
+    {
+      image: "/sport.svg",
+      title: "Спортивное",
+      height: 60.5,
+      width: 36,
+    },
+  ];
   return (
     <>
       <Head>
@@ -10,9 +52,82 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className={styles.home}>
+        <TopHeader />
+        <Header />
+        <Categories />
         <div className={styles.container}>
-          
+          <div className={styles.add}>
+            <div className={styles.addLeft}>
+              <h1>iPhone 14 Pro</h1>
+              <Image
+                src="/iphone.png"
+                alt="iphone image"
+                width={308}
+                height={410}
+              />
+              <div className={styles.controller}>
+                {[1, 2, 3, 4].map((e: number) => {
+                  return <div key={e} className={styles.circle} />;
+                })}
+              </div>
+            </div>
+            <div className={styles.addRight}>
+              <h3>Вы смотрите</h3>
+              <div className={styles.cart}>
+                <div className={styles.select}>
+                  <Image
+                    src={"/cart.svg"}
+                    width={54}
+                    height={50}
+                    alt="just cart image"
+                  />
+                </div>
+              </div>
+              <h4
+                style={{
+                  marginBottom: "3rem",
+                }}
+              >
+                Продукты
+              </h4>
+              <div className={styles.select}>
+                <Image
+                  src={"/factory.svg"}
+                  width={54}
+                  height={50}
+                  alt="just cart image"
+                />
+              </div>
+              <h4>Продукты</h4>
+            </div>
+          </div>
+          <div className={styles.categories}>
+            <h3>Категории для вас</h3>
+            <div className={styles.catS}>
+              {fakeObj.map((e: any) => {
+                return <div key={e.image} className={styles.cat}>
+                <div className={styles.catTop}>
+                  <Image
+                    src={e.image}
+                    alt={`${e.image} image`}
+                    width={e.width}
+                    height={e.height}
+                  />
+                </div>
+                <h4 className={styles.catTitle}>{e.title}</h4>
+              </div>
+              })}
+            </div>
+            <div className={styles.catController}>
+              <div className={styles.catControl}>
+                <Image src={"/arrowLeft.svg"} width={23} height={16} alt="controller"/>
+              </div>
+              <div className={styles.catControl}>
+                <Image src={"/arrowRight.svg"} width={23} height={16} alt="controller"/>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </>
