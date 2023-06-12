@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <div className={styles.container}>
         <h2
           style={{
@@ -79,7 +79,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

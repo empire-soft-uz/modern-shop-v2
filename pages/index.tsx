@@ -4,6 +4,9 @@ import TopHeader from "./components/TopHeader";
 import Header from "./components/Header";
 import Categories from "./components/Categories";
 import Image from "next/image";
+import Card from "./components/Card";
+import News from "./components/News";
+import Footer from "./components/Footer";
 
 export default function Home() {
   const fakeObj = [
@@ -42,6 +45,72 @@ export default function Home() {
       title: "Спортивное",
       height: 60.5,
       width: 36,
+    },
+  ];
+  const cardObj = [
+    {
+      image: "/productPhone.png",
+      w: 144,
+      h: 167,
+      title: "Iphone 14 PRO",
+      price: "13.000.000 сум",
+      cat: "Телефоны",
+    },
+    {
+      image: "/xboxController.png",
+      w: 181,
+      h: 192,
+      title: "Xbox",
+      price: "7.000.000 сум",
+      cat: "Приставки",
+    },
+    {
+      image: "/headPhone.png",
+      w: 179,
+      h: 190,
+      title: "Наушники SONY",
+      price: "300.000 сум",
+      cat: "Аксессуары",
+    },
+    {
+      image: "/smphone.png",
+      w: 160,
+      h: 173,
+      title: "Samsung M53",
+      price: "4.000.000 сум",
+      cat: "Телефоны",
+    },
+    {
+      image: "/productPhone.png",
+      w: 144,
+      h: 167,
+      title: "Iphone 14 PRO",
+      price: "13.000.000 сум",
+      cat: "Телефоны",
+    },
+    {
+      image: "/xboxController.png",
+      w: 181,
+      h: 192,
+      title: "Xbox",
+      price: "7.000.000 сум",
+      cat: "Приставки",
+    },
+    {
+      image: "/headPhone.png",
+      w: 179,
+      h: 190,
+      title: "Наушники SONY",
+      price: "300.000 сум",
+      cat: "Аксессуары",
+    },
+    {
+      image: "/smphone.png",
+      w: 160,
+      h: 173,
+      title: "Samsung M53",
+      price: "4.000.000 сум",
+      cat: "Телефоны",
     },
   ];
   return (
@@ -103,32 +172,115 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.categories}>
-            <h3>Категории для вас</h3>
+            <h3
+              style={{
+                fontSize: 23,
+              }}
+            >
+              Категории для вас
+            </h3>
             <div className={styles.catS}>
               {fakeObj.map((e: any) => {
-                return <div key={e.image} className={styles.cat}>
-                <div className={styles.catTop}>
-                  <Image
-                    src={e.image}
-                    alt={`${e.image} image`}
-                    width={e.width}
-                    height={e.height}
-                  />
-                </div>
-                <h4 className={styles.catTitle}>{e.title}</h4>
-              </div>
+                return (
+                  <div key={e.image} className={styles.cat}>
+                    <div className={styles.catTop}>
+                      <Image
+                        src={e.image}
+                        alt={`${e.image} image`}
+                        width={e.width}
+                        height={e.height}
+                      />
+                    </div>
+                    <h4 className={styles.catTitle}>{e.title}</h4>
+                  </div>
+                );
               })}
             </div>
             <div className={styles.catController}>
               <div className={styles.catControl}>
-                <Image src={"/arrowLeft.svg"} width={23} height={16} alt="controller"/>
+                <Image
+                  src={"/arrowLeft.svg"}
+                  width={23}
+                  height={16}
+                  alt="controller"
+                />
               </div>
               <div className={styles.catControl}>
-                <Image src={"/arrowRight.svg"} width={23} height={16} alt="controller"/>
+                <Image
+                  src={"/arrowRight.svg"}
+                  width={23}
+                  height={16}
+                  alt="controller"
+                />
               </div>
             </div>
           </div>
+          <section className={styles.newProducts}>
+            <h3>Новые продукты</h3>
+            <div className={styles.newProductsWrapper}>
+              {cardObj.map((card, index) => {
+                return (
+                  <Card
+                    title={card.title}
+                    image={card.image}
+                    width={card.w}
+                    height={card.h}
+                    price={card.price}
+                    cat={card.cat}
+                    key={index}
+                  />
+                );
+              })}
+            </div>
+            <button className={styles.loadMore}>Посмотреть больше</button>
+          </section>
+          <section className={styles.newProducts}>
+            <h3>Популярные продукты</h3>
+            <div className={styles.newProductsWrapper}>
+              {cardObj.map((card, index) => {
+                return (
+                  <Card
+                    title={card.title}
+                    image={card.image}
+                    width={card.w}
+                    height={card.h}
+                    price={card.price}
+                    cat={card.cat}
+                    key={index}
+                  />
+                );
+              })}
+            </div>
+            <button className={styles.loadMore}>Посмотреть больше</button>
+          </section>
+          <section className={styles.newProducts}>
+            <h3>Новости</h3>
+            <div className={styles.newsWrapper}>
+              {[1, 2, 3].map((e) => {
+                return <News id={e} key={e} />;
+              })}
+            </div>
+            <div className={styles.catController}>
+              <div className={styles.catControl}>
+                <Image
+                  src={"/arrowLeft.svg"}
+                  width={23}
+                  height={16}
+                  alt="controller"
+                />
+              </div>
+              <div className={styles.catControl}>
+                <Image
+                  src={"/arrowRight.svg"}
+                  width={23}
+                  height={16}
+                  alt="controller"
+                />
+              </div>
+            </div>
+          </section>
         </div>
+        <Footer/>
       </main>
     </>
   );
