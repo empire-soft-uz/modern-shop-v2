@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/topnav.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import Auth from "./Auth";
 
 const TopHeader = () => {
+  const [isAuthOpen, setIsAuthOpen] = useState<boolean>(false);
+
+  useEffect(()=> {
+    document.body.style.overflow = "auto"
+  }, [!isAuthOpen])
+
   return (
     <div className={styles.topNavBar}>
       <nav className={styles.navigation}>
@@ -27,12 +34,15 @@ const TopHeader = () => {
             <Link href="#">Контакты</Link>
           </li>
         </ul>
+      {isAuthOpen && <Auth  setIsAuthOpen={setIsAuthOpen}/>}
       </nav>
-      <div className={styles.auth}>
+      <div onClick={()=> {
+        setIsAuthOpen(true)
+      }} className={styles.auth}>
         <Image src={"/user.svg"} width={14} height={18} alt="user icon" />
-        <Link href={"#"}>Войти</Link>
+        <button>Войти</button>
         <p> | </p>
-        <Link href={"#"}>Зарегестрироваться</Link>
+        <button>Зарегестрироваться</button>
       </div>
     </div>
   );
