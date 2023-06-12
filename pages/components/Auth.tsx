@@ -12,9 +12,9 @@ const Auth = ({ setIsAuthOpen }: Auth) => {
     document.body.style.overflow = "hidden";
   }, []);
 
-  const [queue, setQueue] = useState(0);
+  const [queue, setQueue] = useState<number | any>(0);
 
-  const [timer, setTimer] = useState(61);
+  const [timer, setTimer] = useState<number>(61);
 
   useEffect(() => {
     const interval = setInterval(() => {
