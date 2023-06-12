@@ -1,0 +1,29 @@
+.topNavBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1180px;
+    padding: 10px 0;
+    margin: auto;
+}
+
+.topNavBar * {
+    font-size: 16px;
+    color: #8A8A8A;
+    font-weight: 450;
+    line-height: 25.6px;
+}
+
+.navigation > ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.auth {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}

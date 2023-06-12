@@ -1,0 +1,27 @@
+@import url('https://fonts.cdnfonts.com/css/futura-pt');
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Futura PT', sans-serif;
+}
+
+body {
+  background: #FAF8F8;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}

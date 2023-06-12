@@ -1,0 +1,57 @@
+.categories {
+  background: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 1px 10px 1px rgba(214, 214, 214, 0.19);
+  margin-bottom: 2rem;
+}
+
+.container {
+  width: 1180px;
+  padding: 12px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.categ {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #e4b717;
+  padding: 8px 20px;
+  border-radius: 50px;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.categ > h3 {
+  font-size: 18px;
+}
+
+.selectList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.selectList h3 {
+  font-size: 18px;
+}
+
+.selectList > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.selectList > li > img {
+  position: relative;
+  top: 3px;
+}
