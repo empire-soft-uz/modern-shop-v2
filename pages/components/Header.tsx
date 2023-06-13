@@ -6,12 +6,14 @@ import World from '../../public/world.svg'
 import Call from '../../public/call.svg'
 import Heart from '../../public/heart.svg'
 import Buy from '../../public/buy.svg'
+import Link from 'next/link'
 
 const Header = () => {
+
     return (
         <div className={styles.Header}>
             <div className={styles.Header__section}>
-                <h1 style={{ color: '#E4B717' }}>MODERN</h1>
+                  <h1 style={{ color: '#E4B717' }}>MODERN</h1>
                 <div className={styles.Header__search}>
                     <input placeholder='Поиск' />
                     <Image src={Search} width={22} height={22} alt='Search' />
@@ -30,8 +32,8 @@ const Header = () => {
                         <p>+998 99 999 99 99</p>
                     </div>
                     <div className={styles.order}>
-                        <Image src={Heart} width={43} height={43} alt='heart' />
-                        <Image style={{ paddingLeft: 10 }} src={Buy} width={53} height={53} alt='buy' />
+                        <Link href="/components/izbrinni"><Image src={Heart} width={43} height={43} alt='heart' /></Link>
+                        <Link href="/components/History"><Image style={{ paddingLeft: 10 }} src={Buy} width={53} height={53} alt='buy' /></Link>
                     </div>
                 </div>
             </div>

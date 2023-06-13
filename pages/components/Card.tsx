@@ -16,7 +16,22 @@ interface Card {
   kategoriya: string;
 }
 
+
+
 const Card = ({ price, title, width, height, image, kategoriya }: Card) => {
+
+
+  // const value = localStorage.getItem("favoriteNumber") || ""
+
+  // // Set the value received from the local storage to a local state
+  // const [favoriteLikes, setFavoriteLikes] = useState(value)
+
+  // // When user submits the form, save the favorite number to the local storage
+  // const saveToLocalStorage = (e:any) => {
+  //   setFavoriteLikes(e.target.value)
+  //   e.preventDefault()
+  //   localStorage.setItem("favoriteLikes", favoriteLikes)
+  // }
 
   const [likes, setLikes] = useState(false)
 
@@ -24,9 +39,11 @@ const Card = ({ price, title, width, height, image, kategoriya }: Card) => {
     <div className={styles.Card}>
       <div className={styles.like}>
         <Image src={image} width={width} height={height} alt="product" />
-        <Image onClick={() => {
-          setLikes(!likes)
-        }} src={!likes ? like : likeBlue} width={43.96} height={45.6} alt='like' />
+        <Link href="/components/izbrinni">
+          <Image onClick={() => {
+            setLikes(!likes)
+          }} src={!likes ? like : likeBlue} width={43.96} height={45.6} alt='like' />
+        </Link>
       </div>
       <h3 style={{ fontSize: 20, fontWeight: 700, paddingTop: 13 }}>{title}</h3>
       <p style={{ fontWeight: 450, color: "#D3D3D3" }}>{kategoriya}</p>

@@ -4,12 +4,22 @@ import Four from '../../public/four.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import arrow from '../../public/arrow.svg'
+import { useState } from 'react'
+import Kategor from './kategor'
+
 
 const HeaderButton = () => {
+    const [kate, setKate] = useState(false)
+
+    const Kate = () => {
+        setKate(!kate)
+    }
+
+
     return (
         <div className={styles.HeaderButton}>
             <div className={styles.HeaderButton__section}>
-                <button className={styles.katagorie}>
+                <button onClick={Kate} className={styles.katagorie}>
                     <p>Категории</p>
                     <Image src={Four} width={18} height={18} alt='four' />
                 </button>
@@ -34,6 +44,7 @@ const HeaderButton = () => {
                     <Image style={{paddingLeft: 7}} src={arrow} width={22} height={12} alt='arrow' />
                 </div>
             </div>
+            {kate && <Kategor/>}
         </div>
     )
 }
