@@ -9,11 +9,14 @@ import Image from 'next/image'
 import MultiRangeSlider from './components/MultiRangeSlider'
 import Card from './components/Card'
 import Footer from './components/footer'
+import { useEffect, useState } from 'react'
 
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
+  const [likedObj, setLikedObj] = useState<any>([])
 
 
   const cardObj = [
@@ -147,6 +150,10 @@ export default function Home() {
     },
   ]
 
+  useEffect(()=> {
+    console.log(likedObj)
+  })
+
   return (
     <>
       <Head>
@@ -212,7 +219,7 @@ export default function Home() {
           </div>
           <div className={styles.section__right}>
             {cardObj.map((card, index) => {
-              return <Card title={card.title} image={card.image} width={card.width} height={card.height} price={card.price} kategoriya={card.kategoriya} key={index} />
+              return <Card title={card.title} card={card} likedObj={likedObj} setLikedObj={setLikedObj} image={card.image} width={card.width} height={card.height} price={card.price} kategoriya={card.kategoriya} key={index} />
             })}
           </div>
         </div>

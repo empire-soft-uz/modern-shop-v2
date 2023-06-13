@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from '../../styles/card.module.css'
 import Image from 'next/image';
 import like from '../../public/like.svg'
@@ -14,11 +14,14 @@ interface Card {
   height: number;
   image: string;
   kategoriya: string;
+  setLikedObj: Function
+  card: any
+  likedObj: any
 }
 
 
 
-const Card = ({ price, title, width, height, image, kategoriya }: Card) => {
+const Card = ({ price, title, width, height, image, kategoriya, card, setLikedObj, likedObj }: Card) => {
 
 
   // const value = localStorage.getItem("favoriteNumber") || ""
@@ -35,15 +38,28 @@ const Card = ({ price, title, width, height, image, kategoriya }: Card) => {
 
   const [likes, setLikes] = useState(false)
 
+  useEffect(()=> {
+    console.log(likedObj)
+  })
+
   return (
     <div className={styles.Card}>
       <div className={styles.like}>
         <Image src={image} width={width} height={height} alt="product" />
-        <Link href="/components/Izbrinni">
+        <button onClick={()=> {
+          likedObj.push(likedObj, {
+            title: title,
+            price: price,
+            image: image,
+            kategoriya: kategoriya,
+            width: width,
+            height: height
+          })
+        }}>
           <Image onClick={() => {
             setLikes(!likes)
           }} src={!likes ? like : likeBlue} width={43.96} height={45.6} alt='like' />
-        </Link>
+        </button>
       </div>
       <h3 style={{ fontSize: 20, fontWeight: 700, paddingTop: 13 }}>{title}</h3>
       <p style={{ fontWeight: 450, color: "#D3D3D3" }}>{kategoriya}</p>
