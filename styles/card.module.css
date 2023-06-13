@@ -31,3 +31,11 @@
     justify-content: space-around;
     display: flex;
 }
+
+.like button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    justify-content: space-around;
+    display: flex;
+}
