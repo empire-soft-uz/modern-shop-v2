@@ -32,8 +32,8 @@ const Header = () => {
                         <p>+998 99 999 99 99</p>
                     </div>
                     <div className={styles.order}>
-                        <Link href="/components/izbrinni"><Image src={Heart} width={43} height={43} alt='heart' /></Link>
-                        <Link href="/components/History"><Image style={{ paddingLeft: 10 }} src={Buy} width={53} height={53} alt='buy' /></Link>
+                        <Link href="/components/Izbrinni"><Image src={Heart} width={43} height={43} alt='heart' /></Link>
+                        <Link href="/components/Order"><Image style={{ paddingLeft: 10 }} src={Buy} width={53} height={53} alt='buy' /></Link>
                     </div>
                 </div>
             </div>

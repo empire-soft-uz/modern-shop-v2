@@ -8,8 +8,8 @@ import topArrow from '../public/toparrow.svg'
 import Image from 'next/image'
 import MultiRangeSlider from './components/MultiRangeSlider'
 import Card from './components/Card'
-import phone from '../public/phone.png'
 import Footer from './components/footer'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,7 +31,7 @@ export default function Home() {
       height: 140,
       title: "Iphone 14 PRO",
       kategoriya: "Телефоны",
-      price: 13.000000,
+      price: "13.000000",
     },
     {
       image: "/phone.svg",

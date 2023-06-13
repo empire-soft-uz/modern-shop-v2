@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import arrow from '../../public/arrow.svg'
 import { useState } from 'react'
-import Kategor from './kategor'
+import Kategor from './Kategor'
 
 
 const HeaderButton = () => {

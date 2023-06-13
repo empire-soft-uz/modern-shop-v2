@@ -39,7 +39,7 @@ const Card = ({ price, title, width, height, image, kategoriya }: Card) => {
     <div className={styles.Card}>
       <div className={styles.like}>
         <Image src={image} width={width} height={height} alt="product" />
-        <Link href="/components/izbrinni">
+        <Link href="/components/Izbrinni">
           <Image onClick={() => {
             setLikes(!likes)
           }} src={!likes ? like : likeBlue} width={43.96} height={45.6} alt='like' />
@@ -50,7 +50,7 @@ const Card = ({ price, title, width, height, image, kategoriya }: Card) => {
       <div className={styles.order}>
         <h3>{price}</h3>
         <div className={styles.korzinka}>
-          <Link href="/components/History">
+          <Link href="/components/Order">
             <Image src={Buy} width={18.6} height={20.46} alt='buy' />
           </Link>
         </div>
