@@ -6,13 +6,19 @@ import HeaderButton from './HeaderButton'
 import Footer from './footer'
 import Image from 'next/image'
 import { useState } from 'react'
+import ChanchePassword from './ChanchePassword'
 
 const Profile = () => {
 
-    const [button, setButton] = useState(false)
+    const [isChangePassOpen, setIsChangePassOpen] = useState(false)
+
+    const AuthOpen = () => {
+        setIsChangePassOpen(!isChangePassOpen)
+    }
 
     return (
         <div className={styles.Profile}>
+            {isChangePassOpen && <ChanchePassword setIsChangePassOpen={setIsChangePassOpen}/>}
             <NavBar />
             <Header />
             <HeaderButton />
@@ -66,7 +72,7 @@ const Profile = () => {
                         </div>
                     </div>
                     <div className={styles.profile__button}>
-                        <button>Изменить пароль</button>
+                        <button onClick={AuthOpen}>Изменить пароль</button>
                         <button style={{marginLeft: 16, backgroundColor: "#E4B717", color: "#fff"}}>Редактировать</button>
                     </div>
                 </div>

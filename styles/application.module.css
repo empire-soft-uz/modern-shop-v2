@@ -6,6 +6,7 @@
     width: 100%;
     background: rgba(18, 18, 18, 0.65);
     height: 100%;
+    z-index: 999;
 }
 
 .Application__card {

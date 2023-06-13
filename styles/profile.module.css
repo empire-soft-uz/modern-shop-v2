@@ -140,7 +140,7 @@
 }
 
 .profile__button {
-    margin-left: 285px;
+    margin-left: 200px;
     margin-top: 36px;
     align-items: flex-end;
     justify-content: flex-end;
@@ -157,6 +157,8 @@
     cursor: pointer;
     color: #E4B717;
     transition: .2s ease;
+    font-weight: 700;
+    font-size: 18px;
 }
 
 .profile__button button:active {
