@@ -6,7 +6,7 @@ import Categories from "./components/Categories";
 import Image from "next/image";
 import Card from "./components/Card";
 import News from "./components/News";
-import Footer from "./components/Footer";
+import Footer from "./components/footer";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 

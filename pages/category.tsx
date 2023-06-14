@@ -8,7 +8,7 @@ import topArrow from '../public/toparrow.svg'
 import Image from 'next/image'
 import MultiRangeSlider from './components/MultiRangeSlider'
 import Card from './components/Card'
-import Footer from './components/Footer'
+import Footer from './components/footer'
 import { useEffect, useState } from 'react'
 
 
