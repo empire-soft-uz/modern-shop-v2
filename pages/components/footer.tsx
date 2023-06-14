@@ -7,13 +7,12 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <Link
-          href={"/"}
+        <Link href={"/"}
           style={{
             textTransform: "uppercase",
             color: "#E4B717",
             fontSize: 35,
-            fontWeight: 700,
+            fontWeight: 700
           }}
         >
           Modern
@@ -69,7 +68,7 @@ const Footer = () => {
             </Link>
             <Link href={"#"}>
               <Image
-                src={"/insta.svg"}
+                src={"/inst.svg"}
                 alt="instagram icon"
                 width={25}
                 height={25}
