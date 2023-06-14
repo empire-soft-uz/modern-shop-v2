@@ -1,41 +1,58 @@
-.Card {
-
-    width: 227.28px;
-    height: 289px;
-    padding: 14px 12.6px;
-    background-color: #fff;
-    border-radius: 20px;
-}
-
-.korzinka {
-    cursor: pointer;
-    padding: 12px;
-    border-radius: 50%;
-    width: 43.6px;
-    height: 45.58px;
-    background-color: #E4B717;
-}
-
-.order {
-    color: #E4B717;
-    font-weight: 700;
-    font-size: 18px;
+.card {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    background: #fff;
+    width: 280px;
+    height: 331px;
+    border-radius: 20px;
     justify-content: space-between;
+    gap: 2px;
+    position: relative;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
 .like {
+    position: absolute;
+    top: 5%;
+    left: 77%;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
     cursor: pointer;
-    padding-left: 30px;
-    justify-content: space-around;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #179AE4;
 }
 
-.like button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    justify-content: space-around;
+.card > img {
+    margin: auto;
+}
+
+.card h4 {
+    color: #D3D3D3;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.cart {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.cart * {
+    color: #E4B717;
+}
+
+.box {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background: #E4B717;
 }

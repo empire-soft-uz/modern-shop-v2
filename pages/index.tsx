@@ -1,159 +1,120 @@
-import Head from 'next/head'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import Header from './components/Header'
-import NavBar from './components/NavBar'
-import HeaderButton from './components/HeaderButton'
-import topArrow from '../public/toparrow.svg'
-import Image from 'next/image'
-import MultiRangeSlider from './components/MultiRangeSlider'
-import Card from './components/Card'
-import Footer from './components/footer'
-import { useEffect, useState } from 'react'
-
-
-const inter = Inter({ subsets: ['latin'] })
+import Head from "next/head";
+import styles from "../styles/home.module.css";
+import TopHeader from "./components/TopHeader";
+import Header from "./components/Header";
+import Categories from "./components/Categories";
+import Image from "next/image";
+import Card from "./components/Card";
+import News from "./components/News";
+import Footer from "./components/Footer";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 export default function Home() {
-
-  const [likedObj, setLikedObj] = useState<any>([])
-
-
+  const fakeObj = [
+    {
+      image: "/phone.svg",
+      title: "Телефоны",
+      height: 29,
+      width: 52,
+    },
+    {
+      image: "/uniform.svg",
+      title: "Одежда",
+      height: 51,
+      width: 65,
+    },
+    {
+      image: "/home.svg",
+      title: "Для дома",
+      height: 51,
+      width: 52,
+    },
+    {
+      image: "/pc.svg",
+      title: "Компютеры",
+      height: 47,
+      width: 49,
+    },
+    {
+      image: "/toys.svg",
+      title: "Игрушки",
+      height: 51,
+      width: 52,
+    },
+    {
+      image: "/sport.svg",
+      title: "Спортивное",
+      height: 60.5,
+      width: 36,
+    },
+  ];
   const cardObj = [
     {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
+      image: "/productPhone.png",
+      w: 144,
+      h: 167,
       title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
+      price: "13.000.000 сум",
+      cat: "Телефоны",
     },
     {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000000",
+      image: "/xboxController.png",
+      w: 181,
+      h: 192,
+      title: "Xbox",
+      price: "7.000.000 сум",
+      cat: "Приставки",
     },
     {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
+      image: "/headPhone.png",
+      w: 179,
+      h: 190,
+      title: "Наушники SONY",
+      price: "300.000 сум",
+      cat: "Аксессуары",
     },
     {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
+      image: "/smphone.png",
+      w: 160,
+      h: 173,
+      title: "Samsung M53",
+      price: "4.000.000 сум",
+      cat: "Телефоны",
     },
     {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
+      image: "/productPhone.png",
+      w: 144,
+      h: 167,
       title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
+      price: "13.000.000 сум",
+      cat: "Телефоны",
     },
     {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
+      image: "/xboxController.png",
+      w: 181,
+      h: 192,
+      title: "Xbox",
+      price: "7.000.000 сум",
+      cat: "Приставки",
     },
     {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
+      image: "/headPhone.png",
+      w: 179,
+      h: 190,
+      title: "Наушники SONY",
+      price: "300.000 сум",
+      cat: "Аксессуары",
     },
     {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
+      image: "/smphone.png",
+      w: 160,
+      h: 173,
+      title: "Samsung M53",
+      price: "4.000.000 сум",
+      cat: "Телефоны",
     },
-    {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-  ]
-
-  useEffect(()=> {
-    console.log(likedObj)
-  })
-
+  ];
   return (
     <>
       <Head>
@@ -162,78 +123,167 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles.container}>
-        <NavBar />
+      <main className={styles.home}>
+        <TopHeader />
         <Header />
-        <HeaderButton />
-        <div className={styles.telefon}>
-          <h1 style={{ fontSize: 20, fontWeight: 700 }}>Телефоны</h1>
-        </div>
-        <div className={styles.card__section}>
-          <div className={styles.section__left}>
-            <div className={styles.price}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <p style={{ fontSize: 18, fontWeight: 700 }}>Цена</p>
-                <Image src={topArrow} width={15} height={12} alt='toparrow' />
-              </div>
-              <div className={styles.rangeSlider}>
-                <MultiRangeSlider min={1} max={7} />
-              </div>
-            </div>
-            <div className={styles.Manufacturer}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <p style={{ fontSize: 18, fontWeight: 700 }}>Производитель</p>
-                <Image src={topArrow} width={15} height={12} alt='toparrow' />
-              </div>
-              <div className={styles.radio__input}>
-                <input type='checkbox' />
-                <label>Samsung</label>
-              </div>
-              <div className={styles.radio__input}>
-                <input type='checkbox' />
-                <label>Lg</label>
-              </div>
-              <div className={styles.radio__input}>
-                <input type='checkbox' />
-                <label>Apple</label>
+        <Categories />
+        <div className={styles.container}>
+          <div className={styles.add}>
+            <div className={styles.addLeft}>
+              <h1>iPhone 14 Pro</h1>
+              <Image
+                src="/iphone.png"
+                alt="iphone image"
+                width={308}
+                height={410}
+              />
+              <div className={styles.controller}>
+                {[1, 2, 3, 4].map((e: number) => {
+                  return <div key={e} className={styles.circle} />;
+                })}
               </div>
             </div>
-            <div className={styles.Operative}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <p style={{ fontSize: 18, fontWeight: 700 }}>Оператив. память</p>
-                <Image src={topArrow} width={15} height={12} alt='toparrow' />
+            <div className={styles.addRight}>
+              <h3>Вы смотрите</h3>
+              <div className={styles.cart}>
+                <div className={styles.select}>
+                  <Image
+                    src={"/cart.svg"}
+                    width={54}
+                    height={50}
+                    alt="just cart image"
+                  />
+                </div>
               </div>
-              <div className={styles.checkBox__input}>
-                <input type='checkbox' />
-                <label>8 гб</label>
+              <h4
+                style={{
+                  marginBottom: "3rem",
+                }}
+              >
+                Продукты
+              </h4>
+              <div className={styles.select}>
+                <Image
+                  src={"/factory.svg"}
+                  width={54}
+                  height={50}
+                  alt="just cart image"
+                />
               </div>
-              <div className={styles.checkBox__input}>
-                <input type='checkbox' />
-                <label>4 гб</label>
+              <h4>Продукты</h4>
+            </div>
+          </div>
+          <div className={styles.categories}>
+            <h3
+              style={{
+                fontSize: 23,
+              }}
+            >
+              Категории для вас
+            </h3>
+            <div className={styles.catS}>
+              {fakeObj.map((e: any) => {
+                return (
+                  <div key={e.image} className={styles.cat}>
+                    <div className={styles.catTop}>
+                      <Image
+                        src={e.image}
+                        alt={`${e.image} image`}
+                        width={e.width}
+                        height={e.height}
+                      />
+                    </div>
+                    <h4 className={styles.catTitle}>{e.title}</h4>
+                  </div>
+                );
+              })}
+            </div>
+            <div className={styles.catController}>
+              <div className={styles.catControl}>
+                <Image
+                  src={"/arrowLeft.svg"}
+                  width={23}
+                  height={16}
+                  alt="controller"
+                />
               </div>
-              <div className={styles.checkBox__input}>
-                <input type='checkbox' />
-                <label>2 гб</label>
+              <div className={styles.catControl}>
+                <Image
+                  src={"/arrowRight.svg"}
+                  width={23}
+                  height={16}
+                  alt="controller"
+                />
               </div>
             </div>
           </div>
-          <div className={styles.section__right}>
-            {cardObj.map((card, index) => {
-              return <Card title={card.title} card={card} likedObj={likedObj} setLikedObj={setLikedObj} image={card.image} width={card.width} height={card.height} price={card.price} kategoriya={card.kategoriya} key={index} />
-            })}
-          </div>
+          <section className={styles.newProducts}>
+            <h3>Новые продукты</h3>
+            <div className={styles.newProductsWrapper}>
+              {cardObj.map((card, index) => {
+                return (
+                  <Card
+                    title={card.title}
+                    image={card.image}
+                    width={card.w}
+                    height={card.h}
+                    price={card.price}
+                    cat={card.cat}
+                    key={index}
+                  />
+                );
+              })}
+            </div>
+            <button className={styles.loadMore}>Посмотреть больше</button>
+          </section>
+          <section className={styles.newProducts}>
+            <h3>Популярные продукты</h3>
+            <div className={styles.newProductsWrapper}>
+              {cardObj.map((card, index) => {
+                return (
+                  <Card
+                    title={card.title}
+                    image={card.image}
+                    width={card.w}
+                    height={card.h}
+                    price={card.price}
+                    cat={card.cat}
+                    key={index}
+                  />
+                );
+              })}
+            </div>
+            <button className={styles.loadMore}>Посмотреть больше</button>
+          </section>
+          <section className={styles.newProducts}>
+            <h3>Новости</h3>
+            <div className={styles.newsWrapper}>
+              {[1, 2, 3].map((e) => {
+                return <News id={e} key={e} />;
+              })}
+            </div>
+            <div className={styles.catController}>
+              <div className={styles.catControl}>
+                <Image
+                  src={"/arrowLeft.svg"}
+                  width={23}
+                  height={16}
+                  alt="controller"
+                />
+              </div>
+              <div className={styles.catControl}>
+                <Image
+                  src={"/arrowRight.svg"}
+                  width={23}
+                  height={16}
+                  alt="controller"
+                />
+              </div>
+            </div>
+          </section>
         </div>
-        <div className={styles.carusel}>
-          <div style={{backgroundColor: "#E4B717", width: 39, height: 39, borderRadius: "100%", color: "#fff", textAlign: 'center', paddingTop: 8}}>
-            <p>1</p>
-          </div>
-          <p>2</p>
-          <p>3</p>
-          <p>...</p>
-          <p>5</p>
-        </div>
-        <Footer />
-      </div>
+        <Footer/>
+      </main>
     </>
-  )
+  );
 }

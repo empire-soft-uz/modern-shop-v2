@@ -1,72 +1,45 @@
-import React, { useEffect } from "react";
-import styles from "../../styles/card.module.css";
+import React from "react";
 import Image from "next/image";
-import like from "../../public/like.svg";
-import Buy from "../../public/Buy.png";
-import likeBlue from "../../public/likeBlue.svg";
-import { useState } from "react";
+import styles from "../../styles/card.module.css";
 import Link from "next/link";
 
 interface Card {
-  title: string;
   price: string;
+  title: string;
   width: number;
-  height: number;
   image: string;
-  kategoriya: string;
-  setLikedObj: Function;
-  card: any;
-  likedObj: any;
+  height: number;
+  cat: string;
 }
 
-const Card = ({
-  price,
-  title,
-  width,
-  height,
-  image,
-  kategoriya,
-  card,
-  setLikedObj,
-  likedObj,
-}: Card) => {
-  const [likes, setLikes] = useState(false);
-
-  useEffect(() => {
-    console.log(likedObj);
-  });
-
+const Card = ({ price, title, width, height, image, cat }: Card) => {
   return (
-    <div className={styles.Card}>
+    <Link href={`/detail/${price.split(".")[0]}`} className={styles.card}>
+      <Image
+        src={image}
+        alt="products image"
+        width={width}
+        height={height}
+      />
       <div className={styles.like}>
-        <Image src={image} width={width} height={height} alt="product" />
-        <button
-          onClick={() => {
-            localStorage.setItem("izbri", JSON.stringify(card));
-          }}
-        >
-          <Image
-            onClick={() => {
-              setLikes(!likes);
-            }}
-            src={!likes ? like : likeBlue}
-            width={43.96}
-            height={45.6}
-            alt="like"
-          />
-        </button>
+        <Image src={"/liked.svg"} alt="like icon" width={20.5} height={20} />
       </div>
-      <h3 style={{ fontSize: 20, fontWeight: 700, paddingTop: 13 }}>{title}</h3>
-      <p style={{ fontWeight: 450, color: "#D3D3D3" }}>{kategoriya}</p>
-      <div className={styles.order}>
+      <h3 style={{
+        color: "#000"
+      }}>{title}</h3>
+      <h4>{cat}</h4>
+      <div className={styles.cart}>
         <h3>{price}</h3>
-        <div className={styles.korzinka}>
-          <Link href="/components/Order">
-            <Image src={Buy} width={18.6} height={20.46} alt="buy" />
-          </Link>
+        <div className={styles.box}>
+          <Image
+            src={"/buyW.svg"}
+            alt="add cart icon"
+            width={21}
+            height={20.5}
+          />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
