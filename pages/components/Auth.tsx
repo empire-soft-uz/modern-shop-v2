@@ -19,23 +19,18 @@ const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
 
   const [timer, setTimer] = useState<number>(62);
 
-  console.log("hi")
+  const shouldMount = queue === 1.1 || queue === 2.1;
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((timer) => timer - 1);
     }, 1000);
     return () => clearInterval(interval);
-  }, [queue === 1.1 || queue === 2.1]);
+  }, [shouldMount]);
 
   return (
     <div className={isAuthOpen ? styles.authent : styles.dn}>
-      <Animated
-        animationIn="pulse"
-        animationOut="fadeOutDown"
-        animationOutDuration={1000}
-        animationInDuration={1000}
-        isVisible={isAuthOpen ? true : true}
+      <div
         className={isAuthOpen ? styles.auth : styles.dn}
       >
         <div className={styles.close}>
@@ -57,14 +52,14 @@ const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
             {queue === 0
               ? "Авторизация"
               : queue === 1
-              ? "Регистрация"
-              : queue === 1.1 || queue === 2.1
-              ? "Введите код"
-              : queue === 2
-              ? "Восстановить аккаунт"
-              : queue === 2.2
-              ? "Новый пароль"
-              : "fuck"}
+                ? "Регистрация"
+                : queue === 1.1 || queue === 2.1
+                  ? "Введите код"
+                  : queue === 2
+                    ? "Восстановить аккаунт"
+                    : queue === 2.2
+                      ? "Новый пароль"
+                      : "fuck"}
           </h3>
         </div>
         {queue === 0 ? (
@@ -200,31 +195,31 @@ const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
           style={
             queue === 1.1 && timer === 0
               ? {
-                  color: "#f00",
-                }
+                color: "#f00",
+              }
               : {
-                  color: "#888",
-                }
+                color: "#888",
+              }
           }
           onClick={() => {
             queue === 0
               ? setQueue(1)
               : queue === 1 || queue === 2
-              ? setQueue(0)
-              : queue === 1.1
-              ? setTimer(60)
-              : setQueue(1.1);
+                ? setQueue(0)
+                : queue === 1.1
+                  ? setTimer(60)
+                  : setQueue(1.1);
           }}
         >
           {queue === 0
             ? "Регистрация"
             : queue === 1 || queue === 2
-            ? "Уже есть аккаунт?"
-            : queue === 2.2
-            ? ""
-            : `Запросить еще раз ( 0:${timer >= 0 ? timer : setTimer(0)} )`}
+              ? "Уже есть аккаунт?"
+              : queue === 2.2
+                ? ""
+                : `Запросить еще раз ( 0:${timer >= 0 ? timer : setTimer(0)} )`}
         </button>
-      </Animated>
+      </div>
       <div
         className={styles.bg}
         onClick={() => {

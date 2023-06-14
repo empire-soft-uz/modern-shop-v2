@@ -19,8 +19,8 @@ const Detail = () => {
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   const [order, setOrder] = useState<boolean>(false);
 
-  useEffect(()=> {
-    order ? document.body.style.overflow = "hidden": document.body.style.overflow = "auto"
+  useEffect(() => {
+    order ? document.body.style.overflow = "hidden" : document.body.style.overflow = "auto"
   }, [order])
 
   const cardObj = [
@@ -114,7 +114,7 @@ const Detail = () => {
                   </div>
                 </div>
               </div>
-              <Order order={order} setOrder={setOrder} />  
+              <Order order={order} setOrder={setOrder} />
               <div className={styles.characterSide}>
                 <div className={styles.character}>
                   <div className={styles.characterInfo}>
@@ -430,11 +430,11 @@ const Detail = () => {
                 </div>
               </>
             ) : (
-              <Animated animationIn="bounceInLeft" className={styles.reviewsWrapper}>
+              <div className={styles.reviewsWrapper}>
                 {[1, 2, 3, 4].map((e: number) => {
                   return <Reviews key={e} />;
                 })}
-              </Animated>
+              </div>
             )}
           </section>
           <section className={styles.similarProducts}>
