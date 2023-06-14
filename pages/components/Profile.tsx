@@ -16,11 +16,9 @@ const Profile = () => {
     setIsChangePassOpen(!isChangePassOpen);
   };
 
-  
   useEffect(() => {
     AOS.init();
-  }, [])
-
+  }, []);
 
   return (
     <div className={styles.Profile} data-aos="fade-up" data-aos-duration="3000">
@@ -103,10 +101,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-
-      <div >
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 };

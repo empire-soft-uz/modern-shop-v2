@@ -9,11 +9,9 @@ interface ChangePass {
 }
 
 const ChanchePassword = ({ setIsChangePassOpen }: ChangePass) => {
-
-
   useEffect(() => {
     AOS.init();
-  }, [])
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -32,10 +30,13 @@ const ChanchePassword = ({ setIsChangePassOpen }: ChangePass) => {
 
   return (
     <div className={styles.ChangePass}>
-      <div className={styles.ChangeForm} data-aos="fade-zoom-in"
-     data-aos-easing="ease-in-back"
-     data-aos-delay="200"
-     data-aos-offset="0">
+      <div
+        className={styles.ChangeForm}
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-in-back"
+        data-aos-delay="200"
+        data-aos-offset="0"
+      >
         <button
           className={styles.exit}
           onClick={() => {
@@ -70,7 +71,12 @@ const ChanchePassword = ({ setIsChangePassOpen }: ChangePass) => {
             <h1>Введите код отправленный на ваш телефон</h1>
             <div className={styles.ChangeInput}>
               <p>Код</p>
-              <input type="password" maxLength={8} required autoComplete="false" />
+              <input
+                type="password"
+                maxLength={8}
+                required
+                autoComplete="false"
+              />
             </div>
             <button
               className={styles.Changebutton}
@@ -85,14 +91,24 @@ const ChanchePassword = ({ setIsChangePassOpen }: ChangePass) => {
           <form action={"#"} autoComplete="off">
             <div className={styles.ChangeInput}>
               <p>Новый пароль</p>
-              <input type="password" maxLength={8} required autoComplete="false" />
+              <input
+                type="password"
+                maxLength={8}
+                required
+                autoComplete="false"
+              />
             </div>
             <div className={styles.ChangeInput}>
               <p>Подтвердите пароль</p>
-              <input type="password" maxLength={8} required autoComplete="false" />
+              <input
+                type="password"
+                maxLength={8}
+                required
+                autoComplete="false"
+              />
             </div>
             <Link href="/components/AllKategor">
-                <button className={styles.Changebutton}>Подтвердить</button>
+              <button className={styles.Changebutton}>Подтвердить</button>
             </Link>
           </form>
         ) : null}

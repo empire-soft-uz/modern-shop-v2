@@ -10,7 +10,7 @@ import likeBlue from "../../public/likeBlue.svg";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "./footer";
-import AOS from "aos"
+import AOS from "aos";
 
 const izbrinni = () => {
   const [likes, setLikes] = useState(true);
@@ -23,11 +23,9 @@ const izbrinni = () => {
     setLikedObj(res);
   }, []);
 
-  
   useEffect(() => {
     AOS.init();
-  }, [])
-
+  }, []);
 
   console.log(likedObj);
 
@@ -51,10 +49,12 @@ const izbrinni = () => {
                     height={likedObj.height}
                     alt="product"
                   />
-                  <button onClick={()=> {
-                    localStorage.clear()
-                    setLikedObj(null)
-                  }}>
+                  <button
+                    onClick={() => {
+                      localStorage.clear();
+                      setLikedObj(null);
+                    }}
+                  >
                     <Image
                       onClick={() => {
                         setLikes(!likes);
@@ -86,7 +86,7 @@ const izbrinni = () => {
         </div>
       </div>
 
-      <div style={{ marginTop: '11rem'}}>
+      <div style={{ marginTop: "11rem" }}>
         <Footer />
       </div>
     </div>
