@@ -34,7 +34,7 @@ const TopHeader = () => {
             <Link href="#">Контакты</Link>
           </li>
         </ul>
-      {isAuthOpen && <Auth  setIsAuthOpen={setIsAuthOpen}/>}
+      <Auth isAuthOpen={isAuthOpen} setIsAuthOpen={setIsAuthOpen}/>
       </nav>
       <div onClick={()=> {
         setIsAuthOpen(true)
