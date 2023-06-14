@@ -5,7 +5,7 @@ import HeaderButton from "./HeaderButton";
 import styles from "../../styles/allKategor.module.css";
 import { useState } from "react";
 
-const AllKategor = () => {
+const AllCategories = () => {
   const [buttonColor, setButtonColor] = useState<number>(0);
 
   return (
@@ -46,4 +46,4 @@ const AllKategor = () => {
   );
 };
 
-export default AllKategor;
+export default AllCategories;
