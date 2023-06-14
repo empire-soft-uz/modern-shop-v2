@@ -16,7 +16,7 @@ const ApplicationAccepted = ({setApplication}:Modal) => {
 
     return (
         <div className={styles.Application}>
-            <div className={styles.Application__card}>
+            <div className={styles.Application__card}  data-aos="zoom-in-down">
                 <div style={{ width: "100%", paddingLeft: 450, cursor: "pointer" }} >
                     <Image onClick={()=> {
                         setApplication(false)

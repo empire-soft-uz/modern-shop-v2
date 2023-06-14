@@ -5,13 +5,21 @@ import NavBar from './Header'
 import Image from 'next/image'
 import remove from '../../public/remove.svg'
 import Footer from './footer'
-import { useState } from 'react'
+import AOS from 'aos'
+import { useState, useEffect } from 'react'
 import ApplicationAccepted from './ApplicationAccepted'
 import HeaderButton from './HeaderButton'
 
 const Order = () => {
     const [application, setApplication] = useState(false)
 
+
+    
+    useEffect(() => {
+        AOS.init();
+      }, [])
+
+    
 
     const Application = () => {
         setApplication(!application)
@@ -51,7 +59,7 @@ const Order = () => {
     ]
 
     return (
-        <div className={styles.Order}>
+        <div className={styles.Order} data-aos="zoom-in">
             {application && <ApplicationAccepted setApplication={setApplication} />}
             <Header />
             <NavBar />

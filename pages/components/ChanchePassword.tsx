@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import AOS from "aos";
 import styles from "../../styles/changePass.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +9,12 @@ interface ChangePass {
 }
 
 const ChanchePassword = ({ setIsChangePassOpen }: ChangePass) => {
+
+
+  useEffect(() => {
+    AOS.init();
+  }, [])
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
   }, []);
@@ -26,7 +32,10 @@ const ChanchePassword = ({ setIsChangePassOpen }: ChangePass) => {
 
   return (
     <div className={styles.ChangePass}>
-      <div className={styles.ChangeForm}>
+      <div className={styles.ChangeForm} data-aos="fade-zoom-in"
+     data-aos-easing="ease-in-back"
+     data-aos-delay="200"
+     data-aos-offset="0">
         <button
           className={styles.exit}
           onClick={() => {

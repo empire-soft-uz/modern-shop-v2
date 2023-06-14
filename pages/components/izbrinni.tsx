@@ -10,6 +10,7 @@ import likeBlue from "../../public/likeBlue.svg";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "./footer";
+import AOS from "aos"
 
 const izbrinni = () => {
   const [likes, setLikes] = useState(true);
@@ -22,10 +23,16 @@ const izbrinni = () => {
     setLikedObj(res);
   }, []);
 
+  
+  useEffect(() => {
+    AOS.init();
+  }, [])
+
+
   console.log(likedObj);
 
   return (
-    <div className={styles.Izbrinni}>
+    <div className={styles.Izbrinni} data-aos="zoom-in-up">
       <NavBar />
       <Header />
       <HeaderButton />

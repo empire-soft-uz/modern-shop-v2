@@ -24,18 +24,6 @@ interface Card {
 const Card = ({ price, title, width, height, image, kategoriya, card, setLikedObj, likedObj }: Card) => {
 
 
-  // const value = localStorage.getItem("favoriteNumber") || ""
-
-  // // Set the value received from the local storage to a local state
-  // const [favoriteLikes, setFavoriteLikes] = useState(value)
-
-  // // When user submits the form, save the favorite number to the local storage
-  // const saveToLocalStorage = (e:any) => {
-  //   setFavoriteLikes(e.target.value)
-  //   e.preventDefault()
-  //   localStorage.setItem("favoriteLikes", favoriteLikes)
-  // }
-
   const [likes, setLikes] = useState(false)
 
   useEffect(()=> {

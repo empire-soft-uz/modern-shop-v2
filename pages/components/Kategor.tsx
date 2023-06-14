@@ -1,7 +1,9 @@
 import React from 'react'
 import styles from '../../styles/Header.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 const Kategor = () => {
@@ -12,6 +14,9 @@ const Kategor = () => {
     const [kategorFour, setKategorFour] = useState(false)
 
 
+    useEffect(() => {
+        AOS.init();
+      }, [])
 
     const Kategor = () => {
         setKategor(!kategor)
@@ -31,7 +36,7 @@ const Kategor = () => {
     }
 
     return (
-        <div className={styles.Kategor}>
+        <div data-aos="fade-down" className={styles.Kategor}>
             <div className={styles.Kategor__section}>
                 <div className={styles.Kategor__left}>
                     <div onClick={Kategor}>

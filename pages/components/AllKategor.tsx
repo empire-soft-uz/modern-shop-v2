@@ -9,7 +9,7 @@ const AllKategor = () => {
   const [buttonColor, setButtonColor] = useState<number>(0);
 
   return (
-    <div className={styles.AllKategor}>
+    <div className={styles.AllKategor} data-aos="zoom-in-down">
       <NavBar />
       <Header />
       <HeaderButton />
