@@ -25,11 +25,14 @@
 
 .Card {
     width: 280px;
-    height: 330px;
+    height: 300px;
     padding: 14px 12.6px;
     background-color: #fff;
     border-radius: 20px;
+    width: 280px;
+    height: 331px;
 }
+
 
 .korzinka {
     cursor: pointer;
@@ -54,4 +57,12 @@
     padding-left: 30px;
     justify-content: space-around;
     display: flex;
+}
+
+.like button {
+    padding-left: 30px;
+    justify-content: space-around;
+    display: flex;
+    background: none;
+    border: none;
 }

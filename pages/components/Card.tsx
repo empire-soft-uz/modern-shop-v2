@@ -47,14 +47,7 @@ const Card = ({ price, title, width, height, image, kategoriya, card, setLikedOb
       <div className={styles.like}>
         <Image src={image} width={width} height={height} alt="product" />
         <button onClick={()=> {
-          likedObj.push(likedObj, {
-            title: title,
-            price: price,
-            image: image,
-            kategoriya: kategoriya,
-            width: width,
-            height: height
-          })
+          localStorage.setItem("izbri", JSON.stringify(card))
         }}>
           <Image onClick={() => {
             setLikes(!likes)

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import styles from "../../styles/changePass.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ChangePass {
   setIsChangePassOpen: Function;
@@ -60,7 +61,7 @@ const ChanchePassword = ({ setIsChangePassOpen }: ChangePass) => {
             <h1>Введите код отправленный на ваш телефон</h1>
             <div className={styles.ChangeInput}>
               <p>Код</p>
-              <input type="text" maxLength={8} required autoComplete="false" />
+              <input type="password" maxLength={8} required autoComplete="false" />
             </div>
             <button
               className={styles.Changebutton}
@@ -75,20 +76,15 @@ const ChanchePassword = ({ setIsChangePassOpen }: ChangePass) => {
           <form action={"#"} autoComplete="off">
             <div className={styles.ChangeInput}>
               <p>Новый пароль</p>
-              <input type="text" maxLength={8} required autoComplete="false" />
+              <input type="password" maxLength={8} required autoComplete="false" />
             </div>
             <div className={styles.ChangeInput}>
               <p>Подтвердите пароль</p>
-              <input type="text" maxLength={8} required autoComplete="false" />
+              <input type="password" maxLength={8} required autoComplete="false" />
             </div>
-            <button
-              className={styles.Changebutton}
-              onClick={() => {
-                setIsChangePassOpen(false);
-              }}
-            >
-              Подтвердить
-            </button>
+            <Link href="/components/AllKategor">
+                <button className={styles.Changebutton}>Подтвердить</button>
+            </Link>
           </form>
         ) : null}
         <button
@@ -102,6 +98,15 @@ const ChanchePassword = ({ setIsChangePassOpen }: ChangePass) => {
                   color: "#888",
                 }
           }
+          onClick={() => {
+            queue === 0
+              ? setQueue(1)
+              : queue === 1 || queue === 2
+              ? setQueue(0)
+              : queue === 1.1
+              ? setTimer(60)
+              : setQueue(1.1);
+          }}
         >
           {queue === 0
             ? ""
