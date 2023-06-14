@@ -3,29 +3,39 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/auth.module.css";
 import Image from "next/image";
 
+import { Animated } from "react-animated-css";
+
 interface Auth {
   setIsAuthOpen: Function;
+  isAuthOpen: boolean;
 }
 
-const Auth = ({ setIsAuthOpen }: Auth) => {
+const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
   }, []);
 
   const [queue, setQueue] = useState<number | any>(0);
 
-  const [timer, setTimer] = useState<number>(61);
+  const [timer, setTimer] = useState<number>(62);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((timer) => timer - 1);
     }, 1000);
     return () => clearInterval(interval);
-  }, [queue === 1.1]);
+  }, [queue === 1.1 || queue === 2.1]);
 
   return (
-    <div className={styles.authent}>
-      <div className={styles.auth}>
+    <div className={isAuthOpen ? styles.authent : styles.dn}>
+      <Animated
+        animationIn="pulse"
+        animationOut="fadeOutDown"
+        animationOutDuration={1000}
+        animationInDuration={1000}
+        isVisible={isAuthOpen ? true : true}
+        className={isAuthOpen ? styles.auth : styles.dn}
+      >
         <div className={styles.close}>
           <button
             onClick={() => {
@@ -212,7 +222,7 @@ const Auth = ({ setIsAuthOpen }: Auth) => {
             ? ""
             : `Запросить еще раз ( 0:${timer >= 0 ? timer : setTimer(0)} )`}
         </button>
-      </div>
+      </Animated>
       <div
         className={styles.bg}
         onClick={() => {

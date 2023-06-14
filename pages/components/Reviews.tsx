@@ -1,13 +1,15 @@
 import React from "react";
 import styles from "../../styles/review.module.css";
 import Image from "next/image";
+import { Animated } from "react-animated-css";
+
 const Reviews = () => {
   return (
     <div className={styles.review}>
       <div className={styles.userImage}>
         <Image src={"/user.png"} alt="user image" width={41} height={41} />
       </div>
-      <div className={styles.view}>
+      <Animated animationIn="pulse" className={styles.view}>
         <div className={styles.top}>
           <div className={styles.left}>
             <h3>Рафаэль Ройтман</h3>
@@ -72,7 +74,7 @@ const Reviews = () => {
           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
           commodo consequat.
         </p>
-      </div>
+      </Animated>
     </div>
   );
 };
