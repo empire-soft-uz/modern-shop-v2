@@ -19,6 +19,8 @@ const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
 
   const [timer, setTimer] = useState<number>(62);
 
+  console.log("hi")
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((timer) => timer - 1);
