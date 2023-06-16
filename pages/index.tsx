@@ -1,14 +1,18 @@
 import Head from "next/head";
 import styles from "../styles/home.module.css";
-import TopHeader from "./components/TopHeader";
-import Header from "./components/Header";
-import Categories from "./components/Categories";
+import TopHeader from "./components/global/TopHeader";
+import Header from "./components/global/Header";
+import Categories from "./components/global/Categories";
 import Image from "next/image";
-import Card from "./components/Card";
-import News from "./components/News";
-import Footer from "./components/Footer";
+import Card from "./components/global/Card";
+import News from "./components/loackal/News";
+import Footer from "./components/global/Footer";
+import { useState } from "react";
 
 export default function Home() {
+
+  const [likedObj, setLikedObj] = useState<any>([])
+
   const fakeObj = [
     {
       image: "/phone.svg",

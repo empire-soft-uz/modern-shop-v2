@@ -1,0 +1,64 @@
+.liked__section {
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    width: 1180px;
+    padding: 10px 0;
+    margin: auto;
+}
+
+.Favorites {
+    display: flex;
+    width: 1180px;
+    padding: 10px 0;
+    margin: auto;
+}
+
+.liked__cards {
+    gap: 20px;
+    display: flex;
+}
+
+.Card {
+    width: 280px;
+    height: 300px;
+    padding: 14px 12.6px;
+    background-color: #fff;
+    border-radius: 20px;
+    width: 280px;
+    height: 331px;
+}
+
+
+.cart {
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 50%;
+    width: 43.6px;
+    height: 45.58px;
+    background-color: #E4B717;
+}
+
+.order {
+    color: #E4B717;
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.like {
+    cursor: pointer;
+    padding-left: 30px;
+    justify-content: space-around;
+    display: flex;
+}
+
+.like button {
+    padding-left: 30px;
+    justify-content: space-around;
+    display: flex;
+    background: none;
+    border: none;
+}
