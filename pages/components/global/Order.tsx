@@ -35,8 +35,8 @@ const Order = ({ setOrder, order }: Order) => {
           <h3>Заявка принята</h3>
           <p>В ближайшее время мы с вами свяжемся</p>
         </div>
-        <Link href="/categoriy">
-          <button className={styles.take}>Принять</button>
+        <Link href="/category" className={styles.take}>
+          Принять
         </Link>
       </div>
       <div
