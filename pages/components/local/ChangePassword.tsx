@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
-import styles from "../../../styles/changePass.module.css";
+import styles from "@/styles/changePass.module.css";
 import Image from "next/image";
 import Link from "next/link";
 

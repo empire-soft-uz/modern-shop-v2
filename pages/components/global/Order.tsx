@@ -1,8 +1,8 @@
 import React, { Dispatch, useEffect } from "react";
-import styles from "../../../styles/order.module.css";
+import styles from "@/styles/order.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import check from '../../../public/chesck.svg'
+import check from '@/public/chesck.svg'
 
 interface Order {
   setOrder: Function;

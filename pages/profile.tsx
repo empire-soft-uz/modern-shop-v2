@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "../styles/profile.module.css";
+import styles from "@/styles/profile.module.css";
 import Footer from "./components/global/Footer";
 import Image from "next/image";
 import AOS from "aos";
 import { useState, useEffect } from "react";
-import ChanchePassword from "./components/loackal/ChanchePassword";
+import ChanchePassword from "./components/local/ChangePassword";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import styles from "../../../styles/auth.module.css";
+import styles from "@/styles/auth.module.css";
 import Image from "next/image";
 
 interface Auth {

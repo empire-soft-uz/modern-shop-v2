@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "../styles/home.module.css";
+import styles from "@/styles/home.module.css";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";

@@ -3,7 +3,7 @@ import Head from "next/head";
 import TopHeader from "../components/global/TopHeader";
 import Header from "../components/global/Header";
 import Categories from "../components/global/Categories";
-import styles from "../../styles/detail.module.css";
+import styles from "@/styles/detail.module.css";
 import Image from "next/image";
 import Footer from "../components/global/Footer";
 import Card from "../components/global/Card";

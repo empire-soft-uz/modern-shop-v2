@@ -4,7 +4,7 @@ import Image from "next/image";
 import Footer from "./components/global/Footer";
 import AOS from "aos";
 import { useState, useEffect } from "react";
-import ApplicationAccepted from "./components/local/ChanchePassword";
+import ApplicationAccepted from "./components/local/ChangePassword";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";

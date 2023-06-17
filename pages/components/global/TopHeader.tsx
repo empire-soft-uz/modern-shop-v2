@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../../styles/topnav.module.css";
+import styles from "@/styles/topnav.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import Auth from "./Auth";

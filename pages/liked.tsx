@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import styles from "../styles/liked.module.css";
+import styles from "@/styles/liked.module.css";
 import Header from "./components/global/Header";
-import Buy from "../public/Buy.png";
-import likeBlue from "../public/likeBlue.svg";
+import Buy from "@/public/Buy.png";
+import likeBlue from "@/public/likeBlue.svg";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "./components/global/Footer";

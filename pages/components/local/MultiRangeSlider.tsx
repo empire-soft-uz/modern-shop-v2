@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, useCallback, useEffect, useState, useRef } from 'react';
-import styles from '../../../styles/multiRangeSlider.module.css'
+import styles from '@/styles/multiRangeSlider.module.css'
 
 interface MultiRangeSliderProps {
   min: number;
