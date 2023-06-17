@@ -10,10 +10,6 @@ import Categories from './components/global/Categories'
 
 
 export default function Categoriy () {
-
-  const [likedObj, setLikedObj] = useState<any>([])
-
-
   const cardObj = [
     {
       image: "/phone.svg",
@@ -144,10 +140,6 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
   ]
-
-  useEffect(()=> {
-    console.log(likedObj)
-  })
 
   return (
     <>
