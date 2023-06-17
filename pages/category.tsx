@@ -4,7 +4,6 @@ import Image from 'next/image'
 import MultiRangeSlider from './components/local/MultiRangeSlider'
 import Card from './components/global/Card'
 import Footer from './components/global/Footer'
-import { useEffect, useState } from 'react'
 import TopHeader from './components/global/TopHeader'
 import Categories from './components/global/Categories'
 
