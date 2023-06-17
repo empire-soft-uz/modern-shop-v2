@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <h2
+        <Link href={"/"}
           style={{
             color: "#E4B717",
             textTransform: "uppercase",
@@ -16,7 +16,7 @@ const Header = () => {
           }}
         >
           Modern
-        </h2>
+        </Link>
         <div className={styles.search}>
           <input type="text" placeholder="Поиск" />
           <Image src="/search.svg" alt="search icon" width={22} height={22} />

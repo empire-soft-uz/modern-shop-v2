@@ -7,8 +7,8 @@ import styles from "../../styles/detail.module.css";
 import Image from "next/image";
 import Footer from "../components/global/Footer";
 import Card from "../components/global/Card";
-import Reviews from "../components/loackal/Reviews";
-import Chat from "../components/loackal/Chat";
+import Reviews from "../components/local/Reviews";
+import Chat from "../components/local/Chat";
 import Order from "../components/global/Order";
 
 

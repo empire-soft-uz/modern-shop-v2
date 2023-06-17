@@ -1,7 +1,7 @@
 import styles from '../styles/categoriy.module.css'
 import Header from './components/global/Header'
 import Image from 'next/image'
-import MultiRangeSlider from './components/loackal/MultiRangeSlider'
+import MultiRangeSlider from './components/local/MultiRangeSlider'
 import Card from './components/global/Card'
 import Footer from './components/global/Footer'
 import { useEffect, useState } from 'react'
