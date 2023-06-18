@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "@/styles/card.module.css";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface Card {
   price: string;
@@ -13,12 +14,21 @@ interface Card {
 }
 
 const Card = ({ price, title, width, height, image, cat }: Card) => {
+
+  const router = useRouter()
+
+  const [liked, setLiked] = useState(false)
+
+  useEffect(()=> {
+    setLiked(true)
+  }, [router.pathname === "/liked"])
+
   return (
     <Link href={`/detail/${price.split(".")[0]}`} className={styles.card}>
       <Image src={image} alt="products image" width={width} height={height} />
       <div className={styles.like}>
-        <Image src={"/liked.svg"} alt="like icon" width={20.5} height={20} />
-      </div>
+        <Image src={"/icons/liked.svg"} alt="like icon" width={20.5} height={20} />
+      </div>      
       <h3
         style={{
           color: "#000",
@@ -31,7 +41,7 @@ const Card = ({ price, title, width, height, image, cat }: Card) => {
         <h3>{price}</h3>
           <div className={styles.box}>
             <Image
-              src={"/buyW.svg"}
+              src={"/icons/buyW.svg"}
               alt="add cart icon"
               width={21}
               height={20.5}

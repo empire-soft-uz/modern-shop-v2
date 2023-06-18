@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import styles from "@/styles/profile.module.css";
 import Footer from "./components/global/Footer";
 import Image from "next/image";
@@ -9,6 +9,8 @@ import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
 import Order from "./components/global/Order";
+import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Profile = () => {
   const [isChangePassOpen, setIsChangePassOpen] = useState(false);
@@ -19,13 +21,15 @@ const Profile = () => {
 
   useEffect(() => {
     AOS.init();
-  }, []);
+    document.body.style.overflow = "auto"
+  });
 
   return (
-    <div className={styles.Profile} data-aos="fade-up" data-aos-duration="3000">
+    <div className={styles.Profile} data-aos="fade-down" data-aos-duration="3000">
       {isChangePassOpen && (
         <ChanchePassword setIsChangePassOpen={setIsChangePassOpen} />
       )}
+
       <TopHeader />
       <Header />
       <Categories />
@@ -36,30 +40,30 @@ const Profile = () => {
         <div className={styles.profile__left}>
           <div className={styles.profile__card}>
             <div className={styles.profile__user}>
-              <Image src={"/user.svg"} width={16} height={21} alt="user" />
+              <Image src={"/icons/user.svg"} width={16} height={21} alt="user" />
               <p>Личные данные</p>
             </div>
             <div className={styles.profile__order}>
-              <Image src={"/book.svg"} width={17.29} height={21} alt="book" />
+              <Image src={"/icons/book.svg"} width={17.29} height={21} alt="book" />
               <p>Мои заказы</p>
             </div>
           </div>
           <div className={styles.profile__close}>
-            <Image src={"/logout.svg"} width={19} height={19} alt="close" />
+            <Image src={"/icons/logout.svg"} width={19} height={19} alt="close" />
             <p>Выйти</p>
           </div>
         </div>
         <div className={styles.profile__right}>
           <div className={styles.profile__upload}>
             <Image
-              src={"/profile.svg"}
+              src={"/icons/profile.svg"}
               width={115.31}
               height={115.31}
               alt="profile"
             />
             <div className={styles.circle}>
               <Image
-                src={"/circle.svg"}
+                src={"/icons/circle.svg"}
                 width={19.77}
                 height={16.47}
                 alt="circle"

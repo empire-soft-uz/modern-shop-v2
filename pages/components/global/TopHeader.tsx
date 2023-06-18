@@ -39,7 +39,7 @@ const TopHeader = () => {
       <div onClick={()=> {
         setIsAuthOpen(true)
       }} className={styles.auth}>
-        <Image src={"/user.svg"} width={14} height={18} alt="user icon" />
+        <Image src={"/icons/user.svg"} width={14} height={18} alt="user icon" />
         <button>Войти</button>
         <p> | </p>
         <button>Зарегестрироваться</button>

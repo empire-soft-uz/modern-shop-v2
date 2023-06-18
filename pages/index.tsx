@@ -19,37 +19,37 @@ export default function Home() {
 
   const fakeObj = [
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       title: "Телефоны",
       height: 29,
       width: 52,
     },
     {
-      image: "/uniform.svg",
+      image: "/icons/uniform.svg",
       title: "Одежда",
       height: 51,
       width: 65,
     },
     {
-      image: "/home.svg",
+      image: "/icons/home.svg",
       title: "Для дома",
       height: 51,
       width: 52,
     },
     {
-      image: "/pc.svg",
+      image: "/icons/pc.svg",
       title: "Компютеры",
       height: 47,
       width: 49,
     },
     {
-      image: "/toys.svg",
+      image: "/icons/toys.svg",
       title: "Игрушки",
       height: 51,
       width: 52,
     },
     {
-      image: "/sport.svg",
+      image: "/icons/sport.svg",
       title: "Спортивное",
       height: 60.5,
       width: 36,
@@ -57,7 +57,7 @@ export default function Home() {
   ];
   const cardObj = [
     {
-      image: "/productPhone.png",
+      image: "/images/productPhone.png",
       w: 144,
       h: 167,
       title: "Iphone 14 PRO",
@@ -65,7 +65,7 @@ export default function Home() {
       cat: "Телефоны",
     },
     {
-      image: "/xboxController.png",
+      image: "/images/xboxController.png",
       w: 181,
       h: 192,
       title: "Xbox",
@@ -73,7 +73,7 @@ export default function Home() {
       cat: "Приставки",
     },
     {
-      image: "/headPhone.png",
+      image: "/images/headPhone.png",
       w: 179,
       h: 190,
       title: "Наушники SONY",
@@ -81,7 +81,7 @@ export default function Home() {
       cat: "Аксессуары",
     },
     {
-      image: "/smphone.png",
+      image: "/images/smphone.png",
       w: 160,
       h: 173,
       title: "Samsung M53",
@@ -89,7 +89,7 @@ export default function Home() {
       cat: "Телефоны",
     },
     {
-      image: "/productPhone.png",
+      image: "/images/productPhone.png",
       w: 144,
       h: 167,
       title: "Iphone 14 PRO",
@@ -97,7 +97,7 @@ export default function Home() {
       cat: "Телефоны",
     },
     {
-      image: "/xboxController.png",
+      image: "/images/xboxController.png",
       w: 181,
       h: 192,
       title: "Xbox",
@@ -105,7 +105,7 @@ export default function Home() {
       cat: "Приставки",
     },
     {
-      image: "/headPhone.png",
+      image: "/images/headPhone.png",
       w: 179,
       h: 190,
       title: "Наушники SONY",
@@ -113,7 +113,7 @@ export default function Home() {
       cat: "Аксессуары",
     },
     {
-      image: "/smphone.png",
+      image: "/images/smphone.png",
       w: 160,
       h: 173,
       title: "Samsung M53",
@@ -123,7 +123,7 @@ export default function Home() {
   ];
   const cardObj1 = [
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 95.51,
       height: 113.35,
       title: "Iphone 14 PRO",
@@ -131,7 +131,7 @@ export default function Home() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 95.51,
       height: 113.35,
       title: "Iphone 14 PRO",
@@ -139,7 +139,7 @@ export default function Home() {
       price: "13.000000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 95.51,
       height: 113.35,
       title: "Iphone 14 PRO",
@@ -205,7 +205,7 @@ export default function Home() {
               <div className={styles.catController}>
                 <div className={styles.catControl}>
                   <Image
-                    src={"/arrowLeft.svg"}
+                    src={"/icons/arrowLeft.svg"}
                     width={23}
                     height={16}
                     alt="controller"
@@ -213,7 +213,7 @@ export default function Home() {
                 </div>
                 <div className={styles.catControl}>
                   <Image
-                    src={"/arrowRight.svg"}
+                    src={"/icons/arrowRight.svg"}
                     width={23}
                     height={16}
                     alt="controller"
@@ -269,7 +269,7 @@ export default function Home() {
               <div className={styles.catController}>
                 <div className={styles.catControl}>
                   <Image
-                    src={"/arrowLeft.svg"}
+                    src={"/icons/arrowLeft.svg"}
                     width={23}
                     height={16}
                     alt="controller"
@@ -277,7 +277,7 @@ export default function Home() {
                 </div>
                 <div className={styles.catControl}>
                   <Image
-                    src={"/arrowRight.svg"}
+                    src={"/icons/arrowRight.svg"}
                     width={23}
                     height={16}
                     alt="controller"
@@ -372,7 +372,7 @@ export default function Home() {
                   <div className={classes.card__left}>
                     <div className={classes.card__title}>
                       <Image
-                        src={"/profile.svg"}
+                        src={"/icons/profile.svg"}
                         width={57}
                         height={57}
                         alt="profile"
@@ -413,7 +413,7 @@ export default function Home() {
                       <div className={classes.controllerProduct}>
                         <button>
                           <Image
-                            src={"/chevronLeft.svg"}
+                            src={"/icons/chevronLeft.svg"}
                             alt="chevron left icon"
                             width={11}
                             height={20}
@@ -421,7 +421,7 @@ export default function Home() {
                         </button>
                         <button>
                           <Image
-                            src={"/chevronRight.svg"}
+                            src={"/icons/chevronRight.svg"}
                             alt="chevron right icon"
                             width={11}
                             height={20}

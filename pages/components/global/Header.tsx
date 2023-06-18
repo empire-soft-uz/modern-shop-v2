@@ -19,13 +19,13 @@ const Header = () => {
         </Link>
         <div className={styles.search}>
           <input type="text" placeholder="Поиск" />
-          <Image src="/search.svg" alt="search icon" width={22} height={22} />
+          <Image src="/icons/search.svg" alt="search icon" width={22} height={22} />
         </div>
         <div className={styles.contra}>
           <div className={styles.contraLeft}>
             <div className={styles.image}>
               <Image
-                src={"/inet.svg"}
+                src={"/icons/inet.svg"}
                 alt="language icon"
                 width={20}
                 height={20}
@@ -42,7 +42,7 @@ const Header = () => {
           <div className={styles.contraRight}>
             <div className={styles.image}>
               <Image
-                src={"/call.svg"}
+                src={"/icons/call.svg"}
                 alt="language icon"
                 width={20}
                 height={20}
@@ -63,7 +63,7 @@ const Header = () => {
             <div className={styles.image}>
               <Link href="/liked">
                 <Image
-                  src={"/like.svg"}
+                  src={"/icons/like.svg"}
                   alt="language icon"
                   width={20}
                   height={20}
@@ -73,7 +73,7 @@ const Header = () => {
             <div className={styles.image}>
               <Link href="/delivery">
                 <Image
-                  src={"/buy.svg"}
+                  src={"/icons/buy.svg"}
                   alt="language icon"
                   width={20}
                   height={20}

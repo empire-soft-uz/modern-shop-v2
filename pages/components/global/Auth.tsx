@@ -33,7 +33,7 @@ const Auth = ({ setIsAuthOpen }: Auth) => {
             }}
           >
             <Image
-              src={"/close.svg"}
+              src={"/icons/close.svg"}
               alt="close auth icon"
               width={21}
               height={21}

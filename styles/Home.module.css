@@ -156,7 +156,7 @@
 
 .newProductsWrapper, .newsWrapper {
   display: flex;
-  gap: 1.250975rem;
+  gap: 1.25rem;
   flex-wrap: wrap;
 }
 

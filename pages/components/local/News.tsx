@@ -13,7 +13,7 @@ const News = ({ id }: News) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        backgroundImage: "url('/newsBg.png')",
+        backgroundImage: "url('/images/newsBg.png')",
         backgroundRepeat: "no-repeat",
         width: 380,
         borderRadius: 20,

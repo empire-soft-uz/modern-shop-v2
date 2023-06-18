@@ -17,6 +17,8 @@
 .liked__cards {
     gap: 20px;
     display: flex;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .Card {

@@ -1,11 +1,10 @@
 .order {
-    width: 1180px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
     top: 0;
-    left: 70px;
     z-index: 1000;
 }
 
@@ -45,17 +44,16 @@
 .orderSide {
     display: flex;
     background: #fff;
-    position: absolute;
+    position: fixed;
+    top: 25%;
     border-radius: 20px;
     z-index: 100000000;
     flex-direction: column;
     justify-content: space-between;
-    top: 19rem;
     padding-bottom: 50px;
     width: 531px;
     gap: 3rem;
     align-items: center;
-    left: 50%;
 }
 
 .close {

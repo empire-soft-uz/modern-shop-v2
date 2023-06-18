@@ -11,7 +11,7 @@ import Categories from './components/global/Categories'
 export default function Categoriy () {
   const cardObj = [
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -19,7 +19,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -27,7 +27,7 @@ export default function Categoriy () {
       price: "13.000000",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -35,7 +35,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -43,7 +43,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -51,7 +51,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -59,7 +59,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -67,7 +67,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -75,7 +75,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -83,7 +83,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -91,7 +91,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -99,7 +99,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -107,7 +107,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -115,7 +115,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -123,7 +123,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -131,7 +131,7 @@ export default function Categoriy () {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -154,7 +154,7 @@ export default function Categoriy () {
             <div className={styles.price}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <p style={{ fontSize: 18, fontWeight: 700 }}>Цена</p>
-                <Image src={("/toparrow.svg")} width={15} height={12} alt='toparrow' />
+                <Image src={("/icons/toparrow.svg")} width={15} height={12} alt='toparrow' />
               </div>
               <div className={styles.rangeSlider}>
                 <MultiRangeSlider min={100} max={700} />
@@ -163,7 +163,7 @@ export default function Categoriy () {
             <div className={styles.manufacturer}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <p style={{ fontSize: 18, fontWeight: 700 }}>Производитель</p>
-                <Image src={('/toparrow.svg')} width={15} height={12} alt='toparrow' />
+                <Image src={('/icons/toparrow.svg')} width={15} height={12} alt='toparrow' />
               </div>
               <div className={styles.radio__input}>
                 <input type='checkbox' />
@@ -181,7 +181,7 @@ export default function Categoriy () {
             <div className={styles.operative}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <p style={{ fontSize: 18, fontWeight: 700 }}>Оператив. память</p>
-                <Image src={("/toparrow.svg")} width={15} height={12} alt='toparrow' />
+                <Image src={("/icons/toparrow.svg")} width={15} height={12} alt='toparrow' />
               </div>
               <div className={styles.checkBox__input}>
                 <input type='checkbox' />

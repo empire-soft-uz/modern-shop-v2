@@ -2,12 +2,11 @@ import React, { Dispatch, useEffect } from "react";
 import styles from "@/styles/order.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import check from '@/public/chesck.svg'
+import check from '@/public/icons/check.svg'
 
 interface Order {
   setOrder: Function;
   order: boolean;
-
 }
 
 const Order = ({ setOrder, order }: Order) => {
@@ -20,7 +19,7 @@ const Order = ({ setOrder, order }: Order) => {
               setOrder(false);
             }}
           >
-            <Image src={"/close.svg"} alt="close icon" width={21} height={21} />
+            <Image src={"/icons/close.svg"} alt="close icon" width={21} height={21} />
           </button>
         </div>
         <div className={styles.center}>
@@ -35,7 +34,7 @@ const Order = ({ setOrder, order }: Order) => {
           <h3>Заявка принята</h3>
           <p>В ближайшее время мы с вами свяжемся</p>
         </div>
-        <Link href="/category" className={styles.take}>
+        <Link href="/profile" className={styles.take}>
           Принять
         </Link>
       </div>
