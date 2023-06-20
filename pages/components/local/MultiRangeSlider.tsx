@@ -54,21 +54,6 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({ min, max }) => {
             className={styles.thumb__left}
           />
         </div>
-
-        <div>
-          <input
-            type="range"
-            min={min}
-            max={max}
-            value={maxVal}
-            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              const value = Math.max(Number(event.target.value), minVal + 1);
-              setMaxVal(value);
-              maxValRef.current = value;
-            }}
-            className={styles.thumb__right}
-          />
-        </div>
       </div>
       <div className={styles.slider}>
         <div className={styles.slider__track}></div>

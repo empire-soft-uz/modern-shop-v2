@@ -7,15 +7,18 @@ import Image from "next/image";
 import Card from "./components/global/Card";
 import News from "./components/local/News";
 import Footer from "./components/global/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HeaderTabs from "./components/local/HeaderTabs";
 import classes from "@/styles/allCategoriy.module.css";
+import Aos from "aos";
 
 export default function Home() {
-
-  const [likedObj, setLikedObj] = useState<any>([])
   const [nav, setNav] = useState<number>(0);
   const [buttonColor, setButtonColor] = useState<number>(0)
+
+  useEffect(() => {
+    Aos.init()
+  }, [])
 
   const fakeObj = [
     {
@@ -234,6 +237,7 @@ export default function Home() {
                       price={card.price}
                       cat={card.cat}
                       key={index}
+                      animation={"fade-down"}
                     />
                   );
                 })}
@@ -253,6 +257,7 @@ export default function Home() {
                       price={card.price}
                       cat={card.cat}
                       key={index}
+                      animation="fade-down"
                     />
                   );
                 })}
@@ -407,6 +412,7 @@ export default function Home() {
                             title={card.title}
                             price={card.price}
                             cat={card.cat}
+                            animation="zoom-in"
                           />
                         );
                       })}
@@ -456,21 +462,7 @@ export default function Home() {
               <p className={classes.news__title}>Новости</p>
               <div className={classes.news__card}>
                 {[1, 2, 3].map((e: any) => {
-                  return (
-                    <div className={classes.news}>
-                      <div className={classes.news__months}>
-                        <p>1</p>
-                        <p>мая</p>
-                      </div>
-                      <div className={classes.news__discrb}>
-                        <p>Мы оказываем широкий спектр услуг.</p>
-                        <p>
-                          Квартирные, офисные и дачные переезды– это наша ежедневная
-                          работа и мы настоящие профессионалы своего дела.{" "}
-                        </p>
-                      </div>
-                    </div>
-                  );
+                  return <News id={e} />
                 })}
               </div>
             </div></>}

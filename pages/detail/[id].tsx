@@ -10,6 +10,7 @@ import Card from "../components/global/Card";
 import Reviews from "../components/local/Reviews";
 import Chat from "../components/local/Chat";
 import Order from "../components/global/Order";
+import { useRouter } from "next/router";
 
 
 
@@ -18,6 +19,11 @@ const Detail = () => {
   const [controllerM, setControllerM] = useState<number>(0);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   const [order, setOrder] = useState<boolean>(false);
+
+  const router = useRouter()
+
+  const { id } = router.query
+  console.log(id)
 
   useEffect(() => {
     order ? document.body.style.overflow = "hidden" : document.body.style.overflow = "auto"
@@ -222,8 +228,8 @@ const Detail = () => {
                       512 гб
                     </button>
                     <button onClick={() => {
-                        setControllerM(2);
-                      }}
+                      setControllerM(2);
+                    }}
                       type="button"
                       className={
                         controllerM === 2 ? styles.memoryd : styles.memory
@@ -341,12 +347,12 @@ const Detail = () => {
               <>
                 <div className={styles.detailS}>
                   <div className={styles.characterInfo}><div className={styles.characterInfoLeft}>
-                      <p>Экран......................................</p>
-                      <p>Модель процессора.............</p>
-                      <p>Встроенная память................</p>
-                      <p>Оперативная память.............</p>
-                      <p>Разрешение камеры.............</p>
-                    </div>
+                    <p>Экран......................................</p>
+                    <p>Модель процессора.............</p>
+                    <p>Встроенная память................</p>
+                    <p>Оперативная память.............</p>
+                    <p>Разрешение камеры.............</p>
+                  </div>
                     <div className={styles.characterInfoRight}>
                       <p>6.8</p>
                       <p>Snapdragon 8 Gen 2</p>
@@ -447,6 +453,7 @@ const Detail = () => {
                     price={card.price}
                     cat={card.cat}
                     key={index}
+                    animation="fade-down"
                   />
                 );
               })}

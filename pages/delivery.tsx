@@ -60,7 +60,7 @@ const Delivery = () => {
 
 
   return (
-    <div className={styles.Delivery} data-aos="zoom-in">
+    <div className={styles.Delivery}>
       <TopHeader />
       <Header />
       <Categories />
