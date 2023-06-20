@@ -1,4 +1,4 @@
-import styles from '../styles/categoriy.module.css'
+import styles from '../styles/category.module.css'
 import Header from './components/global/Header'
 import Image from 'next/image'
 import MultiRangeSlider from './components/local/MultiRangeSlider'
@@ -25,7 +25,7 @@ export default function Categoriy () {
       height: 140,
       title: "Iphone 14 PRO",
       kategoriya: "Телефоны",
-      price: "13.000000",
+      price: "13.000000сум",
     },
     {
       image: "/phone.svg",

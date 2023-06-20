@@ -1,6 +1,5 @@
 .profile__title {
     display: flex;
-    width: 1180px;
     padding: 10px 0;
     margin: auto;
 }
@@ -70,7 +69,6 @@
     background-color: #E4B717;
     color: #FFFFFF;
 }
-
 
 .profile__close {
     display: flex;
@@ -159,4 +157,38 @@
 
 .profile__button button:active {
     transform: scale(0.9);
+}
+
+@media screen and (max-width:1180px) {
+    .profile__title {
+        width: 1000px;
+        padding: 10px 10px;
+    }
+
+    
+    .Profile__section {
+        width: 1000px;
+        padding: 10px 10px;
+    } 
+
+
+    .profile__right {
+        width: 69%;
+        padding: 27px 10px;
+    }
+
+    .input input {
+        width: 316px;
+        font-size: 17px;
+    }
+    
+
+    .input p {
+        font-size: 17px;
+    }
+
+    .profile__button button {
+        padding: 15px 42px;
+        font-size: 17px;
+    }
 }

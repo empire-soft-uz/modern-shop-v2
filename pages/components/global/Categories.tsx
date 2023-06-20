@@ -2,16 +2,27 @@ import React from "react";
 import styles from "@/styles/categories.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import SelectCategory from "./SelectCategory";
+
 const Categories = () => {
+
+    const [cat, setCat] = useState(false)
+
+    const CatModalHandler = () => {
+        setCat(!cat)
+    }
+
   return (
     <div className={styles.categories}>
       <div className={styles.container}>
-        <div className={styles.categ}>
+        <div className={styles.categ} onClick={CatModalHandler}>
             <h3 style={{
                 color: "#E4B717"
             }}>Категории</h3>
             <Image src={"/categories.svg"} width={18} height={18} alt="just categories" />
         </div>
+        {cat && <SelectCategory/>}
         <ul className={styles.selectList}>
             <li>
                 <h3>Мужское</h3>

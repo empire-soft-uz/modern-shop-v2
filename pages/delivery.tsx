@@ -1,15 +1,13 @@
 import React from "react";
-import styles from "../styles/deliveriey.module.css";
+import styles from "../styles/delivery.module.css";
 import Image from "next/image";
 import Footer from "./components/global/Footer";
 import AOS from "aos";
 import { useState, useEffect } from "react";
-import ApplicationAccepted from "./components/local/ChangePassword";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
 import Order from "./components/global/Order";
-import Link from "next/link";
 
 const Delivery = () => {
   const [application, setApplication] = useState(false);

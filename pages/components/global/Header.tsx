@@ -4,10 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Header = () => {
+
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <Link href={"/"}
+          className={styles.logo}
           style={{
             color: "#E4B717",
             textTransform: "uppercase",
@@ -50,11 +53,7 @@ const Header = () => {
             </div>
             <Link
               href={"tel: + 998 99 999 99 99"}
-              style={{
-                color: "#000",
-                fontWeight: 700,
-                fontSize: 18,
-              }}
+              className={styles.call}
             >
               + 998 99 999 99 99
             </Link>

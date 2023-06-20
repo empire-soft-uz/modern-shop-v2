@@ -10,7 +10,7 @@
 }
 
 .Delivery__section {
-    gap: 8px;
+    gap: 12.5px;
     display: flex;
     width: 1180px;
     padding: 10px 0;
@@ -65,7 +65,7 @@
     gap: 7px;
 }
 
-.remove > p {
+.remove>p {
     color: #9B9B9B;
 }
 
@@ -132,4 +132,23 @@
     font-size: 18px;
     color: #363636;
 
+}
+
+@media screen and (max-width:1180px) {
+    .cart {
+        display: flex;
+        width: 1000px;
+        padding: 10px 12px;
+    }
+
+    .Delivery__section {
+        gap: 26px;
+        display: flex;
+        width: 1000px;
+        padding: 10px 12px;
+    }
+
+    .card {
+        width: 100%;
+    }
 }

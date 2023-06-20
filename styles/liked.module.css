@@ -9,23 +9,22 @@
 
 .Favorites {
     display: flex;
-    width: 1180px;
     padding: 10px 0;
     margin: auto;
 }
 
 .liked__cards {
+    width: 100%;
+    flex-wrap: wrap;
     gap: 20px;
     display: flex;
 }
 
 .Card {
-    width: 280px;
-    height: 300px;
+    width: 24%;
     padding: 14px 12.6px;
     background-color: #fff;
     border-radius: 20px;
-    width: 280px;
     height: 331px;
 }
 
@@ -61,4 +60,18 @@
     display: flex;
     background: none;
     border: none;
+}
+
+@media screen and (max-width:1180px) {
+    .liked__section {
+        padding: 10px 10px;
+        width: 1000px;
+    }
+    .Card {
+        width:  30%;
+    }
+
+    .Favorites {
+        padding: 10px 10px;
+    }
 }
