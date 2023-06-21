@@ -66,3 +66,13 @@
     color: #666565;
     font-weight: 700;
 }
+
+@media screen and (max-width:1180px) {
+    .selectCategory {
+        width: 1000px;
+    }
+}
+
+/* @media screen and (max-width:768px) {
+    .selectCat
+} */
