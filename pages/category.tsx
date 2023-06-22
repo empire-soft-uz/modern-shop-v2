@@ -150,11 +150,11 @@ export default function Categoriy () {
         <div className={styles.phone}>
           <h1 style={{ fontSize: 20, fontWeight: 700 }}>Телефоны</h1>
         </div>
-        <div className={styles.card__section}>
-          <div className={styles.section__left}>
+        <div className={styles.cardSection}>
+          <div className={styles.sectionLeft}>
             <div className={styles.price}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <p style={{ fontSize: 18, fontWeight: 700 }}>Цена</p>
+                <p className={styles.priceTitle}>Цена</p>
                 <Image src={("/toparrow.svg")} width={15} height={12} alt='toparrow' />
               </div>
               <div className={styles.rangeSlider}>
@@ -163,42 +163,42 @@ export default function Categoriy () {
             </div>
             <div className={styles.manufacturer}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <p style={{ fontSize: 18, fontWeight: 700 }}>Производитель</p>
+                <p className={styles.manufacturerTitle}>Производитель</p>
                 <Image src={('/toparrow.svg')} width={15} height={12} alt='toparrow' />
               </div>
-              <div className={styles.radio__input}>
+              <div className={styles.radioInput}>
                 <input type='checkbox' />
                 <label>Samsung</label>
               </div>
-              <div className={styles.radio__input}>
+              <div className={styles.radioInput}>
                 <input type='checkbox' />
                 <label>Lg</label>
               </div>
-              <div className={styles.radio__input}>
+              <div className={styles.radioInput}>
                 <input type='checkbox' />
                 <label>Apple</label>
               </div>
             </div>
             <div className={styles.operative}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <p style={{ fontSize: 18, fontWeight: 700 }}>Оператив. память</p>
+                <p className={styles.operativeTitle}>Оператив. память</p>
                 <Image src={("/toparrow.svg")} width={15} height={12} alt='toparrow' />
               </div>
-              <div className={styles.checkBox__input}>
+              <div className={styles.checkBoxInput}>
                 <input type='checkbox' />
                 <label>8 гб</label>
               </div>
-              <div className={styles.checkBox__input}>
+              <div className={styles.checkBoxInput}>
                 <input type='checkbox' />
                 <label>4 гб</label>
               </div>
-              <div className={styles.checkBox__input}>
+              <div className={styles.checkBoxInput}>
                 <input type='checkbox' />
                 <label>2 гб</label>
               </div>
             </div>
           </div>
-          <div className={styles.section__right}>
+          <div className={styles.sectionRight}>
             {cardObj.map((card, index) => {
               return <Card title={card.title} image={card.image} width={card.width} height={card.height} price={card.price} cat={card.kategoriya} key={index} />
             })}

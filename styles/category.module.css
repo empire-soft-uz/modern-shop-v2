@@ -5,7 +5,7 @@
     margin: auto;
 }
 
-.card__section {
+.cardSection {
     gap: 15px;
     display: flex;
     width: 1180px;
@@ -22,6 +22,11 @@
     border-radius: 20px;
 }
 
+.priceTitle {
+    font-size: 18px;
+    font-weight: 700;
+}
+
 .manufacturer {
     align-items: center;
     justify-content: center;
@@ -34,11 +39,16 @@
 
 }
 
-.radio__input {
+.manufacturerTitle {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.radioInput {
     margin-top: 5px;
 }
 
-.radio__input label {
+.radioInput label {
     padding-left: 13px;
     font-weight: 450;
     font-size: 17px;
@@ -46,7 +56,7 @@
     color: #8A8A8A;
 }
 
-.radio__input input {
+.radioInput input {
     width: 17px;
     height: 17px;
     color: #8A8A8A;
@@ -62,7 +72,12 @@
     border-radius: 20px;
 }
 
-.checkBox__input label {
+.operativeTitle {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.checkBoxInput label {
     padding-left: 13px;
     font-weight: 450;
     font-size: 17px;
@@ -75,7 +90,7 @@
     height: 17px;
 }
 
-.section__right {
+.sectionRight {
     padding-top: 20px;
     gap: 12.5px;
     display: flex;
@@ -83,7 +98,7 @@
     flex-wrap: wrap;
 }
 
-.section__right>a {
+.sectionRight>a {
     width: 24%;
 }
 
@@ -103,12 +118,12 @@
 @media screen and (max-width:1180px) {
     .phone {
         display: flex;
-        width: 1000px;
         padding: 10px 10px;
         margin: auto;
+        width: 1000px;
     }
 
-    .card__section {
+    .cardSection {
         gap: 10px;
         display: flex;
         width: 1000px;
@@ -137,7 +152,7 @@
 
     }
 
-    .radio__input label {
+    .radioInput label {
         padding-left: 10px;
         font-weight: 450;
         font-size: 16px;
@@ -145,7 +160,7 @@
         color: #8A8A8A;
     }
 
-    .radio__input input {
+    .radioInput input {
         width: 16px;
         height: 16px;
         color: #8A8A8A;
@@ -162,7 +177,7 @@
         border-radius: 20px;
     }
 
-    .checkBox__input label {
+    .checkBoxInput label {
         padding-left: 10px;
         font-weight: 450;
         font-size: 16px;
@@ -178,17 +193,16 @@
 
 
 
-    .section__right {
+    .sectionRight {
         padding-top: 20px;
         gap: 5px;
         display: flex;
         width: 90%;
     }
 
-    .section__right>a {
+    .sectionRight>a {
         width: 32.85%;
     }
-
 
     .carusel {
         align-items: center;
@@ -203,4 +217,85 @@
 
 }
 
+
+@media screen and (max-width:768px) {
+    .cardSection {
+        width: 768px;
+        display: block;
+    }
+
+    .phone {
+        width: 768px;
+    }
+
+    .sectionLeft {
+        width: 768px;
+        gap: 35px;
+        display: flex;
+        align-items: center;
+    }
+
+    .manufacturer {
+        align-items: center;
+        justify-content: center;
+        margin-top: 19px;
+        padding: 15px;
+        width: 227px;
+        height: 124px;
+    }
+
+    .sectionRight>a {
+        width: 32.60%;
+    }
+
+    .carusel {
+        width: 768px;
+    }
+
+    
+    .sectionRight {
+        padding-top: 20px;
+        gap: 5px;
+        display: flex;
+        width: 100%;
+    }
+
+    .radioInput label {
+        padding-left: 13px;
+        font-weight: 450;
+        font-size: 14px;
+        line-height: 160%;
+        color: #8A8A8A;
+    }
+
+    .checkBox input {
+        width: 15px;
+        height: 15px;
+    }
+
+    .radioInput input {
+        width: 15px;
+        height: 15px;
+        color: #8A8A8A;
+        background-color: #8A8A8A;
+    }
+    
+
+    .manufacturerTitle {
+        font-size: 17px;
+    }
+
+    .priceTitle {
+        font-size: 17px;
+    }
+
+    .operativeTitle {
+        font-size: 17px;
+    }
+
+    .checkBoxInput label {
+        font-size: 15px;
+    }
+
+} 
 
