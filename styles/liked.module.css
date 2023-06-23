@@ -75,3 +75,16 @@
         padding: 10px 10px;
     }
 }
+@media screen and (max-width:768px) {
+    .liked__section {
+        padding: 10px 10px;
+        width: 768px;
+    }
+    .Card {
+        width: 42%;
+    }
+
+    .Favorites {
+        padding: 10px 10px;
+    }
+}

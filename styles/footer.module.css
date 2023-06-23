@@ -83,3 +83,9 @@
         font-size: 26px !important;
     }
 }
+
+@media screen and (max-width:768px) {
+    .container {
+        width: 768px;
+    }
+}

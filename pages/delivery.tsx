@@ -8,10 +8,12 @@ import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
 import Order from "./components/global/Order";
+import AllPriceOrder from "./components/local/AllPriceOrder";
 
 const Delivery = () => {
   const [application, setApplication] = useState(false);
   const [order, setOrder] = useState<boolean>(false);
+  const [allPrice, setAllPrice] = useState(false)
 
   useEffect(() => {
     AOS.init();
@@ -22,6 +24,10 @@ const Delivery = () => {
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "auto");
   }, [order]);
+
+  const allPriceHandler = () =>{
+    setAllPrice(!allPrice)
+  }
 
   const OrderObj = [
     {
@@ -65,8 +71,8 @@ const Delivery = () => {
       <div className={styles.cart}>
         <h1 style={{ fontSize: 20, fontWeight: 700 }}>Корзина</h1>
       </div>
-      <div className={styles.Delivery__section}>
-        <div className={styles.section__left}>
+      <div className={styles.DeliverySection}>
+        <div className={styles.sectionLeft}>
           {OrderObj.map((card, index) => {
             return (
               <div key={index} className={styles.card}>
@@ -98,7 +104,7 @@ const Delivery = () => {
                   >
                     Кол-во:
                   </p>
-                  <div className={styles.count__button}>
+                  <div className={styles.countButton}>
                     <button>-</button>
                     <p>1</p>
                     <button>+</button>
@@ -123,7 +129,11 @@ const Delivery = () => {
           })}
         </div>
         <div className={styles.right}>
-          <div className={styles.all__price}>
+          <div className={styles.allPriceBurgerg} onClick={allPriceHandler}>
+            <Image src={"/arrowLeft.png"} width={24} height={24} alt="arrow"/>
+          </div>
+          {allPrice && <AllPriceOrder/>}
+          <div className={styles.allPrice}>
             <h1>Ваш заказ</h1>
             <div style={{ display: "flex", gap: 15, marginTop: 12 }}>
               <label>Товары (2):</label>

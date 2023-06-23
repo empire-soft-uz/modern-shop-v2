@@ -9,7 +9,7 @@
     color: #000;
 }
 
-.Delivery__section {
+.DeliverySection {
     gap: 12.5px;
     display: flex;
     width: 1180px;
@@ -35,7 +35,7 @@
     padding-top: 50px;
 }
 
-.count__button {
+.countButton {
     width: 111px;
     height: 37px;
     gap: 16px;
@@ -48,7 +48,7 @@
     font-size: 18px;
 }
 
-.count__button button {
+.countButton button {
     color: #9B9B9B;
     justify-content: center;
     align-items: center;
@@ -88,7 +88,7 @@
     color: #363636;
 }
 
-.all__price {
+.allPrice {
     margin-top: 7px;
     width: 292px;
     height: 271px;
@@ -97,12 +97,12 @@
     padding: 17px 28px;
 }
 
-.all__price h1 {
+.allPrice h1 {
     font-weight: 700;
     font-size: 21px;
 }
 
-.all__price button {
+.allPrice button {
     cursor: pointer;
     margin-top: 12px;
     padding: 12px 84px;
@@ -116,22 +116,26 @@
     transition: .5s ease;
 }
 
-.all__price button:active {
+.allPrice button:active {
     transform: scale(1.1);
 }
 
-.all__price label {
+.allPrice label {
     font-weight: 400;
     font-size: 18px;
     color: #888888;
 }
 
 
-.all__price p {
+.allPrice p {
     font-weight: 400;
     font-size: 18px;
     color: #363636;
 
+}
+
+.allPriceBurgerg {
+    display: none;
 }
 
 @media screen and (max-width:1180px) {
@@ -141,7 +145,7 @@
         padding: 10px 12px;
     }
 
-    .Delivery__section {
+    .DeliverySection {
         gap: 26px;
         display: flex;
         width: 1000px;
@@ -150,5 +154,40 @@
 
     .card {
         width: 100%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .cart {
+        display: flex;
+        width: 768px;
+        padding: 10px 12px;
+    }
+
+    .DeliverySection {
+        gap: 61px;
+        display: flex;
+        width: 768px;
+        padding: 10px 12px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .allPrice {
+        display: none;
+    }
+
+    .allPriceBurgerg {
+        display: block;
+        width: 30px;
+        background-color: #FFFFFF;
+        height: 200px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 20px;
     }
 }
