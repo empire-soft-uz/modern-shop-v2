@@ -57,3 +57,10 @@
     border-radius: 50px;
     background: #E4B717;
 }
+
+@media screen and (max-width: 1000px) {
+    .card {
+        width: 32.2%;
+        border-radius: 10px;
+    }
+}

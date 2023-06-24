@@ -29,28 +29,28 @@ const Profile = () => {
       <TopHeader />
       <Header />
       <Categories />
-      <div className={styles.profile__title}>
+      <div className={styles.profileTitle}>
         <h1 style={{ fontSize: 20, fontWeight: 700 }}>Профиль</h1>
       </div>
-      <div className={styles.Profile__section}>
-        <div className={styles.profile__left}>
-          <div className={styles.profile__card}>
-            <div className={styles.profile__user}>
+      <div className={styles.ProfileSection}>
+        <div className={styles.profileLeft}>
+          <div className={styles.profileCard}>
+            <div className={styles.profileUser}>
               <Image src={"/user.svg"} width={16} height={21} alt="user" />
               <p>Личные данные</p>
             </div>
-            <div className={styles.profile__order}>
+            <div className={styles.profileOrder}>
               <Image src={"/book.svg"} width={17.29} height={21} alt="book" />
               <p>Мои заказы</p>
             </div>
           </div>
-          <div className={styles.profile__close}>
+          <div className={styles.profileClose}>
             <Image src={"/logout.svg"} width={19} height={19} alt="close" />
             <p>Выйти</p>
           </div>
         </div>
-        <div className={styles.profile__right}>
-          <div className={styles.profile__upload}>
+        <div className={styles.profileRight}>
+          <div className={styles.profileUpload}>
             <Image
               src={"/profile.svg"}
               width={115.31}
@@ -66,7 +66,7 @@ const Profile = () => {
               />
             </div>
           </div>
-          <div className={styles.input__section}>
+          <div className={styles.inputSection}>
             <div className={styles.input}>
               <div>
                 <p>Имя</p>
@@ -88,7 +88,7 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div className={styles.profile__button}>
+          <div className={styles.profileButton}>
             <button onClick={AuthOpen}>Изменить пароль</button>
             <button
               style={{
