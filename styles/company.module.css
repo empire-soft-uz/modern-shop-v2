@@ -161,3 +161,59 @@
         width: 100%;
     }
 }
+
+@media screen and (max-width:480px) {
+    .container {
+        width: 100%;
+    }
+
+    
+    .card{
+        display: flex;
+        gap: 1.7%;
+        row-gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .card a {
+        width: 49% !important;
+    }
+
+    .companyTitle {
+        width: 100%;
+        padding: 8px 10px;
+    }    
+    
+    .profile h1 {
+        font-weight: 700;
+        font-size: 13.5px;
+    }
+
+    .profile p {
+        font-size: 13px;
+    }
+
+    .companyProfile button {
+        padding: 8px 35px;
+        background: #E4B717;
+        box-shadow: 0px 1px 17px rgba(228, 183, 23, 0.25);
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 160%;
+        color: #FFFFFF;
+    }
+
+    .profileSection {
+        gap: 10px;
+    }
+
+    .companyDescrip {
+        margin-top: 15px;
+        font-size: 16px;
+    }
+    
+    .companyDescrip p:nth-child(2) {
+        font-size: 14px;
+    }
+} 
