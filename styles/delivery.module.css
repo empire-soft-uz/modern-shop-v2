@@ -17,6 +17,7 @@
     margin: auto;
 }
 
+
 .card {
     margin-top: 7px;
     padding: 24px 37px;
@@ -86,6 +87,12 @@
     font-weight: 450;
     font-size: 16px;
     color: #363636;
+}
+
+.countPrice h1 {
+    padding-top: 57px; 
+    font-size: 23px; 
+    font-weight: 700; 
 }
 
 .allPrice {
@@ -160,14 +167,14 @@
 @media screen and (max-width:768px) {
     .cart {
         display: flex;
-        width: 768px;
+        width: 100%;
         padding: 10px 12px;
     }
 
     .DeliverySection {
         gap: 61px;
         display: flex;
-        width: 768px;
+        width: 100%;
         padding: 10px 12px;
     }
 
@@ -190,4 +197,72 @@
         border-bottom-left-radius: 20px;
         border-top-left-radius: 20px;
     }
+}
+
+@media screen and (max-width:480px) {
+    .cart{
+        width: 100%;
+    }
+
+    .DeliverySection {
+        display: block;
+        width: 100%;
+    }
+
+    .card {
+        margin-top: 7px;
+        padding: 24px 10px;
+        width: 100%;
+    }
+
+    .count p:nth-child(1){
+        display: none;
+    }
+
+    .DeliverySection h1 {
+        font-size: 18px;
+    }
+
+    .countPrice h1{
+        font-size: 15px;
+    }
+
+    .countButton {
+        margin-top: -40px;
+        margin-left: 20px;
+        position: absolute;
+        font-size: 16px;
+    }
+
+    .menu label {
+        font-weight: 450;
+        font-size: 12px;
+        color: #B7AFAF;
+    }
+
+    .menu h1 {
+        color: #363636;
+        font-weight: 700;
+        font-size: 19px;
+    }
+
+    .menu p {
+        font-weight: 450;
+        font-size: 12px;
+        color: #363636;
+    }
+
+    .allPriceBurgerg {
+        display: none;
+    }
+
+    .sectionLeft {
+        width: 100%;
+    }
+
+    .allPrice {
+        margin-left: 18%;
+        display: block;
+    }
+
 }

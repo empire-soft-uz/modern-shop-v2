@@ -149,3 +149,28 @@
   }
 
 } 
+
+@media screen and (max-width:480px) {
+  .container {
+    width: 100%;
+    padding: 12px 10px;
+  }
+
+  .search {
+    width: 45%;
+  }
+  
+  .image a {
+    font-size: 14px;
+  }
+
+  .contraLeft {
+    display: none;
+  }
+
+  .contraRight {
+    display: none;
+  }
+
+} 
+

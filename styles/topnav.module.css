@@ -14,7 +14,7 @@
     line-height: 25.6px;
 }
 
-.navigation>ul {
+.navigation > ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,59 +28,22 @@
     gap: 10px;
 }
 
-/* media screen 1000 */
-
-@media screen and (max-width:1180px) {
+@media screen and (max-width: 1200px) {
     .topNavBar {
-        width: 1000px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 10px;
-        margin: auto;
+        width: 100%;
+        padding-left: 1%;
+        padding-right: 1%;
     }
-
-    .topNavBar * {
-        font-size: 15px;
-        color: #8A8A8A;
-        font-weight: 450;
-        line-height: 25.6px;
-    }
-
-    .navigation>ul {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 35px;
-    }
-
-    .auth {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 5px;
-    }
-
 
 }
 
-@media screen and (max-width:1000px) {
+
+@media screen and (max-width: 1000px) {
+    .navigation {
+        display: none;
+    }
+
     .topNavBar {
-        width: 100%;
+        justify-content: flex-end;
     }
-    .topNavBar * {
-        font-size: 14px;
-        color: #8A8A8A;
-        font-weight: 450;
-        line-height: 25.6px;
-    }
-
-    .navigation>ul {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 30px;
-    }
-
-
 }

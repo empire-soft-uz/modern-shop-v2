@@ -110,7 +110,7 @@ const Delivery = () => {
                     <button>+</button>
                   </div>
                 </div>
-                <div>
+                <div className={styles.countPrice}>
                   <div className={styles.remove}>
                     <Image
                       src={"/remove.svg"}
@@ -120,7 +120,7 @@ const Delivery = () => {
                     />
                     <p>Удалить</p>
                   </div>
-                  <h1 style={{ paddingTop: 57, fontSize: 23, fontWeight: 700 }}>
+                  <h1>
                     {card.price}
                   </h1>
                 </div>

@@ -114,6 +114,10 @@
     color: #8A8A8A;
 }
 
+.cardBurgerg {
+    display: none;
+}
+
 
 @media screen and (max-width:1180px) {
     .phone {
@@ -218,18 +222,19 @@
 }
 
 
+
 @media screen and (max-width:768px) {
     .cardSection {
-        width: 768px;
+        width: 100%;
         display: block;
     }
 
     .phone {
-        width: 768px;
+        width: 100%;
     }
 
     .sectionLeft {
-        width: 768px;
+        width: 100%;
         gap: 35px;
         display: flex;
         align-items: center;
@@ -249,7 +254,7 @@
     }
 
     .carusel {
-        width: 768px;
+        width: 100%;
     }
 
     
@@ -299,3 +304,37 @@
 
 } 
 
+@media screen and (max-width:480px) {
+    .cardSection {
+        width: 100%;
+        display: block;
+    }
+
+    .phone {
+        width: 100%;
+    }
+
+    .sectionLeft {
+        width: 100%;
+        gap: 15px;
+        display: none;
+        align-items: center;
+    }
+
+    .sectionRight>a {
+        width: 49.15%;
+    }
+
+
+    .cardBurgerg {
+        display: block;
+        width: 30px;
+        background-color: #FFFFFF;
+        height: 50px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+}

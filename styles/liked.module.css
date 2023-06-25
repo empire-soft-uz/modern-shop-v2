@@ -65,7 +65,7 @@
 @media screen and (max-width:1180px) {
     .liked__section {
         padding: 10px 10px;
-        width: 1000px;
+        width: 100%;
     }
     .Card {
         width:  30%;
@@ -78,7 +78,7 @@
 @media screen and (max-width:768px) {
     .liked__section {
         padding: 10px 10px;
-        width: 768px;
+        width: 100%;
     }
     .Card {
         width: 42%;
@@ -88,3 +88,13 @@
         padding: 10px 10px;
     }
 }
+
+@media screen and (max-width:480px) {
+    .liked__section {
+        width: 100%;
+    }
+
+    .Card {
+        width: 100%;
+    }
+} 
