@@ -62,3 +62,40 @@
 .ads {
   margin-left: 40px;
 }
+
+
+.image:last-child {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .ads {
+    margin-left: 0;
+  }
+  .container {
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+  .contraRight > a {
+    display: none;
+  }
+
+  .contraLeft > select {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contraLeft {
+    display: none;
+  }
+  .contraRight { 
+    display: none;
+  }
+  .search {
+    display: none;
+  }
+  .image:last-child {
+    display: block;
+  }
+}

@@ -140,15 +140,12 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
   ]
-
   const [isChecked, setIsChecked] = useState<number>(0)
   const [isSelected, setIsSelected] = useState<number>(0)
-
   useEffect(() => {
     setIsChecked(0)
     setIsSelected(0)
   }, [])
-
   return (
     <>
       <div className={styles.container}>

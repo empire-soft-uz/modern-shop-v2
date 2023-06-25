@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
+import styles from "@/styles/home.module.css"
 
 interface News {
   id: number;
@@ -15,11 +16,9 @@ const News = ({ id }: News) => {
         justifyContent: "space-between",
         backgroundImage: "url('/images/newsBg.png')",
         backgroundRepeat: "no-repeat",
-        width: 380,
-        borderRadius: 20,
         height: 305,
-        padding: 20,
       }}
+      className={styles.news}
     >
       <div
         style={{

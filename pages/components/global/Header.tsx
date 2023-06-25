@@ -80,6 +80,16 @@ const Header = () => {
                 />
               </Link>
             </div>
+            <div className={styles.image}>
+              <button>
+                <Image
+                  src={"/icons/burger.svg"}
+                  alt="language icon"
+                  width={20}
+                  height={20}
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>

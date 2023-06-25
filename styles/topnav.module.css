@@ -27,3 +27,23 @@
     align-items: center;
     gap: 10px;
 }
+
+@media screen and (max-width: 1200px) {
+    .topNavBar {
+        width: 100%;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+}
+
+
+@media screen and (max-width: 1000px) {
+    .navigation {
+        display: none;
+    }
+
+    .topNavBar {
+        justify-content: flex-end;
+    }
+}

@@ -20,7 +20,6 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    AOS.init();
     document.body.style.overflow = "auto"
   });
 

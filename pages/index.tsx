@@ -9,16 +9,15 @@ import News from "./components/local/News";
 import Footer from "./components/global/Footer";
 import { useEffect, useState } from "react";
 import HeaderTabs from "./components/local/HeaderTabs";
-import classes from "@/styles/allCategoriy.module.css";
+import classes from "@/styles/allCategory.module.css";
 import Aos from "aos";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
 
 export default function Home() {
   const [nav, setNav] = useState<number>(0);
   const [buttonColor, setButtonColor] = useState<number>(0)
-
-  useEffect(() => {
-    Aos.init()
-  }, [])
 
   const fakeObj = [
     {
@@ -149,7 +148,34 @@ export default function Home() {
       cat: "Телефоны",
       price: "13.000.000сум",
     },
+    {
+      image: "/icons/phone.svg",
+      width: 95.51,
+      height: 113.35,
+      title: "Iphone 14 PRO",
+      cat: "Телефоны",
+      price: "13.000.000сум",
+    },
   ];
+
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+      slidesToSlide: 3 // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 4,
+      slidesToSlide: 2 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1 // optional, default to 1.
+    }
+  };
+
   return (
     <>
       <Head>
@@ -168,7 +194,7 @@ export default function Home() {
             <div className={styles.addLeft}>
               <h1>iPhone 14 Pro</h1>
               <Image
-                src="/iphone.png"
+                src="/images/iphone.png"
                 alt="iphone image"
                 width={308}
                 height={410}
@@ -188,7 +214,20 @@ export default function Home() {
               >
                 Категории для вас
               </h3>
-              <div className={styles.catS}>
+              <Carousel
+                swipeable={true}
+                showDots={true}
+                responsive={responsive}
+                ssr={true}
+                infinite={true}
+                autoPlaySpeed={1000}
+                keyBoardControl={true}
+                customTransition="all .5"
+                transitionDuration={500}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                dotListClass="custom-dot-list-style"
+                itemClass="carousel-item-padding-40-px" className={styles.catS}>
                 {fakeObj.map((e: any) => {
                   return (
                     <div key={e.image} className={styles.cat}>
@@ -204,7 +243,7 @@ export default function Home() {
                     </div>
                   );
                 })}
-              </div>
+              </Carousel>
               <div className={styles.catController}>
                 <div className={styles.catControl}>
                   <Image
@@ -264,32 +303,7 @@ export default function Home() {
               </div>
               <button className={styles.loadMore}>Посмотреть больше</button>
             </section>
-            <section className={styles.newProducts}>
-              <h3>Новости</h3>
-              <div className={styles.newsWrapper}>
-                {[1, 2, 3].map((e) => {
-                  return <News id={e} key={e} />;
-                })}
-              </div>
-              <div className={styles.catController}>
-                <div className={styles.catControl}>
-                  <Image
-                    src={"/icons/arrowLeft.svg"}
-                    width={23}
-                    height={16}
-                    alt="controller"
-                  />
-                </div>
-                <div className={styles.catControl}>
-                  <Image
-                    src={"/icons/arrowRight.svg"}
-                    width={23}
-                    height={16}
-                    alt="controller"
-                  />
-                </div>
-              </div>
-            </section> </> : <>
+            </> : <>
             <div className={classes.navigation}>
               <div
                 className={classes.nav}
@@ -458,14 +472,33 @@ export default function Home() {
               <p>...</p>
               <p>5</p>
             </div>
-            <div>
-              <p className={classes.news__title}>Новости</p>
-              <div className={classes.news__card}>
-                {[1, 2, 3].map((e: any) => {
-                  return <News id={e} />
+            </>}
+            <section className={styles.newProducts}>
+              <h3>Новости</h3>
+              <div className={styles.newsWrapper}>
+                {[1, 2, 3].map((e) => {
+                  return <News id={e} key={e} />;
                 })}
               </div>
-            </div></>}
+              <div className={styles.catController}>
+                <div className={styles.catControl}>
+                  <Image
+                    src={"/icons/arrowLeft.svg"}
+                    width={23}
+                    height={16}
+                    alt="controller"
+                  />
+                </div>
+                <div className={styles.catControl}>
+                  <Image
+                    src={"/icons/arrowRight.svg"}
+                    width={23}
+                    height={16}
+                    alt="controller"
+                  />
+                </div>
+              </div>
+            </section>
         </div>
         <Footer />
       </main>

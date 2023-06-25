@@ -26,3 +26,7 @@ button {
   background: transparent;
   cursor: pointer;
 }
+
+.react-multi-carousel-track  {
+  gap: 1rem;
+}

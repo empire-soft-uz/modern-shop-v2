@@ -10,10 +10,7 @@ import TopHeader from "./components/global/TopHeader";
 import Categories from "./components/global/Categories";
 import Card from "./components/global/Card";
 
-const izbrinni = () => {
-  useEffect(() => {
-    AOS.init();
-  }, []);
+const Liked = () => {
 
   const cardObj = [
     {
@@ -62,7 +59,7 @@ const izbrinni = () => {
         <div className={styles.liked__cards}>
           {cardObj.map((card, index) => {
             return (
-              <Card cat={card.cat} height={card.h} image={card.image} price={card.price} title={card.title} width={card.w} key={index} />
+              <Card animation="zoom-in" cat={card.cat} height={card.h} image={card.image} price={card.price} title={card.title} width={card.w} key={index} />
             );
           })}
         </div>
@@ -74,4 +71,4 @@ const izbrinni = () => {
   );
 };
 
-export default izbrinni;
+export default Liked;

@@ -15,10 +15,6 @@ const Delivery = () => {
   const [order, setOrder] = useState<boolean>(false);
 
   useEffect(() => {
-    AOS.init();
-  }, []);
-
-  useEffect(() => {
     order
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "auto");
