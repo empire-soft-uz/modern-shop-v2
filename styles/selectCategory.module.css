@@ -75,6 +75,49 @@
 
 @media screen and (max-width:768px) {
     .selectCategory {
-        width: 755px;
+        width: 97%;
     }
+}
+
+@media screen and (max-width:480px) {
+    .selectCategory {
+        height: 185px;
+        width: 96%;
+    }
+
+    .table {
+        gap: 20px;
+        font-size: 13px;
+    }
+
+    .categorLeft h1{
+        font-size: 15px;
+        font-weight: 600;
+        padding: 10px 12px;
+        border: none;
+        background: none;
+    }
+    
+}
+
+@media screen and (max-width:360px) {
+    .selectCategory {
+        height: 180px;
+        width: 60%;
+    }
+
+    .table {
+        display: none;
+    }
+
+    .categorLeft h1{
+        font-size: 15px;
+    }
+
+
+    .categorLeft {
+        border: none;
+    }
+
+
 }

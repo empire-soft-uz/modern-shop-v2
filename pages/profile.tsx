@@ -9,13 +9,19 @@ import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
 import Order from "./components/global/Order";
+import ProfileBurger from "./components/local/ProfileBurger";
 
 const Profile = () => {
   const [isChangePassOpen, setIsChangePassOpen] = useState(false);
+  const [profileBurger, setProfileBurger] = useState(false)
 
   const AuthOpen = () => {
     setIsChangePassOpen(!isChangePassOpen);
   };
+
+  const ProfileBurgerHandler = () => {
+    setProfileBurger(!profileBurger)
+  }
 
   useEffect(() => {
     AOS.init();
@@ -31,6 +37,15 @@ const Profile = () => {
       <Categories />
       <div className={styles.profileTitle}>
         <h1 style={{ fontSize: 20, fontWeight: 700 }}>Профиль</h1>
+        <div className={styles.profileBurger} onClick={ProfileBurgerHandler}>
+          <Image
+            src={"/profileBurger.svg"}
+            width={22}
+            height={17}
+            alt="burger"
+          />
+        </div>
+        {profileBurger && <ProfileBurger/>}
       </div>
       <div className={styles.ProfileSection}>
         <div className={styles.profileLeft}>

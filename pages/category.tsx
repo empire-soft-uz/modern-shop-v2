@@ -7,7 +7,7 @@ import Footer from "./components/global/Footer";
 import { useEffect, useState } from "react";
 import TopHeader from "./components/global/TopHeader";
 import Categories from "./components/global/Categories";
-import CardBurgerg from "./components/local/cardBurgerg";
+import CardBurgerg from "./components/local/CardBurgerg";
 
 export default function Categoriy() {
 

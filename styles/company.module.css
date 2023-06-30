@@ -167,8 +167,8 @@
         width: 100%;
     }
 
-    
-    .card{
+
+    .card {
         display: flex;
         gap: 1.7%;
         row-gap: 1rem;
@@ -182,8 +182,8 @@
     .companyTitle {
         width: 100%;
         padding: 8px 10px;
-    }    
-    
+    }
+
     .profile h1 {
         font-weight: 700;
         font-size: 13.5px;
@@ -212,11 +212,11 @@
         margin-top: 15px;
         font-size: 16px;
     }
-    
+
     .companyDescrip p:nth-child(2) {
         font-size: 14px;
     }
-} 
+}
 
 
 
@@ -225,7 +225,7 @@
         width: 100%;
     }
 
-    .card{
+    .card {
         display: flex;
         gap: 1.7%;
         row-gap: 1rem;
@@ -239,8 +239,8 @@
     .companyTitle {
         width: 100%;
         padding: 8px 10px;
-    }    
-    
+    }
+
     .profile h1 {
         font-weight: 700;
         font-size: 11px;
@@ -269,8 +269,8 @@
         margin-top: 15px;
         font-size: 14px;
     }
-    
+
     .companyDescrip p:nth-child(2) {
         font-size: 13px;
     }
-} 
+}
