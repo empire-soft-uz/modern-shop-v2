@@ -77,7 +77,7 @@ const Delivery = () => {
             return (
               <div key={index} className={styles.card}>
                 <input
-                  style={{ width: 21.47, height: 21.47 }}
+                  className={styles.input}
                   type="checkbox"
                 />
                 <Image

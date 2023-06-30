@@ -36,6 +36,11 @@
     padding-top: 50px;
 }
 
+.input {
+    width: 21.47px; 
+    height: 21.47px; 
+}
+
 .countButton {
     width: 111px;
     height: 37px;
@@ -263,6 +268,63 @@
     .allPrice {
         margin-left: 18%;
         display: block;
+    }
+
+}
+
+
+@media screen and (max-width:360px) {
+    .cart{
+        width: 100%;
+    }
+
+
+
+    .DeliverySection h1 {
+        font-size: 16px;
+    }
+
+    .countPrice h1{
+        font-size: 12px;
+    }
+
+    .countButton {
+        margin-top: -40px;
+        position: absolute;
+        font-size: 14px;
+    }
+
+    .countButton {
+        width: 75px;
+        height: 30px;
+    }
+
+    .menu label {
+        font-weight: 450;
+        font-size: 9px;
+        color: #B7AFAF;
+    }
+
+    .menu h1 {
+        color: #363636;
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+    .menu p {
+        font-weight: 450;
+        font-size: 9px;
+        color: #363636;
+    }
+
+    .allPrice {
+        margin-left: 6.5%;
+        display: block;
+    }
+
+    .input {
+        width: 20px;
+        height: 20px;
     }
 
 }
