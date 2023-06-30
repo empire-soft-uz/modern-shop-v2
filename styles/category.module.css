@@ -338,3 +338,19 @@
         border-top-right-radius: 20px;
     }
 }
+
+
+@media screen and (max-width:480px) {
+    .cardSection {
+        width: 100%;
+        display: block;
+    }
+
+    .phone {
+        width: 100%;
+    }
+
+    .sectionRight>a {
+        width: 100%;
+    }
+}
