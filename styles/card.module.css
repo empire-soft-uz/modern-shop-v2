@@ -60,7 +60,7 @@
 
 @media screen and (max-width: 1000px) {
     .card {
-        width: 32.2% !important;
+        width: 32.2%;
         border-radius: 10px;
     }
 }
