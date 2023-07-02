@@ -58,8 +58,8 @@ const izbrinni = () => {
       <div className={styles.Favorites}>
         <h1 style={{ fontSize: 20, fontWeight: 700 }}>Избранное</h1>
       </div>
-      <div className={styles.liked__section}>
-        <div className={styles.liked__cards}>
+      <section className={styles.likedSection}>
+        <div className={styles.likedCards}>
           {cardObj.map((card, index) => {
             return (
               <div className={styles.Card} key={index}>
@@ -95,7 +95,7 @@ const izbrinni = () => {
             );
           })}
         </div>
-      </div>
+      </section>
 
       <div style={{ marginTop: "11rem" }}>
         <Footer />

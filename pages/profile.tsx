@@ -47,8 +47,8 @@ const Profile = () => {
         </div>
         {profileBurger && <ProfileBurger/>}
       </div>
-      <div className={styles.ProfileSection}>
-        <div className={styles.profileLeft}>
+      <section className={styles.ProfileSection}>
+        <section className={styles.profileLeft}>
           <div className={styles.profileCard}>
             <div className={styles.profileUser}>
               <Image src={"/user.svg"} width={16} height={21} alt="user" />
@@ -63,8 +63,8 @@ const Profile = () => {
             <Image src={"/logout.svg"} width={19} height={19} alt="close" />
             <p>Выйти</p>
           </div>
-        </div>
-        <div className={styles.profileRight}>
+        </section>
+        <section className={styles.profileRight}>
           <div className={styles.profileUpload}>
             <Image
               src={"/profile.svg"}
@@ -115,8 +115,8 @@ const Profile = () => {
               Редактировать
             </button>
           </div>
-        </div>
-      </div>
+        </section>
+      </section>
       <Footer />
     </div>
   );

@@ -157,12 +157,12 @@ export default function Categoriy() {
         <div className={styles.phone}>
           <h1 style={{ fontSize: 20, fontWeight: 700 }}>Телефоны</h1>
         </div>
-        <div className={styles.cardSection}>
+        <section className={styles.cardSection}>
           <div className={styles.cardBurgerg} onClick={cardBurgerHandler}>
             <Image src={"/rightArrow.svg"} width={24} height={24} alt="arrow" />
           </div>
           {cardBurgerg && <CardBurgerg setCardBurger={setCardBurger} cardBurger={cardBurgerg}/>}
-          <div className={styles.sectionLeft}>
+          <section className={styles.sectionLeft}>
             <div className={styles.price}>
               <div
                 style={{
@@ -241,8 +241,8 @@ export default function Categoriy() {
                 <label>2 гб</label>
               </div>
             </div>
-          </div>
-          <div className={styles.sectionRight}>
+          </section>
+          <section className={styles.sectionRight}>
             {cardObj.map((card, index) => {
               return (
                 <Card
@@ -256,8 +256,8 @@ export default function Categoriy() {
                 />
               );
             })}
-          </div>
-        </div>
+          </section>
+        </section>
         <div className={styles.carusel}>
           <div
             style={{

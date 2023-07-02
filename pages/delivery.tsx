@@ -71,8 +71,8 @@ const Delivery = () => {
       <div className={styles.cart}>
         <h1 style={{ fontSize: 20, fontWeight: 700 }}>Корзина</h1>
       </div>
-      <div className={styles.DeliverySection}>
-        <div className={styles.sectionLeft}>
+      <section className={styles.DeliverySection}>
+        <section className={styles.sectionLeft}>
           {OrderObj.map((card, index) => {
             return (
               <div key={index} className={styles.card}>
@@ -127,8 +127,8 @@ const Delivery = () => {
               </div>
             );
           })}
-        </div>
-        <div className={styles.right}>
+        </section>
+        <section className={styles.right}>
           <div className={styles.allPriceBurgerg} onClick={allPriceHandler}>
             <Image src={"/arrowLeft.png"} width={24} height={24} alt="arrow"/>
           </div>
@@ -169,8 +169,8 @@ const Delivery = () => {
               Заказать
             </button>
           </div>
-        </div>
-      </div>
+        </section>
+      </section>
       <Footer />
     </div>
   );

@@ -1,4 +1,4 @@
-.liked__section {
+.likedSection {
     gap: 20px;
     display: flex;
     align-items: center;
@@ -13,7 +13,7 @@
     margin: auto;
 }
 
-.liked__cards {
+.likedCards {
     width: 100%;
     flex-wrap: wrap;
     gap: 20px;
@@ -63,7 +63,7 @@
 }
 
 @media screen and (max-width:1180px) {
-    .liked__section {
+    .likedSection {
         padding: 10px 10px;
         width: 100%;
     }
@@ -76,7 +76,7 @@
     }
 }
 @media screen and (max-width:768px) {
-    .liked__section {
+    .likedSection {
         padding: 10px 10px;
         width: 100%;
     }
@@ -90,7 +90,7 @@
 }
 
 @media screen and (max-width:480px) {
-    .liked__section {
+    .likedSection {
         width: 100%;
     }
 
