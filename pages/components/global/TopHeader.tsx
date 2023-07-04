@@ -43,7 +43,7 @@ const TopHeader = () => {
         <p> | </p>
         <button>Зарегестрироваться</button>
       </div>
-      {isAuthOpen && <Auth setIsAuthOpen={setIsAuthOpen} />}
+      {isAuthOpen && <Auth isAuthOpen={isAuthOpen} setIsAuthOpen={setIsAuthOpen} />}
     </div>
   );
 };

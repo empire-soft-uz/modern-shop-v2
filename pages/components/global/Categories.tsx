@@ -1,12 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "@/styles/categories.module.css";
 import Image from "next/image";
 import Link from "next/link";
+// import CatSelect from "./CatSelect";
 const Categories = () => {
+    const [catSelect, setCatSelect] = useState<boolean>(false)
   return (
+    <>
     <div className={styles.categories}>
       <div className={styles.container}>
-        <div className={styles.categ}>
+        <div onClick={()=> {
+            setCatSelect(!catSelect)
+        }} className={styles.categ}>
             <h3 style={{
                 color: "#E4B717"
             }}>Категории</h3>
@@ -39,6 +44,8 @@ const Categories = () => {
         }}>Lorem ipsum dolor sit </div>
       </div>
     </div>
+    {/* <CatSelect setCatSelect={setCatSelect} catSelect={catSelect} /> */}
+    </>
   );
 };
 

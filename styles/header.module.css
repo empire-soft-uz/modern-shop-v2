@@ -1,66 +1,93 @@
-.header {
-  background: #fff;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 1px 10px 1px rgba(214, 214, 214, 0.17);
+.Header {
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 10px 1px rgba(118, 118, 118, 0.17);
 }
 
-.container {
-  width: 1180px;
-  padding: 12px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.HeaderButton {
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 3px 1px rgba(175, 175, 175, 0.19);
 }
 
-.search {
-  border: 1px solid #d9d9d9;
-  border-radius: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 20px;
-  width: 40%;
+.Header__section {
+    gap: 48px;
+    display: flex;
+    align-items: center;
+    width: 1180px;
+    padding: 10px 0;
+    margin: auto;
 }
 
-.search > input {
-  border: none;
-  outline: navajowhite;
-  width: 95%;
-  font-size: 17px;
+.HeaderButton__section {
+    gap: 35px;
+    display: flex;
+    align-items: center;
+    width: 1180px;
+    padding: 10px 0;
+    margin: auto;
 }
 
-.search > img {
+.Header__search {
+    width: 43%;
+    border: 1px solid #D9D9D9;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 50px;
+}
+
+.Header__search input {
+    padding: 9px 10px;
+    font-size: 17px;
+    color: #666565;
+    width: 90%;
+    border: none;
+}
+
+.Header__search input:focus-visible {
+    outline: none;
+}
+
+.Header__search image {
+    padding-right: 10px;
+}
+
+.select {
     cursor: pointer;
+    align-items: center;
+    display: flex;
+    gap: 10px;
 }
 
-.contra,
-.contra * {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+.select select {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 160%;
+    border: none;
 }
 
-.image {
-  padding: 10px;
-  border: 1px solid #d9d9d9;
-  border-radius: 50px;
-  cursor: pointer;
+
+.select select:focus-visible {
+    outline: none;
 }
 
-.contra select {
-  outline: none;
-  border: none;
-  font-size: 18px;
-  width: 50px;
-  font-weight: 700;
+.call {
+    cursor: pointer;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 17px;
+    display: flex;
 }
 
-.ads {
-  margin-left: 40px;
+.order {
+    cursor: pointer;
+    align-items: center;
+    display: flex;
 }
 
 

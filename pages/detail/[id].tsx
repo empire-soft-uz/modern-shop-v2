@@ -133,6 +133,7 @@ const Detail = () => {
                   </div>
                 </div>
               </div>
+              <Order order={order} setOrder={setOrder} />
               <div className={styles.characterSide}>
                 <div className={styles.character}>
                   <div className={styles.characterInfo}>
