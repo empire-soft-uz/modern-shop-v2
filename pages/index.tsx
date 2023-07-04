@@ -11,10 +11,6 @@ import { useEffect, useState } from "react";
 import HeaderTabs from "./components/local/HeaderTabs";
 import classes from "@/styles/allCategory.module.css";
 import Aos from "aos";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-
-
 export default function Home() {
   const [nav, setNav] = useState<number>(0);
   const [buttonColor, setButtonColor] = useState<number>(0)
@@ -214,20 +210,6 @@ export default function Home() {
               >
                 Категории для вас
               </h3>
-              <Carousel
-                swipeable={true}
-                showDots={true}
-                responsive={responsive}
-                ssr={true}
-                infinite={true}
-                autoPlaySpeed={1000}
-                keyBoardControl={true}
-                customTransition="all .5"
-                transitionDuration={500}
-                containerClass="carousel-container"
-                removeArrowOnDeviceType={["tablet", "mobile"]}
-                dotListClass="custom-dot-list-style"
-                itemClass="carousel-item-padding-40-px" className={styles.catS}>
                 {fakeObj.map((e: any) => {
                   return (
                     <div key={e.image} className={styles.cat}>
@@ -243,7 +225,6 @@ export default function Home() {
                     </div>
                   );
                 })}
-              </Carousel>
               <div className={styles.catController}>
                 <div className={styles.catControl}>
                   <Image

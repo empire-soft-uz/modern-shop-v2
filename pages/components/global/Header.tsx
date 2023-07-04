@@ -6,6 +6,11 @@ import Burger from "./Burger";
 
 const Header = () => {
   const [isBurgerOpen, setIsBurgerOpen] = useState<boolean | any>(false)
+  const [mouseOver, setMouseOver] = useState<boolean>(false)
+  const [language, setLanguage] = useState<string>("RU")
+
+  const languges: string[] = ["RU", "EN", "UZ"]
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -24,7 +29,11 @@ const Header = () => {
           <Image src="/icons/search.svg" alt="search icon" width={22} height={22} />
         </div>
         <div className={styles.contra}>
-          <div className={styles.contraLeft}>
+          <div onMouseOver={() => {
+            setMouseOver(true)
+          }} onMouseLeave={() => {
+            setMouseOver(false)
+          }} className={styles.contraLeft}>
             <div className={styles.image}>
               <Image
                 src={"/icons/inet.svg"}
@@ -33,13 +42,20 @@ const Header = () => {
                 height={20}
               />
             </div>
-            <select>
-              <optgroup>
-                <option value="RU">RU</option>
-                <option value="EN">EN</option>
-                <option value="UZ">UZ</option>
-              </optgroup>
-            </select>
+            <div className={styles.select}>
+              <h4>{language}</h4>
+              <Image className={mouseOver ? styles.animated : styles.just} src={"/icons/chevronDown.svg"} width={12} height={7} alt="chevron down" />
+            </div>
+            <div className={mouseOver ? styles.selectLanguage : styles.just} style={!mouseOver ? {
+              display: "none"
+            } : {}}>
+              {languges.map((e: string)=> {
+                return <h4 onClick={()=> {
+                  setLanguage(e)
+                  setMouseOver(false)
+                }}>{e}</h4>
+              })}
+            </div>
           </div>
           <div className={styles.contraRight}>
             <div className={styles.image}>
@@ -82,8 +98,7 @@ const Header = () => {
                 />
               </Link>
             </div>
-            <div className={styles.image}>
-              <button onClick={() => {
+              <button className={styles.image} onClick={() => {
                 setIsBurgerOpen(true)
               }}>
                 <Image
@@ -93,7 +108,6 @@ const Header = () => {
                   height={20}
                 />
               </button>
-            </div>
           </div>
         </div>
       </div>

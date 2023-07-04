@@ -57,6 +57,25 @@
 }
 
 
+.just {
+  transition: 0.4s linear;
+}
+
+.animated {
+  rotate: -180deg;
+  transition: 0.4s;
+}
+
+.selectItem > h3 {
+  transition: 0.4s;
+
+}
+
+.selectItem > h3:hover {
+  color: #e4b717;
+}
+
+
 @media screen and (max-width: 1200px) {
   .container { 
     width: 100%;
