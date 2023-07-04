@@ -86,3 +86,9 @@
     font-size: 18px;
     font-weight: 700;
 }
+
+@media screen and (max-width: 1180px) {
+  .authent {
+    width: 100%;
+  }
+}

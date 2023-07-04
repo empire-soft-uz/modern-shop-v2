@@ -57,6 +57,14 @@
 }
 
 
+@media screen and (max-width: 1200px) {
+  .container { 
+    width: 100%;
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+}
+
 @media screen and (max-width: 1000px) {
   .selectList {
     display: none;

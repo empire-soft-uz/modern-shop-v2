@@ -1,9 +1,11 @@
-import React from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import styles from "@/styles/header.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import Burger from "./Burger";
 
 const Header = () => {
+  const [isBurgerOpen, setIsBurgerOpen] = useState<boolean | any>(false)
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -81,7 +83,9 @@ const Header = () => {
               </Link>
             </div>
             <div className={styles.image}>
-              <button>
+              <button onClick={() => {
+                setIsBurgerOpen(true)
+              }}>
                 <Image
                   src={"/icons/burger.svg"}
                   alt="language icon"
@@ -93,6 +97,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      {isBurgerOpen && <Burger isBurgerOpen={isBurgerOpen} setIsBurgerOpen={setIsBurgerOpen} />}
     </header>
   );
 };

@@ -7,7 +7,7 @@ import Auth from "./Auth";
 const TopHeader = () => {
   const [isAuthOpen, setIsAuthOpen] = useState<boolean>(false);
 
-  useEffect(()=> {
+  useEffect(() => {
     document.body.style.overflow = "auto"
   }, [!isAuthOpen])
 
@@ -34,9 +34,8 @@ const TopHeader = () => {
             <Link href="#">Контакты</Link>
           </li>
         </ul>
-      {isAuthOpen && <Auth  setIsAuthOpen={setIsAuthOpen}/>}
       </nav>
-      <div onClick={()=> {
+      <div onClick={() => {
         setIsAuthOpen(true)
       }} className={styles.auth}>
         <Image src={"/icons/user.svg"} width={14} height={18} alt="user icon" />
@@ -44,6 +43,7 @@ const TopHeader = () => {
         <p> | </p>
         <button>Зарегестрироваться</button>
       </div>
+      {isAuthOpen && <Auth setIsAuthOpen={setIsAuthOpen} />}
     </div>
   );
 };
