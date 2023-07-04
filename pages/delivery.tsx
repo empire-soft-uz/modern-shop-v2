@@ -8,7 +8,6 @@ import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
 import Order from "./components/global/Order";
-import AllPriceOrder from "./components/local/AllPriceOrder";
 
 const Delivery = () => {
   const [application, setApplication] = useState(false);
@@ -129,10 +128,6 @@ const Delivery = () => {
           })}
         </section>
         <section className={styles.right}>
-          <div className={styles.allPriceBurgerg} onClick={allPriceHandler}>
-            <Image src={"/arrowLeft.png"} width={24} height={24} alt="arrow"/>
-          </div>
-          {allPrice && <AllPriceOrder/>}
           <div className={styles.allPrice}>
             <h1>Ваш заказ</h1>
             <div style={{ display: "flex", gap: 15, marginTop: 12 }}>

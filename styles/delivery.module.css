@@ -37,8 +37,8 @@
 }
 
 .input {
-    width: 21.47px; 
-    height: 21.47px; 
+    width: 21.47px;
+    height: 21.47px;
 }
 
 .countButton {
@@ -95,9 +95,9 @@
 }
 
 .countPrice h1 {
-    padding-top: 57px; 
-    font-size: 23px; 
-    font-weight: 700; 
+    padding-top: 57px;
+    font-size: 23px;
+    font-weight: 700;
 }
 
 .allPrice {
@@ -146,21 +146,19 @@
 
 }
 
-.allPriceBurgerg {
-    display: none;
-}
+
 
 @media screen and (max-width:1180px) {
     .cart {
         display: flex;
-        width: 1000px;
+        width: 100%;
         padding: 10px 12px;
     }
 
     .DeliverySection {
-        gap: 26px;
         display: flex;
-        width: 1000px;
+        gap: 100px;
+        width: 100%;
         padding: 10px 12px;
     }
 
@@ -168,6 +166,56 @@
         width: 100%;
     }
 }
+
+
+@media screen and (max-width:1200px) {
+    .cart {
+        display: flex;
+        width: 100%;
+        padding: 10px 12px;
+    }
+
+    .DeliverySection {
+        justify-content: space-between;
+        align-items: center;
+        display: block;
+    }
+
+
+    .menu p {
+        font-weight: 450;
+        font-size: 13px;
+        color: #363636;
+    }
+
+
+    .menu label {
+        font-weight: 450;
+        font-size: 15px;
+        color: #B7AFAF;
+    }
+
+
+    .menu h1 {
+        color: #363636;
+        font-weight: 700;
+        font-size: 19px;
+    }
+
+    .countPrice h1 {
+        padding-top: 57px;
+        font-size: 21px;
+        font-weight: 700;
+    }
+
+    .right {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
 
 @media screen and (max-width:768px) {
     .cart {
@@ -177,8 +225,9 @@
     }
 
     .DeliverySection {
-        gap: 61px;
-        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        display: block;
         width: 100%;
         padding: 10px 12px;
     }
@@ -187,29 +236,106 @@
         width: 100%;
     }
 
-    .allPrice {
+
+    .menu p {
+        font-weight: 450;
+        font-size: 13px;
+        color: #363636;
+    }
+
+
+    .menu label {
+        font-weight: 450;
+        font-size: 15px;
+        color: #B7AFAF;
+    }
+
+
+    .menu h1 {
+        color: #363636;
+        font-weight: 700;
+        font-size: 19px;
+    }
+
+    .countPrice h1 {
+        padding-top: 57px;
+        font-size: 21px;
+        font-weight: 700;
+    }
+
+
+}
+
+
+@media screen and (max-width:700px) {
+    .DeliverySection {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cart {
+        display: flex;
+        width: 100%;
+        padding: 10px 12px;
+    }
+
+
+    .menu p {
+        font-weight: 450;
+        font-size: 10px;
+        color: #363636;
+    }
+
+
+    .menu label {
+        font-weight: 450;
+        font-size: 12px;
+        color: #B7AFAF;
+    }
+
+
+    .menu h1 {
+        color: #363636;
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .countPrice h1 {
+        padding-top: 57px;
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+
+    .count p:nth-child(1) {
         display: none;
     }
 
-    .allPriceBurgerg {
-        display: block;
-        width: 30px;
-        background-color: #FFFFFF;
-        height: 200px;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        border-bottom-left-radius: 20px;
-        border-top-left-radius: 20px;
+    .DeliverySection h1 {
+        font-size: 18px;
     }
+
+    .countPrice h1 {
+        font-size: 15px;
+    }
+
+    .countButton {
+        margin-top: -40px;
+        margin-left: 20px;
+        position: absolute;
+        font-size: 16px;
+    }
+
 }
 
 @media screen and (max-width:480px) {
-    .cart{
+    .cart {
         width: 100%;
     }
 
     .DeliverySection {
+        justify-content: space-between;
+        align-items: center;
         display: block;
         width: 100%;
     }
@@ -220,7 +346,7 @@
         width: 100%;
     }
 
-    .count p:nth-child(1){
+    .count p:nth-child(1) {
         display: none;
     }
 
@@ -228,7 +354,7 @@
         font-size: 18px;
     }
 
-    .countPrice h1{
+    .countPrice h1 {
         font-size: 15px;
     }
 
@@ -265,16 +391,21 @@
         width: 100%;
     }
 
+    .right {
+        justify-content: center;
+        align-items: center;
+    }
+
     .allPrice {
-        margin-left: 18%;
-        display: block;
+        align-items: center;
+        justify-content: center;
     }
 
 }
 
 
-@media screen and (max-width:360px) {
-    .cart{
+@media screen and (max-width:380px) {
+    .cart {
         width: 100%;
     }
 
@@ -284,7 +415,7 @@
         font-size: 16px;
     }
 
-    .countPrice h1{
+    .countPrice h1 {
         font-size: 12px;
     }
 

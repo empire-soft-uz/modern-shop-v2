@@ -2,13 +2,11 @@ import React from "react";
 import styles from "@/styles/profile.module.css";
 import Footer from "./components/global/Footer";
 import Image from "next/image";
-import AOS from "aos";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import ChanchePassword from "./components/local/ChangePassword";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
-import Order from "./components/global/Order";
 import ProfileBurger from "./components/local/ProfileBurger";
 
 const Profile = () => {
@@ -23,12 +21,9 @@ const Profile = () => {
     setProfileBurger(!profileBurger)
   }
 
-  useEffect(() => {
-    AOS.init();
-  }, []);
 
   return (
-    <div className={styles.Profile} data-aos="fade-up" data-aos-duration="3000">
+    <div className={styles.Profile}>
       {isChangePassOpen && (
         <ChanchePassword setIsChangePassOpen={setIsChangePassOpen} />
       )}
