@@ -1,0 +1,13 @@
+.burger {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .burger {
+        position: absolute;
+        z-index: 10000;
+        background: #00000039;
+        width: 100%;
+        height: 100%;
+    }
+}

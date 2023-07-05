@@ -1,49 +1,53 @@
 import Head from "next/head";
-import styles from "../styles/home.module.css";
-import TopHeader from "./components/TopHeader";
-import Header from "./components/Header";
-import Categories from "./components/Categories";
+import styles from "@/styles/home.module.css";
+import TopHeader from "./components/global/TopHeader";
+import Header from "./components/global/Header";
+import Categories from "./components/global/Categories";
 import Image from "next/image";
-import Card from "./components/Card";
-import News from "./components/News";
-import Footer from "./components/footer";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
-
+import Card from "./components/global/Card";
+import News from "./components/local/News";
+import Footer from "./components/global/Footer";
+import { useEffect, useState } from "react";
+import HeaderTabs from "./components/local/HeaderTabs";
+import classes from "@/styles/allCategory.module.css";
+import Aos from "aos";
 export default function Home() {
+  const [nav, setNav] = useState<number>(0);
+  const [buttonColor, setButtonColor] = useState<number>(0)
+
   const fakeObj = [
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       title: "Телефоны",
       height: 29,
       width: 52,
     },
     {
-      image: "/uniform.svg",
+      image: "/icons/uniform.svg",
       title: "Одежда",
       height: 51,
       width: 65,
     },
     {
-      image: "/home.svg",
+      image: "/icons/home.svg",
       title: "Для дома",
       height: 51,
       width: 52,
     },
     {
-      image: "/pc.svg",
+      image: "/icons/pc.svg",
       title: "Компютеры",
       height: 47,
       width: 49,
     },
     {
-      image: "/toys.svg",
+      image: "/icons/toys.svg",
       title: "Игрушки",
       height: 51,
       width: 52,
     },
     {
-      image: "/sport.svg",
+      image: "/icons/sport.svg",
       title: "Спортивное",
       height: 60.5,
       width: 36,
@@ -51,7 +55,7 @@ export default function Home() {
   ];
   const cardObj = [
     {
-      image: "/productPhone.png",
+      image: "/images/productPhone.png",
       w: 144,
       h: 167,
       title: "Iphone 14 PRO",
@@ -59,7 +63,7 @@ export default function Home() {
       cat: "Телефоны",
     },
     {
-      image: "/xboxController.png",
+      image: "/images/xboxController.png",
       w: 181,
       h: 192,
       title: "Xbox",
@@ -67,7 +71,7 @@ export default function Home() {
       cat: "Приставки",
     },
     {
-      image: "/headPhone.png",
+      image: "/images/headPhone.png",
       w: 179,
       h: 190,
       title: "Наушники SONY",
@@ -75,7 +79,7 @@ export default function Home() {
       cat: "Аксессуары",
     },
     {
-      image: "/smphone.png",
+      image: "/images/smphone.png",
       w: 160,
       h: 173,
       title: "Samsung M53",
@@ -83,7 +87,7 @@ export default function Home() {
       cat: "Телефоны",
     },
     {
-      image: "/productPhone.png",
+      image: "/images/productPhone.png",
       w: 144,
       h: 167,
       title: "Iphone 14 PRO",
@@ -91,7 +95,7 @@ export default function Home() {
       cat: "Телефоны",
     },
     {
-      image: "/xboxController.png",
+      image: "/images/xboxController.png",
       w: 181,
       h: 192,
       title: "Xbox",
@@ -99,7 +103,7 @@ export default function Home() {
       cat: "Приставки",
     },
     {
-      image: "/headPhone.png",
+      image: "/images/headPhone.png",
       w: 179,
       h: 190,
       title: "Наушники SONY",
@@ -107,7 +111,7 @@ export default function Home() {
       cat: "Аксессуары",
     },
     {
-      image: "/smphone.png",
+      image: "/images/smphone.png",
       w: 160,
       h: 173,
       title: "Samsung M53",
@@ -115,6 +119,59 @@ export default function Home() {
       cat: "Телефоны",
     },
   ];
+  const cardObj1 = [
+    {
+      image: "/icons/phone.svg",
+      width: 95.51,
+      height: 113.35,
+      title: "Iphone 14 PRO",
+      cat: "Телефоны",
+      price: "13.000.000сум",
+    },
+    {
+      image: "/icons/phone.svg",
+      width: 95.51,
+      height: 113.35,
+      title: "Iphone 14 PRO",
+      cat: "Телефоны",
+      price: "13.000000сум",
+    },
+    {
+      image: "/icons/phone.svg",
+      width: 95.51,
+      height: 113.35,
+      title: "Iphone 14 PRO",
+      cat: "Телефоны",
+      price: "13.000.000сум",
+    },
+    {
+      image: "/icons/phone.svg",
+      width: 95.51,
+      height: 113.35,
+      title: "Iphone 14 PRO",
+      cat: "Телефоны",
+      price: "13.000.000сум",
+    },
+  ];
+
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+      slidesToSlide: 3 // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 4,
+      slidesToSlide: 2 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1 // optional, default to 1.
+    }
+  };
+
   return (
     <>
       <Head>
@@ -128,11 +185,12 @@ export default function Home() {
         <Header />
         <Categories />
         <div className={styles.container}>
-          <div className={styles.add}>
+          <HeaderTabs setButtonColor={setButtonColor} buttonColor={buttonColor} />
+          {buttonColor === 0 ? <><div className={styles.add}>
             <div className={styles.addLeft}>
               <h1>iPhone 14 Pro</h1>
               <Image
-                src="/iphone.png"
+                src="/images/iphone.png"
                 alt="iphone image"
                 width={308}
                 height={410}
@@ -143,146 +201,287 @@ export default function Home() {
                 })}
               </div>
             </div>
-            <div className={styles.addRight}>
-              <h3>Вы смотрите</h3>
-              <div className={styles.cart}>
-                <div className={styles.select}>
+          </div>
+            <div className={styles.categories}>
+              <h3
+                style={{
+                  fontSize: 23,
+                }}
+              >
+                Категории для вас
+              </h3>
+                {fakeObj.map((e: any) => {
+                  return (
+                    <div key={e.image} className={styles.cat}>
+                      <div className={styles.catTop}>
+                        <Image
+                          src={e.image}
+                          alt={`${e.image} image`}
+                          width={e.width}
+                          height={e.height}
+                        />
+                      </div>
+                      <h4 className={styles.catTitle}>{e.title}</h4>
+                    </div>
+                  );
+                })}
+              <div className={styles.catController}>
+                <div className={styles.catControl}>
                   <Image
-                    src={"/cart.svg"}
-                    width={54}
-                    height={50}
-                    alt="just cart image"
+                    src={"/icons/arrowLeft.svg"}
+                    width={23}
+                    height={16}
+                    alt="controller"
+                  />
+                </div>
+                <div className={styles.catControl}>
+                  <Image
+                    src={"/icons/arrowRight.svg"}
+                    width={23}
+                    height={16}
+                    alt="controller"
                   />
                 </div>
               </div>
-              <h4
-                style={{
-                  marginBottom: "3rem",
+            </div>
+            <section className={styles.newProducts}>
+              <h3>Новые продукты</h3>
+              <div className={styles.newProductsWrapper}>
+                {cardObj.map((card, index) => {
+                  return (
+                    <Card
+                      title={card.title}
+                      image={card.image}
+                      width={card.w}
+                      height={card.h}
+                      price={card.price}
+                      cat={card.cat}
+                      key={index}
+                      animation={"fade-down"}
+                    />
+                  );
+                })}
+              </div>
+              <button className={styles.loadMore}>Посмотреть больше</button>
+            </section>
+            <section className={styles.newProducts}>
+              <h3>Популярные продукты</h3>
+              <div className={styles.newProductsWrapper}>
+                {cardObj.map((card, index) => {
+                  return (
+                    <Card
+                      title={card.title}
+                      image={card.image}
+                      width={card.w}
+                      height={card.h}
+                      price={card.price}
+                      cat={card.cat}
+                      key={index}
+                      animation="fade-down"
+                    />
+                  );
+                })}
+              </div>
+              <button className={styles.loadMore}>Посмотреть больше</button>
+            </section>
+            </> : <>
+            <div className={classes.navigation}>
+              <div
+                className={classes.nav}
+                style={
+                  nav !== 0
+                    ? { color: "#8A8A8A" }
+                    : { borderBottomColor: "#E4B717", color: "#000" }
+                }
+                onClick={() => {
+                  setNav(0);
                 }}
               >
-                Продукты
-              </h4>
-              <div className={styles.select}>
-                <Image
-                  src={"/factory.svg"}
-                  width={54}
-                  height={50}
-                  alt="just cart image"
-                />
+                <h3>Все категории</h3>
               </div>
-              <h4>Продукты</h4>
+              <div
+                className={classes.nav}
+                style={
+                  nav !== 1
+                    ? { color: "#8A8A8A" }
+                    : { borderBottomColor: "#E4B717", color: "#000" }
+                }
+                onClick={() => {
+                  setNav(1);
+                }}
+              >
+                <h3>Мужское</h3>
+              </div>
+              <div
+                className={classes.nav}
+                style={
+                  nav !== 2
+                    ? { color: "#8A8A8A" }
+                    : { borderBottomColor: "#E4B717", color: "#000" }
+                }
+                onClick={() => {
+                  setNav(2);
+                }}
+              >
+                <h3>Женское</h3>
+              </div>
+              <div
+                className={classes.nav}
+                style={
+                  nav !== 3
+                    ? { color: "#8A8A8A" }
+                    : { borderBottomColor: "#E4B717", color: "#000" }
+                }
+                onClick={() => {
+                  setNav(3);
+                }}
+              >
+                <h3>Десткое</h3>
+              </div>
+              <div
+                className={classes.nav}
+                style={
+                  nav !== 4
+                    ? { color: "#8A8A8A" }
+                    : { borderBottomColor: "#E4B717", color: "#000" }
+                }
+                onClick={() => {
+                  setNav(4);
+                }}
+              >
+                <h3>Все для дома</h3>
+              </div>
+              <div
+                className={classes.nav}
+                style={
+                  nav !== 5
+                    ? { color: "#8A8A8A" }
+                    : { borderColor: "#E4B717", color: "#000" }
+                }
+                onClick={() => {
+                  setNav(5);
+                }}
+              >
+                <h3>Электроника</h3>
+              </div>
+              <button>Посмотреть больше</button>
             </div>
-          </div>
-          <div className={styles.categories}>
-            <h3
-              style={{
-                fontSize: 23,
-              }}
-            >
-              Категории для вас
-            </h3>
-            <div className={styles.catS}>
-              {fakeObj.map((e: any) => {
-                return (
-                  <div key={e.image} className={styles.cat}>
-                    <div className={styles.catTop}>
+            {[1, 2, 3, 4, 5].map((e: any) => {
+              return (
+                <div className={classes.cards} key={e}>
+                  <div className={classes.card__left}>
+                    <div className={classes.card__title}>
                       <Image
-                        src={e.image}
-                        alt={`${e.image} image`}
-                        width={e.width}
-                        height={e.height}
+                        src={"/icons/profile.svg"}
+                        width={57}
+                        height={57}
+                        alt="profile"
                       />
+                      <div>
+                        <h3>Shenzhen Qingmai Bicycle Co., Ltd.</h3>
+                        <p>Мужское</p>
+                      </div>
                     </div>
-                    <h4 className={styles.catTitle}>{e.title}</h4>
+                    <div className={classes.description}>
+                      <p>Описание</p>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                        do eiusmod tempor incididunt ut labore et dolore magna
+                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      </p>
+                    </div>
                   </div>
-                );
-              })}
-            </div>
-            <div className={styles.catController}>
-              <div className={styles.catControl}>
-                <Image
-                  src={"/arrowLeft.svg"}
-                  width={23}
-                  height={16}
-                  alt="controller"
-                />
+                  <div className={classes.card__right}>
+                    <div className={classes.cards__button}>
+                      <button>Посмотреть все товары</button>
+                      <button>Связаться</button>
+                    </div>
+                    <div className={classes.carusel__card}>
+                      {cardObj1.map((card, index) => {
+                        return (
+                          <Card
+                            image={card.image}
+                            height={card.height}
+                            width={card.width}
+                            title={card.title}
+                            price={card.price}
+                            cat={card.cat}
+                            animation="zoom-in"
+                          />
+                        );
+                      })}
+                      <div className={classes.controllerProduct}>
+                        <button>
+                          <Image
+                            src={"/icons/chevronLeft.svg"}
+                            alt="chevron left icon"
+                            width={11}
+                            height={20}
+                          />
+                        </button>
+                        <button>
+                          <Image
+                            src={"/icons/chevronRight.svg"}
+                            alt="chevron right icon"
+                            width={11}
+                            height={20}
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+            <div className={classes.carusel}>
+              <div
+                style={{
+                  backgroundColor: "#E4B717",
+                  width: 39,
+                  height: 39,
+                  borderRadius: "100%",
+                  color: "#fff",
+                  textAlign: "center",
+                  paddingTop: 8,
+                }}
+              >
+                <p>1</p>
               </div>
-              <div className={styles.catControl}>
-                <Image
-                  src={"/arrowRight.svg"}
-                  width={23}
-                  height={16}
-                  alt="controller"
-                />
-              </div>
+              <p>2</p>
+              <p>3</p>
+              <p>...</p>
+              <p>5</p>
             </div>
-          </div>
-          <section className={styles.newProducts}>
-            <h3>Новые продукты</h3>
-            <div className={styles.newProductsWrapper}>
-              {cardObj.map((card, index) => {
-                return (
-                  <Card
-                    title={card.title}
-                    image={card.image}
-                    width={card.w}
-                    height={card.h}
-                    price={card.price}
-                    cat={card.cat}
-                    key={index}
+            </>}
+            <section className={styles.newProducts}>
+              <h3>Новости</h3>
+              <div className={styles.newsWrapper}>
+                {[1, 2, 3].map((e) => {
+                  return <News id={e} key={e} />;
+                })}
+              </div>
+              <div className={styles.catController}>
+                <div className={styles.catControl}>
+                  <Image
+                    src={"/icons/arrowLeft.svg"}
+                    width={23}
+                    height={16}
+                    alt="controller"
                   />
-                );
-              })}
-            </div>
-            <button className={styles.loadMore}>Посмотреть больше</button>
-          </section>
-          <section className={styles.newProducts}>
-            <h3>Популярные продукты</h3>
-            <div className={styles.newProductsWrapper}>
-              {cardObj.map((card, index) => {
-                return (
-                  <Card
-                    title={card.title}
-                    image={card.image}
-                    width={card.w}
-                    height={card.h}
-                    price={card.price}
-                    cat={card.cat}
-                    key={index}
+                </div>
+                <div className={styles.catControl}>
+                  <Image
+                    src={"/icons/arrowRight.svg"}
+                    width={23}
+                    height={16}
+                    alt="controller"
                   />
-                );
-              })}
-            </div>
-            <button className={styles.loadMore}>Посмотреть больше</button>
-          </section>
-          <section className={styles.newProducts}>
-            <h3>Новости</h3>
-            <div className={styles.newsWrapper}>
-              {[1, 2, 3].map((e) => {
-                return <News id={e} key={e} />;
-              })}
-            </div>
-            <div className={styles.catController}>
-              <div className={styles.catControl}>
-                <Image
-                  src={"/arrowLeft.svg"}
-                  width={23}
-                  height={16}
-                  alt="controller"
-                />
+                </div>
               </div>
-              <div className={styles.catControl}>
-                <Image
-                  src={"/arrowRight.svg"}
-                  width={23}
-                  height={16}
-                  alt="controller"
-                />
-              </div>
-            </div>
-          </section>
+            </section>
         </div>
-        <Footer/>
+        <Footer />
       </main>
     </>
   );

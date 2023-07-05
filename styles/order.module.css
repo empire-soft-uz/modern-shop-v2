@@ -1,13 +1,16 @@
 .order {
-  width: 1180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    left: 0;
 }
 
-.order, .dn {
+.order,
+.dn {
     transition: 0.1s;
 }
 
@@ -19,7 +22,7 @@
     z-index: -100;
 }
 
-.dn > .orderSide {
+.dn>.orderSide {
     display: none;
     opacity: 0;
     visibility: hidden;
@@ -28,28 +31,30 @@
 }
 
 .bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(18, 18, 18, 0.65);
-  z-index: 100000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background: rgba(18, 18, 18, 0.65);
+    z-index: 1000;
 }
 
 .orderSide {
-  display: flex;
-  background: #fff;
-  position: absolute;
-  border-radius: 20px;
-  z-index: 100000000;
-  flex-direction: column;
-  justify-content: space-between;
-  top: 19rem;
-  padding-bottom: 50px;
-  width: 531px;
-  gap: 3rem;
-  align-items: center;
+    display: flex;
+    background: #fff;
+    position: fixed;
+    top: 25%;
+    border-radius: 20px;
+    z-index: 100000000;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 50px;
+    width: 531px;
+    gap: 3rem;
+    align-items: center;
 }
 
 .close {
@@ -82,13 +87,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 164px;
-    height: 164px;
-    border-radius: 1000px;
-    background: #E4B717;    
+    border-radius: 50%;
+    /* background: #E4B717; */
 }
 
 .take {
+    text-align: center;
     padding: 15px 20px;
     background: #E4B717;
     width: 280px;

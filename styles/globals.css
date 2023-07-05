@@ -10,6 +10,7 @@
 
 body {
   background: #FAF8F8;
+  accent-color: #E4B717;
 }
 
 li {
@@ -24,4 +25,8 @@ button {
   border: none;
   background: transparent;
   cursor: pointer;
+}
+
+.react-multi-carousel-track  {
+  gap: 1rem;
 }
