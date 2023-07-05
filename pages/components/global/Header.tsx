@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import styles from "@/styles/header.module.css";
+import styles from "@/styles/Header.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import Burger from "./Burger";
