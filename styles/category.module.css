@@ -104,6 +104,7 @@
 
 
 .carusel {
+    cursor: pointer;
     align-items: center;
     gap: 15px;
     justify-content: center;
@@ -297,7 +298,7 @@
 
     
     .sectionRight {
-        gap: 1.5%;
+        gap: 2%;
         row-gap: 1rem;
     }
 
@@ -445,19 +446,27 @@
     .sectionRight {
         width: 100%;
         gap: 1.2%;
+        row-gap: 1rem;
         align-items: center;
     }
 
+    .cardBurgerg h3 {
+        font-size: 22px;
+        line-height: 160%;
+        color: #E4B717;
+    }
+
     .cardBurgerg {
+        cursor: pointer;
+        padding: 5px 10px;
         display: block;
-        width: 30px;
+        width: 200px;
         background-color: #FFFFFF;
         height: 50px;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         display: flex;
-        border-bottom-right-radius: 20px;
-        border-top-right-radius: 20px;
+        border-radius: 20px;
     }
 
 
@@ -485,17 +494,6 @@
     }
 
 
-    .cardBurgerg {
-        display: block;
-        width: 30px;
-        background-color: #FFFFFF;
-        height: 50px;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        border-bottom-right-radius: 20px;
-        border-top-right-radius: 20px;
-    }
 }
 
 

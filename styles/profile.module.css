@@ -27,7 +27,7 @@
 
 .profileCard {
     width: 280px;
-    height: 106px;
+    height: 170px;
     background: #FFFFFF;
     border-radius: 20px;
 }
@@ -84,15 +84,18 @@
 }
 
 .profileClose {
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 15px 19px;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    margin-top: 19px;
     font-weight: 700;
     font-size: 18px;
     line-height: 160%;
     color: #8A8A8A;
-    margin-left: 18px;
     gap: 15px;
+    transition: .5s ease-in-out;
 }
 
 .profileUpload {
@@ -115,14 +118,14 @@
 
 .inputSection {
     margin-top: 18.69px;
-    justify-content: center;
 }
 
 .input {
     margin-top: 14px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 20px;
     width: fit-content;
     margin: auto;
 }

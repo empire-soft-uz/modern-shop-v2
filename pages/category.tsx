@@ -1,20 +1,20 @@
-import styles from "../styles/category.module.css";
+import styles from "@/styles/category.module.css";
 import Header from "./components/global/Header";
 import Image from "next/image";
 import MultiRangeSlider from "./components/local/MultiRangeSlider";
 import Card from "./components/global/Card";
 import Footer from "./components/global/Footer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TopHeader from "./components/global/TopHeader";
 import Categories from "./components/global/Categories";
-import CardBurgerg from "./components/local/CardBurgerg";
+import CardBurger from "./components/local/CardBurger";
 
 export default function Categoriy() {
 
-  const [cardBurgerg, setCardBurger] = useState<boolean>(false)
+  const [cardBurger, setCardBurger] = useState<boolean>(false)
 
  const cardBurgerHandler = () =>{
-  setCardBurger(!cardBurgerg)
+  setCardBurger(!cardBurger)
  } 
 
   const cardObj = [
@@ -159,9 +159,10 @@ export default function Categoriy() {
         </div>
         <section className={styles.cardSection}>
           <div className={styles.cardBurgerg} onClick={cardBurgerHandler}>
+            <h3>Фильтр</h3>
             <Image src={"/rightArrow.svg"} width={24} height={24} alt="arrow" />
           </div>
-          {cardBurgerg && <CardBurgerg setCardBurger={setCardBurger} cardBurger={cardBurgerg}/>}
+          {cardBurger && <CardBurger setCardBurger={setCardBurger} cardBurger={cardBurger}/>}
           <section className={styles.sectionLeft}>
             <div className={styles.price}>
               <div

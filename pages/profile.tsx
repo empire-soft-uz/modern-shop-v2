@@ -2,7 +2,7 @@ import React from "react";
 import styles from "@/styles/profile.module.css";
 import Footer from "./components/global/Footer";
 import Image from "next/image";
-import { useState} from "react";
+import { useState } from "react";
 import ChanchePassword from "./components/local/ChangePassword";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
@@ -11,16 +11,15 @@ import ProfileBurger from "./components/local/ProfileBurger";
 
 const Profile = () => {
   const [isChangePassOpen, setIsChangePassOpen] = useState(false);
-  const [profileBurger, setProfileBurger] = useState(false)
+  const [profileBurger, setProfileBurger] = useState(false);
 
   const AuthOpen = () => {
     setIsChangePassOpen(!isChangePassOpen);
   };
 
   const ProfileBurgerHandler = () => {
-    setProfileBurger(!profileBurger)
-  }
-
+    setProfileBurger(!profileBurger);
+  };
 
   return (
     <div className={styles.Profile}>
@@ -40,7 +39,7 @@ const Profile = () => {
             alt="burger"
           />
         </div>
-        {profileBurger && <ProfileBurger/>}
+        {profileBurger && <ProfileBurger />}
       </div>
       <section className={styles.ProfileSection}>
         <section className={styles.profileLeft}>
@@ -53,10 +52,10 @@ const Profile = () => {
               <Image src={"/book.svg"} width={17.29} height={21} alt="book" />
               <p>Мои заказы</p>
             </div>
-          </div>
-          <div className={styles.profileClose}>
-            <Image src={"/logout.svg"} width={19} height={19} alt="close" />
-            <p>Выйти</p>
+            <div className={styles.profileClose}>
+              <Image src={"/logout.svg"} width={19} height={19} alt="close" />
+              <p>Выйти</p>
+            </div>
           </div>
         </section>
         <section className={styles.profileRight}>

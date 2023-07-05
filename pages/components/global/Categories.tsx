@@ -15,7 +15,10 @@ const Categories = () => {
   return (
     <div className={styles.categories}>
       <div className={styles.container}>
-        <div className={styles.categ} onClick={CatModalHandler}>
+        <div
+          className={styles.categ}
+          onClick={CatModalHandler}
+        >
           <h3
             style={{
               color: "#E4B717",
@@ -30,7 +33,6 @@ const Categories = () => {
             alt="just categories"
           />
         </div>
-        {cat && <SelectCategory />}
         <ul className={styles.selectList}>
           <li>
             <h3>Мужское</h3>
@@ -86,6 +88,7 @@ const Categories = () => {
           Lorem ipsum dolor sit{" "}
         </div>
       </div>
+       {cat && <SelectCategory/> }
     </div>
   );
 };

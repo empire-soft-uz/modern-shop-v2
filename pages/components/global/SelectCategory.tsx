@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import styles from "@/styles/selectCategory.module.css";
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+
 
 const SelectCategory = () => {
   useEffect(() => {
@@ -11,7 +12,7 @@ const SelectCategory = () => {
   }, []);
 
   return (
-    <div data-aos="fade-down" className={styles.selectCategory}>
+    <div data-aos="zoom-in" className={styles.selectCategory}>
       <section className={styles.categorSection}>
         <div className={styles.categorLeft}>
           <div>

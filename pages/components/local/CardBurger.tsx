@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import MultiRangeSlider from "./MultiRangeSlider";
-import styles from "../../../styles/cardBurger.module.css";
+import styles from "@/styles/cardBurger.module.css";
 
 
 interface card {
@@ -9,7 +9,7 @@ interface card {
     cardBurger: boolean
 }
 
-const CardBurgerg = ({setCardBurger, cardBurger}: card) => {
+const CardBurger = ({setCardBurger, cardBurger}: card) => {
   return (
     <div className={styles.cardBurger}>
       <button onClick={() => {
@@ -107,4 +107,4 @@ const CardBurgerg = ({setCardBurger, cardBurger}: card) => {
   );
 };
 
-export default CardBurgerg;
+export default CardBurger;

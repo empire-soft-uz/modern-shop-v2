@@ -1,4 +1,3 @@
-import React, { Dispatch, useEffect } from "react";
 import styles from "@/styles/order.module.css";
 import Image from "next/image";
 import Link from "next/link";

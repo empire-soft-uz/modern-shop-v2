@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/delivery.module.css";
+import styles from "@/styles/delivery.module.css";
 import Image from "next/image";
 import Footer from "./components/global/Footer";
 import AOS from "aos";
@@ -10,7 +10,6 @@ import Categories from "./components/global/Categories";
 import Order from "./components/global/Order";
 
 const Delivery = () => {
-  const [application, setApplication] = useState(false);
   const [order, setOrder] = useState<boolean>(false);
   const [allPrice, setAllPrice] = useState(false)
 
