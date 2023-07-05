@@ -31,6 +31,8 @@
   width: 90%;
   border: none;
   outline: none;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 .search image {

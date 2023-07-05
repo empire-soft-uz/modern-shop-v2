@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import styles from "@/styles/categories.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import SelectCategory from "./SelectCategory";
 // import CatSelect from "./CatSelect";
 const Categories = () => {
-  const [catSelect, setCatSelect] = useState<boolean>(false)
   const [mouseOver, setMouseOver] = useState<boolean>(false)
   const [selected, setSelected] = useState<string>("")
+  const [isCategoryOpen, setCategoryOpen] = useState<boolean>(false)
 
   const categories: string[] = ["Мужское", "Женское", "Детское", "Все для дома", "Электроника"]
   return (
     <>
-      <div className={styles.categories}>
+      <div className={styles.categories} onMouseLeave={()=> {
+        setCategoryOpen(false)
+      }}>
         <div className={styles.container}>
-          <div onClick={() => {
-            setCatSelect(!catSelect)
+          <div onMouseOver={() => {
+            setCategoryOpen(true)
           }} className={styles.categ}>
             <h3 style={{
               color: "#E4B717"
@@ -37,10 +40,10 @@ const Categories = () => {
           </ul>
           <div style={{
             opacity: 0
-          }}>Lorem ipsum dolor sit </div>
+          }}>Lorem ipsum dolor sit</div>
+      {isCategoryOpen && <SelectCategory setLeave={setCategoryOpen} />}
         </div>
       </div>
-      {/* <CatSelect setCatSelect={setCatSelect} catSelect={catSelect} /> */}
     </>
   );
 };
