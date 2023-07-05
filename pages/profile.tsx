@@ -27,7 +27,7 @@ const Profile = () => {
 
 
   return (
-    <div className={styles.Profile} data-aos="fade-down" data-aos-duration="3000">
+    <div className={styles.Profile}>
 
       {isChangePassOpen && (
         <ChangePassword setIsChangePassOpen={setIsChangePassOpen} />
@@ -52,15 +52,15 @@ const Profile = () => {
         <section className={styles.profileLeft}>
           <div className={styles.profileCard}>
             <div className={styles.profileUser}>
-              <Image src={"/user.svg"} width={16} height={21} alt="user" />
+              <Image src={"icons/user.svg"} width={16} height={21} alt="user" />
               <p>Личные данные</p>
             </div>
             <div className={styles.profileOrder}>
-              <Image src={"/book.svg"} width={17.29} height={21} alt="book" />
+              <Image src={"icons/book.svg"} width={17.29} height={21} alt="book" />
               <p>Мои заказы</p>
             </div>
             <div className={styles.profileClose}>
-              <Image src={"/logout.svg"} width={19} height={19} alt="close" />
+              <Image src={"icons/logout.svg"} width={19} height={19} alt="close" />
               <p>Выйти</p>
             </div>
           </div>
