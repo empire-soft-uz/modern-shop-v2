@@ -46,7 +46,7 @@ const Footer = () => {
           <div className={styles.links}>
             <Link href={"#"}>
               <Image
-                src={"/facebook.svg"}
+                src={"/icons/facebook.svg"}
                 alt="facebook icon"
                 width={25}
                 height={25}
@@ -55,7 +55,7 @@ const Footer = () => {
             <Link href={"#"}>
               {" "}
               <Image
-                src={"/tg.svg"}
+                src={"/icons/tg.svg"}
                 alt="telegram icon"
                 width={25}
                 height={25}
@@ -63,7 +63,7 @@ const Footer = () => {
             </Link>
             <Link href={"#"}>
               <Image
-                src={"/inst.svg"}
+                src={"/icons/inst.svg"}
                 alt="instagram icon"
                 width={25}
                 height={25}

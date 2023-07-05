@@ -1,23 +1,20 @@
 import React, { useEffect } from "react";
 import styles from "@/styles/liked.module.css";
 import Header from "./components/global/Header";
-import Buy from "@/public/Buy.png";
-import likeBlue from "@/public/likeBlue.svg";
+import Buy from "@/public/images/Buy.png";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "./components/global/Footer";
 import AOS from "aos";
 import TopHeader from "./components/global/TopHeader";
 import Categories from "./components/global/Categories";
+import Card from "./components/global/Card";
 
-const izbrinni = () => {
-  useEffect(() => {
-    AOS.init();
-  }, []);
+const Liked = () => {
 
   const cardObj = [
     {
-      image: "/productPhone.png",
+      image: "/images/productPhone.png",
       w: 144,
       h: 192,
       title: "Iphone 14 PRO",
@@ -25,7 +22,7 @@ const izbrinni = () => {
       cat: "Телефоны",
     },
     {
-      image: "/xboxController.png",
+      image: "/images/xboxController.png",
       w: 181,
       h: 192,
       title: "Xbox",
@@ -33,7 +30,7 @@ const izbrinni = () => {
       cat: "Приставки",
     },
     {
-      image: "/headPhone.png",
+      image: "/images/headPhone.png",
       w: 179,
       h: 192,
       title: "Наушники SONY",
@@ -41,7 +38,7 @@ const izbrinni = () => {
       cat: "Аксессуары",
     },
     {
-      image: "/smphone.png",
+      image: "/images/smphone.png",
       w: 160,
       h: 192,
       title: "Samsung M53",
@@ -62,36 +59,7 @@ const izbrinni = () => {
         <div className={styles.likedCards}>
           {cardObj.map((card, index) => {
             return (
-              <div className={styles.Card} key={index}>
-                <div className={styles.like}>
-                  <Image
-                    src={card.image}
-                    width={card.w}
-                    height={card.h}
-                    alt="product"
-                  />
-                  <button>
-                    <Image
-                      src={likeBlue}
-                      width={43.96}
-                      height={45.6}
-                      alt="like"
-                    />
-                  </button>
-                </div>
-                <h3 style={{ fontSize: 20, fontWeight: 700, paddingTop: 13 }}>
-                  {card.title}
-                </h3>
-                <p style={{ fontWeight: 450, color: "#D3D3D3" }}>{card.cat}</p>
-                <div className={styles.order}>
-                  <h3>{card.price}</h3>
-                  <div className={styles.cart}>
-                    <Link href="/delivery">
-                      <Image src={Buy} width={18.6} height={20.46} alt="buy" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              <Card animation="zoom-in" cat={card.cat} height={card.h} image={card.image} price={card.price} title={card.title} width={card.w} key={index} />
             );
           })}
         </div>
@@ -104,4 +72,4 @@ const izbrinni = () => {
   );
 };
 
-export default izbrinni;
+export default Liked;

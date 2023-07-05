@@ -10,6 +10,7 @@ import Card from "../components/global/Card";
 import Reviews from "../components/local/Reviews";
 import Chat from "../components/local/Chat";
 import Order from "../components/global/Order";
+import { useRouter } from "next/router";
 
 
 
@@ -19,13 +20,25 @@ const Detail = () => {
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   const [order, setOrder] = useState<boolean>(false);
 
+  const [load, setLoad] = useState<boolean>(false)
+
+  const [textLength, setTextLength] = useState<number>(1200)
+
+  const router = useRouter()
+
+  const { id } = router.query
+
   useEffect(() => {
-    order ? document.body.style.overflow = "hidden" : document.body.style.overflow = "auto"
+    order !== true ? document.body.style.overflow = "auto" : document.body.style.overflow = "hidden"
   }, [order])
+
+  useEffect(() => {
+    isChatOpen !== true ? document.body.style.overflow = "auto" : document.body.style.overflow = "hidden"
+  }, [isChatOpen])
 
   const cardObj = [
     {
-      image: "/productPhone.png",
+      image: "/images/productPhone.png",
       w: 144,
       h: 167,
       title: "Iphone 14 PRO",
@@ -33,7 +46,7 @@ const Detail = () => {
       cat: "Телефоны",
     },
     {
-      image: "/xboxController.png",
+      image: "/images/xboxController.png",
       w: 181,
       h: 192,
       title: "Xbox",
@@ -41,7 +54,7 @@ const Detail = () => {
       cat: "Приставки",
     },
     {
-      image: "/headPhone.png",
+      image: "/images/headPhone.png",
       w: 179,
       h: 190,
       title: "Наушники SONY",
@@ -49,7 +62,7 @@ const Detail = () => {
       cat: "Аксессуары",
     },
     {
-      image: "/smphone.png",
+      image: "/images/smphone.png",
       w: 160,
       h: 173,
       title: "Samsung M53",
@@ -57,6 +70,12 @@ const Detail = () => {
       cat: "Телефоны",
     },
   ];
+
+
+  const sentence = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+  const readAdd = (sentence.length-textLength) / 2
+
   return (
     <>
       <Head>
@@ -81,7 +100,7 @@ const Detail = () => {
               <div className={styles.leftSide}>
                 <button className={styles.selectedImage}>
                   <Image
-                    src={"/14.png"}
+                    src={"/images/14.png"}
                     alt="iphone 14"
                     width={353}
                     height={460}
@@ -90,7 +109,7 @@ const Detail = () => {
                 <div className={styles.imagesToSelect}>
                   <div className={styles.imageToSelect}>
                     <Image
-                      src={"/smphone.png"}
+                      src={"/images/smphone.png"}
                       alt="another phone image"
                       width={71}
                       height={84.5}
@@ -98,7 +117,7 @@ const Detail = () => {
                   </div>
                   <div className={styles.imageToSelect}>
                     <Image
-                      src={"/smphone.png"}
+                      src={"/images/smphone.png"}
                       alt="another phone image"
                       width={71}
                       height={84.5}
@@ -106,7 +125,7 @@ const Detail = () => {
                   </div>
                   <div className={styles.imageToSelect}>
                     <Image
-                      src={"/smphone.png"}
+                      src={"/images/smphone.png"}
                       alt="another phone image"
                       width={71}
                       height={84.5}
@@ -154,7 +173,7 @@ const Detail = () => {
                   <div className={styles.imagesToSelect}>
                     <div className={styles.imageToSelect}>
                       <Image
-                        src={"/smphone.png"}
+                        src={"/images/smphone.png"}
                         alt="another phone image"
                         width={71}
                         height={84.5}
@@ -167,7 +186,7 @@ const Detail = () => {
                       className={styles.imageToSelect}
                     >
                       <Image
-                        src={"/smphone.png"}
+                        src={"/images/smphone.png"}
                         alt="another phone image"
                         width={71}
                         height={84.5}
@@ -175,7 +194,7 @@ const Detail = () => {
                     </div>
                     <div className={styles.imageToSelect}>
                       <Image
-                        src={"/smphone.png"}
+                        src={"/images/smphone.png"}
                         alt="another phone image"
                         width={71}
                         height={84.5}
@@ -222,8 +241,8 @@ const Detail = () => {
                       512 гб
                     </button>
                     <button onClick={() => {
-                        setControllerM(2);
-                      }}
+                      setControllerM(2);
+                    }}
                       type="button"
                       className={
                         controllerM === 2 ? styles.memoryd : styles.memory
@@ -249,7 +268,7 @@ const Detail = () => {
                     </div>
                     <div className={styles.imageLike}>
                       <Image
-                        src="/liked.svg"
+                        src="/icons/liked.svg"
                         width={23}
                         height={22}
                         alt="like icon"
@@ -267,7 +286,7 @@ const Detail = () => {
                     </button>
                     <div className={styles.addCart}>
                       <Image
-                        src={"/buyY.svg"}
+                        src={"/icons/buyY.svg"}
                         alt="add to cart icon"
                         width={20}
                         height={20}
@@ -283,7 +302,7 @@ const Detail = () => {
                     className={styles.cart}
                   >
                     <Image
-                      src={"/chat.svg"}
+                      src={"/icons/chat.svg"}
                       alt="chat icon"
                       width={43}
                       height={39}
@@ -292,7 +311,7 @@ const Detail = () => {
                   </button>
                   <button className={styles.cart}>
                     <Image
-                      src={"/deliver.svg"}
+                      src={"/icons/deliver.svg"}
                       alt="deliver icon"
                       width={49}
                       height={43}
@@ -305,10 +324,10 @@ const Detail = () => {
           </section>
           <section className={styles.video}>
             <div className={styles.hole}>
-              <Image src={"/iphone.png"} width={400} height={532} alt="video" />
+              <Image src={"/images/iphone.png"} width={400} height={532} alt="video" />
               <Image
                 alt="play video"
-                src={"/play.svg"}
+                src={"/icons/play.svg"}
                 width={79}
                 height={79}
                 style={{
@@ -341,12 +360,12 @@ const Detail = () => {
               <>
                 <div className={styles.detailS}>
                   <div className={styles.characterInfo}><div className={styles.characterInfoLeft}>
-                      <p>Экран......................................</p>
-                      <p>Модель процессора.............</p>
-                      <p>Встроенная память................</p>
-                      <p>Оперативная память.............</p>
-                      <p>Разрешение камеры.............</p>
-                    </div>
+                    <p>Экран......................................</p>
+                    <p>Модель процессора.............</p>
+                    <p>Встроенная память................</p>
+                    <p>Оперативная память.............</p>
+                    <p>Разрешение камеры.............</p>
+                  </div>
                     <div className={styles.characterInfoRight}>
                       <p>6.8</p>
                       <p>Snapdragon 8 Gen 2</p>
@@ -384,45 +403,16 @@ const Detail = () => {
                       color: "#888888",
                       lineHeight: "25.6px",
                     }}
+
                   >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum. Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id
-                    est laborum. Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat. Duis aute irure dolor in reprehenderit in
-                    voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.Lorem
-                    ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                    irure dolor in reprehenderit in voluptate velit esse cillum
-                    dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt
-                    mollit anim id est laborum.Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id
-                    est laborum.{" "}
+                    {sentence.substring(0, textLength)} <button onClick={() => {
+                      setTextLength(sentence.length)
+                    }} style={textLength !== sentence.length ? {
+                      color: "#179AE4",
+                      fontWeight: 700
+                    } : {
+                      display: "none"
+                    }}>[read more]</button>
                   </p>
                 </div>
               </>
@@ -447,6 +437,7 @@ const Detail = () => {
                     price={card.price}
                     cat={card.cat}
                     key={index}
+                    animation="fade-down"
                   />
                 );
               })}
@@ -454,7 +445,7 @@ const Detail = () => {
             <div className={styles.controllerProduct}>
               <button>
                 <Image
-                  src={"/chevronLeft.svg"}
+                  src={"/icons/chevronLeft.svg"}
                   alt="chevron left icon"
                   width={11}
                   height={20}
@@ -462,7 +453,7 @@ const Detail = () => {
               </button>
               <button>
                 <Image
-                  src={"/chevronRight.svg"}
+                  src={"/icons/chevronRight.svg"}
                   alt="chevron right icon"
                   width={11}
                   height={20}
@@ -470,6 +461,7 @@ const Detail = () => {
               </button>
             </div>
           </section>
+          <Order order={order} setOrder={setOrder} />
         </div>
         <Footer />
       </main>

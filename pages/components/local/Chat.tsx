@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "@/styles/chat.module.css";
 import Image from "next/image";
 
@@ -19,7 +19,7 @@ const Chat = ({ setIsChatOpen }: Chat) => {
               <p>some sentence</p>
               <div className={styles.createdAt}>
                 <Image
-                  src={"/date.svg"}
+                  src={"/icons/date.svg"}
                   width={20}
                   height={23}
                   alt="created at"
@@ -31,7 +31,7 @@ const Chat = ({ setIsChatOpen }: Chat) => {
               <p>some sentence</p>
               <div className={styles.createdAt}>
                 <Image
-                  src={"/date.svg"}
+                  src={"/icons/date.svg"}
                   width={20}
                   height={23}
                   alt="created at"
@@ -43,7 +43,7 @@ const Chat = ({ setIsChatOpen }: Chat) => {
           <div className={styles.sendMessage}>
             <input type="text" placeholder="Напишите сообщение..." />
             <Image
-              src={"/sendImg.svg"}
+              src={"/icons/sendImg.svg"}
               alt="image send icon"
               width={16}
               height={27}
@@ -60,7 +60,7 @@ const Chat = ({ setIsChatOpen }: Chat) => {
               }}
             >
               <Image
-                src={"/close.svg"}
+                src={"/icons/close.svg"}
                 alt="close chat icon"
                 width={21}
                 height={21}
@@ -72,7 +72,7 @@ const Chat = ({ setIsChatOpen }: Chat) => {
               return (
                 <div key={e} className={styles.eachChat}>
                   <Image
-                    src={"/user.png"}
+                    src={"/images/user.png"}
                     alt="user image"
                     width={50}
                     height={50}

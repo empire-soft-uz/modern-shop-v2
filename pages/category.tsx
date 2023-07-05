@@ -19,7 +19,7 @@ export default function Categoriy() {
 
   const cardObj = [
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -27,7 +27,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -35,7 +35,7 @@ export default function Categoriy() {
       price: "13.000000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -43,7 +43,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -51,7 +51,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -59,7 +59,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -67,7 +67,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -75,7 +75,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -83,7 +83,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -91,7 +91,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -99,7 +99,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -107,7 +107,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -115,7 +115,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -123,7 +123,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -131,7 +131,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -139,7 +139,7 @@ export default function Categoriy() {
       price: "13.000.000сум",
     },
     {
-      image: "/phone.svg",
+      image: "icons/phone.svg",
       width: 107,
       height: 140,
       title: "Iphone 14 PRO",
@@ -254,6 +254,7 @@ export default function Categoriy() {
                   price={card.price}
                   cat={card.kategoriya}
                   key={index}
+                  animation="zoom-in"
                 />
               );
             })}

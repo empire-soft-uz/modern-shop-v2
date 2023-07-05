@@ -1,13 +1,13 @@
-import React from "react";
 import styles from "@/styles/profile.module.css";
 import Footer from "./components/global/Footer";
 import Image from "next/image";
 import { useState } from "react";
-import ChanchePassword from "./components/local/ChangePassword";
+import ChangePassword from "./components/local/ChangePassword";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
 import ProfileBurger from "./components/local/ProfileBurger";
+import { useEffect } from "react";
 
 const Profile = () => {
   const [isChangePassOpen, setIsChangePassOpen] = useState(false);
@@ -20,12 +20,19 @@ const Profile = () => {
   const ProfileBurgerHandler = () => {
     setProfileBurger(!profileBurger);
   };
+  
+  useEffect(() => {
+    document.body.style.overflow = "auto"
+  });
+
 
   return (
-    <div className={styles.Profile}>
+    <div className={styles.Profile} data-aos="fade-down" data-aos-duration="3000">
+
       {isChangePassOpen && (
-        <ChanchePassword setIsChangePassOpen={setIsChangePassOpen} />
+        <ChangePassword setIsChangePassOpen={setIsChangePassOpen} />
       )}
+
       <TopHeader />
       <Header />
       <Categories />
@@ -61,14 +68,14 @@ const Profile = () => {
         <section className={styles.profileRight}>
           <div className={styles.profileUpload}>
             <Image
-              src={"/profile.svg"}
+              src={"/icons/profile.svg"}
               width={115.31}
               height={115.31}
               alt="profile"
             />
             <div className={styles.circle}>
               <Image
-                src={"/circle.svg"}
+                src={"/icons/circle.svg"}
                 width={19.77}
                 height={16.47}
                 alt="circle"

@@ -2,30 +2,34 @@ import React, { useEffect, useState } from "react";
 
 import styles from "@/styles/auth.module.css";
 import Image from "next/image";
-
 interface Auth {
   setIsAuthOpen: Function;
+  isAuthOpen: boolean;
 }
 
-const Auth = ({ setIsAuthOpen }: Auth) => {
+const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
   }, []);
 
   const [queue, setQueue] = useState<number | any>(0);
 
-  const [timer, setTimer] = useState<number>(61);
+  const [timer, setTimer] = useState<number>(62);
+
+  const shouldMount = queue === 1.1 || queue === 2.1;
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((timer) => timer - 1);
     }, 1000);
     return () => clearInterval(interval);
-  }, [queue === 1.1]);
+  }, [shouldMount]);
 
   return (
-    <div className={styles.authent}>
-      <div className={styles.auth}>
+    <div className={isAuthOpen ? styles.authent : styles.dn}>
+      <div
+        className={isAuthOpen ? styles.auth : styles.dn}
+      >
         <div className={styles.close}>
           <button
             onClick={() => {
@@ -33,7 +37,7 @@ const Auth = ({ setIsAuthOpen }: Auth) => {
             }}
           >
             <Image
-              src={"/close.svg"}
+              src={"/icons/close.svg"}
               alt="close auth icon"
               width={21}
               height={21}
@@ -45,14 +49,14 @@ const Auth = ({ setIsAuthOpen }: Auth) => {
             {queue === 0
               ? "Авторизация"
               : queue === 1
-              ? "Регистрация"
-              : queue === 1.1 || queue === 2.1
-              ? "Введите код"
-              : queue === 2
-              ? "Восстановить аккаунт"
-              : queue === 2.2
-              ? "Новый пароль"
-              : "fuck"}
+                ? "Регистрация"
+                : queue === 1.1 || queue === 2.1
+                  ? "Введите код"
+                  : queue === 2
+                    ? "Восстановить аккаунт"
+                    : queue === 2.2
+                      ? "Новый пароль"
+                      : "fuck"}
           </h3>
         </div>
         {queue === 0 ? (
@@ -188,29 +192,29 @@ const Auth = ({ setIsAuthOpen }: Auth) => {
           style={
             queue === 1.1 && timer === 0
               ? {
-                  color: "#f00",
-                }
+                color: "#f00",
+              }
               : {
-                  color: "#888",
-                }
+                color: "#888",
+              }
           }
           onClick={() => {
             queue === 0
               ? setQueue(1)
               : queue === 1 || queue === 2
-              ? setQueue(0)
-              : queue === 1.1
-              ? setTimer(60)
-              : setQueue(1.1);
+                ? setQueue(0)
+                : queue === 1.1
+                  ? setTimer(60)
+                  : setQueue(1.1);
           }}
         >
           {queue === 0
             ? "Регистрация"
             : queue === 1 || queue === 2
-            ? "Уже есть аккаунт?"
-            : queue === 2.2
-            ? ""
-            : `Запросить еще раз ( 0:${timer >= 0 ? timer : setTimer(0)} )`}
+              ? "Уже есть аккаунт?"
+              : queue === 2.2
+                ? ""
+                : `Запросить еще раз ( 0:${timer >= 0 ? timer : setTimer(0)} )`}
         </button>
       </div>
       <div

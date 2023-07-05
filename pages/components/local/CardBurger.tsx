@@ -17,7 +17,7 @@ const CardBurger = ({setCardBurger, cardBurger}: card) => {
       }}>
         <Image
           className={styles.close}
-          src={"/close.svg"}
+          src={"icons/close.svg"}
           width={24}
           height={24}
           alt="close"

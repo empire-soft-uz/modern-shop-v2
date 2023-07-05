@@ -57,7 +57,6 @@
         justify-content: center;
         align-items: center;
     }
-
     .center {
         flex-direction: column;
         gap: 1rem;
@@ -66,7 +65,6 @@
         text-align: center;
         width: fit-content;
     }
-
     .last {
         justify-content: center;
         align-items: center;

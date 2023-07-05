@@ -1,11 +1,13 @@
 import React from "react";
 import styles from "@/styles/review.module.css";
 import Image from "next/image";
+import { Animated } from "react-animated-css";
+
 const Reviews = () => {
   return (
     <div className={styles.review}>
       <div className={styles.userImage}>
-        <Image src={"/user.png"} alt="user image" width={41} height={41} />
+        <Image src={"/images/user.png"} alt="user image" width={41} height={41} />
       </div>
       <div className={styles.view}>
         <div className={styles.top}>
@@ -13,31 +15,31 @@ const Reviews = () => {
             <h3>Рафаэль Ройтман</h3>
             <div className={styles.stars}>
               <Image
-                src={"/star2.svg"}
+                src={"/icons/star2.svg"}
                 alt="star icon"
                 width={26}
                 height={26}
               />
               <Image
-                src={"/star2.svg"}
+                src={"/icons/star2.svg"}
                 alt="star icon"
                 width={26}
                 height={26}
               />
               <Image
-                src={"/star2.svg"}
+                src={"/icons/star2.svg"}
                 alt="star icon"
                 width={26}
                 height={26}
               />
               <Image
-                src={"/star2.svg"}
+                src={"/icons/star2.svg"}
                 alt="star icon"
                 width={26}
                 height={26}
               />
               <Image
-                src={"/star1.svg"}
+                src={"/icons/star1.svg"}
                 alt="star icon"
                 width={26}
                 height={26}
@@ -45,7 +47,7 @@ const Reviews = () => {
             </div>
           </div>
           <div className={styles.createdAt}>
-            <Image src={"/date.svg"} alt="date icon" width={17} height={19} />
+            <Image src={"/icons/date.svg"} alt="date icon" width={17} height={19} />
             <h4
               style={{
                 color: "#888",

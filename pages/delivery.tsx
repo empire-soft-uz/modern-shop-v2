@@ -14,10 +14,6 @@ const Delivery = () => {
   const [allPrice, setAllPrice] = useState(false)
 
   useEffect(() => {
-    AOS.init();
-  }, []);
-
-  useEffect(() => {
     order
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "auto");
@@ -29,7 +25,7 @@ const Delivery = () => {
 
   const OrderObj = [
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       title: "Iphone 14 PRO",
       kategoriya: "Телефоны",
       color: "Зеленый",
@@ -39,7 +35,7 @@ const Delivery = () => {
       height: 110,
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       title: "Iphone 14 PRO",
       kategoriya: "Телефоны",
       color: "Зеленый",
@@ -49,7 +45,7 @@ const Delivery = () => {
       height: 110,
     },
     {
-      image: "/phone.svg",
+      image: "/icons/phone.svg",
       title: "Iphone 14 PRO",
       kategoriya: "Телефоны",
       color: "Зеленый",
@@ -60,12 +56,14 @@ const Delivery = () => {
     },
   ];
 
+
+
   return (
-    <div className={styles.Delivery} data-aos="zoom-in">
+    <div className={styles.Delivery}>
       <TopHeader />
       <Header />
       <Categories />
-      <Order order={order} setOrder={setOrder}/>
+      <Order order={order} setOrder={setOrder} />
       <div className={styles.cart}>
         <h1 style={{ fontSize: 20, fontWeight: 700 }}>Корзина</h1>
       </div>
@@ -89,7 +87,7 @@ const Delivery = () => {
                   <p style={{ color: "#B7AFAF" }}>{card.kategoriya}</p>
                   <div style={{ display: "flex", gap: 10, paddingTop: 7 }}>
                     <label>Цвет:</label>
-                    <p>Цвет:{card.color}</p>
+                    <p>{card.color}</p>
                   </div>
                   <div style={{ display: "flex", gap: 10 }}>
                     <label>Встроенная память:</label>
@@ -111,7 +109,7 @@ const Delivery = () => {
                 <div className={styles.countPrice}>
                   <div className={styles.remove}>
                     <Image
-                      src={"/remove.svg"}
+                      src={"/icons/remove.svg"}
                       width={14}
                       height={16}
                       alt="remove"

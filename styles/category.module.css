@@ -104,7 +104,6 @@
 
 
 .carusel {
-    cursor: pointer;
     align-items: center;
     gap: 15px;
     justify-content: center;
@@ -298,7 +297,7 @@
 
     
     .sectionRight {
-        gap: 2%;
+        gap: 1.5%;
         row-gap: 1rem;
     }
 
@@ -492,7 +491,6 @@
     .sectionRight>a {
         width: 100%;
     }
-
 
 }
 
