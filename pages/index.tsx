@@ -7,13 +7,18 @@ import Image from "next/image";
 import Card from "./components/global/Card";
 import News from "./components/local/News";
 import Footer from "./components/global/Footer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HeaderTabs from "./components/local/HeaderTabs";
 import classes from "@/styles/allCategory.module.css";
-import Aos from "aos";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { useSwiper } from 'swiper/react';
+
 export default function Home() {
   const [nav, setNav] = useState<number>(0);
   const [buttonColor, setButtonColor] = useState<number>(0)
+
+  const swiper = useSwiper();
 
   const fakeObj = [
     {
@@ -153,25 +158,6 @@ export default function Home() {
       price: "13.000.000сум",
     },
   ];
-
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-      slidesToSlide: 3 // optional, default to 1.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 4,
-      slidesToSlide: 2 // optional, default to 1.
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1 // optional, default to 1.
-    }
-  };
-
   return (
     <>
       <Head>
@@ -210,9 +196,16 @@ export default function Home() {
               >
                 Категории для вас
               </h3>
+              <Swiper
+                spaceBetween={50}
+                slidesPerView={4}
+                onSlideChange={() => console.log('slide change')}
+                onSwiper={(swiper) => console.log(swiper)}
+                className={styles.swiperL}
+              >
                 {fakeObj.map((e: any) => {
                   return (
-                    <div key={e.image} className={styles.cat}>
+                    <SwiperSlide key={e.image} className={styles.cat}>
                       <div className={styles.catTop}>
                         <Image
                           src={e.image}
@@ -222,26 +215,27 @@ export default function Home() {
                         />
                       </div>
                       <h4 className={styles.catTitle}>{e.title}</h4>
-                    </div>
+                    </SwiperSlide>
                   );
                 })}
+              </Swiper>
               <div className={styles.catController}>
-                <div className={styles.catControl}>
+                <button onClick={()=> swiper.slidePrev()} className={styles.catControl}>
                   <Image
                     src={"/icons/arrowLeft.svg"}
                     width={23}
                     height={16}
                     alt="controller"
                   />
-                </div>
-                <div className={styles.catControl}>
+                </button>
+                <button onClick={()=> swiper.slideNext()} className={styles.catControl}>
                   <Image
                     src={"/icons/arrowRight.svg"}
                     width={23}
                     height={16}
                     alt="controller"
                   />
-                </div>
+                </button>
               </div>
             </div>
             <section className={styles.newProducts}>
@@ -284,7 +278,7 @@ export default function Home() {
               </div>
               <button className={styles.loadMore}>Посмотреть больше</button>
             </section>
-            </> : <>
+          </> : <>
             <div className={classes.navigation}>
               <div
                 className={classes.nav}
@@ -453,33 +447,33 @@ export default function Home() {
               <p>...</p>
               <p>5</p>
             </div>
-            </>}
-            <section className={styles.newProducts}>
-              <h3>Новости</h3>
-              <div className={styles.newsWrapper}>
-                {[1, 2, 3].map((e) => {
-                  return <News id={e} key={e} />;
-                })}
+          </>}
+          <section className={styles.newProducts}>
+            <h3>Новости</h3>
+            <div className={styles.newsWrapper}>
+              {[1, 2, 3].map((e) => {
+                return <News id={e} key={e} />;
+              })}
+            </div>
+            <div className={styles.catController}>
+              <div className={styles.catControl}>
+                <Image
+                  src={"/icons/arrowLeft.svg"}
+                  width={23}
+                  height={16}
+                  alt="controller"
+                />
               </div>
-              <div className={styles.catController}>
-                <div className={styles.catControl}>
-                  <Image
-                    src={"/icons/arrowLeft.svg"}
-                    width={23}
-                    height={16}
-                    alt="controller"
-                  />
-                </div>
-                <div className={styles.catControl}>
-                  <Image
-                    src={"/icons/arrowRight.svg"}
-                    width={23}
-                    height={16}
-                    alt="controller"
-                  />
-                </div>
+              <div className={styles.catControl}>
+                <Image
+                  src={"/icons/arrowRight.svg"}
+                  width={23}
+                  height={16}
+                  alt="controller"
+                />
               </div>
-            </section>
+            </div>
+          </section>
         </div>
         <Footer />
       </main>
