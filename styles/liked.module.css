@@ -1,4 +1,4 @@
-.liked__section {
+.likedSection {
     gap: 20px;
     display: flex;
     align-items: center;
@@ -9,12 +9,13 @@
 
 .Favorites {
     display: flex;
-    width: 1180px;
     padding: 10px 0;
     margin: auto;
 }
 
-.liked__cards {
+.likedCards {
+    width: 100%;
+    flex-wrap: wrap;
     gap: 20px;
     display: flex;
     width: 100%;
@@ -22,12 +23,10 @@
 }
 
 .Card {
-    width: 280px;
-    height: 300px;
+    width: 24%;
     padding: 14px 12.6px;
     background-color: #fff;
     border-radius: 20px;
-    width: 280px;
     height: 331px;
 }
 
@@ -64,3 +63,40 @@
     background: none;
     border: none;
 }
+
+@media screen and (max-width:1180px) {
+    .likedSection {
+        padding: 10px 10px;
+        width: 100%;
+    }
+    .Card {
+        width:  30%;
+    }
+
+    .Favorites {
+        padding: 10px 10px;
+    }
+}
+@media screen and (max-width:768px) {
+    .likedSection {
+        padding: 10px 10px;
+        width: 100%;
+    }
+    .Card {
+        width: 42%;
+    }
+
+    .Favorites {
+        padding: 10px 10px;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .likedSection {
+        width: 100%;
+    }
+
+    .Card {
+        width: 100%;
+    }
+} 
