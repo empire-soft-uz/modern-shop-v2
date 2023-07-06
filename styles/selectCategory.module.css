@@ -77,15 +77,42 @@
     font-weight: 700;
 }
 
+@media screen and (max-width:1200px) {
+    .selectCategory {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width:1180px) {
     .selectCategory {
-        width: 1000px;
+        width: 100%;
     }
 }
 
 @media screen and (max-width:768px) {
     .selectCategory {
         width: 97%;
+    }
+
+    .table {
+        gap: 100px;
+    }
+}
+
+
+@media screen and (max-width:590px) {
+    .selectCategory {
+        width: 96%;
+    }
+
+    .table {
+        gap: 50px;
+    }
+}
+
+@media screen and (max-width:570px) {
+    .table {
+        gap: 30px;
     }
 }
 

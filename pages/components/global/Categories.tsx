@@ -3,7 +3,7 @@ import styles from "@/styles/categories.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import SelectCategory from "./SelectCategory";
-// import CatSelect from "./CatSelect";
+
 const Categories = () => {
   const [mouseOver, setMouseOver] = useState<boolean>(false)
   const [selected, setSelected] = useState<string>("")
@@ -41,7 +41,7 @@ const Categories = () => {
           <div style={{
             opacity: 0
           }}>Lorem ipsum dolor sit</div>
-      {isCategoryOpen && <SelectCategory setLeave={setCategoryOpen} />}
+          {isCategoryOpen && <SelectCategory />}
         </div>
       </div>
     </>

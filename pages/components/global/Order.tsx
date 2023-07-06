@@ -1,11 +1,11 @@
-import React, { Dispatch, useEffect } from "react";
 import styles from "@/styles/order.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import check from '@/public/icons/check.svg'
 import AOS from "aos"
-import Head from "next/head";
 import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 
 
 interface Order {

@@ -55,15 +55,16 @@ const Liked = () => {
       <div className={styles.Favorites}>
         <h1 style={{ fontSize: 20, fontWeight: 700 }}>Избранное</h1>
       </div>
-      <div className={styles.liked__section}>
-        <div className={styles.liked__cards}>
+      <section className={styles.likedSection}>
+        <div className={styles.likedCards}>
           {cardObj.map((card, index) => {
             return (
               <Card animation="zoom-in" cat={card.cat} height={card.h} image={card.image} price={card.price} title={card.title} width={card.w} key={index} />
             );
           })}
         </div>
-      </div>
+      </section>
+
       <div style={{ marginTop: "11rem" }}>
         <Footer />
       </div>

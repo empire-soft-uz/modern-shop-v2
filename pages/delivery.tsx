@@ -1,24 +1,27 @@
 import React from "react";
-import styles from "../styles/deliveriey.module.css";
+import styles from "@/styles/delivery.module.css";
 import Image from "next/image";
 import Footer from "./components/global/Footer";
 import AOS from "aos";
 import { useState, useEffect } from "react";
-import ApplicationAccepted from "./components/local/ChangePassword";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
 import Order from "./components/global/Order";
 
 const Delivery = () => {
-  const [application, setApplication] = useState(false);
   const [order, setOrder] = useState<boolean>(false);
+  const [allPrice, setAllPrice] = useState(false)
 
   useEffect(() => {
     order
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "auto");
   }, [order]);
+
+  const allPriceHandler = () =>{
+    setAllPrice(!allPrice)
+  }
 
   const OrderObj = [
     {
@@ -64,13 +67,13 @@ const Delivery = () => {
       <div className={styles.cart}>
         <h1 style={{ fontSize: 20, fontWeight: 700 }}>Корзина</h1>
       </div>
-      <div className={styles.Delivery__section}>
-        <div className={styles.section__left}>
+      <section className={styles.DeliverySection}>
+        <section className={styles.sectionLeft}>
           {OrderObj.map((card, index) => {
             return (
               <div key={index} className={styles.card}>
                 <input
-                  style={{ width: 21.47, height: 21.47 }}
+                  className={styles.input}
                   type="checkbox"
                 />
                 <Image
@@ -97,13 +100,13 @@ const Delivery = () => {
                   >
                     Кол-во:
                   </p>
-                  <div className={styles.count__button}>
+                  <div className={styles.countButton}>
                     <button>-</button>
                     <p>1</p>
                     <button>+</button>
                   </div>
                 </div>
-                <div>
+                <div className={styles.countPrice}>
                   <div className={styles.remove}>
                     <Image
                       src={"/icons/remove.svg"}
@@ -113,16 +116,16 @@ const Delivery = () => {
                     />
                     <p>Удалить</p>
                   </div>
-                  <h1 style={{ paddingTop: 57, fontSize: 23, fontWeight: 700 }}>
+                  <h1>
                     {card.price}
                   </h1>
                 </div>
               </div>
             );
           })}
-        </div>
-        <div className={styles.right}>
-          <div className={styles.all__price}>
+        </section>
+        <section className={styles.right}>
+          <div className={styles.allPrice}>
             <h1>Ваш заказ</h1>
             <div style={{ display: "flex", gap: 15, marginTop: 12 }}>
               <label>Товары (2):</label>
@@ -158,8 +161,8 @@ const Delivery = () => {
               Заказать
             </button>
           </div>
-        </div>
-      </div>
+        </section>
+      </section>
       <Footer />
     </div>
   );
