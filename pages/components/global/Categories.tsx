@@ -5,6 +5,7 @@ import Link from "next/link";
 import SelectCategory from "./SelectCategory";
 
 const Categories = () => {
+  const [mouseOver, setMouseOver] = useState<boolean>(false)
   const [selected, setSelected] = useState<string>("")
   const [isCategoryOpen, setCategoryOpen] = useState<boolean>(false)
 
@@ -25,7 +26,13 @@ const Categories = () => {
           </div>
           <ul className={styles.selectList}>
             {categories.map((e: string) => {
-              return <li className={styles.selectItem} key={e}>
+              return <li className={styles.selectItem} key={e} onMouseOver={() => {
+                setMouseOver(true)
+                setSelected(e)
+              }} onMouseLeave={() => {
+                setMouseOver(false)
+                setSelected("")
+              }}>
                 <h3>{e}</h3>
                 <Image className={selected === e ? styles.animated : styles.just} src={"/icons/chevronDown.svg"} alt="chevron down" height={12} width={10} />
               </li>
