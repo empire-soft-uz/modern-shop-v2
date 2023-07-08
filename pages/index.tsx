@@ -5,15 +5,26 @@ import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
 import Image from "next/image";
 import Card from "./components/global/Card";
-import News from "./components/local/News";
 import Footer from "./components/global/Footer";
-import { useEffect, useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import HeaderTabs from "./components/local/HeaderTabs";
 import classes from "@/styles/allCategory.module.css";
-import Aos from "aos";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { useSwiper } from 'swiper/react';
+import Link from "next/link";
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css/navigation';
+import { useRouter } from "next/router";
+import 'swiper/css/pagination';
+
 export default function Home() {
   const [nav, setNav] = useState<number>(0);
   const [buttonColor, setButtonColor] = useState<number>(0)
+  const [slidesPerView, setSlidesPerView] = useState<number>(4)
+  const swiperRef = useRef(null);
+
+  const router = useRouter()
 
   const fakeObj = [
     {
@@ -154,24 +165,17 @@ export default function Home() {
     },
   ];
 
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-      slidesToSlide: 3 // optional, default to 1.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 4,
-      slidesToSlide: 2 // optional, default to 1.
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1 // optional, default to 1.
-    }
-  };
+  useEffect(() => {
+    document.body.offsetWidth < 680 && document.body.offsetWidth > 460 ? setSlidesPerView(3) : document.body.offsetWidth < 460 ? setSlidesPerView(2) : setSlidesPerView(4)
+    console.log(document.body.offsetWidth)
+  }, [])
 
+  const pagination: object = {
+    clickable: true,
+    renderBullet: function (index: number, className: string) {
+      return '<span class="' + className + '">' + (index + 1) + '</span>';
+    },
+  };
   return (
     <>
       <Head>
@@ -186,22 +190,80 @@ export default function Home() {
         <Categories />
         <div className={styles.container}>
           <HeaderTabs setButtonColor={setButtonColor} buttonColor={buttonColor} />
-          {buttonColor === 0 ? <><div className={styles.add}>
-            <div className={styles.addLeft}>
-              <h1>iPhone 14 Pro</h1>
-              <Image
-                src="/images/iphone.png"
-                alt="iphone image"
-                width={308}
-                height={410}
-              />
-              <div className={styles.controller}>
-                {[1, 2, 3, 4].map((e: number) => {
-                  return <div key={e} className={styles.circle} />;
-                })}
-              </div>
+          {buttonColor === 0 ? <>
+            <div>
+              <Swiper
+                pagination={pagination}
+                modules={[Pagination]}
+                className={styles.add}
+
+              >
+                <SwiperSlide className={styles.addItem}>
+                <div className={styles.addLeft}>
+                  <h1>iPhone 14 Pro</h1>
+                  <Image
+                    src="/images/iphone.png"
+                    alt="iphone image"
+                    width={308}
+                    height={410}
+                  />
+                  <div className={styles.controller}>
+                    {[1, 2, 3, 4].map((e: number) => {
+                      return <div key={e} className={styles.circle} />;
+                    })}
+                  </div>
+                </div>
+                </SwiperSlide>
+                <SwiperSlide className={styles.addItem}>
+                <div className={styles.addLeft}>
+                  <h1>iPhone 14 Pro</h1>
+                  <Image
+                    src="/images/iphone.png"
+                    alt="iphone image"
+                    width={308}
+                    height={410}
+                  />
+                  <div className={styles.controller}>
+                    {[1, 2, 3, 4].map((e: number) => {
+                      return <div key={e} className={styles.circle} />;
+                    })}
+                  </div>
+                </div>
+                </SwiperSlide>
+                <SwiperSlide className={styles.addItem}>
+                <div className={styles.addLeft}>
+                  <h1>iPhone 14 Pro</h1>
+                  <Image
+                    src="/images/iphone.png"
+                    alt="iphone image"
+                    width={308}
+                    height={410}
+                  />
+                  <div className={styles.controller}>
+                    {[1, 2, 3, 4].map((e: number) => {
+                      return <div key={e} className={styles.circle} />;
+                    })}
+                  </div>
+                </div>
+                </SwiperSlide>
+                <SwiperSlide className={styles.addItem}>
+                <div className={styles.addLeft}>
+                  <h1>iPhone 14 Pro</h1>
+                  <Image
+                    src="/images/iphone.png"
+                    alt="iphone image"
+                    width={308}
+                    height={410}
+                  />
+                  <div className={styles.controller}>
+                    {[1, 2, 3, 4].map((e: number) => {
+                      return <div key={e} className={styles.circle} />;
+                    })}
+                  </div>
+                </div>
+                </SwiperSlide>
+              </Swiper>
             </div>
-          </div>
             <div className={styles.categories}>
               <h3
                 style={{
@@ -210,9 +272,20 @@ export default function Home() {
               >
                 Категории для вас
               </h3>
+              <Swiper
+                spaceBetween={50}
+                slidesPerView={slidesPerView}
+                onSlideChange={() => console.log('slide change')}
+                onSwiper={(swiper) => console.log(swiper)}
+                className={styles.swiperL}
+                modules={[Navigation]}
+                navigation={true}
+              >
                 {fakeObj.map((e: any) => {
                   return (
-                    <div key={e.image} className={styles.cat}>
+                    <SwiperSlide key={e.image} style={{
+                      marginRight: 0
+                    }} className={styles.cat}>
                       <div className={styles.catTop}>
                         <Image
                           src={e.image}
@@ -222,27 +295,10 @@ export default function Home() {
                         />
                       </div>
                       <h4 className={styles.catTitle}>{e.title}</h4>
-                    </div>
+                    </SwiperSlide>
                   );
                 })}
-              <div className={styles.catController}>
-                <div className={styles.catControl}>
-                  <Image
-                    src={"/icons/arrowLeft.svg"}
-                    width={23}
-                    height={16}
-                    alt="controller"
-                  />
-                </div>
-                <div className={styles.catControl}>
-                  <Image
-                    src={"/icons/arrowRight.svg"}
-                    width={23}
-                    height={16}
-                    alt="controller"
-                  />
-                </div>
-              </div>
+              </Swiper>
             </div>
             <section className={styles.newProducts}>
               <h3>Новые продукты</h3>
@@ -284,10 +340,10 @@ export default function Home() {
               </div>
               <button className={styles.loadMore}>Посмотреть больше</button>
             </section>
-            </> : <>
-            <div className={classes.navigation}>
+          </> : <>
+            <div className={styles.navigation}>
               <div
-                className={classes.nav}
+                className={styles.nav}
                 style={
                   nav !== 0
                     ? { color: "#8A8A8A" }
@@ -300,7 +356,7 @@ export default function Home() {
                 <h3>Все категории</h3>
               </div>
               <div
-                className={classes.nav}
+                className={styles.nav}
                 style={
                   nav !== 1
                     ? { color: "#8A8A8A" }
@@ -313,7 +369,7 @@ export default function Home() {
                 <h3>Мужское</h3>
               </div>
               <div
-                className={classes.nav}
+                className={styles.nav}
                 style={
                   nav !== 2
                     ? { color: "#8A8A8A" }
@@ -326,7 +382,7 @@ export default function Home() {
                 <h3>Женское</h3>
               </div>
               <div
-                className={classes.nav}
+                className={styles.nav}
                 style={
                   nav !== 3
                     ? { color: "#8A8A8A" }
@@ -339,7 +395,7 @@ export default function Home() {
                 <h3>Десткое</h3>
               </div>
               <div
-                className={classes.nav}
+                className={styles.nav}
                 style={
                   nav !== 4
                     ? { color: "#8A8A8A" }
@@ -352,7 +408,7 @@ export default function Home() {
                 <h3>Все для дома</h3>
               </div>
               <div
-                className={classes.nav}
+                className={styles.nav}
                 style={
                   nav !== 5
                     ? { color: "#8A8A8A" }
@@ -366,11 +422,13 @@ export default function Home() {
               </div>
               <button>Посмотреть больше</button>
             </div>
-            {[1, 2, 3, 4, 5].map((e: any) => {
+            {[1, 2, 3, 4, 5].map((e: number) => {
               return (
-                <div className={classes.cards} key={e}>
-                  <div className={classes.card__left}>
-                    <div className={classes.card__title}>
+                <div className={styles.cards} key={e}>
+                  <div className={styles.card__left}>
+                    <Link style={{
+                      color: "#000"
+                    }} href={`/company/${e}`} className={styles.card__title}>
                       <Image
                         src={"/icons/profile.svg"}
                         width={57}
@@ -381,8 +439,8 @@ export default function Home() {
                         <h3>Shenzhen Qingmai Bicycle Co., Ltd.</h3>
                         <p>Мужское</p>
                       </div>
-                    </div>
-                    <div className={classes.description}>
+                    </Link>
+                    <div className={styles.description}>
                       <p>Описание</p>
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -392,12 +450,14 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                  <div className={classes.card__right}>
-                    <div className={classes.cards__button}>
-                      <button>Посмотреть все товары</button>
+                  <div className={styles.card__right}>
+                    <div className={styles.cards__button}>
+                      <button onClick={() => {
+                        router.push(`/company/${e}`)
+                      }}>Посмотреть все товары</button>
                       <button>Связаться</button>
                     </div>
-                    <div className={classes.carusel__card}>
+                    <div className={styles.carusel__card}>
                       {cardObj1.map((card, index) => {
                         return (
                           <Card
@@ -411,7 +471,7 @@ export default function Home() {
                           />
                         );
                       })}
-                      <div className={classes.controllerProduct}>
+                      <div className={styles.controllerProduct}>
                         <button>
                           <Image
                             src={"/icons/chevronLeft.svg"}
@@ -434,7 +494,7 @@ export default function Home() {
                 </div>
               );
             })}
-            <div className={classes.carusel}>
+            <div className={styles.carusel}>
               <div
                 style={{
                   backgroundColor: "#E4B717",
@@ -453,36 +513,10 @@ export default function Home() {
               <p>...</p>
               <p>5</p>
             </div>
-            </>}
-            <section className={styles.newProducts}>
-              <h3>Новости</h3>
-              <div className={styles.newsWrapper}>
-                {[1, 2, 3].map((e) => {
-                  return <News id={e} key={e} />;
-                })}
-              </div>
-              <div className={styles.catController}>
-                <div className={styles.catControl}>
-                  <Image
-                    src={"/icons/arrowLeft.svg"}
-                    width={23}
-                    height={16}
-                    alt="controller"
-                  />
-                </div>
-                <div className={styles.catControl}>
-                  <Image
-                    src={"/icons/arrowRight.svg"}
-                    width={23}
-                    height={16}
-                    alt="controller"
-                  />
-                </div>
-              </div>
-            </section>
+          </>}
         </div>
         <Footer />
-      </main>
+      </main >
     </>
   );
 }

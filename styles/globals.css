@@ -27,3 +27,19 @@ button {
   cursor: pointer;
 }
 
+.swiper-button-next, .swiper-button-prev {
+  color: #E4B717 !important;
+}
+
+.swiper-button-next {
+  left: auto !important;
+}
+
+.swiper-pagination-bullet {
+  margin: 3px !important;
+  background: #fff !important;
+  height: 18px !important;
+  width: 18px !important;
+  color: transparent !important;
+  user-select: none;
+}
