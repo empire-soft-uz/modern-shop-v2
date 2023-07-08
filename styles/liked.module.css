@@ -8,6 +8,7 @@
 }
 
 .Favorites {
+    width: 1180px;
     display: flex;
     padding: 10px 0;
     margin: auto;
@@ -69,11 +70,21 @@
         padding: 10px 10px;
         width: 100%;
     }
-    .Card {
-        width:  30%;
+
+
+    .likedCards {
+        width: 100%;
+        gap: 2%;
+        row-gap: 1rem;
+        align-items: center;
+    }
+
+    .likedCards a{
+        width: 30%;
     }
 
     .Favorites {
+        width: 100%;
         padding: 10px 10px;
     }
 }
@@ -82,12 +93,14 @@
         padding: 10px 10px;
         width: 100%;
     }
-    .Card {
-        width: 42%;
+    
+    .likedCards a{
+        width: 100%;
     }
 
     .Favorites {
-        padding: 10px 10px;
+        width: 100%;
+
     }
 }
 
@@ -96,7 +109,8 @@
         width: 100%;
     }
 
-    .Card {
+
+    .Favorites {
         width: 100%;
     }
 } 
