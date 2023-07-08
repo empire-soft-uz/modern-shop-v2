@@ -14,7 +14,7 @@ const Company = () => {
 
   const cardObj = [
     {
-      image: "/productPhone.png",
+      image: "/images/productPhone.png",
       w: 144,
       h: 167,
       title: "Iphone 14 PRO",
@@ -22,7 +22,7 @@ const Company = () => {
       cat: "Телефоны",
     },
     {
-      image: "/xboxController.png",
+      image: "/images/xboxController.png",
       w: 181,
       h: 192,
       title: "Xbox",
@@ -30,7 +30,7 @@ const Company = () => {
       cat: "Приставки",
     },
     {
-      image: "/headPhone.png",
+      image: "/images/headPhone.png",
       w: 179,
       h: 190,
       title: "Наушники SONY",
@@ -38,7 +38,7 @@ const Company = () => {
       cat: "Аксессуары",
     },
     {
-      image: "/smphone.png",
+      image: "/images/smphone.png",
       w: 160,
       h: 173,
       title: "Samsung M53",
@@ -46,7 +46,7 @@ const Company = () => {
       cat: "Телефоны",
     },
     {
-      image: "/smphone.png",
+      image: "/images/smphone.png",
       w: 160,
       h: 173,
       title: "Samsung M53",
@@ -54,7 +54,7 @@ const Company = () => {
       cat: "Телефоны",
     },
     {
-      image: "/headPhone.png",
+      image: "/images/headPhone.png",
       w: 179,
       h: 190,
       title: "Наушники SONY",
@@ -62,7 +62,7 @@ const Company = () => {
       cat: "Аксессуары",
     },
     {
-      image: "/xboxController.png",
+      image: "/images/xboxController.png",
       w: 181,
       h: 192,
       title: "Xbox",
@@ -70,7 +70,7 @@ const Company = () => {
       cat: "Приставки",
     },
     {
-      image: "/productPhone.png",
+      image: "/images/productPhone.png",
       w: 144,
       h: 167,
       title: "Iphone 14 PRO",
@@ -78,7 +78,7 @@ const Company = () => {
       cat: "Телефоны",
     },
     {
-      image: "/productPhone.png",
+      image: "/images/productPhone.png",
       w: 144,
       h: 167,
       title: "Iphone 14 PRO",
@@ -86,7 +86,7 @@ const Company = () => {
       cat: "Телефоны",
     },
     {
-      image: "/xboxController.png",
+      image: "/images/xboxController.png",
       w: 181,
       h: 192,
       title: "Xbox",
@@ -94,7 +94,7 @@ const Company = () => {
       cat: "Приставки",
     },
     {
-      image: "/headPhone.png",
+      image: "/images/headPhone.png",
       w: 179,
       h: 190,
       title: "Наушники SONY",
@@ -102,7 +102,7 @@ const Company = () => {
       cat: "Аксессуары",
     },
     {
-      image: "/smphone.png",
+      image: "/images/smphone.png",
       w: 160,
       h: 173,
       title: "Samsung M53",
@@ -110,7 +110,7 @@ const Company = () => {
       cat: "Телефоны",
     },
     {
-      image: "/smphone.png",
+      image: "/images/smphone.png",
       w: 160,
       h: 173,
       title: "Samsung M53",
@@ -118,7 +118,7 @@ const Company = () => {
       cat: "Телефоны",
     },
     {
-      image: "/headPhone.png",
+      image: "/images/headPhone.png",
       w: 179,
       h: 190,
       title: "Наушники SONY",
@@ -126,7 +126,7 @@ const Company = () => {
       cat: "Аксессуары",
     },
     {
-      image: "/xboxController.png",
+      image: "/images/xboxController.png",
       w: 181,
       h: 192,
       title: "Xbox",
@@ -134,7 +134,7 @@ const Company = () => {
       cat: "Приставки",
     },
     {
-      image: "/productPhone.png",
+      image: "/images/productPhone.png",
       w: 144,
       h: 167,
       title: "Iphone 14 PRO",
@@ -261,12 +261,12 @@ const Company = () => {
           <h2>Товары поставщика</h2>
           <div className={styles.card}>
             {cardObj.map((card, index) => {
-              return <Card image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat}/>
+              return <Card animation="zoom-in" image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat} />
             })}
           </div>
         </section>
         <div className={styles.carusel}>
-          <div style={{backgroundColor: "#E4B717", width: 39, height: 39, borderRadius: "100%", textAlign: 'center', paddingTop: 8}}>
+          <div style={{ backgroundColor: "#E4B717", width: 39, height: 39, borderRadius: "100%", textAlign: 'center', paddingTop: 8 }}>
             <Link style={{ color: "#fff", }} href="#">1</Link>
           </div>
           <Link href="#">2</Link>
@@ -275,7 +275,7 @@ const Company = () => {
           <Link href="#">5</Link>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
