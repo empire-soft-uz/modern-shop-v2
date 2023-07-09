@@ -25,27 +25,24 @@ export default function Home() {
   const [nav, setNav] = useState<number>(0);
   const [buttonColor, setButtonColor] = useState<number>(0)
   const [slidesPerView, setSlidesPerView] = useState<number>(4)
-  const [data, setData] = useState<object[] | any>([])
-
+  const [data, setData] = useState<any[] | any>([])
   const [load, setLoad] = useState<boolean>(true)
+  const router = useRouter()
 
-  const swiperRef = useRef(null);
 
-  const api = "https://modern-api.onrender.com"
   const get = "api/products"
 
-  const router = useRouter()
 
   useEffect(() => {
     setLoad(true)
-    axios.get(`${api}/${get}`).then((res: any)=> {
+    axios.get(`${process.env.NEXT_PUBLIC_API}/${get}`).then((res: any) => {
       setData(res.data)
-    }).catch((e: string)=> console.log(e)).finally(()=> {
+    }).catch((e: string) => console.log(e)).finally(() => {
       setLoad(false)
     })
   }, [])
   console.log(data)
-  
+
   const fakeObj = [
     {
       image: "/icons/phone.svg",
@@ -323,6 +320,7 @@ export default function Home() {
                   {cardObj.map((card, index) => {
                     return (
                       <Card
+                        url={`${index}`}
                         title={card.title}
                         image={card.image}
                         width={card.w}
@@ -334,6 +332,21 @@ export default function Home() {
                       />
                     );
                   })}
+                  {data && data.products.map((e: any, index: number) => {
+                    return (
+                      <Card
+                        animation="fade-down"
+                        cat={e.subcategory.name}
+                        url={e.id} 
+                        height={300}
+                        width={300} 
+                        image={`${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[0].name}`}
+                        title={e.name}
+                        price={e.price[0].price}
+                        key={index}
+                      />
+                    )
+                  })}
                 </div>
                 <button className={styles.loadMore}>Посмотреть больше</button>
               </section>
@@ -343,6 +356,7 @@ export default function Home() {
                   {cardObj.map((card, index) => {
                     return (
                       <Card
+                        url={`${index}`}
                         title={card.title}
                         image={card.image}
                         width={card.w}
@@ -478,6 +492,7 @@ export default function Home() {
                         {cardObj1.map((card, index) => {
                           return (
                             <Card
+                              url={`${index}`}
                               image={card.image}
                               height={card.height}
                               width={card.width}
@@ -485,6 +500,7 @@ export default function Home() {
                               price={card.price}
                               cat={card.cat}
                               animation="zoom-in"
+                              key={index}
                             />
                           );
                         })}

@@ -29,6 +29,9 @@
 
 .card > img {
     margin: auto;
+    width: 150px;
+    height: auto;
+    max-height: 180px;
 }
 
 .card h4 {

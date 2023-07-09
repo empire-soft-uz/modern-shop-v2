@@ -5,8 +5,6 @@ import Link from "next/link";
 import Burger from "./Burger";
 
 const Header = () => {
-
-
   const [isBurgerOpen, setIsBurgerOpen] = useState<boolean | any>(false)
   const [mouseOver, setMouseOver] = useState<boolean>(false)
   const [language, setLanguage] = useState<string>("RU")
@@ -53,7 +51,7 @@ const Header = () => {
               display: "none"
             } : {}}>
               {languges.map((e: string)=> {
-                return <h4 onClick={()=> {
+                return <h4 key={e} onClick={()=> {
                   setLanguage(e)
                   setMouseOver(false)
                 }}>{e}</h4>

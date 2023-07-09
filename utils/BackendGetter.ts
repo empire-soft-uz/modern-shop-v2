@@ -7,7 +7,7 @@ interface API {
 
 const backGetter = async ({ api, get }: API) => {
   let res: any;
-  axios
+  await axios
     .get(`${api}${get ? `/${get}` : ""}`)
     .then((res: any) => (res = res))
     .catch(() => {
