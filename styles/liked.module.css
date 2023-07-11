@@ -14,15 +14,6 @@
     margin: auto;
 }
 
-.likedCards {
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 20px;
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-}
-
 .Card {
     width: 24%;
     padding: 14px 12.6px;
@@ -65,52 +56,35 @@
     border: none;
 }
 
+.newProductsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.7%;
+    row-gap: 1rem;
+    width: 100%;
+  }
+  
+
 @media screen and (max-width:1180px) {
     .likedSection {
         padding: 10px 10px;
         width: 100%;
     }
 
-
-    .likedCards {
-        width: 100%;
-        gap: 2%;
-        row-gap: 1rem;
-        align-items: center;
-    }
-
-    .likedCards a{
-        width: 30%;
-    }
-
     .Favorites {
         width: 100%;
         padding: 10px 10px;
     }
 }
+
 @media screen and (max-width:768px) {
     .likedSection {
-        padding: 10px 10px;
         width: 100%;
     }
-    
-    .likedCards a{
-        width: 100%;
-    }
+
 
     .Favorites {
         width: 100%;
-
     }
 }
 
-@media screen and (max-width:480px) {
-    .likedSection {
-        width: 100%;
-    }
-
-
-    .Favorites {
-        width: 100%;
-    }
-} 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import styles from "../../styles/company.module.css";
 import TopHeader from "../components/global/TopHeader";
 import Header from "../components/global/Header";
@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const Company = () => {
   const [nav, setNav] = useState<number>(0);
-
+  const [likedObj, setLikedObj] = useState([])
   const cardObj = [
     {
       image: "/images/productPhone.png",
@@ -261,7 +261,7 @@ const Company = () => {
           <h2>Товары поставщика</h2>
           <div className={styles.card}>
             {cardObj.map((card, index) => {
-              return <Card animation="zoom-in" image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat} />
+              return <Card isLiked likedObj={likedObj} setLikedObj={setLikedObj} url={`${index}`} animation="zoom-in" image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat} />
             })}
           </div>
         </section>

@@ -12,29 +12,31 @@ import Chat from "../components/local/Chat";
 import Order from "../components/global/Order";
 import { useRouter } from "next/router";
 
-
-
 const Detail = () => {
   const [controllerC, setControllerC] = useState<number>(0);
   const [controllerM, setControllerM] = useState<number>(0);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   const [order, setOrder] = useState<boolean>(false);
 
-  const [load, setLoad] = useState<boolean>(false)
+  const [load, setLoad] = useState<boolean>(false);
 
-  const [textLength, setTextLength] = useState<number>(1200)
+  const [textLength, setTextLength] = useState<number>(1200);
 
-  const router = useRouter()
+  const router = useRouter();
 
-  const { id } = router.query
-
-  useEffect(() => {
-    order !== true ? document.body.style.overflow = "auto" : document.body.style.overflow = "hidden"
-  }, [order])
+  const { id } = router.query;
 
   useEffect(() => {
-    isChatOpen !== true ? document.body.style.overflow = "auto" : document.body.style.overflow = "hidden"
-  }, [isChatOpen])
+    order !== true
+      ? (document.body.style.overflow = "auto")
+      : (document.body.style.overflow = "hidden");
+  }, [order]);
+
+  useEffect(() => {
+    isChatOpen !== true
+      ? (document.body.style.overflow = "auto")
+      : (document.body.style.overflow = "hidden");
+  }, [isChatOpen]);
 
   const cardObj = [
     {
@@ -71,14 +73,13 @@ const Detail = () => {
     },
   ];
 
+  const sentence =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
-  const sentence = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  const readAdd = (sentence.length - textLength) / 2;
 
-  const readAdd = (sentence.length - textLength) / 2
-
-  // <Image src={"/images/iphone.png"} width={400} height={532} alt="video" />
-
-  const videoRef = useRef<HTMLVideoElement | any>()
+  const [likedObj, setLikedObj] = useState([])
+  const videoRef = useRef<HTMLVideoElement | any>();
 
   return (
     <>
@@ -87,7 +88,10 @@ const Detail = () => {
         <meta name="description" content="Generated by create next app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+        />
       </Head>
       <main className={styles.detail}>
         <TopHeader />
@@ -244,9 +248,10 @@ const Detail = () => {
                     >
                       512 гб
                     </button>
-                    <button onClick={() => {
-                      setControllerM(2);
-                    }}
+                    <button
+                      onClick={() => {
+                        setControllerM(2);
+                      }}
                       type="button"
                       className={
                         controllerM === 2 ? styles.memoryd : styles.memory
@@ -353,13 +358,14 @@ const Detail = () => {
             {controllerC === 0 ? (
               <>
                 <div className={styles.detailS}>
-                  <div className={styles.characterInfo}><div className={styles.characterInfoLeft}>
-                    <p>Экран......................................</p>
-                    <p>Модель процессора.............</p>
-                    <p>Встроенная память................</p>
-                    <p>Оперативная память.............</p>
-                    <p>Разрешение камеры.............</p>
-                  </div>
+                  <div className={styles.characterInfo}>
+                    <div className={styles.characterInfoLeft}>
+                      <p>Экран......................................</p>
+                      <p>Модель процессора.............</p>
+                      <p>Встроенная память................</p>
+                      <p>Оперативная память.............</p>
+                      <p>Разрешение камеры.............</p>
+                    </div>
                     <div className={styles.characterInfoRight}>
                       <p>6.8</p>
                       <p>Snapdragon 8 Gen 2</p>
@@ -397,16 +403,25 @@ const Detail = () => {
                       color: "#888888",
                       lineHeight: "25.6px",
                     }}
-
                   >
-                    {sentence.substring(0, textLength)} <button onClick={() => {
-                      setTextLength(sentence.length)
-                    }} style={textLength !== sentence.length ? {
-                      color: "#179AE4",
-                      fontWeight: 700
-                    } : {
-                      display: "none"
-                    }}>[read more]</button>
+                    {sentence.substring(0, textLength)}{" "}
+                    <button
+                      onClick={() => {
+                        setTextLength(sentence.length);
+                      }}
+                      style={
+                        textLength !== sentence.length
+                          ? {
+                              color: "#179AE4",
+                              fontWeight: 700,
+                            }
+                          : {
+                              display: "none",
+                            }
+                      }
+                    >
+                      [read more]
+                    </button>
                   </p>
                 </div>
               </>
@@ -424,6 +439,10 @@ const Detail = () => {
               {cardObj.map((card, index) => {
                 return (
                   <Card
+                  isLiked
+                  likedObj={likedObj}
+                  setLikedObj={setLikedObj}
+                    url={`detail/${index}`}
                     title={card.title}
                     image={card.image}
                     width={card.w}

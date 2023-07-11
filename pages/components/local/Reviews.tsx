@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "@/styles/review.module.css";
 import Image from "next/image";
-import { Animated } from "react-animated-css";
 
 const Reviews = () => {
   return (

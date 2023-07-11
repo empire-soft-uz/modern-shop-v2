@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 
 import styles from "@/styles/auth.module.css";
 import Image from "next/image";
+import axios from "axios";
 interface Auth {
   setIsAuthOpen: Function;
   isAuthOpen: boolean;
@@ -27,9 +28,7 @@ const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
 
   return (
     <div className={isAuthOpen ? styles.authent : styles.dn}>
-      <div
-        className={isAuthOpen ? styles.auth : styles.dn}
-      >
+      <div className={isAuthOpen ? styles.auth : styles.dn}>
         <div className={styles.close}>
           <button
             onClick={() => {
@@ -49,14 +48,14 @@ const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
             {queue === 0
               ? "Авторизация"
               : queue === 1
-                ? "Регистрация"
-                : queue === 1.1 || queue === 2.1
-                  ? "Введите код"
-                  : queue === 2
-                    ? "Восстановить аккаунт"
-                    : queue === 2.2
-                      ? "Новый пароль"
-                      : "fuck"}
+              ? "Регистрация"
+              : queue === 1.1 || queue === 2.1
+              ? "Введите код"
+              : queue === 2
+              ? "Восстановить аккаунт"
+              : queue === 2.2
+              ? "Новый пароль"
+              : "fuck"}
           </h3>
         </div>
         {queue === 0 ? (
@@ -192,29 +191,29 @@ const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
           style={
             queue === 1.1 && timer === 0
               ? {
-                color: "#f00",
-              }
+                  color: "#f00",
+                }
               : {
-                color: "#888",
-              }
+                  color: "#888",
+                }
           }
           onClick={() => {
             queue === 0
               ? setQueue(1)
               : queue === 1 || queue === 2
-                ? setQueue(0)
-                : queue === 1.1
-                  ? setTimer(60)
-                  : setQueue(1.1);
+              ? setQueue(0)
+              : queue === 1.1
+              ? setTimer(60)
+              : setQueue(1.1);
           }}
         >
           {queue === 0
             ? "Регистрация"
             : queue === 1 || queue === 2
-              ? "Уже есть аккаунт?"
-              : queue === 2.2
-                ? ""
-                : `Запросить еще раз ( 0:${timer >= 0 ? timer : setTimer(0)} )`}
+            ? "Уже есть аккаунт?"
+            : queue === 2.2
+            ? ""
+            : `Запросить еще раз ( 0:${timer >= 0 ? timer : setTimer(0)} )`}
         </button>
       </div>
       <div

@@ -1,0 +1,51 @@
+.aboutUsTitle {
+    display: flex;
+    width: 1180px;
+    padding: 10px 0;
+    margin: auto;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.aboutUsTitle h1 {
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.aboutUs {
+    align-items: center;
+    width: 1180px;
+    padding: 10px 0;
+    margin: auto;
+}
+
+.businasswoman {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titleText {
+    font-size: 18px;
+    font-weight: 700;
+    width: 493px;
+    line-height: 160%;
+}
+
+.titleText span {
+    height: 258px;
+    padding-top: 12px;
+    color: #888;
+    font-size: 14px;
+    line-height: 140%;
+
+}
+
+.businassman {
+    margin-top: 58px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
