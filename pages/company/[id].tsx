@@ -10,23 +10,23 @@ import Footer from "../components/global/Footer";
 import Link from "next/link";
 import axios from "axios"
 import Loader from "../components/local/Loader";
+import { NextRouter, useRouter } from "next/router";
 
 const Company = () => {
   const [nav, setNav] = useState<number>(0);
   const [data, setData] = useState<object[] | any>([])
   const [load, setLoad] = useState<boolean>(true)
 
-  const api = "https://modern-api.onrender.com"
-  const get = "api/products"
+  const { id }: any = useRouter()
 
   useEffect(() => {
     setLoad(true)
-    axios.get(`${api}/${get}`).then((res: any) => {
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/products/${id}`).then((res: any) => {
       setData(res.data)
     }).catch((e: string) => console.log(e)).finally(() => {
       setLoad(false)
     })
-  }, [])
+  }, [id])
   console.log(data)
 
   const cardObj = [
@@ -160,7 +160,7 @@ const Company = () => {
     },
   ];
 
-  if (load === false) {
+  if (load === false && data) {
     return (
       <div className={styles.company}>
         <TopHeader />
@@ -279,7 +279,7 @@ const Company = () => {
             <h2>Товары поставщика</h2>
             <div className={styles.card}>
               {cardObj.map((card, index) => {
-                return <Card animation="zoom-in" image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat} />
+                return <Card url={`/detail/${index}`} animation="zoom-in" image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat} />
               })}
             </div>
           </section>

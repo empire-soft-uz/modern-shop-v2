@@ -22,7 +22,7 @@ const TopHeader = () => {
             <Link href="#">Магазин</Link>
           </li>
           <li>
-            <Link href="#">Доставка</Link>
+            <Link href="/delivery">Доставка</Link>
           </li>
           <li>
             <Link href="#">Блог</Link>

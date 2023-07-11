@@ -110,7 +110,11 @@
 }
 
 .image > a {
-  height: 20px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
 }
 
 .image:last-child {
@@ -170,5 +174,14 @@
   }
   .image:last-child {
     display: block;
+  }
+}
+
+@media screen and (max-width: 512px) {
+  .image:last-child {
+    display: flex;
+  }
+  .image {
+    display: none;
   }
 }

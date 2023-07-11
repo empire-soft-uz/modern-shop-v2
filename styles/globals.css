@@ -8,8 +8,9 @@
   font-family: 'Futura PT', sans-serif;
 }
 
-body {
+body, html, #__next {
   background: #FAF8F8;
+  height: 100%;
   accent-color: #E4B717;
 }
 

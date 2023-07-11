@@ -26,22 +26,23 @@ export default function Home() {
   const [buttonColor, setButtonColor] = useState<number>(0)
   const [slidesPerView, setSlidesPerView] = useState<number>(4)
   const [data, setData] = useState<any[] | any>([])
+  const [categories, setCategories] = useState<any | any[]>([])
   const [load, setLoad] = useState<boolean>(true)
   const router = useRouter()
 
 
-  const get = "api/products"
-
-
   useEffect(() => {
     setLoad(true)
-    axios.get(`${process.env.NEXT_PUBLIC_API}/${get}`).then((res: any) => {
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/products`).then((res: any) => {
       setData(res.data)
-    }).catch((e: string) => console.log(e)).finally(() => {
+    }).catch((e: string) => console.log(e))
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/categories`).then((res) => {
+      setCategories(res.data)
+    }).catch(err => console.log(err)).finally(() => {
       setLoad(false)
     })
   }, [])
-  console.log(data)
+  console.log(categories)
 
   const fakeObj = [
     {
@@ -192,7 +193,7 @@ export default function Home() {
       return '<span class="' + className + '">' + (index + 1) + '</span>';
     },
   };
-  if (!load) {
+  if (!load && data) {
     return (
       <>
         <Head>
@@ -332,14 +333,14 @@ export default function Home() {
                       />
                     );
                   })}
-                  {data && data.products.map((e: any, index: number) => {
+                  {data && data?.products?.map((e: any, index: number) => {
                     return (
                       <Card
                         animation="fade-down"
                         cat={e.subcategory.name}
-                        url={e.id} 
+                        url={e.id}
                         height={300}
-                        width={300} 
+                        width={300}
                         image={`${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[0].name}`}
                         title={e.name}
                         price={e.price[0].price}

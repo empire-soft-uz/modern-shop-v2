@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styles from "@/styles/head.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +10,10 @@ const Header = () => {
   const [language, setLanguage] = useState<string>("RU")
 
   const languges: string[] = ["RU", "EN", "UZ"]
+
+  useEffect(()=> {
+    isBurgerOpen ? document.body.style.overflow = "auto" : document.body.style.overflow = "auto"
+  }, [isBurgerOpen])
 
   return (
     <header className={styles.header}>
@@ -29,6 +33,7 @@ const Header = () => {
           <input type="text" placeholder="Поиск" />
           <Image src="/icons/search.svg" alt="search icon" width={22} height={22} />
         </div>
+        <Burger isBurgerOpen={isBurgerOpen} setIsBurgerOpen={setIsBurgerOpen} />
         <div className={styles.contra}>
           <div onMouseOver={() => {
             setMouseOver(true)
@@ -86,7 +91,7 @@ const Header = () => {
               </Link>
             </div>
             <div className={styles.image}>
-              <Link href="/delivery">
+              <Link href="/cart">
                 <Image
                   src={"/icons/buy.svg"}
                   alt="language icon"
@@ -108,7 +113,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {isBurgerOpen && <Burger isBurgerOpen={isBurgerOpen} setIsBurgerOpen={setIsBurgerOpen} />}
     </header>
   );
 };
