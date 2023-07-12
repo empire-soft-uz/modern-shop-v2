@@ -15,7 +15,7 @@
 .aboutUs {
     align-items: center;
     width: 1180px;
-    padding: 10px 0;
+    padding: 10px 10px;
     margin: auto;
 }
 
@@ -48,4 +48,38 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 100%;
+       
+    }
+
+    .aboutUs {
+        width: 100%;
+    }
+
+    .aboutUsTitle {
+        padding: 0px, 20px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1180px) {
+    .container {
+        width: 100%;
+        padding: 0px, 20px;
+    }
+
+    .aboutUs {
+        width: 100%;
+    }
+
+    .aboutUsTitle {
+        padding: 0px, 20px;
+        width: 100%;
+    }
 }

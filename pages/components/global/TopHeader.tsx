@@ -31,7 +31,7 @@ const TopHeader = () => {
             <Link href="/aboutUs">О нас</Link>
           </li>
           <li>
-            <Link href="#">Контакты</Link>
+            <Link href="/contact">Контакты</Link>
           </li>
         </ul>
       </nav>
