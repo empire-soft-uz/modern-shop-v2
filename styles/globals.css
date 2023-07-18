@@ -44,3 +44,13 @@ button {
   color: transparent !important;
   user-select: none;
 }
+
+.react-datepicker__input-container > input {
+  padding: 20px !important;
+  padding-left: 0px !important;
+  border: none !important;
+  border-bottom: 1px solid #888888 !important;
+  outline: none !important;
+  font-size: 17px !important;
+  width: 100% !important;
+}

@@ -74,7 +74,7 @@
 .dn {
   height: 0;
   z-index: -1000;
-  transition: 0.05s ease-in-out;
+  transition: 0.1s linear;
   text-align: center;
   opacity: 0;
 }

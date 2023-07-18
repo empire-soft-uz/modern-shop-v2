@@ -24,10 +24,17 @@ const Header = () => {
             color: "#E4B717",
             textTransform: "uppercase",
             fontWeight: 700,
-            fontSize: 29,
+            fontSize: 16,
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+            position: "relative",
           }}
         >
-          Modern
+          <Image src={"/images/logo.png"} alt="logo" width={97} height={57} /> <span style={{
+            position: "relative",
+            left: -16
+          }} >Modern shop</span>
         </Link>
         <div className={styles.search}>
           <input type="text" placeholder="Поиск" />

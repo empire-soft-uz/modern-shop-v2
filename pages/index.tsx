@@ -26,6 +26,7 @@ export default function Home() {
   const [buttonColor, setButtonColor] = useState<number>(0)
   const [slidesPerView, setSlidesPerView] = useState<number>(4)
   const [data, setData] = useState<any[] | any>([])
+  const [slides, setSlides] = useState<any[] | any>([])
   const [categories, setCategories] = useState<any | any[]>([])
   const [load, setLoad] = useState<boolean>(true)
   const router = useRouter()
@@ -36,13 +37,26 @@ export default function Home() {
     axios.get(`${process.env.NEXT_PUBLIC_API}/api/products`).then((res: any) => {
       setData(res.data)
     }).catch((e: string) => console.log(e))
+  }, [])
+
+  useEffect(() => {
+    setLoad(true)
     axios.get(`${process.env.NEXT_PUBLIC_API}/api/categories`).then((res) => {
       setCategories(res.data)
     }).catch(err => console.log(err)).finally(() => {
       setLoad(false)
     })
   }, [])
-  console.log(categories)
+  useEffect(() => {
+    setLoad(true)
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/slides`).then((res) => {
+      setSlides(res.data)
+    }).catch(err => console.log(err)).finally(() => {
+      setLoad(false)
+    })
+  }, [])
+
+  console.log(slides)
 
   const fakeObj = [
     {
@@ -193,7 +207,7 @@ export default function Home() {
       return '<span class="' + className + '">' + (index + 1) + '</span>';
     },
   };
-  if (!load && data) {
+  if (!load) {
     return (
       <>
         <Head>
@@ -215,70 +229,24 @@ export default function Home() {
                   modules={[Pagination]}
                   className={styles.add}
                 >
-                  <SwiperSlide className={styles.addItem}>
-                    <div className={styles.addLeft}>
-                      <h1>iPhone 14 Pro</h1>
-                      <Image
-                        src="/images/iphone.png"
-                        alt="iphone image"
-                        width={308}
-                        height={410}
-                      />
-                      <div className={styles.controller}>
-                        {[1, 2, 3, 4].map((e: number) => {
-                          return <div key={e} className={styles.circle} />;
-                        })}
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className={styles.addItem}>
-                    <div className={styles.addLeft}>
-                      <h1>iPhone 14 Pro</h1>
-                      <Image
-                        src="/images/iphone.png"
-                        alt="iphone image"
-                        width={308}
-                        height={410}
-                      />
-                      <div className={styles.controller}>
-                        {[1, 2, 3, 4].map((e: number) => {
-                          return <div key={e} className={styles.circle} />;
-                        })}
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className={styles.addItem}>
-                    <div className={styles.addLeft}>
-                      <h1>iPhone 14 Pro</h1>
-                      <Image
-                        src="/images/iphone.png"
-                        alt="iphone image"
-                        width={308}
-                        height={410}
-                      />
-                      <div className={styles.controller}>
-                        {[1, 2, 3, 4].map((e: number) => {
-                          return <div key={e} className={styles.circle} />;
-                        })}
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide className={styles.addItem}>
-                    <div className={styles.addLeft}>
-                      <h1>iPhone 14 Pro</h1>
-                      <Image
-                        src="/images/iphone.png"
-                        alt="iphone image"
-                        width={308}
-                        height={410}
-                      />
-                      <div className={styles.controller}>
-                        {[1, 2, 3, 4].map((e: number) => {
-                          return <div key={e} className={styles.circle} />;
-                        })}
-                      </div>
-                    </div>
-                  </SwiperSlide>
+                  {slides && slides.map((e: any) => {
+                    return <SwiperSlide key={e.id} className={styles.addItem}>
+                      <Link href={`/detail/${e.id}`} className={styles.addLeft}>
+                        <h1>{e.title}</h1>
+                        <Image
+                          src={`${process.env.NEXT_PUBLIC_IMAGE_API}/${e.image.name}`}
+                          alt="iphone image"
+                          width={308}
+                          height={410}
+                        />
+                        <div className={styles.controller}>
+                          {[1, 2, 3, 4].map((e: number) => {
+                            return <div key={e} className={styles.circle} />;
+                          })}
+                        </div>
+                      </Link>
+                    </SwiperSlide>
+                  })}
                 </Swiper>
               </div>
               <div className={styles.categories}>
@@ -341,7 +309,7 @@ export default function Home() {
                         url={e.id}
                         height={300}
                         width={300}
-                        image={`${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[0].name}`}
+                        image={e.media.length ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}` : "/images/14.png"}
                         title={e.name}
                         price={e.price[0].price}
                         key={index}

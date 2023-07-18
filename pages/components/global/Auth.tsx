@@ -1,35 +1,53 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import styles from "@/styles/auth.module.css";
 import Image from "next/image";
+import axios from "axios";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
 interface Auth {
   setIsAuthOpen: Function;
   isAuthOpen: boolean;
+  fromWhere: number
+  setFromWhere: Function
 }
 
-const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
+const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
+
+  const [queue, setQueue] = useState<number | any>(0);
+  const [timer, setTimer] = useState<number>(62);
+  const shouldMount = queue === 2.1;
+  
   useEffect(() => {
     document.body.style.overflow = "hidden";
   }, []);
-
-  const [queue, setQueue] = useState<number | any>(0);
-
-  const [timer, setTimer] = useState<number>(62);
-
-  const shouldMount = queue === 1.1 || queue === 2.1;
-
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((timer) => timer - 1);
     }, 1000);
     return () => clearInterval(interval);
   }, [shouldMount]);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimer((timer) => timer - 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [queue === 1.1]);
+  
+  
+  
+  const phoneRef = useRef<HTMLInputElement | any>()
+  const msgPassRef = useRef<HTMLInputElement | any>()
+
+  const [startDate, setStartDate] = useState(new Date());
 
   return (
     <div className={isAuthOpen ? styles.authent : styles.dn}>
-      <div
-        className={isAuthOpen ? styles.auth : styles.dn}
-      >
+      <div className={isAuthOpen ? styles.auth : styles.dn}>
         <div className={styles.close}>
           <button
             onClick={() => {
@@ -46,22 +64,14 @@ const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
         </div>
         <div className={styles.title}>
           <h3>
-            {queue === 0
+            {fromWhere === 1
               ? "Авторизация"
-              : queue === 1
-                ? "Регистрация"
-                : queue === 1.1 || queue === 2.1
-                  ? "Введите код"
-                  : queue === 2
-                    ? "Восстановить аккаунт"
-                    : queue === 2.2
-                      ? "Новый пароль"
-                      : "fuck"}
+              : "Регистрация"}
           </h3>
         </div>
-        {queue === 0 ? (
-          <>
-            <form action={"#"} autoComplete="off" className={styles.authForm}>
+        <form action={"#"} autoComplete="off" className={styles.authForm}>
+          {fromWhere === 1 ? (
+            <>
               <input
                 type="text"
                 maxLength={13}
@@ -85,88 +95,21 @@ const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
                 Вы забыли пароль?
               </button>
               <button className={styles.enter}>Войти</button>
-            </form>
-          </>
-        ) : queue === 1 ? (
-          <form action={"#"} autoComplete="off" className={styles.authForm}>
+            </>
+          ) : fromWhere === 2 ? <>
             <input
               type="text"
-              maxLength={13}
-              placeholder="Номер телефона"
+              maxLength={33}
+              placeholder="Имя"
               required
               autoComplete="false"
             />
-            <button
-              className={styles.enter}
-              onClick={() => {
-                setQueue(1.1);
-              }}
-            >
-              Запросить код
-            </button>
-          </form>
-        ) : queue === 1.1 ? (
-          <form action={"#"} autoComplete="off" className={styles.authForm}>
-            <input
-              type="text"
-              maxLength={8}
-              placeholder="Код"
-              required
-              autoComplete="false"
-            />
-            <button
-              className={styles.enter}
-              onClick={() => {
-                setQueue(1.1);
-              }}
-            >
-              Подтвердить
-            </button>
-          </form>
-        ) : queue === 2 ? (
-          <form action={"#"} autoComplete="off" className={styles.authForm}>
-            <input
-              type="text"
-              maxLength={8}
-              placeholder="Код"
-              required
-              autoComplete="false"
-            />
-            <button
-              className={styles.enter}
-              onClick={() => {
-                queue === 1 ? setQueue(1.1) : setQueue(2.1);
-              }}
-            >
-              Подтвердить
-            </button>
-          </form>
-        ) : queue === 2.1 ? (
-          <form action={"#"} autoComplete="off" className={styles.authForm}>
-            <input
-              type="text"
-              maxLength={8}
-              placeholder="Код"
-              required
-              autoComplete="false"
-            />
-            <button
-              className={styles.enter}
-              onClick={() => {
-                setQueue(2.2);
-              }}
-            >
-              Подтвердить
-            </button>
-          </form>
-        ) : queue === 2.2 ? (
-          <form action={"#"} autoComplete="off" className={styles.authForm}>
             <input
               type="password"
               maxLength={8}
-              placeholder="Новый пароль"
+              placeholder="Пароль"
               required
-              autoComplete="false"
+              autoComplete={"false"}
             />
             <input
               type="password"
@@ -175,47 +118,15 @@ const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
               required
               autoComplete={"false"}
             />
-            <button
-              className={styles.enter}
-              onClick={() => {
-                setQueue(0);
-              }}
-            >
-              Подтвердить
-            </button>
-          </form>
-        ) : (
-          <p>wefwef</p>
-        )}
-        <button
-          className={styles.signUp}
-          style={
-            queue === 1.1 && timer === 0
-              ? {
-                color: "#f00",
-              }
-              : {
-                color: "#888",
-              }
-          }
-          onClick={() => {
-            queue === 0
-              ? setQueue(1)
-              : queue === 1 || queue === 2
-                ? setQueue(0)
-                : queue === 1.1
-                  ? setTimer(60)
-                  : setQueue(1.1);
-          }}
-        >
-          {queue === 0
-            ? "Регистрация"
-            : queue === 1 || queue === 2
-              ? "Уже есть аккаунт?"
-              : queue === 2.2
-                ? ""
-                : `Запросить еще раз ( 0:${timer >= 0 ? timer : setTimer(0)} )`}
-        </button>
+             <DatePicker dateFormat="dd-MM-yyyy" selected={startDate} onChange={(date:any) => setStartDate(date)} />
+            <button className={styles.enter}>Подтвердить</button>
+          </> : ""}
+        </form>
+        {fromWhere === 1 ? <button onClick={() => {
+          setFromWhere(2)
+        }}>Регистрация</button> : <button onClick={() => {
+          setFromWhere(1)
+        }}>Уже есть аккаунт?</button>}
       </div>
       <div
         className={styles.bg}

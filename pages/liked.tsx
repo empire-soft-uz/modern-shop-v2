@@ -59,7 +59,7 @@ const Liked = () => {
         <div className={styles.likedCards}>
           {cardObj.map((card, index) => {
             return (
-              <Card url={`/detail/${index}`} animation="zoom-in" cat={card.cat} height={card.h} image={card.image} price={card.price} title={card.title} width={card.w} key={index} />
+              <Card url={`/${index}`} animation="zoom-in" cat={card.cat} height={card.h} image={card.image} price={card.price} title={card.title} width={card.w} key={index} />
             );
           })}
         </div>
