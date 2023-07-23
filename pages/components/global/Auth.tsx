@@ -165,7 +165,7 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
             <>
               <input
                 type="text"
-                maxLength={13}
+                maxLength={9}
                 placeholder="Номер телефона"
                 required
                 ref={numberRef}
