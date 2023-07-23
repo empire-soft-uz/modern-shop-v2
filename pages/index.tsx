@@ -231,7 +231,7 @@ export default function Home() {
                 >
                   {slides && slides.map((e: any) => {
                     return <SwiperSlide key={e.id} className={styles.addItem}>
-                      <Link href={`/detail/${e.id}`} className={styles.addLeft}>
+                      <Link href={e.productId ? `/detail/${e.productId}` : `/company/${e.vendorId}`} className={styles.addLeft}>
                         <h1>{e.title}</h1>
                         <Image
                           src={`${process.env.NEXT_PUBLIC_IMAGE_API}/${e.image.name}`}

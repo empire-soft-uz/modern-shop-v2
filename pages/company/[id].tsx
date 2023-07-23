@@ -21,13 +21,12 @@ const Company = () => {
 
   useEffect(() => {
     setLoad(true)
-    axios.get(`${process.env.NEXT_PUBLIC_API}/api/products/${id}`).then((res: any) => {
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/vendors`).then((res: any) => {
       setData(res.data)
     }).catch((e: string) => console.log(e)).finally(() => {
       setLoad(false)
     })
   }, [id])
-  console.log(data)
 
   const cardObj = [
     {
@@ -160,7 +159,9 @@ const Company = () => {
     },
   ];
 
+
   if (load === false && data) {
+    const selectedVendor = data.find((vendor: any) => vendor.id === id)
     return (
       <div className={styles.company}>
         <TopHeader />
@@ -178,108 +179,26 @@ const Company = () => {
                   alt="profile"
                 />
                 <div className={styles.profile}>
-                  <h1>Shenzhen Qingmai Bicycle Co., Ltd.</h1>
+                  <h1>{selectedVendor ? selectedVendor.name : "Shenzhen Qingmai Bicycle Co., Ltd."}</h1>
                   <p>Мужское</p>
                 </div>
               </div>
-              <button type="button">Связаться</button>
+              <a href={selectedVendor ? `tel: ${selectedVendor.contacts.phoneNumber}` : "#"} type="button">Связаться</a>
             </div>
             <div className={styles.companyDescrip}>
               <p>Описание</p>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
+                {selectedVendor ? selectedVendor.description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}
               </p>
             </div>
           </section>
-          <div className={styles.navigation}>
-            <div
-              className={styles.nav}
-              style={
-                nav !== 0
-                  ? { color: "#8A8A8A" }
-                  : { borderBottomColor: "#E4B717", color: "#000" }
-              }
-              onClick={() => {
-                setNav(0);
-              }}
-            >
-              <h3>Все категории</h3>
-            </div>
-            <div
-              className={styles.nav}
-              style={
-                nav !== 1
-                  ? { color: "#8A8A8A" }
-                  : { borderBottomColor: "#E4B717", color: "#000" }
-              }
-              onClick={() => {
-                setNav(1);
-              }}
-            >
-              <h3>Мужское</h3>
-            </div>
-            <div
-              className={styles.nav}
-              style={
-                nav !== 2
-                  ? { color: "#8A8A8A" }
-                  : { borderBottomColor: "#E4B717", color: "#000" }
-              }
-              onClick={() => {
-                setNav(2);
-              }}
-            >
-              <h3>Женское</h3>
-            </div>
-            <div
-              className={styles.nav}
-              style={
-                nav !== 3
-                  ? { color: "#8A8A8A" }
-                  : { borderBottomColor: "#E4B717", color: "#000" }
-              }
-              onClick={() => {
-                setNav(3);
-              }}
-            >
-              <h3>Десткое</h3>
-            </div>
-            <div
-              className={styles.nav}
-              style={
-                nav !== 4
-                  ? { color: "#8A8A8A" }
-                  : { borderBottomColor: "#E4B717", color: "#000" }
-              }
-              onClick={() => {
-                setNav(4);
-              }}
-            >
-              <h3>Все для дома</h3>
-            </div>
-            <div
-              className={styles.nav}
-              style={
-                nav !== 5
-                  ? { color: "#8A8A8A" }
-                  : { borderColor: "#E4B717", color: "#000" }
-              }
-              onClick={() => {
-                setNav(5);
-              }}
-            >
-              <h3>Электроника</h3>
-            </div>
-            <button>Посмотреть больше</button>
-          </div>
           <section className={styles.companyCards}>
             <h2>Товары поставщика</h2>
             <div className={styles.card}>
-              {cardObj.map((card, index) => {
-                return <Card url={`/detail/${index}`} animation="zoom-in" image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat} />
+              {selectedVendor ? selectedVendor.products.map((e:any, index:number)=> {
+                return <Card url={`${index}`} animation="zoom-in" image={e.image} width={300} height={300} title={e.title} price={e.price} cat={e.cat} />
+              }) : cardObj.map((card, index) => {
+                return <Card url={`${index}`} animation="zoom-in" image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat} />
               })}
             </div>
           </section>

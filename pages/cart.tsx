@@ -8,10 +8,18 @@ import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
 import Order from "./components/global/Order";
+import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const Cart = () => {
   const [order, setOrder] = useState<boolean>(false);
   const [allPrice, setAllPrice] = useState(false)
+  const [load, setLoad] = useState(true)
+
+  const [data, setData] = useState<any | any[]>([])
+  const [cookie] = useCookies(["aboutUser"])
+  const { aboutUser } = cookie
+
 
   useEffect(() => {
     order
@@ -19,9 +27,22 @@ const Cart = () => {
       : (document.body.style.overflow = "auto");
   }, [order]);
 
-  const allPriceHandler = () =>{
+  const allPriceHandler = () => {
     setAllPrice(!allPrice)
   }
+
+  console.log(aboutUser)
+
+  useEffect(() => {
+    setLoad(true)
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/orders/${aboutUser.userBooked}`, {
+      headers: {
+        Authorization: aboutUser.token
+      }
+    }).then(res => console.log(res)).catch(err => console.log(err)).finally(() => {
+      setLoad(false)
+    })
+  }, [])
 
   const OrderObj = [
     {
