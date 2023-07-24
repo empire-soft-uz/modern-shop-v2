@@ -33,6 +33,8 @@ const Liked = ({like, setLike}: Like) => {
   console.log(likedObj);
 
 
+  // const arr = likedObj.find(likedObj)
+
   if (likedObj) {
     return (
       <div className={styles.liked} data-aos="zoom-in-up">

@@ -20,6 +20,7 @@
 }
 
 .businasswoman {
+    cursor: pointer;
     width: 100%;
     display: flex;
     align-items: center;
@@ -27,6 +28,7 @@
 }
 
 .titleText {
+    cursor: pointer;
     font-size: 18px;
     font-weight: 700;
     width: 493px;
@@ -43,6 +45,7 @@
 }
 
 .businassman {
+    cursor: pointer;
     margin-top: 58px;
     width: 100%;
     display: flex;
@@ -81,5 +84,70 @@
     .aboutUsTitle {
         padding: 0px, 20px;
         width: 100%;
+    }
+}
+
+
+
+
+@media screen and (max-width: 1050px) {
+    .container {
+        width: 100%;
+        padding: 0px, 20px;
+    }
+
+    .aboutUs {
+        width: 100%;
+    }
+
+    .businasswoman {
+        gap: 20px;
+    }
+
+    .businassman {
+        gap: 20px;
+    }
+
+    .aboutUsTitle {
+        padding: 0px, 20px;
+        width: 100%;
+    }
+
+    .titleText {
+        width: 100%;
+    }
+
+}
+
+
+
+@media screen and (max-width: 900px) {
+    .container {
+        width: 100%;
+    }
+
+    .aboutUs {
+        width: 100%;
+    }
+
+    .aboutUsTitle {
+        width: 100%;
+    }
+
+    .businassman {
+        display: block;
+    }
+
+    .businasswoman img {
+        width: 100%;
+    }
+
+    .businasswoman {
+        display: block;
+    }
+
+    .businassman img {
+        width: 100%;
+        margin-top: 10px;
     }
 }

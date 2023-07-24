@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { use, useEffect, useState, useRef } from "react";
 
 import styles from "@/styles/auth.module.css";
 import Image from "next/image";
@@ -13,9 +13,13 @@ const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
     document.body.style.overflow = "hidden";
   }, []);
 
+  const [load, setLoad] = useState<boolean>(true);
+
   const [queue, setQueue] = useState<number | any>(0);
 
   const [timer, setTimer] = useState<number>(62);
+
+  const [data, setData] = useState<any[] | any>([])
 
   const shouldMount = queue === 1.1 || queue === 2.1;
 
@@ -25,6 +29,19 @@ const Auth = ({ setIsAuthOpen, isAuthOpen }: Auth) => {
     }, 1000);
     return () => clearInterval(interval);
   }, [shouldMount]);
+
+  const get = "api/users";
+
+  useEffect(() => {
+    setLoad(true);
+    axios
+      .post(`${process.env.NEXT_PUBLIC_API}/${get}`)
+      .then((res: any) => {
+        setData(res.data);
+      })
+      .catch((e: string) => console.log(e))
+  }, []);
+  console.log(data);
 
   return (
     <div className={isAuthOpen ? styles.authent : styles.dn}>

@@ -17,12 +17,10 @@ const Categories = () => {
       }}>
         <div className={styles.container}>
           <div onClick={() => {
-            setCategoryOpen(true)
-          }} className={styles.categ}>
-            <h3 style={{
-              color: "#E4B717"
-            }}>Категории</h3>
-            <Image src={"/icons/categories.svg"} width={18} height={18} alt="just categories" />
+            setCategoryOpen(!isCategoryOpen)
+          }} className={!isCategoryOpen ? styles.categ : styles.close}>
+            <h3>Категории</h3>
+            <Image src={!isCategoryOpen ? "/icons/categories.svg" : "/icons/modernClose.svg"} width={18} height={18} alt="just categories" />
           </div>
           <ul className={styles.selectList}>
             {categories.map((e: string) => {

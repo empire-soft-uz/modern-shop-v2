@@ -51,7 +51,7 @@ const Contact = () => {
                   height={19}
                   alt="svg"
                 />
-                <Link href="@mail.ru">modern@mail.ru</Link>
+                <Link href="https://mail.com/modern@mail.ru">modern@mail.ru</Link>
               </div>
             </div>
           </div>

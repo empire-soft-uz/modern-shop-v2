@@ -11,13 +11,17 @@ import CardBurger from "./components/local/CardBurger";
 import axios from "axios";
 import Loader from "./components/local/Loader";
 import Liked from "./liked";
+import { title } from "process";
 
 export default function Categoriy() {
   const [cardBurger, setCardBurger] = useState<boolean>(false);
   const [data, setData] = useState<any[] | any>([]);
+  const [category, setCategory] = useState<any[] | any>([]);
   const [load, setLoad] = useState<boolean>(true);
 
-  const [likedObj, setLikedObj] = useState<any[] | any>([])
+  const [apple, setApple] = useState(false);
+
+  const [likedObj, setLikedObj] = useState<any[] | any>([]);
 
   const cardBurgerHandler = () => {
     setCardBurger(!cardBurger);
@@ -154,12 +158,24 @@ export default function Categoriy() {
     },
   ];
 
-  const get = "api/categories";
+  useEffect(() => {
+    setLoad(true);
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}/api/categories`)
+      .then((res: any) => {
+        setCategory(res.data);
+      })
+      .catch((e: string) => console.log(e))
+      .finally(() => {
+        setLoad(false);
+      });
+  }, []);
+  // console.log(data);
 
   useEffect(() => {
     setLoad(true);
     axios
-      .get(`${process.env.NEXT_PUBLIC_API}/${get}`)
+      .get(`${process.env.NEXT_PUBLIC_API}/api/products`)
       .then((res: any) => {
         setData(res.data);
       })
@@ -168,10 +184,22 @@ export default function Categoriy() {
         setLoad(false);
       });
   }, []);
-  console.log(data);
 
+  // const apples = data.products.find((app: any) => !!app.value.apple);
+  // const onChange = (option: any) => setApple(option);
+  // setApple(data.products.find((j: any)=> j.category.id === k))
 
   if (!load && data) {
+    data &&
+      category.map((e: any) => {
+        e.subcategories.map((k: any) => {
+          k.props.map((l:any)=> {
+            data.products?.map((q:any)=> {
+              console.log(l)
+            })
+          })
+        });
+      });
     return (
       <>
         <div className={styles.container}>
@@ -281,7 +309,7 @@ export default function Categoriy() {
               {cardObj.map((card, index) => {
                 return (
                   <Card
-                  isLiked
+                    isLiked
                     likedObj={likedObj}
                     setLikedObj={setLikedObj}
                     url={`${index}`}
@@ -296,6 +324,15 @@ export default function Categoriy() {
                   />
                 );
               })}
+
+              {category &&
+                category.map((e: any, index: number) => {
+                  return (
+                    <div key={index}>
+                      <h1>{e.name}</h1>
+                    </div>
+                  );
+                })}
             </section>
           </section>
           <div className={styles.carusel}>

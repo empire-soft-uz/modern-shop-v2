@@ -445,3 +445,25 @@
     }
 
 }
+
+
+@media screen and (max-width: 390px) {
+    .container {
+        width: 100%;
+    }
+
+    .contact {
+        width: 100%;
+    }
+
+    .contactTitle {
+        width: 100%;
+    }
+    .phone {
+        display: block;
+    }
+
+    .contactCard h3 {
+        font-size: 17px;
+    }
+}

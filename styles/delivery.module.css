@@ -259,7 +259,7 @@
 
     .countPrice h1 {
         padding-top: 57px;
-        font-size: 21px;
+        font-size: 25px;
         font-weight: 700;
     }
 
@@ -302,7 +302,6 @@
 
     .countPrice h1 {
         padding-top: 57px;
-        font-size: 17px;
         font-weight: 700;
     }
 
@@ -315,9 +314,6 @@
         font-size: 18px;
     }
 
-    .countPrice h1 {
-        font-size: 15px;
-    }
 
     .countButton {
         margin-top: -40px;
@@ -326,6 +322,18 @@
         font-size: 16px;
     }
 
+}
+
+@media screen and (max-width:540px) {
+    .countButton{
+        margin-left: 5px;
+    }
+}
+
+@media screen and (max-width: 490px) {
+ .countButton {
+    width: 80px;
+ }
 }
 
 @media screen and (max-width:480px) {
@@ -352,10 +360,6 @@
 
     .DeliverySection h1 {
         font-size: 18px;
-    }
-
-    .countPrice h1 {
-        font-size: 15px;
     }
 
     .countButton {
@@ -414,10 +418,6 @@
         font-size: 16px;
     }
 
-    .countPrice h1 {
-        font-size: 12px;
-    }
-
     .countButton {
         margin-top: -40px;
         position: absolute;
@@ -464,19 +464,15 @@
     }
 
 
-
     .DeliverySection h1 {
         font-size: 16px;
-    }
-
-    .countPrice h1 {
-        font-size: 12px;
     }
 
     .countButton {
         margin-top: -40px;
         position: absolute;
         font-size: 14px;
+        margin-left: 1px;
     }
 
     .countButton {
