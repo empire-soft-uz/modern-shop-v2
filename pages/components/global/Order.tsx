@@ -4,7 +4,7 @@ import Link from "next/link";
 import check from '@/public/icons/check.svg'
 import AOS from "aos"
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import useCookies from "react-cookie/cjs/useCookies";
@@ -12,45 +12,55 @@ import useCookies from "react-cookie/cjs/useCookies";
 interface Order {
   setOrder: Function;
   order: boolean;
+  selectedProduct: any
 }
 
-const Order = ({ setOrder, order }: Order) => {
+const Order = ({ setOrder, order, selectedProduct }: Order) => {
   const [cookie, setCookie] = useCookies(["aboutUser"])
+  const [userInform] = useCookies(["userInfo"])
   const router = useRouter()
   const { id } = router.query
   const { aboutUser } = cookie
+  const { userInfo } = userInform
 
-  console.log(aboutUser)
+  console.log(router.pathname);
+
+  const [selectedCard, setSelectedCard] = useCookies(["selectedCard"]);
+
+  const [array, setArray] = useState(selectedCard.selectedCard || []);
 
   useEffect(() => {
     AOS.init()
   }, [])
-
   const handlePushToCart = () => {
+    const updatedArray = [...array, {
+      product: selectedProduct,
+      productId: id,
+      qty: 1
+    }];
+    setArray(updatedArray);
+    setSelectedCard("selectedCard", updatedArray);
+  }
+
+  const handlePost = () => {
     axios.post(`${process.env.NEXT_PUBLIC_API}/api/orders/new`, {
-      userId: aboutUser ? aboutUser.userId : "64b92059a276759947d296d3",
-      products: [
-        {
-          productId: id,
-          qty: 1
-        }
-      ],
+      products: selectedProduct,
       deliveryAddress: "some address to deliver"
     },
       {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": aboutUser ? aboutUser.userToken : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YjkyMDU5YTI3Njc1OTk0N2QyOTZkMyIsInBob25lTnVtYmVyIjo5OTg5MTIzNDU2NzgsImlhdCI6MTY4OTk1Mzc0N30.nz6rhxCKJj2q5ZIyn2ydBgOy90Lw2Y5RsgfjPbjT0a8"
+          "Authorization": userInfo ? userInfo.userToken : aboutUser ? aboutUser.userToken : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YjkyMDU5YTI3Njc1OTk0N2QyOTZkMyIsInBob25lTnVtYmVyIjo5OTg5MTIzNDU2NzgsImlhdCI6MTY4OTk1Mzc0N30.nz6rhxCKJj2q5ZIyn2ydBgOy90Lw2Y5RsgfjPbjT0a8"
         },
       }).then((res: any) => {
         setCookie("aboutUser", {
-          userBooked: res.data.id, 
+          userBooked: res.data.id,
           userId: res.data.id,
-          userToken: res.data.token
+          userToken: userInfo ? userInfo.userToken  : aboutUser ? res.data.token : ""
         }, { path: "/" })
+        console.log(res.data);
       }).catch(err => console.log(err))
   }
-
 
   return (
     <>
@@ -78,8 +88,7 @@ const Order = ({ setOrder, order }: Order) => {
             <p>В ближайшее время мы с вами свяжемся</p>
           </div>
           <button onClick={() => {
-            handlePushToCart()
-            router.push("/cart")
+            router.pathname === "/cart" ? handlePost() : handlePushToCart() 
             setOrder(false);
           }} className={styles.take}>
             Принять

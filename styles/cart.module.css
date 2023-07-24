@@ -146,6 +146,16 @@
 
 }
 
+.card > img {
+    height: auto;
+    width: 90px;
+}
+
+.countButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 @media screen and (max-width:1180px) {
@@ -375,6 +385,15 @@
         color: #363636;
         font-weight: 700;
         font-size: 19px;
+    }
+
+    .card > img {
+        width: 50px;
+        height: auto;
+    }
+
+    .countButton > button {
+        font-size: 25px !important;
     }
 
     .menu p {

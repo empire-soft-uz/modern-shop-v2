@@ -43,6 +43,8 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
   const codeRef = useRef<HTMLInputElement | any>()
   const passRef = useRef<HTMLInputElement | any>()
   const passRef2 = useRef<HTMLInputElement | any>()
+  const userNameRef = useRef<HTMLInputElement | any>()
+  const lastNameRef = useRef<HTMLInputElement | any>()
   const [startDate, setStartDate] = useState(new Date());
 
   const [] = useState<string>()
@@ -88,7 +90,7 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
     }
   }
 
-  
+
 
   const handleUserRegister = () => {
     if (codeRef && codeRef.current) {
@@ -105,7 +107,7 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
           setCookie("userInfo", {
             userPhoneNumber: res.data.phoneNumber,
             userId: res.data.id,
-            userToken: res.data.token
+            userToken: res.data.token,
           })
         }).catch(err => console.log(err))
         setQueue(2.5)
@@ -114,7 +116,7 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
   }
 
   const handleCreatePassword = () => {
-    if (passRef && passRef2) {
+    if (passRef && passRef2 && lastNameRef && userNameRef) {
       if (passRef.current.value === passRef2.current.value) {
         axios.put(`${process.env.NEXT_PUBLIC_API}/api/users/update`, {
           password: passRef.current.value
@@ -124,6 +126,9 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
             Authorization: cookie.userInfo.userToken
           }
         }).then((res) => console.log(res.data)).catch(err => console.log(err))
+        localStorage.setItem("userName", userNameRef.current.value)
+        localStorage.setItem("lastname", lastNameRef.current.value)
+        localStorage.setItem("password", passRef.current.value)
         setFromWhere(0)
         setIsAuthOpen(false)
         passRef.current.value = null
@@ -229,27 +234,43 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
                 cursor: "pointer"
               }}>Запросить еще раз ( 0 : {timer <= 0 ? 0 : timer} )</p>
             </> : queue === 2.5 ?
-                <>
-                  <input
-                    type="text"
-                    maxLength={8}
-                    placeholder="Новый пароль"
-                    required
-                    ref={passRef}
-                    autoComplete="false"
-                  />
-                  <input
-                    type="text"
-                    maxLength={8}
-                    placeholder="Подтвердите пароль"
-                    required
-                    ref={passRef2}
-                    autoComplete="false"
-                  />
-                  <button onClick={() => {
-                    handleCreatePassword()
-                  }} className={styles.enter}>Подтвердить</button>
-                </> : ""}
+              <>
+                <input
+                  type="text"
+                  maxLength={15}
+                  placeholder="Имя"
+                  required
+                  ref={userNameRef}
+                  autoComplete="false"
+                />
+                <input
+                  type="text"
+                  maxLength={20}
+                  placeholder="Фамилия"
+                  required
+                  ref={lastNameRef}
+                  autoComplete="false"
+                />
+                <input
+                  type="text"
+                  maxLength={8}
+                  placeholder="Новый пароль"
+                  required
+                  ref={passRef}
+                  autoComplete="false"
+                />
+                <input
+                  type="text"
+                  maxLength={8}
+                  placeholder="Подтвердите пароль"
+                  required
+                  ref={passRef2}
+                  autoComplete="false"
+                />
+                <button onClick={() => {
+                  handleCreatePassword()
+                }} className={styles.enter}>Подтвердить</button>
+              </> : ""}
         </form>
         {fromWhere === 1 ? <button onClick={() => {
           setFromWhere(2)

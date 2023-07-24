@@ -18,10 +18,7 @@ const TopHeader = () => {
       <nav className={styles.navigation}>
         <ul>
           <li>
-            <Link href="#">Главная</Link>
-          </li>
-          <li>
-            <Link href="#">Магазин</Link>
+            <Link href="/">Главная</Link>
           </li>
           <li>
             <Link href="/delivery">Доставка</Link>
@@ -31,6 +28,9 @@ const TopHeader = () => {
           </li>
           <li>
             <Link href="#">О нас</Link>
+          </li>
+          <li>
+            <Link href="/profile">Профиль</Link>
           </li>
           <li>
             <Link href="#">Контакты</Link>

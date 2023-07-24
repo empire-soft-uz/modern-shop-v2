@@ -121,7 +121,7 @@ const Detail = () => {
                     />
                   </button>
                 </div>
-                <Order order={order} setOrder={setOrder} />
+                <Order selectedProduct={selectedProduct} order={order} setOrder={setOrder} />
                 <div className={styles.characterSide}>
                   <div className={styles.character}>
                     <div className={styles.characterInfo}>
@@ -428,7 +428,6 @@ const Detail = () => {
                 </button>
               </div>
             </section>
-            <Order order={order} setOrder={setOrder} />
           </div>
           <Footer />
         </main>
