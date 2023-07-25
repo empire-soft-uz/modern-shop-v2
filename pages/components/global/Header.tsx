@@ -9,7 +9,7 @@ const Header = () => {
   const [mouseOver, setMouseOver] = useState<boolean>(false)
   const [language, setLanguage] = useState<string>("RU")
 
-  const languges: string[] = ["RU", "EN", "UZ"]
+  const languges: string[] = ["RU", "UZ"]
 
   useEffect(()=> {
     isBurgerOpen ? document.body.style.overflow = "auto" : document.body.style.overflow = "auto"

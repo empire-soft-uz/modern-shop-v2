@@ -14,9 +14,8 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Loader from "../components/local/Loader";
 
-
-
 const Detail = () => {
+  const [likedObj, setLikedObj] = useState<any | any[]>([])
   const [controllerC, setControllerC] = useState<number>(0);
   const [controllerM, setControllerM] = useState<number>(0);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
@@ -33,8 +32,10 @@ const Detail = () => {
     order !== true ? document.body.style.overflow = "auto" : document.body.style.overflow = "hidden"
   }, [order])
   useEffect(() => {
-    isChatOpen !== true ? document.body.style.overflow = "auto" : document.body.style.overflow = "hidden"
-  }, [isChatOpen])
+    isChatOpen !== true
+      ? (document.body.style.overflow = "auto")
+      : (document.body.style.overflow = "hidden");
+  }, [isChatOpen]);
 
   useEffect(() => {
     setLoad(true)
@@ -83,6 +84,8 @@ const Detail = () => {
     },
   ];
 
+  const sentence =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
   const videoRef = useRef<HTMLVideoElement | any>()
 
@@ -396,6 +399,9 @@ const Detail = () => {
                 {cardObj.map((card, index) => {
                   return (
                     <Card
+                    isLiked={false}
+                    likedObj={likedObj}
+                    setLikedObj={setLikedObj}
                       url={`${index}`}
                       title={card.title}
                       image={card.image}

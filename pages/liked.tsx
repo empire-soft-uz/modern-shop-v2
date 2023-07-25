@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/liked.module.css";
 import Header from "./components/global/Header";
 import Buy from "@/public/images/Buy.png";
@@ -9,67 +9,71 @@ import AOS from "aos";
 import TopHeader from "./components/global/TopHeader";
 import Categories from "./components/global/Categories";
 import Card from "./components/global/Card";
+import { useRouter } from "next/router";
+import Loader from "./components/local/Loader";
+import { Cookies } from "react-cookie";
 
-const Liked = () => {
+interface Like {
+  like: any;
+  setLike: Function
+}
 
-  const cardObj = [
-    {
-      image: "/images/productPhone.png",
-      w: 144,
-      h: 192,
-      title: "Iphone 14 PRO",
-      price: "13.000.000 сум",
-      cat: "Телефоны",
-    },
-    {
-      image: "/images/xboxController.png",
-      w: 181,
-      h: 192,
-      title: "Xbox",
-      price: "7.000.000 сум",
-      cat: "Приставки",
-    },
-    {
-      image: "/images/headPhone.png",
-      w: 179,
-      h: 192,
-      title: "Наушники SONY",
-      price: "300.000 сум",
-      cat: "Аксессуары",
-    },
-    {
-      image: "/images/smphone.png",
-      w: 160,
-      h: 192,
-      title: "Samsung M53",
-      price: "4.000.000 сум",
-      cat: "Телефоны",
-    },
-  ];
+const cookies = new Cookies()
+const Liked = ({like, setLike}: Like) => {
+  const [likedObj, setLikedObj] = useState<any[] | any>([]);
 
-  return (
-    <div className={styles.liked} data-aos="zoom-in-up">
-      <TopHeader />
-      <Header />
-      <Categories />
-      <div className={styles.Favorites}>
-        <h1 style={{ fontSize: 20, fontWeight: 700 }}>Избранное</h1>
-      </div>
-      <section className={styles.likedSection}>
-        <div className={styles.likedCards}>
-          {cardObj.map((card, index) => {
-            return (
-              <Card url={`/${index}`} animation="zoom-in" cat={card.cat} height={card.h} image={card.image} price={card.price} title={card.title} width={card.w} key={index} />
-            );
-          })}
+  const [likes, setLikes] = useState(true)
+  useEffect(() => {
+    const liked: any[] | any = cookies.get("likedObj")
+    setLikedObj(liked);
+
+    console.log(likedObj);
+  }, []);
+
+  console.log(likedObj);
+
+
+  // const arr = likedObj.find(likedObj)
+
+  if (likedObj) {
+    return (
+      <div className={styles.liked} data-aos="zoom-in-up">
+        <TopHeader />
+        <Header />
+        <Categories />
+        <div className={styles.Favorites}>
+          <h1 style={{ fontSize: 20, fontWeight: 700 }}>Избранное</h1>
         </div>
-      </section>
-
-      <div style={{ marginTop: "11rem" }}>
-        <Footer />
+        <section className={styles.likedSection}>
+          <div className={styles.newProductsWrapper}>
+            {likedObj.map((card:any, index:any) => {
+              return (
+                <Card
+                  url={index}
+                  title={card.title}
+                  image={card.image}
+                  width={card.width}
+                  height={card.height}
+                  price={card.price}
+                  cat={card.cat}
+                  key={card.title}
+                  animation={"fade-down"}
+                  likedObj={likedObj}
+                  setLikedObj={setLikedObj}
+                  isLiked
+                />
+              );
+            })}
+          </div>
+        </section>
+        <div style={{ marginTop: "11rem" }}>
+          <Footer />
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <Loader />;
+  }
 };
 
 export default Liked;

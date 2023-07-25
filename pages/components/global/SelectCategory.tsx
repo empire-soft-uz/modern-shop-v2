@@ -1,73 +1,65 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import styles from "@/styles/selectCategory.module.css";
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import Link from "next/link";
+import axios from "axios";
 
+interface Categories {
+  categories: any | any[];
+  selected: string;
+}
 
-const SelectCategory = () => {
+const SelectCategory = ({ categories, selected }: Categories) => {
+  const [data, setData] = useState<any[] | any>([]);
+  const [load, setLoad] = useState(true);
+
   useEffect(() => {
     AOS.init();
   }, []);
 
+  useEffect(() => {
+    setLoad(true);
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}/api/subcategories`)
+      .then((res: any) => {
+        setData(res.data);
+      })
+      .catch((e: string) => console.log(e))
+      .finally(() => {
+        setLoad(false);
+      });
+  }, []);
+
+  console.log("suke", categories);
+
   return (
     <div data-aos="zoom-in" className={styles.selectCategory}>
       <section className={styles.categorSection}>
-        <div className={styles.categorLeft}>
-          <div>
-            <Image src={"/dress.png"} width={21} height={16} alt="dress" />
-            <h1>Мужское</h1>
-          </div>
-          <div>
-            <Image src={"/dress.png"} width={21} height={16} alt="dress" />
-            <h1>Женское</h1>
-          </div>
-          <div>
-            <Image src={"/dress.png"} width={21} height={16} alt="dress" />
-            <h1>Электроника</h1>
-          </div>
-          <div>
-            <Image src={"/dress.png"} width={21} height={16} alt="dress" />
-            <h1>Для дома</h1>
-          </div>
-        </div>
+        {categories &&
+          categories?.map((e: any, index: number) => {
+            return (
+              <div className={styles.categorLeft}>
+                <div className={styles.iconOfCat}>
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_API}/${e.icon.name}`}
+                    width={100}
+                    height={100}
+                    alt="dress"
+                  />
+                  <h1>{e.name}</h1>
+                </div>
+              </div>
+            );
+          })}
         <div className={styles.categorRight}>
-          <div className={styles.table}>
-            <ul>
-              <li>
-                <a href="#">Платья</a>
-              </li>
-              <li>
-                <a href="#">Платья</a>
-              </li>
-              <li>
-                <a href="#">Платья</a>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <a href="#">Футболки</a>
-              </li>
-              <li>
-                <a href="#">Футболки</a>
-              </li>
-              <li>
-                <a href="#">Футболки</a>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <a href="#">Обувь</a>
-              </li>
-              <li>
-                <a href="#">Обувь</a>
-              </li>
-              <li>
-                <a href="#">Обувь</a>
-              </li>
-            </ul>
-          </div>
+          <ul>  
+              {data && data.map((e: any, index: number) => {
+                return <li><Link style={{color: "#666565"}} href={`/category?q=${e.name.toLocaleLowerCase()}`}>{e.name}</Link></li>
+              })}
+          </ul>
         </div>
       </section>
     </div>
@@ -75,4 +67,3 @@ const SelectCategory = () => {
 };
 
 export default SelectCategory;
-

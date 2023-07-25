@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import styles from "../../styles/company.module.css";
 import TopHeader from "../components/global/TopHeader";
 import Header from "../components/global/Header";
@@ -16,6 +16,7 @@ const Company = () => {
   const [nav, setNav] = useState<number>(0);
   const [data, setData] = useState<object[] | any>([])
   const [load, setLoad] = useState<boolean>(true)
+  const [likedObj, setLikedObj] = useState<any[] | any>([]);
 
   const { id }: any = useRouter()
 
@@ -196,9 +197,9 @@ const Company = () => {
             <h2>Товары поставщика</h2>
             <div className={styles.card}>
               {selectedVendor ? selectedVendor.products.map((e:any, index:number)=> {
-                return <Card url={`${index}`} animation="zoom-in" image={e.image} width={300} height={300} title={e.title} price={e.price} cat={e.cat} />
+                return <Card isLiked likedObj={likedObj} setLikedObj={setLikedObj} url={`${index}`} animation="zoom-in" image={e.image} width={300} height={300} title={e.title} price={e.price} cat={e.cat} />
               }) : cardObj.map((card, index) => {
-                return <Card url={`${index}`} animation="zoom-in" image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat} />
+                return <Card isLiked likedObj={likedObj} setLikedObj={setLikedObj} url={`${index}`} animation="zoom-in" image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat} />
               })}
             </div>
           </section>

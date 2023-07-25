@@ -15,6 +15,8 @@ import Loader from "./components/local/Loader";
 const Profile = () => {
   const [isChangePassOpen, setIsChangePassOpen] = useState(false);
   const [profileBurger, setProfileBurger] = useState(false);
+  const [button, setButton] = useState<number>(0);
+  const [buttonColor, setButtonColor] = useState<number>(0);
 
   const [profile, setProfile] = useState<any | any[]>([])
   const [load, setLoad] = useState(true)
@@ -57,11 +59,9 @@ const Profile = () => {
     if (userInfo) {
       return (
         <div className={styles.Profile}>
-
           {isChangePassOpen && (
             <ChangePassword setIsChangePassOpen={setIsChangePassOpen} />
           )}
-
           <TopHeader />
           <Header />
           <Categories />
@@ -147,25 +147,11 @@ const Profile = () => {
               </div>
             </section>
           </section>
-          <Footer />
-        </div>
-      );
-    } else {
-      return <div className={styles.Profile}>
-
-        {isChangePassOpen && (
-          <ChangePassword setIsChangePassOpen={setIsChangePassOpen} />
-        )}
-
-        <TopHeader />
-        <Header />
-        <Categories />
-        log in to see more
-      </div>
-    }
-  } else {
-    return <Loader />
+      <Footer />
+    </div>
+  );
   }
 };
+}
 
 export default Profile;

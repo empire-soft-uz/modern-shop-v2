@@ -28,6 +28,7 @@ export default function Home() {
   const [data, setData] = useState<any[] | any>([])
   const [popularProducts, setPopularProducts] = useState<any[] | any>([])
   const [slides, setSlides] = useState<any[] | any>([])
+  const [isLiked, setIsLiked] = useState<any[] | any>([])
   const [categories, setCategories] = useState<any | any[]>([])
   const [load, setLoad] = useState<boolean>(true)
   const router = useRouter()
@@ -101,72 +102,6 @@ export default function Home() {
       title: "Спортивное",
       height: 60.5,
       width: 36,
-    },
-  ];
-  const cardObj = [
-    {
-      image: "/images/productPhone.png",
-      w: 144,
-      h: 167,
-      title: "Iphone 14 PRO",
-      price: "13.000.000 сум",
-      cat: "Телефоны",
-    },
-    {
-      image: "/images/xboxController.png",
-      w: 181,
-      h: 192,
-      title: "Xbox",
-      price: "7.000.000 сум",
-      cat: "Приставки",
-    },
-    {
-      image: "/images/headPhone.png",
-      w: 179,
-      h: 190,
-      title: "Наушники SONY",
-      price: "300.000 сум",
-      cat: "Аксессуары",
-    },
-    {
-      image: "/images/smphone.png",
-      w: 160,
-      h: 173,
-      title: "Samsung M53",
-      price: "4.000.000 сум",
-      cat: "Телефоны",
-    },
-    {
-      image: "/images/productPhone.png",
-      w: 144,
-      h: 167,
-      title: "Iphone 14 PRO",
-      price: "13.000.000 сум",
-      cat: "Телефоны",
-    },
-    {
-      image: "/images/xboxController.png",
-      w: 181,
-      h: 192,
-      title: "Xbox",
-      price: "7.000.000 сум",
-      cat: "Приставки",
-    },
-    {
-      image: "/images/headPhone.png",
-      w: 179,
-      h: 190,
-      title: "Наушники SONY",
-      price: "300.000 сум",
-      cat: "Аксессуары",
-    },
-    {
-      image: "/images/smphone.png",
-      w: 160,
-      h: 173,
-      title: "Samsung M53",
-      price: "4.000.000 сум",
-      cat: "Телефоны",
     },
   ];
   const cardObj1 = [
@@ -296,6 +231,9 @@ export default function Home() {
                   {data && data?.products?.map((e: any, index: number) => {
                     return (
                       <Card
+                        setLikedObj={setIsLiked}
+                        likedObj={isLiked}
+                        isLiked={false}
                         animation="fade-down"
                         cat={e.subcategory.name}
                         url={e.id}
@@ -317,6 +255,9 @@ export default function Home() {
                   {popularProducts && popularProducts.products?.map((card: any, index: number) => {
                     return (
                       <Card
+                        setLikedObj={setIsLiked}
+                        likedObj={isLiked}
+                        isLiked={false}
                         animation="fade-down"
                         cat={card.subcategory.name}
                         url={card.id}
@@ -453,6 +394,9 @@ export default function Home() {
                         {cardObj1.map((card, index) => {
                           return (
                             <Card
+                              isLiked={false}
+                              likedObj={isLiked}
+                              setLikedObj={setIsLiked}
                               url={`${index}`}
                               image={card.image}
                               height={card.height}
