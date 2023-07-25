@@ -197,9 +197,9 @@ const Company = () => {
             <h2>Товары поставщика</h2>
             <div className={styles.card}>
               {selectedVendor ? selectedVendor.products.map((e:any, index:number)=> {
-                return <Card isLiked likedObj={likedObj} setLikedObj={setLikedObj} url={`${index}`} animation="zoom-in" image={e.image} width={300} height={300} title={e.title} price={e.price} cat={e.cat} />
+                return <Card isLiked key={index} likedObj={likedObj} setLikedObj={setLikedObj} url={`${index}`} animation="zoom-in" image={e.image} width={300} height={300} title={e.title} price={e.price} cat={e.cat} />
               }) : cardObj.map((card, index) => {
-                return <Card isLiked likedObj={likedObj} setLikedObj={setLikedObj} url={`${index}`} animation="zoom-in" image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat} />
+                return <Card isLiked likedObj={likedObj} key={index} setLikedObj={setLikedObj} url={`${index}`} animation="zoom-in" image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat} />
               })}
             </div>
           </section>

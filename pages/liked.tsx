@@ -22,17 +22,6 @@ const cookies = new Cookies()
 const Liked = ({like, setLike}: Like) => {
   const [likedObj, setLikedObj] = useState<any[] | any>([]);
 
-  const [likes, setLikes] = useState(true)
-  useEffect(() => {
-    const liked: any[] | any = cookies.get("likedObj")
-    setLikedObj(liked);
-
-    console.log(likedObj);
-  }, []);
-
-  console.log(likedObj);
-
-
   // const arr = likedObj.find(likedObj)
 
   if (likedObj) {

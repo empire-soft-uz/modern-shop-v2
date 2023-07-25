@@ -9,9 +9,11 @@ const TopHeader = () => {
 
   const [fromWhere, setFromWhere] = useState<number>(0)
 
+  const closed = !isAuthOpen
+
   useEffect(() => {
     document.body.style.overflow = "auto"
-  }, [!isAuthOpen])
+  }, [closed])
 
   return (
     <div className={styles.topNavBar}>

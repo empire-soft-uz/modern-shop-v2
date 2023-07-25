@@ -21,12 +21,14 @@ const ChanchePassword = ({ setIsChangePassOpen }: ChangePass) => {
 
   const [timer, setTimer] = useState<number>(61);
 
+  const dum = queue === 1.1
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((timer) => timer - 1);
     }, 1000);
     return () => clearInterval(interval);
-  }, [queue === 1.1]);
+  }, [dum]);
 
   return (
     <div className={styles.ChangePass}>

@@ -149,7 +149,7 @@ const Cart = () => {
               </button>
             </div>
           </section>
-        </section> : <h2>You didn't ordered anything yet</h2>}
+        </section> : <h2>You didnt ordered anything yet</h2>}
         <Footer />
       </div>
     );

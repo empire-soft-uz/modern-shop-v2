@@ -23,12 +23,14 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
     document.body.style.overflow = "hidden";
   }, []);
 
+  const dum = queue === 2.5
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((timer) => timer - 1);
     }, 1000);
     return () => clearInterval(interval);
-  }, [queue === 2.5]);
+  }, [dum]);
 
 
   const phoneRef = useRef<HTMLInputElement | any>()

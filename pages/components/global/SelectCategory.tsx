@@ -41,7 +41,7 @@ const SelectCategory = ({ categories, selected }: Categories) => {
         {categories &&
           categories?.map((e: any, index: number) => {
             return (
-              <div className={styles.categorLeft}>
+              <div key={index} className={styles.categorLeft}>
                 <div className={styles.iconOfCat}>
                   <Image
                     src={`${process.env.NEXT_PUBLIC_IMAGE_API}/${e.icon.name}`}
@@ -57,7 +57,7 @@ const SelectCategory = ({ categories, selected }: Categories) => {
         <div className={styles.categorRight}>
           <ul>  
               {data && data.map((e: any, index: number) => {
-                return <li><Link style={{color: "#666565"}} href={`/category?q=${e.name.toLocaleLowerCase()}`}>{e.name}</Link></li>
+                return <li key={index}><Link key={index} style={{color: "#666565"}} href={`/category?q=${e.name.toLocaleLowerCase()}`}>{e.name}</Link></li>
               })}
           </ul>
         </div>
