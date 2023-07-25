@@ -12,6 +12,8 @@ import axios from "axios";
 import Loader from "./components/local/Loader";
 import Liked from "./liked";
 import { title } from "process";
+import { useRouter } from "next/router";
+import { kMaxLength } from "buffer";
 
 export default function Categoriy() {
   const [cardBurger, setCardBurger] = useState<boolean>(false);
@@ -158,6 +160,18 @@ export default function Categoriy() {
     },
   ];
 
+  const router = useRouter();
+
+  const { q } = router.query;
+
+  console.log(q);
+
+  const cat = category.map((e: any) =>
+    e.subcategories.find((sub: any) => sub.name.toLocaleLowerCase() === q)
+  );
+
+  console.log(cat);
+
   useEffect(() => {
     setLoad(true);
     axios
@@ -170,7 +184,6 @@ export default function Categoriy() {
         setLoad(false);
       });
   }, []);
-  // console.log(data);
 
   useEffect(() => {
     setLoad(true);
@@ -185,21 +198,8 @@ export default function Categoriy() {
       });
   }, []);
 
-  // const apples = data.products.find((app: any) => !!app.value.apple);
-  // const onChange = (option: any) => setApple(option);
-  // setApple(data.products.find((j: any)=> j.category.id === k))
-
+  
   if (!load && data) {
-    data &&
-      category.map((e: any) => {
-        e.subcategories.map((k: any) => {
-          k.props.map((l:any)=> {
-            data.products?.map((q:any)=> {
-              console.log(l)
-            })
-          })
-        });
-      });
     return (
       <>
         <div className={styles.container}>
@@ -306,32 +306,29 @@ export default function Categoriy() {
               </div>
             </section>
             <section className={styles.sectionRight}>
-              {cardObj.map((card, index) => {
-                return (
-                  <Card
-                    isLiked
-                    likedObj={likedObj}
-                    setLikedObj={setLikedObj}
-                    url={`${index}`}
-                    title={card.title}
-                    image={card.image}
-                    width={card.width}
-                    height={card.height}
-                    price={card.price}
-                    cat={card.kategoriya}
-                    key={index}
-                    animation="zoom-in"
-                  />
-                );
-              })}
-
-              {category &&
-                category.map((e: any, index: number) => {
+              {data &&
+                data.products?.map((e: any, index: number) => {
                   return (
-                    <div key={index}>
-                      <h1>{e.name}</h1>
-                    </div>
+                    <Card
+                      animation="fade-down"
+                      cat={e.subcategory.name}
+                      url={e.id}
+                      height={300}
+                      width={300}
+                      image={
+                        e.media.length
+                          ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}`
+                          : "/images/14.png"
+                      }
+                      title={e.name}
+                      price={e.price[0].price}
+                      key={index}
+                      isLiked
+                      likedObj={likedObj}
+                      setLikedObj={setLikedObj}
+                    />
                   );
+        
                 })}
             </section>
           </section>

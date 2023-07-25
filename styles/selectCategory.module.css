@@ -2,7 +2,7 @@
     padding: 10px 5px;
     position: absolute;
     display: flex;
-    top: 180px;
+    top: 175px;
     width: 1180px;
     height: 193px;
     background-color: #ffffff;
@@ -10,6 +10,11 @@
     box-shadow: 0px 5px 20px 10px rgba(214, 214, 214, 0.19);
     z-index: 999;
     transition: .4s;
+}
+
+.iconOfCat>img {
+    width: 21px;
+    height: auto;
 }
 
 .dn {
@@ -26,6 +31,7 @@
     font-weight: 700;
     border-right: 1px solid #cacaca;
     width: 200px;
+    padding: 5px;
 }
 
 .categorLeft  div {
@@ -60,6 +66,7 @@
     justify-content: center;
     height: 10px;
     align-items: center;
+    padding: 10px;
 }
 
 .table {
@@ -74,7 +81,8 @@
     padding-top: 10px;
 }
 
-.table ul li a {
+
+.table ul li a{
     color: #666565;
     font-weight: 700;
 }
