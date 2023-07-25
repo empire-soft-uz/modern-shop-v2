@@ -2,7 +2,7 @@
     padding: 10px 5px;
     position: absolute;
     display: flex;
-    top: 180px;
+    top: 175px;
     width: 1180px;
     height: 193px;
     background-color: #ffffff;
@@ -10,6 +10,11 @@
     box-shadow: 0px 5px 20px 10px rgba(214, 214, 214, 0.19);
     z-index: 999;
     transition: .4s;
+}
+
+.iconOfCat>img {
+    width: 21px;
+    height: auto;
 }
 
 .dn {
@@ -26,9 +31,11 @@
     font-weight: 700;
     border-right: 1px solid #cacaca;
     width: 200px;
+    padding: 5px;
 }
 
 .categorLeft  div {
+    width: 100%;
     padding-left: 5px;
     display: flex;
     align-items: center;
@@ -48,6 +55,7 @@
     color: #FFFFFF;
     background-color: #E4B717;
     border-radius: 15px;
+    width: 100%;
 }
 
 .categorSection {
@@ -58,6 +66,7 @@
     justify-content: center;
     height: 10px;
     align-items: center;
+    padding: 10px;
 }
 
 .table {
@@ -72,7 +81,8 @@
     padding-top: 10px;
 }
 
-.table ul li a {
+
+.table ul li a{
     color: #666565;
     font-weight: 700;
 }
@@ -99,24 +109,25 @@
     }
 }
 
-
-@media screen and (max-width:590px) {
+@media  screen and (max-width: 700px) {
     .selectCategory {
-        width: 96%;
+        width: 58%;
     }
 
     .table {
-        gap: 50px;
+        display: none;
+    }
+
+    .categorLeft h1{
+        font-size: 15px;
+    }
+
+    .categorLeft {
+        border: none;
     }
 }
 
-@media screen and (max-width:570px) {
-    .table {
-        gap: 30px;
-    }
-}
-
-@media screen and (max-width:480px) {
+/* @media screen and (max-width:480px) {
     .selectCategory {
         height: 185px;
         width: 96%;
@@ -140,7 +151,7 @@
 @media screen and (max-width:380px) {
     .selectCategory {
         height: 180px;
-        width: 60%;
+        width: 70%;
     }
 
     .table {
@@ -157,4 +168,4 @@
     }
 
 
-}
+} */
