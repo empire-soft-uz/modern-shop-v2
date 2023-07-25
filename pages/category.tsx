@@ -10,10 +10,7 @@ import Categories from "./components/global/Categories";
 import CardBurger from "./components/local/CardBurger";
 import axios from "axios";
 import Loader from "./components/local/Loader";
-import Liked from "./liked";
-import { title } from "process";
 import { useRouter } from "next/router";
-import { kMaxLength } from "buffer";
 
 export default function Categoriy() {
   const [cardBurger, setCardBurger] = useState<boolean>(false);
@@ -21,144 +18,11 @@ export default function Categoriy() {
   const [category, setCategory] = useState<any[] | any>([]);
   const [load, setLoad] = useState<boolean>(true);
 
-  const [apple, setApple] = useState(false);
-
   const [likedObj, setLikedObj] = useState<any[] | any>([]);
 
   const cardBurgerHandler = () => {
     setCardBurger(!cardBurger);
   };
-
-  const cardObj = [
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "icons/phone.svg",
-      width: 107,
-      height: 140,
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      price: "13.000.000сум",
-    },
-  ];
 
   const router = useRouter();
 

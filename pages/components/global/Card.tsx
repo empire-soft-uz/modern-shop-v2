@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import Aos from "aos";
 import likes from "../../../public/icons/like2.svg";
 import likeBlue from "../../../public/likeBlue.svg";
-import Liked from "@/pages/liked";
 import { useCookies } from 'react-cookie';
 import { Cookies } from "react-cookie";
 

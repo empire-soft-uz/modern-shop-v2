@@ -1,17 +1,19 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styles from "@/styles/head.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import Burger from "./Burger";
 
 const Header = () => {
-
-
   const [isBurgerOpen, setIsBurgerOpen] = useState<boolean | any>(false)
   const [mouseOver, setMouseOver] = useState<boolean>(false)
   const [language, setLanguage] = useState<string>("RU")
 
   const languges: string[] = ["RU", "EN", "UZ"]
+
+  useEffect(()=> {
+    isBurgerOpen ? document.body.style.overflow = "auto" : document.body.style.overflow = "auto"
+  }, [isBurgerOpen])
 
   return (
     <header className={styles.header}>
@@ -22,15 +24,23 @@ const Header = () => {
             color: "#E4B717",
             textTransform: "uppercase",
             fontWeight: 700,
-            fontSize: 29,
+            fontSize: 16,
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+            position: "relative",
           }}
         >
-          Modern
+          <Image src={"/images/logo.png"} alt="logo" width={97} height={57} /> <span style={{
+            position: "relative",
+            left: -16
+          }} >Modern shop</span>
         </Link>
         <div className={styles.search}>
           <input type="text" placeholder="Поиск" />
           <Image src="/icons/search.svg" alt="search icon" width={22} height={22} />
         </div>
+        <Burger isBurgerOpen={isBurgerOpen} setIsBurgerOpen={setIsBurgerOpen} />
         <div className={styles.contra}>
           <div onMouseOver={() => {
             setMouseOver(true)
@@ -53,7 +63,7 @@ const Header = () => {
               display: "none"
             } : {}}>
               {languges.map((e: string)=> {
-                return <h4 onClick={()=> {
+                return <h4 key={e} onClick={()=> {
                   setLanguage(e)
                   setMouseOver(false)
                 }}>{e}</h4>
@@ -88,7 +98,7 @@ const Header = () => {
               </Link>
             </div>
             <div className={styles.image}>
-              <Link href="/delivery">
+              <Link href="/cart">
                 <Image
                   src={"/icons/buy.svg"}
                   alt="language icon"
@@ -110,7 +120,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {isBurgerOpen && <Burger isBurgerOpen={isBurgerOpen} setIsBurgerOpen={setIsBurgerOpen} />}
     </header>
   );
 };

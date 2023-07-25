@@ -8,292 +8,112 @@ import Card from "./components/global/Card";
 import Footer from "./components/global/Footer";
 import { useState, useRef, useEffect } from "react";
 import HeaderTabs from "./components/local/HeaderTabs";
-import classes from "@/styles/allCategory.module.css";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import Link from "next/link";
-import { Navigation, Pagination } from "swiper/modules";
-import "swiper/css/navigation";
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css/navigation';
 import { useRouter } from "next/router";
-import "swiper/css/pagination";
-import backGetter from "@/utils/BackendGetter";
-import axios from "axios";
+import 'swiper/css/pagination';
+import axios from "axios"
 import Loader from "./components/local/Loader";
 
 export default function Home() {
   const [nav, setNav] = useState<number>(0);
-  const [buttonColor, setButtonColor] = useState<number>(0);
-  const [slidesPerView, setSlidesPerView] = useState<number>(4);
-  const [data, setData] = useState<object[] | any>([]);
-  const [likedObj, setLikedObj] = useState([]);
-  const [load, setLoad] = useState<boolean>(true);
+  const [buttonColor, setButtonColor] = useState<number>(0)
+  const [slidesPerView, setSlidesPerView] = useState<number>(4)
+  const [data, setData] = useState<any[] | any>([])
+  const [popularProducts, setPopularProducts] = useState<any[] | any>([])
+  const [slides, setSlides] = useState<any[] | any>([])
+  const [categories, setCategories] = useState<any | any[]>([])
+  const [load, setLoad] = useState<boolean>(true)
+  const [likedObj, setLikedObj] = useState<any[] | any>([]);
+  const router = useRouter()
 
-  const swiperRef = useRef(null);
-
-  const api = "https://modern-api.onrender.com";
-  const get = "api/products";
-
-  const router = useRouter();
 
   useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${api}/${get}`)
-      .then((res: any) => {
-        setData(res.data);
-      })
-      .catch((e: string) => console.log(e))
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
-  console.log(data);
-
-  const fakeObj = [
-    {
-      image: "/icons/phone.svg",
-      title: "Телефоны",
-      height: 29,
-      width: 52,
-    },
-    {
-      image: "/icons/uniform.svg",
-      title: "Одежда",
-      height: 51,
-      width: 65,
-    },
-    {
-      image: "/icons/home.svg",
-      title: "Для дома",
-      height: 51,
-      width: 52,
-    },
-    {
-      image: "/icons/pc.svg",
-      title: "Компютеры",
-      height: 47,
-      width: 49,
-    },
-    {
-      image: "/icons/toys.svg",
-      title: "Игрушки",
-      height: 51,
-      width: 52,
-    },
-    {
-      image: "/icons/sport.svg",
-      title: "Спортивное",
-      height: 60.5,
-      width: 36,
-    },
-  ];
-  const cardObj = [
-    {
-      image: "/images/productPhone.png",
-      w: 144,
-      h: 167,
-      title: "Iphone 14 PRO",
-      price: "13.000.000 сум",
-      cat: "Телефоны",
-    },
-    {
-      image: "/images/xboxController.png",
-      w: 181,
-      h: 192,
-      title: "Xbox",
-      price: "7.000.000 сум",
-      cat: "Приставки",
-    },
-    {
-      image: "/images/headPhone.png",
-      w: 179,
-      h: 190,
-      title: "Наушники SONY",
-      price: "300.000 сум",
-      cat: "Аксессуары",
-    },
-    {
-      image: "/images/smphone.png",
-      w: 160,
-      h: 173,
-      title: "Samsung M53",
-      price: "4.000.000 сум",
-      cat: "Телефоны",
-    },
-    {
-      image: "/images/productPhone.png",
-      w: 144,
-      h: 167,
-      title: "Iphone 14 PRO",
-      price: "13.000.000 сум",
-      cat: "Телефоны",
-    },
-    {
-      image: "/images/xboxController.png",
-      w: 181,
-      h: 192,
-      title: "Xbox",
-      price: "7.000.000 сум",
-      cat: "Приставки",
-    },
-    {
-      image: "/images/headPhone.png",
-      w: 179,
-      h: 190,
-      title: "Наушники SONY",
-      price: "300.000 сум",
-      cat: "Аксессуары",
-    },
-    {
-      image: "/images/smphone.png",
-      w: 160,
-      h: 173,
-      title: "Samsung M53",
-      price: "4.000.000 сум",
-      cat: "Телефоны",
-    },
-  ];
-  const cardObj1 = [
-    {
-      image: "/icons/phone.svg",
-      width: 95.51,
-      height: 113.35,
-      title: "Iphone 14 PRO",
-      cat: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "/icons/phone.svg",
-      width: 95.51,
-      height: 113.35,
-      title: "Iphone 14 PRO",
-      cat: "Телефоны",
-      price: "13.000000сум",
-    },
-    {
-      image: "/icons/phone.svg",
-      width: 95.51,
-      height: 113.35,
-      title: "Iphone 14 PRO",
-      cat: "Телефоны",
-      price: "13.000.000сум",
-    },
-    {
-      image: "/icons/phone.svg",
-      width: 95.51,
-      height: 113.35,
-      title: "Iphone 14 PRO",
-      cat: "Телефоны",
-      price: "13.000.000сум",
-    },
-  ];
+    setLoad(true)
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/products`).then((res: any) => {
+      setData(res.data)
+    }).catch((e: string) => console.log(e))
+  }, [])
 
   useEffect(() => {
-    document.body.offsetWidth < 680 && document.body.offsetWidth > 460
-      ? setSlidesPerView(3)
-      : document.body.offsetWidth < 460
-      ? setSlidesPerView(2)
-      : setSlidesPerView(4);
-  }, []);
+    setLoad(true)
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/categories`).then((res) => {
+      setCategories(res.data)
+    }).catch(err => console.log(err)).finally(() => {
+      setLoad(false)
+    })
+  }, [])
+  useEffect(() => {
+    setLoad(true)
+    axios.get(`${process.env.NEXT_PUBLIC_API}api/slides`).then((res) => {
+      setSlides(res.data)
+    }).catch(err => console.log(err)).finally(() => {
+      setLoad(false)
+    })
+  }, [])
+  useEffect(() => {
+    setLoad(true)
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/products?popularProducts=true`).then((res) => {
+      setPopularProducts(res.data)
+    }).catch(err => console.log(err)).finally(() => {
+      setLoad(false)
+    })
+  }, [])
+
+
+  useEffect(() => {
+    document.body.offsetWidth < 680 && document.body.offsetWidth > 460 ? setSlidesPerView(3) : document.body.offsetWidth < 460 ? setSlidesPerView(2) : setSlidesPerView(4)
+  }, [])
 
   const pagination: object = {
-    clickable: true,
-    renderBullet: function (index: number, className: string) {
-      return '<span class="' + className + '">' + (index + 1) + "</span>";
-    },
-  };
-
-  if (!load) {
-    return (
-      <>
-        <Head>
-          <title>Create Next App</title>
-          <meta name="description" content="Generated by create next app" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <main className={styles.home}>
-          <TopHeader />
-          <Header />
-          <Categories />
-          <div className={styles.container}>
-            <HeaderTabs
-              setButtonColor={setButtonColor}
-              buttonColor={buttonColor}
-            />
-            {buttonColor === 0 ? (
-              <>
+      clickable: true,
+      renderBullet: function (index: number, className: string) {
+        return '<span class="' + className + '">' + (index + 1) + '</span>';
+      },
+    };
+    if (!load) {
+      return (
+        <>
+          <Head>
+            <title>Create Next App</title>
+            <meta name="description" content="Generated by create next app" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <main className={styles.home}>
+            <TopHeader />
+            <Header />
+            <Categories />
+            <div className={styles.container}>
+              <HeaderTabs setButtonColor={setButtonColor} buttonColor={buttonColor} />
+              {buttonColor === 0 ? <>
                 <div>
                   <Swiper
                     pagination={pagination}
                     modules={[Pagination]}
                     className={styles.add}
                   >
-                    <SwiperSlide className={styles.addItem}>
-                      <div className={styles.addLeft}>
-                        <h1>iPhone 14 Pro</h1>
-                        <Image
-                          src="/images/iphone.png"
-                          alt="iphone image"
-                          width={308}
-                          height={410}
-                        />
-                        <div className={styles.controller}>
-                          {[1, 2, 3, 4].map((e: number) => {
-                            return <div key={e} className={styles.circle} />;
-                          })}
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className={styles.addItem}>
-                      <div className={styles.addLeft}>
-                        <h1>iPhone 14 Pro</h1>
-                        <Image
-                          src="/images/iphone.png"
-                          alt="iphone image"
-                          width={308}
-                          height={410}
-                        />
-                        <div className={styles.controller}>
-                          {[1, 2, 3, 4].map((e: number) => {
-                            return <div key={e} className={styles.circle} />;
-                          })}
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className={styles.addItem}>
-                      <div className={styles.addLeft}>
-                        <h1>iPhone 14 Pro</h1>
-                        <Image
-                          src="/images/iphone.png"
-                          alt="iphone image"
-                          width={308}
-                          height={410}
-                        />
-                        <div className={styles.controller}>
-                          {[1, 2, 3, 4].map((e: number) => {
-                            return <div key={e} className={styles.circle} />;
-                          })}
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                    <SwiperSlide className={styles.addItem}>
-                      <div className={styles.addLeft}>
-                        <h1>iPhone 14 Pro</h1>
-                        <Image
-                          src="/images/iphone.png"
-                          alt="iphone image"
-                          width={308}
-                          height={410}
-                        />
-                        <div className={styles.controller}>
-                          {[1, 2, 3, 4].map((e: number) => {
-                            return <div key={e} className={styles.circle} />;
-                          })}
-                        </div>
-                      </div>
-                    </SwiperSlide>
+                    {slides && slides.map((e: any) => {
+                      return <SwiperSlide key={e.id} className={styles.addItem}>
+                        <Link href={e.productId ? `/detail/${e.productId}` : `/company/${e.vendorId}`} className={styles.addLeft}>
+                          <h1>{e.title}</h1>
+                          <Image
+                            src={`${process.env.NEXT_PUBLIC_IMAGE_API}/${e.image.name}`}
+                            alt="iphone image"
+                            width={308}
+                            height={410}
+                          />
+                          <div className={styles.controller}>
+                            {[1, 2, 3, 4].map((e: number) => {
+                              return <div key={e} className={styles.circle} />;
+                            })}
+                          </div>
+                        </Link>
+                      </SwiperSlide>
+                    })}
                   </Swiper>
                 </div>
                 <div className={styles.categories}>
@@ -311,79 +131,56 @@ export default function Home() {
                     modules={[Navigation]}
                     navigation={true}
                   >
-                    {fakeObj.map((e: any) => {
-                      return (
-                        <SwiperSlide
-                          key={e.image}
-                          style={{
-                            marginRight: 0,
-                          }}
-                          className={styles.cat}
-                        >
-                          <div className={styles.catTop}>
-                            <Image
-                              src={e.image}
-                              alt={`${e.image} image`}
-                              width={e.width}
-                              height={e.height}
-                            />
-                          </div>
-                          <h4 className={styles.catTitle}>{e.title}</h4>
-                        </SwiperSlide>
-                      );
-                    })}
                   </Swiper>
                 </div>
                 <section className={styles.newProducts}>
                   <h3>Новые продукты</h3>
                   <div className={styles.newProductsWrapper}>
-                    {cardObj.map((card, index) => {
+                    {data && data?.products?.map((e: any, index: number) => {
                       return (
                         <Card
-                          setLikedObj={setLikedObj}
-                          likedObj={likedObj}
-                          url={`${index}`}
-                          title={card.title}
-                          image={card.image}
-                          width={card.w}
-                          height={card.h}
-                          price={card.price}
-                          cat={card.cat}
+                          animation="fade-down"
+                          cat={e.subcategory.name}
+                          url={e.id}
+                          height={300}
+                          width={300}
+                          image={e.media.length ?` ${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}` : "/images/14.png"}
+                          title={e.name}
+                          price={e.price[0].price}
                           key={index}
-                          animation={"fade-down"}
                           isLiked
+                          likedObj={likedObj}
+                          setLikedObj={setLikedObj}
                         />
-                      );
+                      )
                     })}
                   </div>
                   <button className={styles.loadMore}>Посмотреть больше</button>
-                </section>
                 <section className={styles.newProducts}>
                   <h3>Популярные продукты</h3>
                   <div className={styles.newProductsWrapper}>
-                    {cardObj.map((card, index) => {
+                    {popularProducts && popularProducts.products?.map((card: any, index: number) => {
                       return (
                         <Card
-                          isLiked
-                          likedObj={likedObj}
-                          setLikedObj={setLikedObj}
-                          url={`${index}`}
-                          title={card.title}
-                          image={card.image}
-                          width={card.w}
-                          height={card.h}
-                          price={card.price}
-                          cat={card.cat}
-                          key={index}
                           animation="fade-down"
+                          cat={card.subcategory.name}
+                          url={card.id}
+                          height={300}
+                          width={300}
+                          image={card.media.length ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${card.media[1]?.name}` : "/images/14.png"}
+                          title={card.name}
+                          price={card.price[0].price}
+                          key={index}
+                          isLiked likedObj={likedObj} setLikedObj={setLikedObj}
                         />
                       );
                     })}
                   </div>
                   <button className={styles.loadMore}>Посмотреть больше</button>
                 </section>
+              </section>
               </>
-            ) : (
+               : 
               <>
                 <div className={styles.navigation}>
                   <div
@@ -470,16 +267,11 @@ export default function Home() {
                   return (
                     <div className={styles.cards} key={e}>
                       <div className={styles.card__left}>
-                        <Link
-                          style={{
-                            color: "#000",
-                          }}
-                          href={`/company/${e}`}
-                          className={styles.card__title}
-                        >
+                        <Link style={{
+                          color: "#000"
+                        }} href={`/company/${e}`} className={styles.card__title}>
                           <Image
                             src={"/icons/profile.svg"}
-                            width={57}
                             height={57}
                             alt="profile"
                           />
@@ -491,43 +283,21 @@ export default function Home() {
                         <div className={styles.description}>
                           <p>Описание</p>
                           <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                            do eiusmod tempor incididunt ut labore et dolore magna
+                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                            ullamco laboris nisi ut aliquip ex ea commodo consequat.
                           </p>
                         </div>
                       </div>
                       <div className={styles.card__right}>
                         <div className={styles.cards__button}>
-                          <button
-                            onClick={() => {
-                              router.push(`/company/${e}`);
-                            }}
-                          >
-                            Посмотреть все товары
-                          </button>
+                          <button onClick={() => {
+                            router.push(`/company/${e}`)
+                          }}>Посмотреть все товары</button>
                           <button>Связаться</button>
                         </div>
                         <div className={styles.carusel__card}>
-                          {cardObj1.map((card, index) => {
-                            return (
-                              <Card
-                                isLiked
-                                likedObj={likedObj}
-                                setLikedObj={setLikedObj}
-                                url={`${index}`}
-                                image={card.image}
-                                height={card.height}
-                                width={card.width}
-                                title={card.title}
-                                price={card.price}
-                                cat={card.cat}
-                                animation="zoom-in"
-                              />
-                            );
-                          })}
                           <div className={styles.controllerProduct}>
                             <button>
                               <Image
@@ -570,14 +340,13 @@ export default function Home() {
                   <p>...</p>
                   <p>5</p>
                 </div>
-              </>
-            )}
-          </div>
-          <Footer />
-        </main>
-      </>
-    );
-  } else {
-    return <Loader />;
+              </>}
+            </div>
+            <Footer />
+          </main>
+        </>
+      );
+    } else {
+      return <Loader />
+    }
   }
-}
