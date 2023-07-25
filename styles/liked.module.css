@@ -1,0 +1,102 @@
+.likedSection {
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    width: 1180px;
+    padding: 10px 0;
+    margin: auto;
+}
+
+.Favorites {
+    display: flex;
+    padding: 10px 0;
+    margin: auto;
+}
+
+.likedCards {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.Card {
+    width: 24%;
+    padding: 14px 12.6px;
+    background-color: #fff;
+    border-radius: 20px;
+    height: 331px;
+}
+
+
+.cart {
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 50%;
+    width: 43.6px;
+    height: 45.58px;
+    background-color: #E4B717;
+}
+
+.order {
+    color: #E4B717;
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.like {
+    cursor: pointer;
+    padding-left: 30px;
+    justify-content: space-around;
+    display: flex;
+}
+
+.like button {
+    padding-left: 30px;
+    justify-content: space-around;
+    display: flex;
+    background: none;
+    border: none;
+}
+
+@media screen and (max-width:1180px) {
+    .likedSection {
+        padding: 10px 10px;
+        width: 100%;
+    }
+    .Card {
+        width:  30%;
+    }
+
+    .Favorites {
+        padding: 10px 10px;
+    }
+}
+@media screen and (max-width:768px) {
+    .likedSection {
+        padding: 10px 10px;
+        width: 100%;
+    }
+    .Card {
+        width: 42%;
+    }
+
+    .Favorites {
+        padding: 10px 10px;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .likedSection {
+        width: 100%;
+    }
+
+    .Card {
+        width: 100%;
+    }
+} 

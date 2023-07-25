@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     background: #fff;
-    width: 280px;
+    width: 23.725%;
     height: 331px;
     border-radius: 20px;
     justify-content: space-between;
@@ -11,6 +11,7 @@
     padding: 10px 20px;
     cursor: pointer;
 }
+
 
 .like {
     position: absolute;
@@ -28,6 +29,9 @@
 
 .card > img {
     margin: auto;
+    width: 150px;
+    height: auto;
+    max-height: 180px;
 }
 
 .card h4 {
@@ -41,6 +45,7 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .cart * {
@@ -55,4 +60,23 @@
     align-items: center;
     border-radius: 50px;
     background: #E4B717;
+}
+
+@media screen and (max-width: 1000px) {
+    .card {
+        width: 32.2%;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        width: 49.1%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .card {
+        width: 100%;
+    }
 }

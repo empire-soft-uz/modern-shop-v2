@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 
-const detail = () => {
+const Detail = () => {
     const router = useRouter()
     useEffect(()=> {
         router.push("/detail/1")
@@ -11,4 +11,4 @@ const detail = () => {
   )
 }
 
-export default detail
+export default Detail
