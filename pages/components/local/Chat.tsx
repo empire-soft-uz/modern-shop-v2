@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/chat.module.css";
 import Image from "next/image";
 
@@ -7,12 +7,53 @@ interface Chat {
 }
 
 const Chat = ({ setIsChatOpen }: Chat) => {
+  const [chatListOpener, setChatListOpener] = useState<boolean>(false)
   return (
     <>
       <div className={styles.chat}>
-        <div className={styles.left}>
+        <div className={styles.right}>
+          <div className={styles.userTop}>
+            <h3>Сообщения</h3>
+          </div>
+          <div className={styles.chatWith}>
+            {[1, 2, 34, 5, 6].map((e: number) => {
+              return (
+                <div key={e} className={styles.eachChat}>
+                  <Image
+                    src={"/images/user.png"}
+                    alt="user image"
+                    width={50}
+                    height={50}
+                  />
+                  <div className={styles.chatWithWhom}>
+                    <h4>Рафаэль Ройтман</h4>
+                    <p>Текст сообщения...</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className={!chatListOpener ? styles.left : styles.dn}>
           <div className={styles.top}>
+            <button onClick={() => {
+              setChatListOpener(true)
+            }} className={styles.arrowLeft}>
+              <Image src={"/icons/arrowLeft.png"} width={20} height={20} alt="arrow left" />
+            </button>
             <h3>Поставщик</h3>
+            <button
+              onClick={() => {
+                setIsChatOpen(false);
+              }}
+            >
+              <Image
+                src={"/icons/close.svg"}
+                alt="close chat icon"
+                width={21}
+                height={21}
+              />
+            </button>
           </div>
           <div className={styles.mainChat}>
             <div className={styles.message}>
@@ -51,7 +92,7 @@ const Chat = ({ setIsChatOpen }: Chat) => {
             <input type="file" accept="image/*" />
           </div>
         </div>
-        <div className={styles.right}>
+        <div className={chatListOpener ? styles.chats : styles.dn}>
           <div className={styles.userTop}>
             <h3>Сообщения</h3>
             <button
@@ -68,9 +109,11 @@ const Chat = ({ setIsChatOpen }: Chat) => {
             </button>
           </div>
           <div className={styles.chatWith}>
-            {[1, 2, 34, 5, 6].map((e: number) => {
+            {[1, 2, 3, 5, 6].map((e: number) => {
               return (
-                <div key={e} className={styles.eachChat}>
+                <div key={e} onClick={()=> {
+                  setChatListOpener(false)
+                }} className={styles.eachChat}>
                   <Image
                     src={"/images/user.png"}
                     alt="user image"

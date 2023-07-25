@@ -8,8 +8,9 @@
   font-family: 'Futura PT', sans-serif;
 }
 
-body {
+body, html, #__next {
   background: #FAF8F8;
+  height: fit-content;
   accent-color: #E4B717;
 }
 
@@ -42,4 +43,14 @@ button {
   width: 18px !important;
   color: transparent !important;
   user-select: none;
+}
+
+.react-datepicker__input-container > input {
+  padding: 20px !important;
+  padding-left: 0px !important;
+  border: none !important;
+  border-bottom: 1px solid #888888 !important;
+  outline: none !important;
+  font-size: 17px !important;
+  width: 100% !important;
 }

@@ -247,6 +247,7 @@ export default function Categoriy() {
             {cardObj.map((card, index) => {
               return (
                 <Card
+                url={`/detail/${index}`}
                   title={card.title}
                   image={card.image}
                   width={card.width}

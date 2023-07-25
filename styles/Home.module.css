@@ -41,7 +41,8 @@
 
 .addLeft > img {
   position: relative;
-  /* left: -20%; */
+  height: 100%;
+  width: auto;
 }
 
 .cart {
@@ -138,6 +139,15 @@
 
 .newProducts > h3 {
   font-size: 23px;
+}
+
+.carusel__card > a > img {
+  width: 95px;
+  height: auto;
+}
+
+.carusel__card > a > div {
+  margin-top: 0;
 }
 
 .newsWrapper {
@@ -271,6 +281,8 @@
 
 .cards__button {
   margin-left: 200px;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .cards__button button {
@@ -288,7 +300,6 @@
 .cards__button button:nth-child(2) {
   padding: 11px 52px;
   color: #ffffff;
-  margin-left: 10px;
   background-color: #e4b717;
 }
 
