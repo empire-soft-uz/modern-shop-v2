@@ -26,6 +26,7 @@ export default function Home() {
   const [buttonColor, setButtonColor] = useState<number>(0)
   const [slidesPerView, setSlidesPerView] = useState<number>(4)
   const [data, setData] = useState<any[] | any>([])
+  const [popularProducts, setPopularProducts] = useState<any[] | any>([])
   const [slides, setSlides] = useState<any[] | any>([])
   const [categories, setCategories] = useState<any | any[]>([])
   const [load, setLoad] = useState<boolean>(true)
@@ -55,8 +56,14 @@ export default function Home() {
       setLoad(false)
     })
   }, [])
-
-  console.log(slides)
+  useEffect(() => {
+    setLoad(true)
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/products?popularProducts=true`).then((res) => {
+      setPopularProducts(res.data)
+    }).catch(err => console.log(err)).finally(() => {
+      setLoad(false)
+    })
+  }, [])
 
   const fakeObj = [
     {
@@ -286,21 +293,6 @@ export default function Home() {
               <section className={styles.newProducts}>
                 <h3>Новые продукты</h3>
                 <div className={styles.newProductsWrapper}>
-                  {cardObj.map((card, index) => {
-                    return (
-                      <Card
-                        url={`${index}`}
-                        title={card.title}
-                        image={card.image}
-                        width={card.w}
-                        height={card.h}
-                        price={card.price}
-                        cat={card.cat}
-                        key={index}
-                        animation={"fade-down"}
-                      />
-                    );
-                  })}
                   {data && data?.products?.map((e: any, index: number) => {
                     return (
                       <Card
@@ -322,18 +314,18 @@ export default function Home() {
               <section className={styles.newProducts}>
                 <h3>Популярные продукты</h3>
                 <div className={styles.newProductsWrapper}>
-                  {cardObj.map((card, index) => {
+                  {popularProducts && popularProducts.products?.map((card: any, index: number) => {
                     return (
                       <Card
-                        url={`${index}`}
-                        title={card.title}
-                        image={card.image}
-                        width={card.w}
-                        height={card.h}
-                        price={card.price}
-                        cat={card.cat}
-                        key={index}
                         animation="fade-down"
+                        cat={card.subcategory.name}
+                        url={card.id}
+                        height={300}
+                        width={300}
+                        image={card.media.length ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${card.media[1]?.name}` : "/images/14.png"}
+                        title={card.name}
+                        price={card.price[0].price}
+                        key={index}
                       />
                     );
                   })}

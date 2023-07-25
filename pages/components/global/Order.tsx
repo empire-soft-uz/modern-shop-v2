@@ -35,7 +35,7 @@ const Order = ({ setOrder, order, selectedProduct }: Order) => {
   const handlePushToCart = () => {
     const updatedArray = [...array, {
       product: selectedProduct,
-      productId: id,
+      productId: Number(id),
       qty: 1
     }];
     setArray(updatedArray);

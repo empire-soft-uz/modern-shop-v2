@@ -27,8 +27,6 @@ const Cart = () => {
   const { selectedCard } = selectedCards
   const { userInfo } = userInform
 
-    console.log(selectedCard);
-
   useEffect(() => {
     order
       ? (document.body.style.overflow = "hidden")
@@ -46,39 +44,6 @@ const Cart = () => {
 
   }, [])
 
-  const OrderObj = [
-    {
-      image: "/icons/phone.svg",
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      color: "Зеленый",
-      memory: "256 гб",
-      price: "8.000.0000 сум",
-      width: 94,
-      height: 110,
-    },
-    {
-      image: "/icons/phone.svg",
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      color: "Зеленый",
-      memory: "256 гб",
-      price: "8.000.0000 сум",
-      width: 94,
-      height: 110,
-    },
-    {
-      image: "/icons/phone.svg",
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      color: "Зеленый",
-      memory: "256 гб",
-      price: "8.000.0000 сум",
-      width: 94,
-      height: 110,
-    },
-  ];
-
   if (!load) {
     return (
       <div className={styles.Delivery}>
@@ -89,9 +54,9 @@ const Cart = () => {
         <div className={styles.cart}>
           <h1 style={{ fontSize: 20, fontWeight: 700 }}>Корзина</h1>
         </div>
-        <section className={styles.DeliverySection}>
+        {selectedCard ? <section className={styles.DeliverySection}>
           <section className={styles.sectionLeft}>
-              {selectedCard.length && selectedCard?.map((card: any, index: number) => {
+              {selectedCard?.map((card: any, index: number) => {
               return (
                 <div key={index} className={styles.card}>
                   <input
@@ -184,7 +149,7 @@ const Cart = () => {
               </button>
             </div>
           </section>
-        </section>
+        </section> : <h2>You didn't ordered anything yet</h2>}
         <Footer />
       </div>
     );
