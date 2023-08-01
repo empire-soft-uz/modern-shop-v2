@@ -57,7 +57,7 @@ const Liked = ({like, setLike}: Like) => {
                   price={card.price}
                   cat={card.cat}
                   key={card.title}
-                  animation={"fade-down"}
+                  animation=""
                   likedObj={likedObj}
                   setLikedObj={setLikedObj}
                   isLiked

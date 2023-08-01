@@ -24,7 +24,6 @@ interface Card {
 }
 
 
-
 const Card = ({
   price,
   title,
@@ -35,8 +34,6 @@ const Card = ({
   animation,
   url,
   likedObj,
-  setLikedObj,
-  isLiked,
 }: Card) => {
   const router = useRouter();
 

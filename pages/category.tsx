@@ -175,7 +175,7 @@ export default function Categoriy() {
                   return (
                     <Card
                       animation="fade-down"
-                      cat={e.subcategory.name}
+                      cat={"e.subcategory.name"}
                       url={e.id}
                       height={300}
                       width={300}

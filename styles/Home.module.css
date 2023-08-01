@@ -39,7 +39,7 @@
   color: #fff;
 }
 
-.addLeft > img {
+.addLeft>img {
   position: relative;
   height: 100%;
   width: auto;
@@ -61,7 +61,7 @@
   background: transparent !important;
 }
 
-.cart > h3 {
+.cart>h3 {
   background: transparent !important;
 }
 
@@ -99,7 +99,7 @@
   background: transparent !important;
 }
 
-.cat > h4 {
+.cat>h4 {
   color: #8a8a8a;
 }
 
@@ -122,7 +122,7 @@
   cursor: pointer;
 }
 
-.swiperL > div {
+.swiperL>div {
   display: flex;
   gap: 2.7% !important;
 }
@@ -130,6 +130,7 @@
 .catControl:last-child {
   border: 1px solid #e4b717;
 }
+
 .newProducts {
   display: flex;
   flex-direction: column;
@@ -137,16 +138,16 @@
   margin-top: 2rem;
 }
 
-.newProducts > h3 {
+.newProducts>h3 {
   font-size: 23px;
 }
 
-.carusel__card > a > img {
+.carusel__card>a>img {
   width: 95px;
   height: auto;
 }
 
-.carusel__card > a > div {
+.carusel__card>a>div {
   margin-top: 0;
 }
 
@@ -197,37 +198,6 @@
   line-height: 160%;
 }
 
-.navigation {
-  width: 1180px;
-  display: flex;
-  align-items: center;
-  height: 65px;
-  background-color: #ffffff;
-  gap: 49px;
-  box-shadow: 0px 1px 10px 1px rgba(214, 214, 214, 0.19);
-  border-radius: 25px;
-  justify-content: center;
-  margin-top: 31px;
-}
-
-.nav {
-  border-bottom: 3px solid #ffffff;
-  height: 65px;
-  font-weight: 700;
-  padding-top: 15px;
-  cursor: pointer;
-}
-
-.navigation button {
-  padding: 10px 20px;
-  border: 1px solid #e4b717;
-  filter: drop-shadow(0px 1px 17px rgba(228, 183, 23, 0.25));
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 160%;
-  color: #e4b717;
-}
 
 .cards {
   padding: 19px 31px;
@@ -307,7 +277,8 @@
   transform: scale(0.9);
 }
 
-.carusel__card a {
+
+.carusel__card {
   position: relative;
   padding: 22px 12px;
   display: flex;
@@ -315,7 +286,7 @@
   gap: 20px;
 }
 
-.carusel__card a {
+.carusel__card div {
   width: 195.1px;
   height: 228.49px;
   background: #faf8f8;
@@ -323,22 +294,32 @@
   padding: 10px 15px;
 }
 
-.carusel__card a h3 {
+.carusel__card div h3 {
   font-size: 17px;
 }
 
-.carusel__card a h4 {
+.carusel__card div h4 {
   font-size: 14px;
 }
 
-.carusel__card a div:nth-child(2) {
-  width: 37.81px;
-  height: 38.7px;
-  }
+.carusel__card div div:nth-child(2) {
+  width: 36px;
+  height: 36px;
+}
 
-.carusel__card a div:last-child > img {
-  width: 17px;
-  height: 17px;
+.carusel__card div img:first-child{
+  width: 70px;
+  height: auto;
+}
+
+.carusel__card div div img:nth-child(2) {
+  width: 36px;
+  height: 36px;
+}
+
+.carusel__card div div:last-child>img {
+  width: 38.37px;
+  height: auto;
 }
 
 .controllerProduct {
@@ -349,7 +330,7 @@
   width: 100%;
 }
 
-.controllerProduct > button {
+.controllerProduct>button {
   width: 43px;
   height: 43px;
   background: #fff;
@@ -441,7 +422,7 @@
   color: #363636;
 }
 
-.carusel__card > a:nth-child(1) {
+.carusel__card>a:nth-child(1) {
   display: none;
 }
 
@@ -462,19 +443,20 @@
     padding-left: 1%;
     padding-right: 1%;
   }
+
   .cats {
     overflow: scroll;
   }
+
   .news {
     padding: 10px;
     border-radius: 10px;
   }
-  .navigation {
-    display: none;
-  }
+
   .cards {
     width: 100%;
   }
+
   .carusel {
     width: auto;
   }
@@ -486,16 +468,20 @@
     height: fit-content;
     padding: 10px;
   }
-  .carusel__card > a:nth-child(1) {
+
+  .carusel__card>div:nth-child(1) {
     display: flex;
   }
-  .carusel__card > a {
+
+  .carusel__card>div {
     width: 24%;
   }
+
   .description p:nth-child(2) {
     width: auto;
     margin-bottom: 1rem;
   }
+
   .cards__button {
     width: auto;
     align-items: flex-end;
@@ -503,96 +489,112 @@
     margin-left: 0;
     justify-content: flex-end;
   }
-  .cards__button > button {
+
+  .cards__button>button {
     padding: 10px 20px !important;
     font-size: 16px;
   }
 }
 
 @media screen and (max-width: 950px) {
-  .carusel__card > a {
+  .carusel__card>div {
     width: 32%;
   }
-  .carusel__card > a:nth-child(1) {
+
+  .carusel__card>div:nth-child(1) {
     display: none;
   }
-  .carusel__card > a {
+
+  .carusel__card>div {
     padding: 10px;
   }
 }
 
 @media screen and (max-width: 680px) {
-  .carusel__card > a:nth-child(2) {
+  .carusel__card>div:nth-child(2) {
     display: none;
   }
-  .carusel__card > a {
-    width: 49.1%;
+
+  .carusel__card>div {
+    width: 100% !important;
   }
+
   .cat {
     width: 32.7% !important;
   }
 }
 
 @media screen and (max-width: 460px) {
-  .carusel__card > a:nth-child(3) {
+  .carusel__card>div:nth-child(3) {
     display: none;
   }
-  .carusel__card > a {
-    width: 100%;
-  }
-  .cards__button{
+
+
+  .cards__button {
     flex-direction: column;
   }
-  .cards__button > button:last-child {
+
+  .cards__button>button:last-child {
     margin-left: 0;
   }
+
   .card__title {
     flex-direction: column;
     text-align: center;
   }
+
   .cat {
     width: 52% !important;
   }
 }
 
 @media screen and (max-width: 768px) {
-    .addLeft > img {
-      height: 250px;
-      width: auto;
-    }
-    .addLeft {
-      height: 300px;
-    }
-    .newsWrapper {
-      display: flex;
-      flex-direction: column;
-      row-gap: 1rem;
-    }
-    .news {
-      width: 100%;
-    }
-    .addLeft > h1 {
-      position: absolute;
-      top: 2%;
-      left: 3%;
-      z-index: 100000;
-    }
-    .addLeft {
-      border-radius: 20px;
-    }
-    .addLeft > img {
-      left: 25%;
-    }
-    .add {
-      margin-bottom: 0;
-      height: auto;
-    }
-    .catTop {
-      width: 90px;
-      height: 90px;
-    }
-    .catTop > img {
-      width: 30px;
-      height: auto;
-    }
+  .addLeft>img {
+    height: 250px;
+    width: auto;
+  }
+
+  .addLeft {
+    height: 300px;
+  }
+
+  .newsWrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+
+  .news {
+    width: 100%;
+  }
+
+  .addLeft>h1 {
+    position: absolute;
+    top: 2%;
+    left: 3%;
+    z-index: 100000;
+  }
+
+  .addLeft {
+    border-radius: 20px;
+  }
+
+  .addLeft>img {
+    left: 25%;
+  }
+
+  .add {
+    margin-bottom: 0;
+    height: auto;
+  }
+
+  .catTop {
+    width: 90px;
+    height: 90px;
+  }
+
+  .catTop>img {
+    width: 30px;
+    height: auto;
+  }
 }
