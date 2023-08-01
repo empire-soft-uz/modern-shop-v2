@@ -24,7 +24,8 @@ const Detail = () => {
   const [textLength, setTextLength] = useState<number>(1000)
   const [data, setData] = useState<any | any[]>([])
   const [props, setProps] = useState<any | any[]>([])
-  const [selectedMemory, setSelectedMemory] = useState<string>("")
+  const [selectedMemory, setSelectedMemory] = useState<string>("256GB")
+  const [selectedColor, setSelectedColor] = useState<string>("Gold")
 
   const router = useRouter()
   const { id } = router.query
@@ -101,10 +102,19 @@ const Detail = () => {
   const desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
 
   if (!load) {
+
     const selectedProduct = data && data.products?.find((product: any) => product.id === id)
     console.log(selectedProduct);
     const storage = selectedProduct?.props.filter((st: any) => st.prop.name === "Storage")
-    console.log(storage);
+    const colors = selectedProduct?.props.filter((st: any) => st.prop.name === "Color")
+    const warranty = selectedProduct?.props.find((wr: any) => wr.prop.name === "Warranty")
+    const manif = selectedProduct?.props.find((mf: any) => mf.prop.name === "Manufacturer")
+    const wtRs = selectedProduct?.props.find((wtrs: any) => wtrs.prop.name === "Water Resistance")
+    let checkWtRs
+    if (wtRs) {
+      let checkWtR = Boolean(wtRs?.value)
+      checkWtRs = checkWtR
+    }
     return (
       <>
         <Head>
@@ -122,20 +132,32 @@ const Detail = () => {
             <section className={styles.characteris}>
               <h3>
                 {selectedProduct ? selectedProduct.name : "Apple iPhone 14"} {" "}
-                {controllerM === 0 ? 256 : controllerM === 1 ? 512 : 1}
-                {controllerM < 2 ? "GB" : "TB"}
+                {selectedMemory}
               </h3>
               <div className={styles.characterisInfo}>
                 <div className={styles.leftSide}>
                   <button className={styles.selectedImage}>
                     <Image
-                      src={selectedProduct ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${selectedProduct?.media[2].name}` : "/images/14.png"}
+                      src={selectedProduct ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${selectedProduct?.media[2]?.name}` : "/images/14.png"}
                       alt="iphone 14"
                       width={353}
                       height={460}
                     />
                   </button>
+                  <div className={styles.imagesToSelect}>
+                      {[0, 1, 2].map((e: number) => {
+                        return <div key={e} className={styles.imageToSelect} style={e == 0 ? { boxShadow: "0px 1px 17px rgba(228, 183, 23, 0.3)" } : {}}>
+                          <Image
+                            src={selectedProduct ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${selectedProduct.media[e]?.name}` : "/images/smphone.png"}
+                            alt={selectedProduct ? selectedProduct.name : "another phone image"}
+                            width={71}
+                            height={84.5}
+                          />
+                        </div>
+                      })}
+                    </div>
                 </div>
+                
                 <Order selectedProduct={selectedProduct} order={order} setOrder={setOrder} />
                 <div className={styles.characterSide}>
                   <div className={styles.character}>
@@ -146,58 +168,58 @@ const Detail = () => {
                         <p>Встроенная память................</p>
                         <p>Оперативная память.............</p>
                         <p>Разрешение камеры.............</p>
+                        {warranty && <p>Гарантия.................................</p>}
+                        {manif && <p>Производитель......................</p>}
+                        {wtRs && <p>Водонепроницаемый...........</p>}
+                        <p>Цвет.........................................</p>
                       </div>
                       <div className={styles.characterInfoRight}>
                         <p>6.8</p>
                         <p>Snapdragon 8 Gen 2</p>
                         <p>
-                          {controllerM === 0 ? 256 : controllerM === 1 ? 512 : 1}{" "}
-                          {controllerM < 2 ? "Гб" : "Тб"}
+                          {selectedMemory}
                         </p>
                         <p>12 Гб</p>
                         <p>12 Мп, 10/10 Мп, 200 Мп</p>
+                        {warranty && <p>{warranty.value}</p>}
+                        {manif && <p>{manif.value}</p>}
+                        {wtRs && <p>{checkWtRs ? "Да" : "Нет"}</p>}
+                        <p>{selectedColor}</p>
                       </div>
                     </div>
-                    <button>Все характеристики</button>
                     {isChatOpen && <Chat setIsChatOpen={setIsChatOpen} />}
-                    <div
-                      style={{
-                        marginTop: "1.5rem",
-                      }}
-                      className={styles.characterInfo}
-                    >
-                      <div className={styles.characterInfoLeft}>
-                        <p>Цвет.........................................</p>
-                      </div>
-                      <div className={styles.characterInfoRight}>
-                        <p>Зеленый</p>
-                      </div>
-                    </div>
-                    <div className={styles.imagesToSelect}>
-                      {[0, 1, 2].map((e: number) => {
-                        return <div key={e} className={styles.imageToSelect} style={e == 0 ? { boxShadow: "0px 1px 17px rgba(228, 183, 23, 0.3)" } : {}}>
-                          <Image
-                            src={selectedProduct ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${selectedProduct?.media[e].name}` : "/images/smphone.png"}
-                            alt={selectedProduct ? selectedProduct.name : "another phone image"}
-                            width={71}
-                            height={84.5}
-                          />
-                        </div>
+                    <div className={styles.selectMemory}>
+                      {colors && colors.map((e: any, index: number) => {
+                        return <button
+                          type="button"
+                          key={index}
+                          className={
+                            selectedColor === e.value ? styles.memoryd : styles.memory
+                          }
+                          onClick={() => {
+                            setControllerM(index);
+                            setSelectedColor(e.value)
+                          }}
+                        >
+                          {e.value}
+                        </button>
                       })}
                     </div>
                     <div className={styles.selectMemory}>
-                      {storage && storage.map((e:any, index:number) => {
+                      {storage && storage.map((e: any, index: number) => {
                         return <button
-                        type="button"
-                        className={
-                          controllerM === 0 ? styles.memoryd : styles.memory
-                        }
-                        onClick={() => {
-                          setControllerM(0);
-                        }}
-                      >
-                        256 гб
-                      </button>
+                          type="button"
+                          key={index}
+                          className={
+                            selectedMemory === e.value ? styles.memoryd : styles.memory
+                          }
+                          onClick={() => {
+                            setControllerM(index);
+                            setSelectedMemory(e.value)
+                          }}
+                        >
+                          {e.value}
+                        </button>
                       })}
                     </div>
                   </div>
@@ -309,8 +331,7 @@ const Detail = () => {
                         <p>6.8</p>
                         <p>Snapdragon 8 Gen 2</p>
                         <p>
-                          {controllerM === 0 ? 256 : controllerM === 1 ? 512 : 1}
-                          {controllerM < 2 ? "Гб" : "Тб"}
+                          {selectedMemory}
                         </p>
                         <p>12 Гб</p>
                         <p>12 Мп, 10/10 Мп, 200 Мп</p>
@@ -328,8 +349,7 @@ const Detail = () => {
                         <p>6.8</p>
                         <p>Snapdragon 8 Gen 2</p>
                         <p>
-                          {controllerM === 0 ? 256 : controllerM === 1 ? 512 : 1}
-                          {controllerM < 2 ? "Гб" : "Тб"}
+                          {selectedMemory}
                         </p>
                         <p>12 Гб</p>
                         <p>12 Мп, 10/10 Мп, 200 Мп</p>
