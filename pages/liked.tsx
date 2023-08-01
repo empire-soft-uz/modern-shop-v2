@@ -5,7 +5,6 @@ import Buy from "@/public/images/Buy.png";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "./components/global/Footer";
-import AOS from "aos";
 import TopHeader from "./components/global/TopHeader";
 import Categories from "./components/global/Categories";
 import Card from "./components/global/Card";
@@ -26,7 +25,7 @@ const Liked = ({like, setLike}: Like) => {
 
   if (likedObj) {
     return (
-      <div className={styles.liked} data-aos="zoom-in-up">
+      <div className={styles.liked}>
         <TopHeader />
         <Header />
         <Categories />

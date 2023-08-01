@@ -8,15 +8,10 @@ import Categories from './components/global/Categories'
 import Header from './components/global/Header'
 import TopHeader from './components/global/TopHeader'
 import Footer from './components/global/Footer'
-import Aos from 'aos'
 
 const Delivery = () => {
   const [isOpened, setIsOpened] = useState<boolean>(false)
   const [isSelected, setIsSelected] = useState<number>(0)
-
-  useEffect(() => {
-    Aos.init()
-  }, [])
 
   return (
     <>

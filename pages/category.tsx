@@ -19,6 +19,7 @@ export default function Categoriy() {
   const [load, setLoad] = useState<boolean>(true);
 
   const [likedObj, setLikedObj] = useState<any[] | any>([]);
+  const [isLiked, setIsLiked] = useState<any | any[]>([])
 
   const cardBurgerHandler = () => {
     setCardBurger(!cardBurger);
@@ -62,7 +63,7 @@ export default function Categoriy() {
       });
   }, []);
 
-  
+
   if (!load && data) {
     return (
       <>
@@ -127,15 +128,15 @@ export default function Categoriy() {
                   />
                 </div>
                 <div className={styles.radioInput}>
-                  <input type="checkbox" />
+                  <input name="global" type="radio" />
                   <label>Samsung</label>
                 </div>
                 <div className={styles.radioInput}>
-                  <input type="checkbox" />
+                  <input name="global" type="radio" />
                   <label>Lg</label>
                 </div>
                 <div className={styles.radioInput}>
-                  <input type="checkbox" />
+                  <input name="global" type="radio" />
                   <label>Apple</label>
                 </div>
               </div>
@@ -156,44 +157,36 @@ export default function Categoriy() {
                   />
                 </div>
                 <div className={styles.checkBoxInput}>
-                  <input type="checkbox" />
+                  <input name="props" type="radio" />
                   <label>8 гб</label>
                 </div>
                 <div className={styles.checkBoxInput}>
-                  <input type="checkbox" />
+                  <input name="props" type="radio" />
                   <label>4 гб</label>
                 </div>
                 <div className={styles.checkBoxInput}>
-                  <input type="checkbox" />
+                  <input name="props" type="radio" />
                   <label>2 гб</label>
                 </div>
               </div>
             </section>
             <section className={styles.sectionRight}>
-              {data &&
-                data.products?.map((e: any, index: number) => {
-                  return (
-                    <Card
-                      animation="fade-down"
-                      cat={e.subcategory.name}
-                      url={e.id}
-                      height={300}
-                      width={300}
-                      image={
-                        e.media.length
-                          ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}`
-                          : "/images/14.png"
-                      }
-                      title={e.name}
-                      price={e.price[0].price}
-                      key={index}
-                      isLiked
-                      likedObj={likedObj}
-                      setLikedObj={setLikedObj}
-                    />
-                  );
-        
-                })}
+              {data && data.products?.map((e: any, index: number) => {
+                return <Card
+                  setLikedObj={setIsLiked}
+                  likedObj={isLiked}
+                  isLiked={false}
+                  animation="fadeDown"
+                  cat={e.subcategory.name}
+                  url={e.id}
+                  height={300}
+                  width={300}
+                  image={e.media.length ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}` : "/images/14.png"}
+                  title={e.name}
+                  price={e.price[0].price}
+                  key={index}
+                />
+              })}
             </section>
           </section>
           <div className={styles.carusel}>

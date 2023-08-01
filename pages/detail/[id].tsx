@@ -23,6 +23,8 @@ const Detail = () => {
   const [load, setLoad] = useState<boolean>(true)
   const [textLength, setTextLength] = useState<number>(1000)
   const [data, setData] = useState<any | any[]>([])
+  const [props, setProps] = useState<any | any[]>([])
+  const [selectedMemory, setSelectedMemory] = useState<string>("")
 
   const router = useRouter()
   const { id } = router.query
@@ -41,6 +43,17 @@ const Detail = () => {
     setLoad(true)
     axios.get(`${process.env.NEXT_PUBLIC_API}/api/products`).then((res: any) => {
       setData(res.data)
+    }).catch((err: string) => {
+      console.log(err)
+    }).finally(() => {
+      setLoad(false)
+    })
+  }, [])
+
+  useEffect(() => {
+    setLoad(true)
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/props`).then((res: any) => {
+      setProps(res.data)
     }).catch((err: string) => {
       console.log(err)
     }).finally(() => {
@@ -83,16 +96,15 @@ const Detail = () => {
       cat: "Телефоны",
     },
   ];
-
-  const sentence =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
   const videoRef = useRef<HTMLVideoElement | any>()
 
-  const desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. " 
+  const desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
 
   if (!load) {
     const selectedProduct = data && data.products?.find((product: any) => product.id === id)
+    console.log(selectedProduct);
+    const storage = selectedProduct?.props.filter((st: any) => st.prop.name === "Storage")
+    console.log(storage);
     return (
       <>
         <Head>
@@ -117,7 +129,7 @@ const Detail = () => {
                 <div className={styles.leftSide}>
                   <button className={styles.selectedImage}>
                     <Image
-                      src={selectedProduct ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${selectedProduct?.media[2].name}`: "/images/14.png"}
+                      src={selectedProduct ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${selectedProduct?.media[2].name}` : "/images/14.png"}
                       alt="iphone 14"
                       width={353}
                       height={460}
@@ -162,35 +174,20 @@ const Detail = () => {
                       </div>
                     </div>
                     <div className={styles.imagesToSelect}>
-                      {[0,1,2].map((e: number) => {
-                        return <div key={e} className={styles.imageToSelect} style={e == 0 ? {boxShadow: "0px 1px 17px rgba(228, 183, 23, 0.3)"} : {}}>
+                      {[0, 1, 2].map((e: number) => {
+                        return <div key={e} className={styles.imageToSelect} style={e == 0 ? { boxShadow: "0px 1px 17px rgba(228, 183, 23, 0.3)" } : {}}>
                           <Image
-                          src={selectedProduct ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${selectedProduct?.media[e].name}`: "/images/smphone.png"}
-                          alt={selectedProduct ? selectedProduct.name : "another phone image"}
-                          width={71}
-                          height={84.5}
-                        />
+                            src={selectedProduct ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${selectedProduct?.media[e].name}` : "/images/smphone.png"}
+                            alt={selectedProduct ? selectedProduct.name : "another phone image"}
+                            width={71}
+                            height={84.5}
+                          />
                         </div>
                       })}
                     </div>
-                    <div
-                      style={{
-                        marginTop: "1.5rem",
-                      }}
-                      className={styles.characterInfo}
-                    >
-                      <div className={styles.characterInfoLeft}>
-                        <p>Встроенная память...............</p>
-                      </div>
-                      <div className={styles.characterInfoRight}>
-                        <p>
-                          {controllerM === 0 ? 256 : controllerM === 1 ? 512 : 1}{" "}
-                          {controllerM < 2 ? "гб" : "тб"}
-                        </p>
-                      </div>
-                    </div>
                     <div className={styles.selectMemory}>
-                      <button
+                      {storage && storage.map((e:any, index:number) => {
+                        return <button
                         type="button"
                         className={
                           controllerM === 0 ? styles.memoryd : styles.memory
@@ -201,27 +198,7 @@ const Detail = () => {
                       >
                         256 гб
                       </button>
-                      <button
-                        onClick={() => {
-                          setControllerM(1);
-                        }}
-                        type="button"
-                        className={
-                          controllerM === 1 ? styles.memoryd : styles.memory
-                        }
-                      >
-                        512 гб
-                      </button>
-                      <button onClick={() => {
-                        setControllerM(2);
-                      }}
-                        type="button"
-                        className={
-                          controllerM === 2 ? styles.memoryd : styles.memory
-                        }
-                      >
-                        1 тб
-                      </button>
+                      })}
                     </div>
                   </div>
                 </div>
@@ -294,11 +271,11 @@ const Detail = () => {
                 </div>
               </div>
             </section>
-            <section className={styles.video}>
+            {selectedProduct && selectedProduct.video ? <section className={styles.video}>
               <div className={styles.hole}>
-                <video controls ref={videoRef} src="/videos/vieo.mp4" />
+                <video controls ref={videoRef} src={`${process.env.NEXT_PUBLIC_IMAGE_API}/${selectedProduct.video.name}`} />
               </div>
-            </section>
+            </section> : null}
             <div className={styles.selectDetail}>
               <button
                 className={controllerC === 0 ? styles.selected : styles.select}
@@ -367,7 +344,7 @@ const Detail = () => {
                       }}
 
                     >
-                      {selectedProduct? selectedProduct.description.substring(0, textLength) : desc.substring(0, textLength)} {selectedProduct && selectedProduct.description.length > 1000 ? <button onClick={() => {
+                      {selectedProduct ? selectedProduct.description.substring(0, textLength) : desc.substring(0, textLength)} {selectedProduct && selectedProduct.description.length > 1000 ? <button onClick={() => {
                         setTextLength(selectedProduct?.description.length)
                       }} style={textLength !== selectedProduct?.description.length ? {
                         color: "#179AE4",
@@ -381,7 +358,7 @@ const Detail = () => {
                         fontWeight: 700
                       } : {
                         display: "none"
-                      }}>[read more]</button> }
+                      }}>[read more]</button>}
                     </p>
                   </div>
                 </>
@@ -399,9 +376,9 @@ const Detail = () => {
                 {cardObj.map((card, index) => {
                   return (
                     <Card
-                    isLiked={false}
-                    likedObj={likedObj}
-                    setLikedObj={setLikedObj}
+                      isLiked={false}
+                      likedObj={likedObj}
+                      setLikedObj={setLikedObj}
                       url={`${index}`}
                       title={card.title}
                       image={card.image}

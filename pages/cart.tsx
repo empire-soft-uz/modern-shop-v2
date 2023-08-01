@@ -2,7 +2,6 @@ import React from "react";
 import styles from "@/styles/cart.module.css";
 import Image from "next/image";
 import Footer from "./components/global/Footer";
-import AOS from "aos";
 import { useState, useEffect } from "react";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
@@ -36,12 +35,10 @@ const Cart = () => {
 
   useEffect(() => {
     setLoad(true)
-
     axios.get(`${process.env.NEXT_PUBLIC_API}/api/categories`).then(res => {
       setCategories(res.data)
     }).catch(err => console.log(err))
     setLoad(false)
-
   }, [])
 
   if (!load) {
@@ -71,7 +68,7 @@ const Cart = () => {
                   />
                   <div className={styles.menu}>
                     <h1>{card.product ? card.product.name: `Phone named something ${card.productId}`}</h1>
-                    <p style={{ color: "#B7AFAF" }}>{card.product ? card.product.subcategory.name : "Artel"}</p>
+                    <p style={{ color: "#B7AFAF" }}>{card.product.subcategory ? card.product.subcategory.name : "Artel"}</p>
                     <div style={{ display: "flex", gap: 10, paddingTop: 7 }}>
                       <label>Цвет:</label>
                       <p>{card.color ? card.color : "Зеленый"}</p>

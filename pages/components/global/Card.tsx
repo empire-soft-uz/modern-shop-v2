@@ -3,11 +3,14 @@ import Image from "next/image";
 import styles from "@/styles/card.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Aos from "aos";
 import likes from "../../../public/icons/like2.svg";
 import likeBlue from "../../../public/likeBlue.svg";
 import { useCookies } from 'react-cookie';
 import { Cookies } from "react-cookie";
+
+import { AnimationOnScroll } from 'react-animation-on-scroll';
+import "animate.css/animate.min.css";
+
 
 interface Card {
   price: string;
@@ -45,13 +48,8 @@ const Card = ({
   const [cookies, setCookie] = useCookies(['likedObj']);
 
 
-
-  useEffect(() => {
-    Aos.init();
-  }, []);
-
   return (
-    <div className={styles.card} data-aos={animation}>
+    <AnimationOnScroll className={styles.card} duration={0.3} animateOut="animate__zoomOut" animateOnce animateIn={"animate__zoomIn"}>
       <Link className={styles.imageOfCard} href={`/detail/${url}`}>
         <Image src={image} alt="products image" width={width} height={height} />
 
@@ -103,7 +101,7 @@ const Card = ({
           height={45}
         />
       </div>
-    </div>
+    </AnimationOnScroll>
   );
 };
 

@@ -149,6 +149,7 @@ export default function Home() {
       return '<span class="' + className + '">' + (index + 1) + '</span>';
     },
   };
+  console.log(data);
   if (!load) {
     return (
       <>
@@ -205,6 +206,7 @@ export default function Home() {
                   className={styles.swiperL}
                   modules={[Navigation]}
                   navigation={true}
+                  autoplay={true}
                 >
                   {fakeObj.map((e: any) => {
                     return (
@@ -229,12 +231,13 @@ export default function Home() {
                 <h3>Новые продукты</h3>
                 <div className={styles.newProductsWrapper}>
                   {data && data?.products?.map((e: any, index: number) => {
+                    console.log(e);
                     return (
                       <Card
                         setLikedObj={setIsLiked}
                         likedObj={isLiked}
                         isLiked={false}
-                        animation="fade-down"
+                        animation="fadeDown"
                         cat={e.subcategory.name}
                         url={e.id}
                         height={300}
