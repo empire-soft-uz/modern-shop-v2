@@ -41,8 +41,8 @@
 
 .addLeft > img {
   position: relative;
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 60%;
 }
 
 .cart {
@@ -142,7 +142,7 @@
 }
 
 .carusel__card > a > img {
-  width: 95px;
+  width: 95px !important;
   height: auto;
 }
 

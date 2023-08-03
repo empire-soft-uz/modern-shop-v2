@@ -45,12 +45,14 @@ const Categories = () => {
             <div onClick={() => {
               setCategoryOpen(!isCategoryOpen)
             }} className={!isCategoryOpen ? styles.categ : styles.close}>
-              <h3>Категории</h3>
+              <h3>Все категории</h3>
               <Image src={!isCategoryOpen ? "/icons/categories.svg" : "/icons/modernClose.svg"} width={18} height={18} alt="just categories" />
             </div>
             <ul className={styles.selectList}>
-              {categories && categories.map((e: any) => {
-                return <li className={styles.selectItem} key={e.id} onMouseOver={() => {
+              {categories && categories.map((e: any, index :number) => {
+                return <li className={styles.selectItem} style={index > 4 ? {
+                  display:"none"
+                }: {}} key={e.id} onMouseOver={() => {
                   setMouseOver(true)
                   setSelected(e.name)
                 }} onMouseLeave={() => {
@@ -62,10 +64,7 @@ const Categories = () => {
                 </li>
               })}
             </ul>
-            <div style={{
-              opacity: 0
-            }}>Lorem ipsum dolor sit</div>
-            {isCategoryOpen && <SelectCategory selected={selected} categories={categories} />}
+             { isCategoryOpen && <SelectCategory selected={selected} categories={categories} />} 
           </div>
         </div>
       </>

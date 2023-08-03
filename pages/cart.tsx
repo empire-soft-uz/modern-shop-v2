@@ -2,7 +2,6 @@ import React from "react";
 import styles from "@/styles/cart.module.css";
 import Image from "next/image";
 import Footer from "./components/global/Footer";
-import AOS from "aos";
 import { useState, useEffect } from "react";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
@@ -27,8 +26,6 @@ const Cart = () => {
   const { selectedCard } = selectedCards
   const { userInfo } = userInform
 
-    console.log(selectedCard);
-
   useEffect(() => {
     order
       ? (document.body.style.overflow = "hidden")
@@ -38,46 +35,11 @@ const Cart = () => {
 
   useEffect(() => {
     setLoad(true)
-
     axios.get(`${process.env.NEXT_PUBLIC_API}/api/categories`).then(res => {
       setCategories(res.data)
     }).catch(err => console.log(err))
     setLoad(false)
-
   }, [])
-
-  const OrderObj = [
-    {
-      image: "/icons/phone.svg",
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      color: "Зеленый",
-      memory: "256 гб",
-      price: "8.000.0000 сум",
-      width: 94,
-      height: 110,
-    },
-    {
-      image: "/icons/phone.svg",
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      color: "Зеленый",
-      memory: "256 гб",
-      price: "8.000.0000 сум",
-      width: 94,
-      height: 110,
-    },
-    {
-      image: "/icons/phone.svg",
-      title: "Iphone 14 PRO",
-      kategoriya: "Телефоны",
-      color: "Зеленый",
-      memory: "256 гб",
-      price: "8.000.0000 сум",
-      width: 94,
-      height: 110,
-    },
-  ];
 
   if (!load) {
     return (
@@ -89,9 +51,9 @@ const Cart = () => {
         <div className={styles.cart}>
           <h1 style={{ fontSize: 20, fontWeight: 700 }}>Корзина</h1>
         </div>
-        <section className={styles.DeliverySection}>
+        {selectedCard ? <section className={styles.DeliverySection}>
           <section className={styles.sectionLeft}>
-              {selectedCard.length && selectedCard?.map((card: any, index: number) => {
+              {selectedCard?.map((card: any, index: number) => {
               return (
                 <div key={index} className={styles.card}>
                   <input
@@ -106,7 +68,7 @@ const Cart = () => {
                   />
                   <div className={styles.menu}>
                     <h1>{card.product ? card.product.name: `Phone named something ${card.productId}`}</h1>
-                    <p style={{ color: "#B7AFAF" }}>{card.product ? card.product.subcategory.name : "Artel"}</p>
+                    <p style={{ color: "#B7AFAF" }}>{card.product.subcategory ? card.product.subcategory.name : "Artel"}</p>
                     <div style={{ display: "flex", gap: 10, paddingTop: 7 }}>
                       <label>Цвет:</label>
                       <p>{card.color ? card.color : "Зеленый"}</p>
@@ -184,7 +146,7 @@ const Cart = () => {
               </button>
             </div>
           </section>
-        </section>
+        </section> : <h2>You didnt ordered anything yet</h2>}
         <Footer />
       </div>
     );

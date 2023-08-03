@@ -47,7 +47,8 @@ const Profile = () => {
     }).then(res => setProfile(res.data)).catch(err => console.log(err.message)).finally(() => {
       setLoad(false)
     })
-  }, [])
+    // @ts-ignore
+  }, [userInfo])
 
 
 

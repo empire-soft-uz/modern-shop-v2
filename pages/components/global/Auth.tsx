@@ -23,12 +23,14 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
     document.body.style.overflow = "hidden";
   }, []);
 
+  const dum = queue === 2.5
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((timer) => timer - 1);
     }, 1000);
     return () => clearInterval(interval);
-  }, [queue === 2.5]);
+  }, [dum]);
 
 
   const phoneRef = useRef<HTMLInputElement | any>()
@@ -93,12 +95,30 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
     if (codeRef && codeRef.current) {
       const isNumber = /\d/.test(codeRef.current.value)
       if (isNumber === true) {
-        axios.post(`${process.env.NEXT_PUBLIC_API}/api/users/register`, {
+        axios.put(`${process.env.NEXT_PUBLIC_API}/api/users/verify`, {
           phoneNumber: sessionStorage.getItem("userPhoneNumber"),
           code: codeRef.current.value
         }, {
           headers: {
             "Content-Type": "application/json"
+          }
+        }).catch(err => console.log(err))
+        setQueue(2.5)
+        codeRef.current.value = null
+      }
+    }
+  }
+
+  const handleCreatePassword = () => {
+    if (passRef && passRef2 && lastNameRef && userNameRef) {
+      if (passRef.current.value === passRef2.current.value) {
+        axios.post(`${process.env.NEXT_PUBLIC_API}/api/users/register`, {
+          password: passRef.current.value,
+          phoneNumber: sessionStorage.getItem("userPhoneNumber")
+        }, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: cookie.userInfo.userToken
           }
         }).then((res) => {
           setCookie("userInfo", {
@@ -107,22 +127,6 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
             userToken: res.data.token,
           })
         }).catch(err => console.log(err))
-        setQueue(2.5)
-      }
-    }
-  }
-
-  const handleCreatePassword = () => {
-    if (passRef && passRef2 && lastNameRef && userNameRef) {
-      if (passRef.current.value === passRef2.current.value) {
-        axios.put(`${process.env.NEXT_PUBLIC_API}/api/users/update`, {
-          password: passRef.current.value
-        }, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: cookie.userInfo.userToken
-          }
-        }).then((res) => console.log(res.data)).catch(err => console.log(err))
         localStorage.setItem("userName", userNameRef.current.value)
         localStorage.setItem("lastname", lastNameRef.current.value)
         localStorage.setItem("password", passRef.current.value)
@@ -136,20 +140,6 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
     }
   }
 
-
-
-  const get = "api/users";
-
-  useEffect(() => {
-    setLoad(true);
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API}/${get}`)
-      .then((res: any) => {
-        setData(res.data);
-      })
-      .catch((e: string) => console.log(e))
-  }, []);
-  console.log(data);
 
   return (
     <div className={isAuthOpen ? styles.authent : styles.dn}>
