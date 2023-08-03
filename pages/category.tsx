@@ -123,6 +123,11 @@ export default function Categoriy() {
               <CardBurger
                 setCardBurger={setCardBurger}
                 cardBurger={cardBurger}
+                selectedManif={selectedManif}
+                setSelectedManif={setSelectedManif}
+                color={color}
+                storage={storage}
+                manif={manif}
               />
             )}
             <section className={styles.sectionLeft}>
@@ -147,7 +152,6 @@ export default function Categoriy() {
                   </div>
 
                   {manif.map((e: any) => {
-                    // setSelectedManif(e.prop.name)
                     return (
                       <div
                         className={styles.radioInput}
@@ -157,7 +161,6 @@ export default function Categoriy() {
                       >
                         <input
                           type="radio"
-                          // checked={selectedManif === e.value ? true : false}
                           name={e.prop.name}
                         />
                         <label>{e.value}</label>
