@@ -16,9 +16,12 @@ export default function Categoriy() {
   const [cardBurger, setCardBurger] = useState<boolean>(false);
   const [data, setData] = useState<any[] | any>([]);
   const [category, setCategory] = useState<any[] | any>([]);
+  const [prop, setProp] = useState<any[] | any>([]);
   const [load, setLoad] = useState<boolean>(true);
+  const [selectedManif, setSelectedManif] = useState<string>("");
 
-  const [likedObj, setLikedObj] = useState<any[] | any>([]);
+  const [filtered, setFiltered] = useState<any[]>([]);
+  const [likedObj, setLikedObj] = useState<any[]>([]);
 
   const cardBurgerHandler = () => {
     setCardBurger(!cardBurger);
@@ -29,12 +32,6 @@ export default function Categoriy() {
   const { q } = router.query;
 
   console.log(q);
-
-  const cat = category.map((e: any) =>
-    e.subcategories.find((sub: any) => sub.name.toLocaleLowerCase() === q)
-  );
-
-  console.log(cat);
 
   useEffect(() => {
     setLoad(true);
@@ -52,6 +49,27 @@ export default function Categoriy() {
   useEffect(() => {
     setLoad(true);
     axios
+      .get(
+        `${process.env.NEXT_PUBLIC_API}/api/subcategories/64c87160e3e287afa132d410`
+      )
+      .then((res: any) => {
+        setProp(res.data);
+      })
+      .catch((e: string) => console.log(e))
+      .finally(() => {
+        setLoad(false);
+      });
+  }, []);
+
+  const storage =
+    prop && prop.props?.filter((e: any) => e.prop.name === "Storage");
+  const color = prop && prop.props?.filter((e: any) => e.prop.name === "Color");
+  const manif =
+    prop && prop.props?.filter((e: any) => e.prop.name === "Manufacturer");
+
+  useEffect(() => {
+    setLoad(true);
+    axios
       .get(`${process.env.NEXT_PUBLIC_API}/api/products`)
       .then((res: any) => {
         setData(res.data);
@@ -62,7 +80,25 @@ export default function Categoriy() {
       });
   }, []);
 
-  
+  console.log(selectedManif);
+
+  useEffect(() => {
+    data &&
+      data.products?.map((f: any) => {
+        console.log(
+          f.props.filter((s: any) => {
+            if (s.value === selectedManif) {
+              setFiltered([f]);
+            } else {
+              console.log("ewf");
+            }
+          })
+        );
+      });
+  }, [selectedManif]);
+
+  console.log(filtered);
+
   if (!load && data) {
     return (
       <>
@@ -90,88 +126,118 @@ export default function Categoriy() {
               />
             )}
             <section className={styles.sectionLeft}>
-              <div className={styles.price}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <p className={styles.priceTitle}>Цена</p>
-                  <Image
-                    src={"/toparrow.svg"}
-                    width={15}
-                    height={12}
-                    alt="toparrow"
-                  />
+              {manif && (
+                <div className={styles.manufacturer}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <p className={styles.manufacturerTitle}>
+                      {manif[0].prop.name}
+                    </p>
+                    <Image
+                      src={"/toparrow.svg"}
+                      width={15}
+                      height={12}
+                      alt="toparrow"
+                    />
+                  </div>
+
+                  {manif.map((e: any) => {
+                    // setSelectedManif(e.prop.name)
+                    return (
+                      <div
+                        className={styles.radioInput}
+                        onClick={() => {
+                          setSelectedManif(e.value);
+                        }}
+                      >
+                        <input
+                          type="radio"
+                          // checked={selectedManif === e.value ? true : false}
+                          name={e.prop.name}
+                        />
+                        <label>{e.value}</label>
+                      </div>
+                    );
+                  })}
                 </div>
-                <div className={styles.rangeSlider}>
-                  <MultiRangeSlider min={100} max={700} />
+              )}
+              {storage && (
+                <div className={styles.operative}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <p className={styles.operativeTitle}>
+                      {storage[0].prop.name}
+                    </p>
+                    <Image
+                      src={"/toparrow.svg"}
+                      width={15}
+                      height={12}
+                      alt="toparrow"
+                    />
+                  </div>
+                  {storage.map((e: any) => {
+                    return (
+                      <div
+                        className={styles.checkBoxInput}
+                        onClick={() => {
+                          setSelectedManif(e.value);
+                        }}
+                      >
+                        <input type="radio" name={e.prop.name} />
+                        <label>{e.value}</label>
+                      </div>
+                    );
+                  })}
                 </div>
-              </div>
-              <div className={styles.manufacturer}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <p className={styles.manufacturerTitle}>Производитель</p>
-                  <Image
-                    src={"/toparrow.svg"}
-                    width={15}
-                    height={12}
-                    alt="toparrow"
-                  />
+              )}
+              {color && (
+                <div className={styles.operative}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <p className={styles.operativeTitle}>
+                      {color[0].prop.name}
+                    </p>
+                    <Image
+                      src={"/toparrow.svg"}
+                      width={15}
+                      height={12}
+                      alt="toparrow"
+                    />
+                  </div>
+                  {color.map((e: any) => {
+                    return (
+                      <div
+                        className={styles.checkBoxInput}
+                        onClick={() => {
+                          setSelectedManif(e.value);
+                        }}
+                      >
+                        <input type="radio" name={e.prop.name} />
+                        <label>{e.value}</label>
+                      </div>
+                    );
+                  })}
                 </div>
-                <div className={styles.radioInput}>
-                  <input type="checkbox" />
-                  <label>Samsung</label>
-                </div>
-                <div className={styles.radioInput}>
-                  <input type="checkbox" />
-                  <label>Lg</label>
-                </div>
-                <div className={styles.radioInput}>
-                  <input type="checkbox" />
-                  <label>Apple</label>
-                </div>
-              </div>
-              <div className={styles.operative}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <p className={styles.operativeTitle}>Оператив. память</p>
-                  <Image
-                    src={"/toparrow.svg"}
-                    width={15}
-                    height={12}
-                    alt="toparrow"
-                  />
-                </div>
-                <div className={styles.checkBoxInput}>
-                  <input type="checkbox" />
-                  <label>8 гб</label>
-                </div>
-                <div className={styles.checkBoxInput}>
-                  <input type="checkbox" />
-                  <label>4 гб</label>
-                </div>
-                <div className={styles.checkBoxInput}>
-                  <input type="checkbox" />
-                  <label>2 гб</label>
-                </div>
-              </div>
+              )}
             </section>
             <section className={styles.sectionRight}>
-              {data &&
-                data.products?.map((e: any, index: number) => {
+              {filtered &&
+                filtered?.map((e: any, index: number) => {
                   return (
                     <Card
                       animation="fade-down"
@@ -192,7 +258,6 @@ export default function Categoriy() {
                       setLikedObj={setLikedObj}
                     />
                   );
-        
                 })}
             </section>
           </section>

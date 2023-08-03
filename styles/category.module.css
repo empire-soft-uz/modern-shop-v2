@@ -48,6 +48,7 @@
     margin-top: 5px;
 }
 
+
 .radioInput label {
     padding-left: 13px;
     font-weight: 450;
@@ -67,7 +68,6 @@
     margin-top: 19px;
     padding: 15px;
     width: 227px;
-    height: 124px;
     background: #FFFFFF;
     border-radius: 20px;
 }
@@ -75,6 +75,11 @@
 .operativeTitle {
     font-size: 18px;
     font-weight: 700;
+}
+
+.checkBoxInput, .radioInput {
+    display: flex;
+    align-items: center;
 }
 
 .checkBoxInput label {

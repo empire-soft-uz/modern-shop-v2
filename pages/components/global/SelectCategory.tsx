@@ -37,11 +37,9 @@ const SelectCategory = ({ categories, selected }: Categories) => {
 
   if (hovered && data) {
     const hvd = data.find((dt: any) => dt.id === hovered.id);
-    console.log(hvd);
   }
   data.find((dt:any) => {
     console.log(dt.id === "64c399c896ac6f4cfce07d37")
-    console.log(dt)
   })
   return (
     <div data-aos="zoom-in" className={styles.selectCategory}>
