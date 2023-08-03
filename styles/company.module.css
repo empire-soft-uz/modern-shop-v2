@@ -6,8 +6,7 @@
 }
 
 .companyTitle {
-    width: 1177px;
-    height: 199px;
+    width: 100%;
     background: #FFFFFF;
     border-radius: 20px;
     padding: 19px 28px;
@@ -38,7 +37,7 @@
     color: #8A8A8A;
 }
 
-.companyProfile button {
+.companyProfile a {
     padding: 10px 47px;
     background: #E4B717;
     box-shadow: 0px 1px 17px rgba(228, 183, 23, 0.25);
@@ -85,7 +84,7 @@
     cursor: pointer;
 }
 
-.navigation button {
+.navigation a {
     padding: 10px 20px;
     border: 1px solid #E4B717;
     filter: drop-shadow(0px 1px 17px rgba(228, 183, 23, 0.25));
@@ -97,7 +96,7 @@
 }
 
 .companyCards {
-    margin-top: 29px;
+    margin-top: 1.5rem;
 }
 
 .companyCards h2 {
@@ -230,7 +229,7 @@
         font-size: 13px;
     }
 
-    .companyProfile button {
+    .companyProfile a {
         padding: 8px 35px;
         background: #E4B717;
         box-shadow: 0px 1px 17px rgba(228, 183, 23, 0.25);
@@ -314,7 +313,7 @@
         font-size: 12px;
     }
 
-    .companyProfile button {
+    .companyProfile a {
         padding: 8px 35px;
         background: #E4B717;
         box-shadow: 0px 1px 17px rgba(228, 183, 23, 0.25);

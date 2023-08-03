@@ -14,6 +14,7 @@ body, html, #__next {
   height: fit-content;
   --form-control-color: #E4B71;
   accent-color: #E4B717;
+  height: 100%;
 }
 
 li {

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import AOS from "aos";
 import styles from "@/styles/changePass.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,9 +8,6 @@ interface ChangePass {
 }
 
 const ChanchePassword = ({ setIsChangePassOpen }: ChangePass) => {
-  useEffect(() => {
-    AOS.init();
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -21,21 +17,19 @@ const ChanchePassword = ({ setIsChangePassOpen }: ChangePass) => {
 
   const [timer, setTimer] = useState<number>(61);
 
+  const dum = queue === 1.1
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((timer) => timer - 1);
     }, 1000);
     return () => clearInterval(interval);
-  }, [queue === 1.1]);
+  }, [dum]);
 
   return (
     <div className={styles.ChangePass}>
       <div
         className={styles.ChangeForm}
-        data-aos="fade-zoom-in"
-        data-aos-easing="ease-in-back"
-        data-aos-delay="200"
-        data-aos-offset="0"
       >
         <button
           className={styles.exit}
@@ -117,27 +111,27 @@ const ChanchePassword = ({ setIsChangePassOpen }: ChangePass) => {
           style={
             queue === 1.1 && timer === 0
               ? {
-                  color: "#f00",
-                }
+                color: "#f00",
+              }
               : {
-                  color: "#888",
-                }
+                color: "#888",
+              }
           }
           onClick={() => {
             queue === 0
               ? setQueue(1)
               : queue === 1 || queue === 2
-              ? setQueue(0)
-              : queue === 1.1
-              ? setTimer(60)
-              : setQueue(1.1);
+                ? setQueue(0)
+                : queue === 1.1
+                  ? setTimer(60)
+                  : setQueue(1.1);
           }}
         >
           {queue === 0
             ? ""
             : queue === 2.2
-            ? ""
-            : `Запросить еще раз ( 0:${timer >= 0 ? timer : setTimer(0)} )`}
+              ? ""
+              : `Запросить еще раз ( 0:${timer >= 0 ? timer : setTimer(0)} )`}
         </button>
       </div>
       <div

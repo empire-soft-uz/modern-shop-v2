@@ -41,8 +41,8 @@
 
 .addLeft>img {
   position: relative;
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 60%;
 }
 
 .cart {
@@ -142,8 +142,8 @@
   font-size: 23px;
 }
 
-.carusel__card>a>img {
-  width: 95px;
+.carusel__card > a > img {
+  width: 95px !important;
   height: auto;
 }
 
@@ -283,42 +283,43 @@
   padding: 22px 12px;
   display: flex;
   align-items: center;
+  height: auto;
   gap: 20px;
 }
 
 .carusel__card div {
-  width: 195.1px;
-  height: 228.49px;
+  width: 195px;
+  height: auto;
   background: #faf8f8;
   border-radius: 20px;
-  padding: 10px 15px;
+  box-sizing: border-box;
+  padding: 10px 20px;
 }
 
-.carusel__card div h3 {
+.carusel__card a h3 {
   font-size: 17px;
+  padding-left: 0px;
 }
 
-.carusel__card div h4 {
+.carusel__card a h4 {
   font-size: 14px;
 }
 
 .carusel__card div div:nth-child(2) {
-  width: 36px;
-  height: 36px;
-}
-
-.carusel__card div img:first-child{
-  width: 70px;
+  width: 42px;
   height: auto;
 }
 
-.carusel__card div div img:nth-child(2) {
-  width: 36px;
+.carusel__card div div:nth-child(3) {
+  width: 190px;
+  margin-left: -90px;
+  gap: 30px;
   height: 36px;
 }
 
-.carusel__card div div:last-child>img {
-  width: 38.37px;
+
+.carusel__card a img:first-child{
+  width: 70px;
   height: auto;
 }
 
@@ -330,7 +331,7 @@
   width: 100%;
 }
 
-.controllerProduct>button {
+.controllerProduct > button {
   width: 43px;
   height: 43px;
   background: #fff;
@@ -433,8 +434,6 @@
 .addItem {
   width: 100% !important;
 }
-
-
 
 
 @media screen and (max-width: 1200px) {

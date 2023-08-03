@@ -103,10 +103,9 @@
     flex-wrap: wrap;
 }
 
-.sectionRight>a {
-    width: 24%;
+.sectionRight>div {
+    width: 32%;
 }
-
 
 .carusel {
     align-items: center;

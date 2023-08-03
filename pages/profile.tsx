@@ -37,19 +37,17 @@ const Profile = () => {
   });
 
   useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/users/current`, {
-        headers: {
-          Authorization: userInfo ? userInfo.userToken : "",
-        },
-      })
-      .then((res) => setProfile(res.data))
-      .catch((err) => console.log(err.message))
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
+    setLoad(true)
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/users/current`, {
+      headers: {
+        Authorization: userInfo ? userInfo.userToken : ""
+      }
+    }).then(res => setProfile(res.data)).catch(err => console.log(err.message)).finally(() => {
+      setLoad(false)
+    })
+    // @ts-ignore
+  }, [userInfo])
+
 
   const objCard = [
     {

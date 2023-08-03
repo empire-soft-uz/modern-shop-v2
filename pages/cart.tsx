@@ -2,7 +2,6 @@ import React from "react";
 import styles from "@/styles/cart.module.css";
 import Image from "next/image";
 import Footer from "./components/global/Footer";
-import AOS from "aos";
 import { useState, useEffect } from "react";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
@@ -27,8 +26,6 @@ const Cart = () => {
   const { selectedCard } = selectedCards;
   const { userInfo } = userInform;
 
-  console.log(selectedCard);
-
   useEffect(() => {
     order
       ? (document.body.style.overflow = "hidden")
@@ -36,16 +33,12 @@ const Cart = () => {
   }, [order]);
 
   useEffect(() => {
-    setLoad(true);
-
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/categories`)
-      .then((res) => {
-        setCategories(res.data);
-      })
-      .catch((err) => console.log(err));
-    setLoad(false);
-  }, []);
+    setLoad(true)
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/categories`).then(res => {
+      setCategories(res.data)
+    }).catch(err => console.log(err))
+    setLoad(false)
+  }, [])
 
   if (!load) {
     return (
@@ -61,7 +54,7 @@ const Cart = () => {
         <div className={styles.cart}>
           <h1 style={{ fontSize: 20, fontWeight: 700 }}>Корзина</h1>
         </div>
-        <section className={styles.DeliverySection}>
+        {selectedCard ? <section className={styles.DeliverySection}>
           <section className={styles.sectionLeft}>
             {selectedCard &&
               selectedCard?.map((card: any, index: number) => {
@@ -173,7 +166,7 @@ const Cart = () => {
               </button>
             </div>
           </section>
-        </section>
+        </section> : <h2>You didnt ordered anything yet</h2>}
         <Footer />
       </div>
     );

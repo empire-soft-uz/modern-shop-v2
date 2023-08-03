@@ -159,10 +159,7 @@ export default function Categoriy() {
                           setSelectedManif(e.value);
                         }}
                       >
-                        <input
-                          type="radio"
-                          name={e.prop.name}
-                        />
+                        <input type="radio" name={e.prop.name} />
                         <label>{e.value}</label>
                       </div>
                     );
@@ -244,7 +241,7 @@ export default function Categoriy() {
                   return (
                     <Card
                       animation="fade-down"
-                      cat={"e.subcategory.name"}
+                      cat={e.subcategory.name}
                       url={e.id}
                       height={300}
                       width={300}

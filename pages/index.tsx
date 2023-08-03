@@ -25,10 +25,12 @@ export default function Home() {
   const [data, setData] = useState<any[] | any>([]);
   const [popularProducts, setPopularProducts] = useState<any[] | any>([]);
   const [slides, setSlides] = useState<any[] | any>([]);
+  const [isLiked, setIsLiked] = useState<any[] | any>([]);
   const [categories, setCategories] = useState<any | any[]>([]);
   const [load, setLoad] = useState<boolean>(true);
-  const [likedObj, setLikedObj] = useState<any[] | any>([]);
-  const [vendor, setVendor] = useState<any[] | any>([])
+  const [likedObj, setLikedObj] = useState<any[]>([]);
+
+  const [vendor, setVendor] = useState<any[] | any>([]);
   const router = useRouter();
 
   const objCard = [
@@ -114,16 +116,49 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    setLoad(true)
-    axios.get(`${process.env.NEXT__PUBLIC_API}/api/vendors`)
-    .then((res) => {
-      setVendor(res.data)
-    })
-    .catch((err) => console.log(err))
-    .finally(() => {
-      setLoad(false)
-    })
-  })
+    setLoad(true);
+    axios
+      .get(`${process.env.NEXT__PUBLIC_API}/api/vendors`)
+      .then((res) => {
+        setVendor(res.data);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setLoad(false);
+      });
+  }, []);
+  useEffect(() => {
+    setLoad(true);
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}/api/slides`)
+      .then((res) => {
+        setSlides(res.data);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setLoad(false);
+      });
+  }, []);
+  useEffect(() => {
+    setLoad(true);
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}/api/products?popularProducts=true`)
+      .then((res) => {
+        setPopularProducts(res.data);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setLoad(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    document.body.offsetWidth < 680 && document.body.offsetWidth > 460
+      ? setSlidesPerView(3)
+      : document.body.offsetWidth < 460
+      ? setSlidesPerView(2)
+      : setSlidesPerView(4);
+  }, []);
 
   const pagination: object = {
     clickable: true,
@@ -131,6 +166,7 @@ export default function Home() {
       return '<span class="' + className + '">' + (index + 1) + "</span>";
     },
   };
+  console.log(data);
   if (!load) {
     return (
       <>
@@ -242,7 +278,7 @@ export default function Home() {
                             return (
                               <Card
                                 animation="fade-down"
-                                cat={"card.subcategory.name"}
+                                cat={card.subcategory.name}
                                 url={card.id}
                                 height={300}
                                 width={300}
@@ -349,7 +385,7 @@ export default function Home() {
                                 height={20}
                               />
                             </button>
-                          </section> 
+                          </section>
                         </div>
                       </div>
                     </div>
@@ -369,10 +405,6 @@ export default function Home() {
                   >
                     <p>1</p>
                   </div>
-                  <p>2</p>
-                  <p>3</p>
-                  <p>...</p>
-                  <p>5</p>
                 </div>
               </>
             )}
