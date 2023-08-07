@@ -29,6 +29,12 @@ const SelectCategory = ({ categories, selected }: Categories) => {
 
   }, []);
 
+  if (hovered && data) {
+    const hvd = data.find((dt: any) => dt.id === hovered.id);
+  }
+  data.find((dt:any) => {
+    console.log(dt.id === "64c399c896ac6f4cfce07d37")
+  })
   return (
     <div className={styles.selectCategory}>
       <section className={styles.categorSection}>
@@ -40,12 +46,6 @@ const SelectCategory = ({ categories, selected }: Categories) => {
                   <div  onMouseOver={()=> {
                 setHovered(e)
               }}   className={styles.iconOfCat}>
-                    {/* <Image
-                    src={`${process.env.NEXT_PUBLIC_IMAGE_API}/${e.icon.name}`}
-                    width={100}
-                    height={100}
-                    alt="dress"
-                  /> */}
                     <h1>{e.name}</h1>
                   </div>
                 </div>

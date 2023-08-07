@@ -21,7 +21,6 @@ const cookies = new Cookies()
 const Liked = ({like, setLike}: Like) => {
   const [likedObj, setLikedObj] = useState<any[] | any>([]);
 
-  // const arr = likedObj.find(likedObj)
 
   if (likedObj) {
     return (
@@ -45,7 +44,7 @@ const Liked = ({like, setLike}: Like) => {
                   price={card.price}
                   cat={card.cat}
                   key={card.title}
-                  animation={"fade-down"}
+                  animation=""
                   likedObj={likedObj}
                   setLikedObj={setLikedObj}
                   isLiked
