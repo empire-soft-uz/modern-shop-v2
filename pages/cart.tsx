@@ -10,7 +10,9 @@ import Order from "./components/global/Order";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import Loader from "./components/local/Loader";
-
+import { v4 as uuidv4 } from "uuid"
+import ICategory from "@/interfaces/ICategory";
+import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
 const Cart = () => {
   const [order, setOrder] = useState<boolean>(false);
   const [allPrice, setAllPrice] = useState(false);
@@ -18,7 +20,8 @@ const Cart = () => {
   const [selectedType, setSelectedType] = useState<any[] | any>([]);
 
   const [data, setData] = useState<any | any[]>([]);
-  const [categories, setCategories] = useState<any | any[]>([]);
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [subCategories, setSubCategories] = useState<ISubCategories[]>([]);
   const [cookie] = useCookies(["aboutUser"]);
   const [userInform] = useCookies(["userInfo"]);
   const [selectedCards] = useCookies(["selectedCard"]);
@@ -34,10 +37,20 @@ const Cart = () => {
 
   useEffect(() => {
     setLoad(true)
-    axios.get(`${process.env.NEXT_PUBLIC_API}/api/categories`).then(res => {
-      setCategories(res.data)
-    }).catch(err => console.log(err))
-    setLoad(false)
+    const fetchData = async () => {
+      try {
+        const categories = await axios.get("/categories")
+        const subCategories = await axios.get("/subcategories")
+        const [res1, res2] = await axios.all([categories, subCategories])
+        setCategories(res1.data)
+        setSubCategories(res2.data)
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoad(false)
+      }
+    }
+    fetchData()
   }, [])
 
   if (!load) {
@@ -45,7 +58,7 @@ const Cart = () => {
       <div className={styles.Delivery}>
         <TopHeader />
         <Header />
-        <Categories />
+        <Categories categories={categories} subcategories={subCategories} />
         <Order
           selectedProduct={selectedCard}
           order={order}
@@ -59,7 +72,7 @@ const Cart = () => {
             {selectedCard &&
               selectedCard?.map((card: any, index: number) => {
                 return (
-                  <div key={index} className={styles.card}>
+                  <div key={uuidv4()} className={styles.card}>
                     <input className={styles.input} type="checkbox" />
                     <Image
                       src={

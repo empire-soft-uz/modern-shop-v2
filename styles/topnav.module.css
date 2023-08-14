@@ -38,12 +38,8 @@
 }
 
 
-@media screen and (max-width: 1000px) {
-    .navigation {
-        display: none;
-    }
-
+@media screen and (max-width: 768px) {
     .topNavBar {
-        justify-content: flex-end;
+        display: none;
     }
 }

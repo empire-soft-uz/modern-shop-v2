@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
-
+import { v4 as uuidv4 } from "uuid"
 interface Categories {
   categories: any | any[];
   selected: string;
@@ -32,9 +32,6 @@ const SelectCategory = ({ categories, selected }: Categories) => {
   if (hovered && data) {
     const hvd = data.find((dt: any) => dt.id === hovered.id);
   }
-  data.find((dt:any) => {
-    console.log(dt.id === "64c399c896ac6f4cfce07d37")
-  })
   return (
     <div className={styles.selectCategory}>
       <section className={styles.categorSection}>
@@ -42,7 +39,7 @@ const SelectCategory = ({ categories, selected }: Categories) => {
           {categories &&
             categories?.map((e: any, index: number) => {
               return (
-                <div key={index} className={styles.categorLeft}>
+                <div key={uuidv4()} className={styles.categorLeft}>
                   <div  onMouseOver={()=> {
                 setHovered(e)
               }}   className={styles.iconOfCat}>
@@ -55,7 +52,7 @@ const SelectCategory = ({ categories, selected }: Categories) => {
         <div className={styles.categorRight}>
           <ul>
             {hovered !== "" && hovered.subcategories.map((e: any, index: number) => {
-              return <li key={index}><Link key={index} style={{ color: "#666565" }} href={`/category?q=${e.name.toLocaleLowerCase()}`}>{e.name}</Link></li>
+              return <li key={uuidv4()}><Link key={index} style={{ color: "#666565" }} href={`/category?q=${e.name.toLocaleLowerCase()}`}>{e.name}</Link></li>
             })}
           </ul>
         </div>

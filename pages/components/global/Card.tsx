@@ -10,7 +10,7 @@ import { Cookies } from "react-cookie";
 
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import "animate.css/animate.min.css";
-
+import { v4 as uuidv4 } from "uuid"
 
 interface Card {
   price: string;
@@ -39,17 +39,15 @@ const Card = ({
   likedObj,
 }: Card) => {
   const router = useRouter();
-
   const [like, setLike] = useState(false);
 
   const [cookies, setCookie] = useCookies(['likedObj']);
 
 
   return (
-    <AnimationOnScroll className={styles.card} duration={0.3} animateOut="animate__zoomOut" animateOnce animateIn={"animate__zoomIn"}>
+    <AnimationOnScroll key={uuidv4()} className={styles.card} duration={0.3} animateOut="animate__zoomOut" animateOnce animateIn={"animate__zoomIn"}>
       <Link className={styles.imageOfCard} href={`/detail/${url}`}>
         <Image src={image} alt="products image" width={width} height={height} />
-
         <div className={styles.somevalues}>
           <h3
             style={{

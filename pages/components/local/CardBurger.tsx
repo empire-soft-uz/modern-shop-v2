@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import MultiRangeSlider from "./MultiRangeSlider";
 import styles from "@/styles/cardBurger.module.css";
-
+import { v4 as uuidv4 } from "uuid"
 interface card {
   setCardBurger: Function;
   cardBurger: boolean;
@@ -59,6 +59,7 @@ const CardBurger = ({
             {manif.map((e: any) => {
               return (
                 <div
+                key={uuidv4()}
                   className={styles.radioInput}
                   onClick={() => {
                     setSelectedManif(e.value);
@@ -91,6 +92,7 @@ const CardBurger = ({
             {storage.map((e: any) => {
               return (
                 <div
+                key={uuidv4()}
                   className={styles.checkBoxInput}
                   onClick={() => {
                     setSelectedManif(e.value);
@@ -123,6 +125,7 @@ const CardBurger = ({
             {color.map((e: any) => {
               return (
                 <div
+                key={uuidv4()}
                   className={styles.checkBoxInput}
                   onClick={() => {
                     setSelectedManif(e.value);

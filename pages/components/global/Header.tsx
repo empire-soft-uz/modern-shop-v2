@@ -3,7 +3,7 @@ import styles from "@/styles/head.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import Burger from "./Burger";
-
+import { v4 as uuidv4 } from "uuid"
 const Header = () => {
   const [isBurgerOpen, setIsBurgerOpen] = useState<boolean | any>(false)
   const [mouseOver, setMouseOver] = useState<boolean>(false)
@@ -63,7 +63,7 @@ const Header = () => {
               display: "none"
             } : {}}>
               {languges.map((e: string)=> {
-                return <h4 key={e} onClick={()=> {
+                return <h4 key={uuidv4()} onClick={()=> {
                   setLanguage(e)
                   setMouseOver(false)
                 }}>{e}</h4>

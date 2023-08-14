@@ -11,11 +11,13 @@ import CardBurger from "./components/local/CardBurger";
 import axios from "axios";
 import Loader from "./components/local/Loader";
 import { useRouter } from "next/router";
-
+import { v4 as uuidv4 } from "uuid"
+import ICategory from "@/interfaces/ICategory";
+import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
 export default function Categoriy() {
   const [cardBurger, setCardBurger] = useState<boolean>(false);
   const [data, setData] = useState<any[] | any>([]);
-  const [category, setCategory] = useState<any[] | any>([]);
+  const [category, setCategory] = useState<ICategory[]>([]);
   const [prop, setProp] = useState<any[] | any>([]);
   const [load, setLoad] = useState<boolean>(true);
   const [selectedManif, setSelectedManif] = useState<string>("");
@@ -30,57 +32,33 @@ export default function Categoriy() {
   const router = useRouter();
 
   const { q } = router.query;
-
-  console.log(q);
-
-  useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/categories`)
-      .then((res: any) => {
-        setCategory(res.data);
-      })
-      .catch((e: string) => console.log(e))
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
+  const [subCategories, setSubCategories] = useState<ISubCategories[]>([])
 
   useEffect(() => {
-    setLoad(true);
-    axios
-      .get(
-        `${process.env.NEXT_PUBLIC_API}/api/subcategories/64c87160e3e287afa132d410`
-      )
-      .then((res: any) => {
-        setProp(res.data);
-      })
-      .catch((e: string) => console.log(e))
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
+    setLoad(true)
+    const fetchData = async () => {
+      try {
+        const req1 = await axios.get("/subcategories")
+        const req2 = await axios.get(`/categories`)
+        const req3 = await axios.get("/subcategories/64c87160e3e287afa132d410")
+        const req4 = await axios.get("/products")
+        const [res1, res2, res3, res4] = await axios.all([req1, req2, req3, req4])
+        setSubCategories(res1.data)
+        setCategory(res2.data)
+      } catch (err) {
+        console.error(err)
+      } finally {
+        setLoad(false)
+      }
+    }
+    fetchData()
+  }, [])
 
   const storage =
     prop && prop.props?.filter((e: any) => e.prop.name === "Storage");
   const color = prop && prop.props?.filter((e: any) => e.prop.name === "Color");
   const manif =
     prop && prop.props?.filter((e: any) => e.prop.name === "Manufacturer");
-
-  useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/products`)
-      .then((res: any) => {
-        setData(res.data);
-      })
-      .catch((e: string) => console.log(e))
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
-
-  console.log(selectedManif);
 
   useEffect(() => {
     data &&
@@ -97,15 +75,13 @@ export default function Categoriy() {
       });
   }, [selectedManif]);
 
-  console.log(filtered);
-
   if (!load && data) {
     return (
       <>
         <div className={styles.container}>
           <TopHeader />
           <Header />
-          <Categories />
+          <Categories categories={category} subcategories={subCategories} />
           <div className={styles.phone}>
             <h1 style={{ fontSize: 20, fontWeight: 700 }}>Телефоны</h1>
           </div>
@@ -154,6 +130,7 @@ export default function Categoriy() {
                   {manif.map((e: any) => {
                     return (
                       <div
+                        key={uuidv4()}
                         className={styles.radioInput}
                         onClick={() => {
                           setSelectedManif(e.value);
@@ -188,6 +165,7 @@ export default function Categoriy() {
                   {storage.map((e: any) => {
                     return (
                       <div
+                        key={uuidv4()}
                         className={styles.checkBoxInput}
                         onClick={() => {
                           setSelectedManif(e.value);
@@ -222,6 +200,7 @@ export default function Categoriy() {
                   {color.map((e: any) => {
                     return (
                       <div
+                        key={uuidv4()}
                         className={styles.checkBoxInput}
                         onClick={() => {
                           setSelectedManif(e.value);
@@ -252,7 +231,7 @@ export default function Categoriy() {
                       }
                       title={e.name}
                       price={e.price[0].price}
-                      key={index}
+                      key={uuidv4()}
                       isLiked
                       likedObj={likedObj}
                       setLikedObj={setLikedObj}
