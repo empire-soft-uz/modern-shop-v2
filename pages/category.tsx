@@ -1,7 +1,6 @@
 import styles from "@/styles/category.module.css";
 import Header from "./components/global/Header";
 import Image from "next/image";
-import MultiRangeSlider from "./components/local/MultiRangeSlider";
 import Card from "./components/global/Card";
 import Footer from "./components/global/Footer";
 import { useState, useEffect } from "react";
@@ -14,13 +13,10 @@ import { useRouter } from "next/router";
 
 export default function Categoriy() {
   const [cardBurger, setCardBurger] = useState<boolean>(false);
-  const [data, setData] = useState<any[] | any>([]);
-  const [category, setCategory] = useState<any[] | any>([]);
-  const [prop, setProp] = useState<any[] | any>([]);
+  const [subcategor, setSubcategory] = useState<any[] | any>([]);
   const [load, setLoad] = useState<boolean>(true);
-  const [selectedManif, setSelectedManif] = useState<string>("");
-
-  const [filtered, setFiltered] = useState<any[]>([]);
+  const [selectedProps, setSelectedProps] = useState<any[] | any>([]);
+  const [selectedProduct, setSelectedProduct] = useState<any[] | any>([]);
   const [likedObj, setLikedObj] = useState<any[]>([]);
 
   const cardBurgerHandler = () => {
@@ -29,16 +25,14 @@ export default function Categoriy() {
 
   const router = useRouter();
 
-  const { q } = router.query;
-
-  console.log(q);
+  const { subcategory } = router.query;
 
   useEffect(() => {
     setLoad(true);
     axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/categories`)
+      .get(`${process.env.NEXT_PUBLIC_API}/api/subcategories/${subcategory}`)
       .then((res: any) => {
-        setCategory(res.data);
+        setSubcategory(res.data);
       })
       .catch((e: string) => console.log(e))
       .finally(() => {
@@ -46,14 +40,33 @@ export default function Categoriy() {
       });
   }, []);
 
-  useEffect(() => {
-    setLoad(true);
+  const handlerFilter = () => {
+    const p = new Set(selectedProps);
     axios
-      .get(
-        `${process.env.NEXT_PUBLIC_API}/api/subcategories/64c87160e3e287afa132d410`
-      )
+      .get(`${process.env.NEXT_PUBLIC_API}/api/products/`, {
+        params: {
+          props: selectedProps,
+        },
+      })
       .then((res: any) => {
-        setProp(res.data);
+        setSelectedProps(res.data);
+      })
+      .catch((e: string) => console.log(e))
+      .finally(() => {
+        setLoad(false);
+      });
+    console.log(selectedProps);
+  };
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}/api/products/`, {
+        params: {
+          subcategory: subcategory,
+        },
+      })
+      .then((res: any) => {
+        setSelectedProduct(res.data);
       })
       .catch((e: string) => console.log(e))
       .finally(() => {
@@ -62,44 +75,15 @@ export default function Categoriy() {
   }, []);
 
   const storage =
-    prop && prop.props?.filter((e: any) => e.prop.name === "Storage");
-  const color = prop && prop.props?.filter((e: any) => e.prop.name === "Color");
+    subcategor &&
+    subcategor.props?.filter((e: any) => e.prop.name === "Storage");
+  const color =
+    subcategor && subcategor.props?.filter((e: any) => e.prop.name === "Color");
   const manif =
-    prop && prop.props?.filter((e: any) => e.prop.name === "Manufacturer");
+    subcategor &&
+    subcategor.props?.filter((e: any) => e.prop.name === "Manufacturer");
 
-  useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/products`)
-      .then((res: any) => {
-        setData(res.data);
-      })
-      .catch((e: string) => console.log(e))
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
-
-  console.log(selectedManif);
-
-  useEffect(() => {
-    data &&
-      data.products?.map((f: any) => {
-        console.log(
-          f.props.filter((s: any) => {
-            if (s.value === selectedManif) {
-              setFiltered([f]);
-            } else {
-              console.log("ewf");
-            }
-          })
-        );
-      });
-  }, [selectedManif]);
-
-  console.log(filtered);
-
-  if (!load && data) {
+  if (!load && selectedProps) {
     return (
       <>
         <div className={styles.container}>
@@ -123,11 +107,12 @@ export default function Categoriy() {
               <CardBurger
                 setCardBurger={setCardBurger}
                 cardBurger={cardBurger}
-                selectedManif={selectedManif}
-                setSelectedManif={setSelectedManif}
+                selectedProps={selectedProps}
+                setSelectedProps={setSelectedProps}
                 color={color}
                 storage={storage}
                 manif={manif}
+                handlerFilter={handlerFilter}
               />
             )}
             <section className={styles.sectionLeft}>
@@ -156,7 +141,7 @@ export default function Categoriy() {
                       <div
                         className={styles.radioInput}
                         onClick={() => {
-                          setSelectedManif(e.value);
+                          setSelectedProps([e.id]);
                         }}
                       >
                         <input type="radio" name={e.prop.name} />
@@ -190,7 +175,7 @@ export default function Categoriy() {
                       <div
                         className={styles.checkBoxInput}
                         onClick={() => {
-                          setSelectedManif(e.value);
+                          setSelectedProps([...selectedProps, e.id]);
                         }}
                       >
                         <input type="radio" name={e.prop.name} />
@@ -224,7 +209,7 @@ export default function Categoriy() {
                       <div
                         className={styles.checkBoxInput}
                         onClick={() => {
-                          setSelectedManif(e.value);
+                          setSelectedProps([...selectedProps, e.id]);
                         }}
                       >
                         <input type="radio" name={e.prop.name} />
@@ -234,31 +219,56 @@ export default function Categoriy() {
                   })}
                 </div>
               )}
+              <button onClick={handlerFilter} className={styles.apply}>
+                Apply
+              </button>
             </section>
             <section className={styles.sectionRight}>
-              {filtered &&
-                filtered?.map((e: any, index: number) => {
-                  return (
-                    <Card
-                      animation="fade-down"
-                      cat={e.subcategory.name}
-                      url={e.id}
-                      height={300}
-                      width={300}
-                      image={
-                        e.media.length
-                          ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}`
-                          : "/images/14.png"
-                      }
-                      title={e.name}
-                      price={e.price[0].price}
-                      key={index}
-                      isLiked
-                      likedObj={likedObj}
-                      setLikedObj={setLikedObj}
-                    />
-                  );
-                })}
+              {selectedProps.length === 0 && selectedProduct
+                ? selectedProduct.products?.map((e: any, index: number) => {
+                    return (
+                      <Card
+                        animation="fade-down"
+                        cat={e.subcategory.name}
+                        url={e.id}
+                        height={300}
+                        width={300}
+                        image={
+                          e.media.length
+                            ? ` ${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}`
+                            : "/images/14.png"
+                        }
+                        title={e.name}
+                        price={e.price[0].price}
+                        key={index}
+                        isLiked
+                        likedObj={likedObj}
+                        setLikedObj={setLikedObj}
+                      />
+                    );
+                  })
+                : selectedProps.products?.map((e: any, index: number) => {
+                    return (
+                      <Card
+                        animation="fade-down"
+                        cat={e.subcategory.name}
+                        url={e.id}
+                        height={300}
+                        width={300}
+                        image={
+                          e.media.length
+                            ? ` ${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}`
+                            : "/images/14.png"
+                        }
+                        title={e.name}
+                        price={e.price[0].price}
+                        key={index}
+                        isLiked
+                        likedObj={likedObj}
+                        setLikedObj={setLikedObj}
+                      />
+                    );
+                  })}
             </section>
           </section>
           <div className={styles.carusel}>

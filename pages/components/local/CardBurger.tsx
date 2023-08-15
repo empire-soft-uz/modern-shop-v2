@@ -6,21 +6,23 @@ import styles from "@/styles/cardBurger.module.css";
 interface card {
   setCardBurger: Function;
   cardBurger: boolean;
-  selectedManif: string;
-  setSelectedManif: Function;
+  selectedProps: string[];
+  setSelectedProps: Function;
   color: any;
   storage: any;
-  manif: any
+  manif: any;
+  handlerFilter: any;
 }
 
 const CardBurger = ({
   setCardBurger,
   cardBurger,
-  selectedManif,
-  setSelectedManif,
+  selectedProps,
+  setSelectedProps,
   color,
   storage,
-  manif
+  manif,
+  handlerFilter,
 }: card) => {
   return (
     <div className={styles.cardBurger}>
@@ -61,7 +63,7 @@ const CardBurger = ({
                 <div
                   className={styles.radioInput}
                   onClick={() => {
-                    setSelectedManif(e.value);
+                    setSelectedProps([e.id]);
                   }}
                 >
                   <input type="radio" name={e.prop.name} />
@@ -93,7 +95,8 @@ const CardBurger = ({
                 <div
                   className={styles.checkBoxInput}
                   onClick={() => {
-                    setSelectedManif(e.value);
+                    // @ts-ignore
+                    setSelectedProps([...selectedProps, e.id]);
                   }}
                 >
                   <input type="radio" name={e.prop.name} />
@@ -125,7 +128,8 @@ const CardBurger = ({
                 <div
                   className={styles.checkBoxInput}
                   onClick={() => {
-                    setSelectedManif(e.value);
+                    // @ts-ignore
+                    setSelectedProps([...selectedProps, e.id]);
                   }}
                 >
                   <input type="radio" name={e.prop.name} />
@@ -135,6 +139,9 @@ const CardBurger = ({
             })}
           </div>
         )}
+        <button onClick={handlerFilter} className={styles.apply}>
+          Apply
+        </button>
       </section>
     </div>
   );

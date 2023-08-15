@@ -43,10 +43,17 @@ const Card = ({
   const [like, setLike] = useState(false);
 
   const [cookies, setCookie] = useCookies(['likedObj']);
+  const [animate, setAnimation] = useState<boolean>(true)
 
+  // useEffect(() => {
+  //   if(router.route === "/category") {
+  //     setAnimation(false)
+  //   }
+  // }, [])
+  // console.log("dcscsd", router)
 
   return (
-    <AnimationOnScroll className={styles.card} duration={0.3} animateOut="animate__zoomOut" animateOnce animateIn={"animate__zoomIn"}>
+    <div className={styles.card}>
       <Link className={styles.imageOfCard} href={`/detail/${url}`}>
         <Image src={image} alt="products image" width={width} height={height} />
 
@@ -98,7 +105,7 @@ const Card = ({
           height={45}
         />
       </div>
-    </AnimationOnScroll>
+    </div>
   );
 };
 

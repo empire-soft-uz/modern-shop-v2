@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "@/styles/delivery.module.css";
+import styles from "@/styles/cart.module.css";
 
 
 interface Counts {
@@ -8,7 +8,7 @@ interface Counts {
 }
 
 const Counter = ({count, setCount}: Counts) => {
-  const [counts, setCounts] = useState<number>(1);
+  const [counts, setCounts] = useState<number>(0);
   
   useEffect(()=> {
     setCount(count + counts)
@@ -19,8 +19,8 @@ const Counter = ({count, setCount}: Counts) => {
   };
 
   const decrement = () => {
-    setCounts(counts > 1 ? counts - 1 : 1);
-    setCount(counts > 1 ? counts -  1 : 1)
+    setCounts(counts > 1 ? counts - 1 : 0);
+    setCount(counts > 1 ? counts -  0 : 0)
   };
 
   return (
