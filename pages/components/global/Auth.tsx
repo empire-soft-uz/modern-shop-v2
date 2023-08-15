@@ -48,11 +48,10 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
 
   const [] = useState<string>()
 
-  const [cookie, setCookie] = useCookies()
-
+  const [cookie, setCookie] = useCookies(['userInfo'])
   const handleCheckUserAtLogin = () => {
     if (passwordRef && numberRef) {
-      axios.post(`${process.env.NEXT_PUBLIC_API}/api/users/login`, {
+      axios.post(`/users/login`, {
         phoneNumber: `998${numberRef?.current?.value}`,
         password: `${passwordRef?.current?.value}`,
       }, {
@@ -60,10 +59,12 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
           "Content-Type": "application/json",
         }
       }).then((res: any) => {
-        setCookie("aboutUser", {
+        setCookie("userInfo", {
+          userPhoneNumber: res.data.phoneNumber,
           userId: res.data.id,
-          userToken: res.data.token
-        }, { path: "/" })
+          userToken: res.data.token,
+        })
+        setIsAuthOpen(false)
       }).catch(err => console.log(err))
     }
   }
@@ -72,13 +73,13 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
     if (numRef && numRef.current) {
       const isNumber = /\d/.test(numRef.current.value)
       if (isNumber === true) {
-        axios.post(`${process.env.NEXT_PUBLIC_API}/api/users/get-code`, {
+        axios.post(`/users/get-code`, {
           phoneNumber: `998${numRef.current.value}`
         }, {
           headers: {
             "Content-Type": "application/json"
           }
-        }).then((res) => console.log(res.data)).catch(err => console.log(err))
+        }).then((res) => console.log(res)).catch(err => console.log(err))
         setFromWhere(0)
         setQueue(2)
         sessionStorage.setItem("userPhoneNumber", `998${numRef.current.value}`)
@@ -95,14 +96,16 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
     if (codeRef && codeRef.current) {
       const isNumber = /\d/.test(codeRef.current.value)
       if (isNumber === true) {
-        axios.put(`${process.env.NEXT_PUBLIC_API}/api/users/verify`, {
+        axios.put(`/users/verify`, {
           phoneNumber: sessionStorage.getItem("userPhoneNumber"),
           code: codeRef.current.value
         }, {
           headers: {
             "Content-Type": "application/json"
           }
-        }).catch(err => console.log(err))
+        }).catch(err => console.log(err)).then(res => setCookie("userInfo", {
+          userToken: res?.data.token,
+        }))
         setQueue(2.5)
         codeRef.current.value = null
       }
@@ -110,17 +113,19 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
   }
 
   const handleCreatePassword = () => {
-    if (passRef && passRef2 && lastNameRef && userNameRef) {
+    if (passRef.current && passRef2.current && lastNameRef.current && userNameRef.current) {
       if (passRef.current.value === passRef2.current.value) {
-        axios.post(`${process.env.NEXT_PUBLIC_API}/api/users/register`, {
+        axios.post(`/users/register`, {
           password: passRef.current.value,
-          phoneNumber: sessionStorage.getItem("userPhoneNumber")
+          phoneNumber: sessionStorage.getItem("userPhoneNumber"),
+          fullName: `${userNameRef.current.value} ${lastNameRef.current.value}`
         }, {
           headers: {
             "Content-Type": "application/json",
             Authorization: cookie.userInfo.userToken
           }
         }).then((res) => {
+          console.log(res);
           setCookie("userInfo", {
             userPhoneNumber: res.data.phoneNumber,
             userId: res.data.id,
@@ -209,6 +214,7 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
             />
             <button onClick={() => {
               handleUserGetCode()
+              // console.log("object");
             }} className={styles.enter}>Подтвердить</button>
           </> : queue === 2 ?
             <>

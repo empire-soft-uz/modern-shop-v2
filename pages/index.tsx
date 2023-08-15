@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "@/styles/home.module.css";
+import styles from "@/styles/Home.module.css";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
@@ -18,18 +18,21 @@ import "swiper/css/pagination";
 import axios from "axios";
 import Loader from "./components/local/Loader";
 
+import ICategory from "@/interfaces/ICategory";
+import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
+import { v4 as uuidv4 } from "uuid"
+
 export default function Home() {
-  const [nav, setNav] = useState<number>(0);
   const [buttonColor, setButtonColor] = useState<number>(0);
   const [slidesPerView, setSlidesPerView] = useState<number>(4);
   const [data, setData] = useState<any[] | any>([]);
   const [popularProducts, setPopularProducts] = useState<any[] | any>([]);
   const [slides, setSlides] = useState<any[] | any>([]);
   const [isLiked, setIsLiked] = useState<any[] | any>([]);
-  const [categories, setCategories] = useState<any | any[]>([]);
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [subCategories, setSubCategories] = useState<ISubCategories[]>([])
   const [load, setLoad] = useState<boolean>(true);
   const [likedObj, setLikedObj] = useState<any[]>([]);
-
   const [vendor, setVendor] = useState<any[] | any>([]);
   const router = useRouter();
 
@@ -61,103 +64,47 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/products`)
-      .then((res: any) => {
-        setData(res.data);
-      })
-      .catch((e: string) => console.log(e));
-  }, []);
+    setLoad(true)
+    const fetchData = async () => {
+      try {
+        const req1 = axios.get(`/products`)
+        const req2 = axios.get(`/categories`)
+        const req3 = axios.get(`/slides`)
+        const req4 = axios.get(`/products?popularProducts=true`)
+        const req5 = axios.get(`/vendors`)
+        const req6 = await axios.get("/subcategories")
+        const [res, res1, res2, res3, res4, res5] = await axios.all([req1, req2, req3, req4, req5, req6])
+        setData(res.data)
+        setCategories(res1.data)
+        setSlides(res2.data)
+        setPopularProducts(res3.data)
+        setVendor(res4.data)
+        setSubCategories(res5.data)
+      } catch (err) {
+        console.error(err)
+      } finally {
+        setLoad(false)
+      }
+    }
+    fetchData()
+  }, [])
+  console.log(categories);
+  
 
   useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/categories`)
-      .then((res) => {
-        setCategories(res.data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
-  useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}api/slides`)
-      .then((res) => {
-        setSlides(res.data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
-  useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/products?popularProducts=true`)
-      .then((res) => {
-        setPopularProducts(res.data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setLoad(false);
-      });
+    document.body.offsetWidth < 680 && document.body.offsetWidth > 460
+      ? setSlidesPerView(3)
+      : document.body.offsetWidth < 460
+        ? setSlidesPerView(2)
+        : setSlidesPerView(4);
   }, []);
 
   useEffect(() => {
     document.body.offsetWidth < 680 && document.body.offsetWidth > 460
       ? setSlidesPerView(3)
       : document.body.offsetWidth < 460
-      ? setSlidesPerView(2)
-      : setSlidesPerView(4);
-  }, []);
-
-  useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${process.env.NEXT__PUBLIC_API}/api/vendors`)
-      .then((res) => {
-        setVendor(res.data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
-  useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/slides`)
-      .then((res) => {
-        setSlides(res.data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
-  useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/products?popularProducts=true`)
-      .then((res) => {
-        setPopularProducts(res.data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
-
-  useEffect(() => {
-    document.body.offsetWidth < 680 && document.body.offsetWidth > 460
-      ? setSlidesPerView(3)
-      : document.body.offsetWidth < 460
-      ? setSlidesPerView(2)
-      : setSlidesPerView(4);
+        ? setSlidesPerView(2)
+        : setSlidesPerView(4);
   }, []);
 
   const pagination: object = {
@@ -166,8 +113,9 @@ export default function Home() {
       return '<span class="' + className + '">' + (index + 1) + "</span>";
     },
   };
-  console.log(data);
-  if (!load) {
+  if (load === true) {
+    return <Loader />;
+  } else {
     return (
       <>
         <Head>
@@ -179,7 +127,7 @@ export default function Home() {
         <main className={styles.home}>
           <TopHeader />
           <Header />
-          <Categories />
+          <Categories categories={categories} subcategories={subCategories} />
           <div className={styles.container}>
             <HeaderTabs
               setButtonColor={setButtonColor}
@@ -196,7 +144,7 @@ export default function Home() {
                     {slides &&
                       slides.map((e: any) => {
                         return (
-                          <SwiperSlide key={e.id} className={styles.addItem}>
+                          <SwiperSlide key={uuidv4()} className={styles.addItem}>
                             <Link
                               href={
                                 e.productId
@@ -215,7 +163,7 @@ export default function Home() {
                               <div className={styles.controller}>
                                 {[1, 2, 3, 4].map((e: number) => {
                                   return (
-                                    <div key={e} className={styles.circle} />
+                                    <div key={uuidv4()} className={styles.circle} />
                                   );
                                 })}
                               </div>
@@ -234,12 +182,23 @@ export default function Home() {
                     Категории для вас
                   </h3>
                   <Swiper
-                    spaceBetween={50}
+                    spaceBetween={20}
                     slidesPerView={slidesPerView}
                     className={styles.swiperL}
                     modules={[Navigation]}
                     navigation={true}
-                  ></Swiper>
+                  >
+                    {categories && categories.map((val: ICategory) => {
+                      return <SwiperSlide key={uuidv4()} className={styles.categoriesSlide}>
+                        <Link className={styles.categoryItem} href={"/category"}>
+                          <div className={styles.categoriesTop}>
+                            <Image src={`${process.env.NEXT_PUBLIC_IMAGE_API}/${val.icon?.name}`} width={52} height={51} alt="home icon" />
+                          </div>
+                          <h3>{val.name}</h3>
+                        </Link>
+                      </SwiperSlide>
+                    })}
+                  </Swiper>
                 </div>
                 <section className={styles.newProducts}>
                   <h3>Новые продукты</h3>
@@ -260,7 +219,7 @@ export default function Home() {
                             }
                             title={e.name}
                             price={e.price[0].price}
-                            key={index}
+                            key={uuidv4()}
                             isLiked
                             likedObj={likedObj}
                             setLikedObj={setLikedObj}
@@ -289,7 +248,7 @@ export default function Home() {
                                 }
                                 title={card.name}
                                 price={card.price[0].price}
-                                key={index}
+                                key={uuidv4()}
                                 isLiked
                                 likedObj={likedObj}
                                 setLikedObj={setLikedObj}
@@ -308,7 +267,7 @@ export default function Home() {
               <>
                 {[1, 2, 3, 4, 5].map((e: number) => {
                   return (
-                    <div className={styles.cards} key={e}>
+                    <div className={styles.cards} key={uuidv4()}>
                       <div className={styles.card__left}>
                         <Link
                           style={{
@@ -364,6 +323,7 @@ export default function Home() {
                                 isLiked
                                 url={`${index}`}
                                 animation=""
+                                key={uuidv4()}
                                 setLikedObj={setLikedObj}
                               />
                             );
@@ -413,7 +373,5 @@ export default function Home() {
         </main>
       </>
     );
-  } else {
-    return <Loader />;
   }
 }
