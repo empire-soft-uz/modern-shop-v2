@@ -21,8 +21,6 @@ const Order = ({ setOrder, order, selectedProduct }: Order) => {
   const { aboutUser } = cookie
   const { userInfo } = userInform
 
-  console.log(router.pathname);
-
   const [selectedCard, setSelectedCard] = useCookies(["selectedCard"]);
 
   const [array, setArray] = useState(selectedCard.selectedCard || []);
@@ -30,7 +28,7 @@ const Order = ({ setOrder, order, selectedProduct }: Order) => {
   const handlePushToCart = () => {
     const updatedArray = [...array, {
       product: selectedProduct,
-      productId: Number(id),
+      productId: id,
       qty: 1
     }];
     setArray(updatedArray);

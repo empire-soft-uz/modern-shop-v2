@@ -13,7 +13,10 @@ import Order from "../components/global/Order";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Loader from "../components/local/Loader";
-
+import { socket } from "../components/local/socket";
+import { v4 as uuidv4 } from "uuid"
+import ICategory from "@/interfaces/ICategory";
+import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
 const Detail = () => {
   const [likedObj, setLikedObj] = useState<any | any[]>([]);
   const [controllerC, setControllerC] = useState<number>(0);
@@ -26,7 +29,8 @@ const Detail = () => {
   const [props, setProps] = useState<any | any[]>([]);
   const [selectedMemory, setSelectedMemory] = useState<string>("256GB");
   const [selectedColor, setSelectedColor] = useState<string>("Gold");
-
+  const [categories, setCategories] = useState<ICategory[]>([])
+  const [subCategories, setSubCategories] = useState<ISubCategories[]>([])
   const router = useRouter();
   const { id } = router.query;
 
@@ -41,35 +45,27 @@ const Detail = () => {
       : (document.body.style.overflow = "hidden");
   }, [isChatOpen]);
 
-  useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/products`)
-      .then((res: any) => {
-        setData(res.data);
-      })
-      .catch((err: string) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
 
-  useEffect(() => {
-    setLoad(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/props`)
-      .then((res: any) => {
-        setProps(res.data);
-      })
-      .catch((err: string) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
+  useEffect(()=> {
+    const fetchData = async () => {
+      try {
+        const req1 = await axios.get(`/products`)
+        const req2 = await axios.get("/props")
+        const req3 = await axios.get("/categories")
+        const req4 = await axios.get("/subcategories")
+        const [res1, res2, res3, res4] = await axios.all([req1, req2, req3, req4])
+        setData(res1.data.products)
+        setProps(res2.data)
+        setCategories(res3.data)
+        setSubCategories(res4.data)
+      } catch (err) {
+        console.error(err)
+      } finally {
+        setLoad(false)
+      }
+    }
+    fetchData()
+  })
 
   const cardObj = [
     {
@@ -112,8 +108,7 @@ const Detail = () => {
 
   if (!load) {
     const selectedProduct =
-      data && data.products?.find((product: any) => product.id === id);
-    console.log(selectedProduct);
+      data && data.find((product: any) => product.id === id);
     const storage = selectedProduct?.props.filter(
       (st: any) => st.prop.name === "Storage"
     );
@@ -134,6 +129,8 @@ const Detail = () => {
       let checkWtR = Boolean(wtRs?.value);
       checkWtRs = checkWtR;
     }
+
+    console.log(selectedProduct);
     return (
       <>
         <Head>
@@ -149,7 +146,7 @@ const Detail = () => {
         <main className={styles.detail}>
           <TopHeader />
           <Header />
-          <Categories />
+          <Categories categories={categories} subcategories={subCategories} />
           <div className={styles.container}>
             <section className={styles.characteris}>
               <h3>
@@ -174,7 +171,7 @@ const Detail = () => {
                     {[0, 1, 2].map((e: number) => {
                       return (
                         <div
-                          key={e}
+                          key={uuidv4()}
                           className={styles.imageToSelect}
                           style={
                             e == 0
@@ -238,14 +235,14 @@ const Detail = () => {
                         <p>{selectedColor}</p>
                       </div>
                     </div>
-                    {isChatOpen && <Chat setIsChatOpen={setIsChatOpen} />}
+                    {isChatOpen && <Chat selectedProduct={selectedProduct} setIsChatOpen={setIsChatOpen} />}
                     <div className={styles.selectMemory}>
                       {colors &&
                         colors.map((e: any, index: number) => {
                           return (
                             <button
                               type="button"
-                              key={index}
+                              key={uuidv4()}
                               className={
                                 selectedColor === e.value
                                   ? styles.memoryd
@@ -267,7 +264,7 @@ const Detail = () => {
                           return (
                             <button
                               type="button"
-                              key={index}
+                              key={uuidv4()}
                               className={
                                 selectedMemory === e.value
                                   ? styles.memoryd
@@ -288,16 +285,18 @@ const Detail = () => {
                 <div className={styles.costSide}>
                   <div className={styles.costTop}>
                     <div className={styles.cost}>
-                      <div className={styles.costP}>
-                        <h3>18.000.000 сум</h3>
+                      {selectedProduct && selectedProduct.price.map((price: any) => {
+                        return <div className={styles.costP}>
+                        <h3>{price.price} $</h3>
                         <h4
                           style={{
                             textDecoration: "line-through",
                           }}
                         >
-                          23.000.000 сум
+                          {price.oldPrice}
                         </h4>
                       </div>
+                      })}
                       <div className={styles.imageLike}>
                         <Image
                           src="/icons/liked.svg"
@@ -330,6 +329,7 @@ const Detail = () => {
                     <button
                       onClick={() => {
                         setIsChatOpen(!isChatOpen);
+                        socket.connect()
                       }}
                       className={styles.cart}
                     >
@@ -474,7 +474,7 @@ const Detail = () => {
               ) : (
                 <div className={styles.reviewsWrapper}>
                   {[1, 2, 3, 4].map((e: number) => {
-                    return <Reviews key={e} />;
+                    return <Reviews key={uuidv4()} />;
                   })}
                 </div>
               )}
@@ -495,7 +495,7 @@ const Detail = () => {
                       height={card.h}
                       price={card.price}
                       cat={card.cat}
-                      key={index}
+                      key={uuidv4()}
                       animation=""
                     />
                   );

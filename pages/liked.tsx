@@ -11,7 +11,10 @@ import Card from "./components/global/Card";
 import { useRouter } from "next/router";
 import Loader from "./components/local/Loader";
 import { Cookies } from "react-cookie";
-
+import { v4 as uuidv4 } from "uuid"
+import axios from "axios";
+import ICategory from "@/interfaces/ICategory";
+import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
 interface Like {
   like: any;
   setLike: Function
@@ -20,14 +23,33 @@ interface Like {
 const cookies = new Cookies()
 const Liked = ({like, setLike}: Like) => {
   const [likedObj, setLikedObj] = useState<any[] | any>([]);
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [subCategories, setSubCategories] = useState<ISubCategories[]>([]);
+  const [load, setLoad] = useState<boolean>(true)
+  useEffect(() => {
+    setLoad(true)
+    const fetchData = async () => {
+      try {
+        const categories = await axios.get("/categories")
+        const subCategories = await axios.get("/subcategories")
+        const [res1, res2] = await axios.all([categories, subCategories])
+        setCategories(res1.data)
+        setSubCategories(res2.data)
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoad(false)
+      }
+    }
+    fetchData()
+  }, [])
 
-
-  if (likedObj) {
+  if (likedObj && load === false) {
     return (
       <div className={styles.liked}>
         <TopHeader />
         <Header />
-        <Categories />
+        <Categories categories={categories} subcategories={subCategories} />
         <div className={styles.Favorites}>
           <h1 style={{ fontSize: 20, fontWeight: 700 }}>Избранное</h1>
         </div>
@@ -43,7 +65,7 @@ const Liked = ({like, setLike}: Like) => {
                   height={card.height}
                   price={card.price}
                   cat={card.cat}
-                  key={card.title}
+                  key={uuidv4()}
                   animation=""
                   likedObj={likedObj}
                   setLikedObj={setLikedObj}

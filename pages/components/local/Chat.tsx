@@ -1,13 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import styles from "@/styles/chat.module.css";
 import Image from "next/image";
-
-interface Chat {
-  setIsChatOpen: Function;
+import axios from "axios";
+import { useCookies } from "react-cookie";
+import IChat from "@/interfaces/IChat";
+import { headers } from "next/dist/client/components/headers";
+import { useRouter } from "next/router";
+import Message from "./Message";
+import { socket } from "./socket";
+import { v4 as uuidv4 } from "uuid"
+interface SelectedProduct {
+  author: string
 }
 
-const Chat = ({ setIsChatOpen }: Chat) => {
+interface Chat {
+  setIsChatOpen:  React.Dispatch<React.SetStateAction<boolean>>;
+  selectedProduct: SelectedProduct
+}
+
+const Chat = ({ setIsChatOpen, selectedProduct }: Chat) => {
   const [chatListOpener, setChatListOpener] = useState<boolean>(false)
+  const [chats, setChats] = useState<IChat[]>([])
+  const [selectedChat, setSelectedChat] = useState<IChat | undefined>()
+
+  const router = useRouter()
+
+  const [cookie] = useCookies(["userInfo"])
+
+  const { userInfo } = cookie
+
+  useEffect(() => {
+    axios.get("/chats/user", {
+      headers: {
+        Authorization: userInfo.userToken
+      }
+    }).then(res => {
+      setChats(res.data)
+    }).catch(err => console.log(err))
+  }, [])
+
   return (
     <>
       <div className={styles.chat}>
@@ -16,9 +47,13 @@ const Chat = ({ setIsChatOpen }: Chat) => {
             <h3>Сообщения</h3>
           </div>
           <div className={styles.chatWith}>
-            {[1, 2, 34, 5, 6].map((e: number) => {
+            {chats.map((e) => {
               return (
-                <div key={e} className={styles.eachChat}>
+                <div onClick={()=> {
+                  socket.emit("chatSelected", e)
+                  router.push(`/detail/${router.query.id}?chat=${e.id}`)
+                  setSelectedChat(e)
+                }} key={uuidv4()} className={styles.eachChat}>
                   <Image
                     src={"/images/user.png"}
                     alt="user image"
@@ -26,7 +61,7 @@ const Chat = ({ setIsChatOpen }: Chat) => {
                     height={50}
                   />
                   <div className={styles.chatWithWhom}>
-                    <h4>Рафаэль Ройтман</h4>
+                    <h4>{e.admin.email}</h4>
                     <p>Текст сообщения...</p>
                   </div>
                 </div>
@@ -35,62 +70,30 @@ const Chat = ({ setIsChatOpen }: Chat) => {
           </div>
         </div>
         <div className={!chatListOpener ? styles.left : styles.dn}>
-          <div className={styles.top}>
-            <button onClick={() => {
-              setChatListOpener(true)
-            }} className={styles.arrowLeft}>
-              <Image src={"/icons/arrowLeft.png"} width={20} height={20} alt="arrow left" />
-            </button>
-            <h3>Поставщик</h3>
-            <button
-              onClick={() => {
-                setIsChatOpen(false);
-              }}
-            >
-              <Image
-                src={"/icons/close.svg"}
-                alt="close chat icon"
-                width={21}
-                height={21}
-              />
-            </button>
-          </div>
-          <div className={styles.mainChat}>
-            <div className={styles.message}>
-              <p>some sentence</p>
-              <div className={styles.createdAt}>
-                <Image
-                  src={"/icons/date.svg"}
-                  width={20}
-                  height={23}
-                  alt="created at"
-                />
-                <p>18.05.2023, 15:00</p>
-              </div>
-            </div>
-            <div className={styles.messageS}>
-              <p>some sentence</p>
-              <div className={styles.createdAt}>
-                <Image
-                  src={"/icons/date.svg"}
-                  width={20}
-                  height={23}
-                  alt="created at"
-                />
-                <p>18.05.2023, 15:00</p>
-              </div>
-            </div>
-          </div>
-          <div className={styles.sendMessage}>
-            <input type="text" placeholder="Напишите сообщение..." />
-            <Image
-              src={"/icons/sendImg.svg"}
-              alt="image send icon"
-              width={16}
-              height={27}
-            />
-            <input type="file" accept="image/*" />
-          </div>
+          {!selectedChat ? <>
+            <div className={styles.top}>
+        <button onClick={() => {
+          setChatListOpener(true)
+        }} className={styles.arrowLeft}>
+          <Image src={"/icons/arrowLeft.png"} width={20} height={20} alt="arrow left" />
+        </button>
+        <h3 /> 
+        <button
+          onClick={() => {
+            setIsChatOpen(false);
+            socket.disconnect()
+          }}
+        >
+          <Image
+            src={"/icons/close.svg"}
+            alt="close chat icon"
+            width={21}
+            height={21}
+          />
+        </button>
+      </div>
+      <p>Setartwefwefwe fw8eygf</p>
+          </> : <Message chat={selectedChat} userInfo={userInfo} setIsChatOpen={setIsChatOpen} setChatListOpener={setChatListOpener} />}
         </div>
         <div className={chatListOpener ? styles.chats : styles.dn}>
           <div className={styles.userTop}>
@@ -107,26 +110,6 @@ const Chat = ({ setIsChatOpen }: Chat) => {
                 height={21}
               />
             </button>
-          </div>
-          <div className={styles.chatWith}>
-            {[1, 2, 3, 5, 6].map((e: number) => {
-              return (
-                <div key={e} onClick={()=> {
-                  setChatListOpener(false)
-                }} className={styles.eachChat}>
-                  <Image
-                    src={"/images/user.png"}
-                    alt="user image"
-                    width={50}
-                    height={50}
-                  />
-                  <div className={styles.chatWithWhom}>
-                    <h4>Рафаэль Ройтман</h4>
-                    <p>Текст сообщения...</p>
-                  </div>
-                </div>
-              );
-            })}
           </div>
         </div>
       </div>

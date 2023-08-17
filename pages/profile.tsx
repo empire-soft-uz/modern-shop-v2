@@ -11,15 +11,20 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import Loader from "./components/local/Loader";
-
+import { v4 as uuidv4 } from "uuid";
+import ICategory from "@/interfaces/ICategory";
+import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
 const Profile = () => {
   const [isChangePassOpen, setIsChangePassOpen] = useState(false);
   const [profileBurger, setProfileBurger] = useState(false);
   const [button, setButton] = useState<number>(0);
   const [buttonColor, setButtonColor] = useState<number>(0);
-
   const [profile, setProfile] = useState<any | any[]>([]);
-  const [load, setLoad] = useState(true);
+
+  const [selectedCards] = useCookies(["selectedCard"]);
+
+  const { selectedCard } = selectedCards;
+  console.log(selectedCard);
 
   const AuthOpen = () => {
     setIsChangePassOpen(!isChangePassOpen);
@@ -27,7 +32,6 @@ const Profile = () => {
   const [cookie] = useCookies(["userInfo"]);
 
   const { userInfo } = cookie;
-  console.log(userInfo);
   const ProfileBurgerHandler = () => {
     setProfileBurger(!profileBurger);
   };
@@ -37,36 +41,42 @@ const Profile = () => {
   });
 
   useEffect(() => {
-    setLoad(true)
-    axios.get(`${process.env.NEXT_PUBLIC_API}/api/users/current`, {
-      headers: {
-        Authorization: userInfo ? userInfo.userToken : ""
+    setLoad(true);
+    axios
+      .get(`/users/current`, {
+        headers: {
+          Authorization: userInfo ? userInfo.userToken : "",
+        },
+      })
+      .then((res) => setProfile(res.data))
+      .catch((err) => console.log(err.message))
+      .finally(() => {
+        setLoad(false);
+      });
+  }, [userInfo]);
+
+  console.log(profile);
+
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [subCategories, setSubCategories] = useState<ISubCategories[]>([]);
+  const [load, setLoad] = useState<boolean>(true);
+  useEffect(() => {
+    setLoad(true);
+    const fetchData = async () => {
+      try {
+        const categories = await axios.get("/categories");
+        const subCategories = await axios.get("/subcategories");
+        const [res1, res2] = await axios.all([categories, subCategories]);
+        setCategories(res1.data);
+        setSubCategories(res2.data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoad(false);
       }
-    }).then(res => setProfile(res.data)).catch(err => console.log(err.message)).finally(() => {
-      setLoad(false)
-    })
-    // @ts-ignore
-  }, [userInfo])
-
-
-  const objCard = [
-    {
-      title: "Iphone 14 PRO",
-      image: "icons/phone.svg",
-      const: 2,
-      price: "900.000.000",
-      w: 58,
-      h: 691,
-    },
-    {
-      title: "Iphone 14 PRO",
-      image: "icons/phone.svg",
-      const: 2,
-      price: "900.000.000",
-      w: 58,
-      h: 691,
-    },
-  ];
+    };
+    fetchData();
+  }, []);
 
   if (!load) {
     const username: any = localStorage.getItem("userName");
@@ -80,7 +90,7 @@ const Profile = () => {
           )}
           <TopHeader />
           <Header />
-          <Categories />
+          <Categories categories={categories} subcategories={subCategories} />
           <div className={styles.profileTitle}>
             <h1 style={{ fontSize: 20, fontWeight: 700 }}>Профиль</h1>
             <div
@@ -297,35 +307,61 @@ const Profile = () => {
                     </div>
                     <div className={styles.orderSection}>
                       <div>
-                        {objCard.map((e: any, index: number) => {
-                          return (
-                            <>
-                              {" "}
-                              <div key={index} className={styles.cart}>
-                                <Image
-                                  src={e.image}
-                                  width={e.w}
-                                  height={e.w}
-                                  alt="hello"
-                                />
-                                <div className={styles.cartTitle}>
-                                  <h3>{e.title}</h3>
-                                  <div className={styles.const}>
-                                    <div className={styles.constTag}>
-                                      <p>Кол-во:</p>
-                                      <p>{e.const}</p>
-                                    </div>
-                                    <div className={styles.priceTitle}>
-                                      <p>Стоимость:</p>
-                                      <p>{e.price}</p>
+                        {selectedCard &&
+                          selectedCard.map(
+                            (
+                              e: {
+                                media: any;
+                                product: {
+                                  name: string;
+                                  price: {
+                                    price: number;
+                                  }[];
+                                  media: {
+                                    name: string;
+                                    fileId: string;
+                                  }[];
+                                };
+                              },
+                              index: number
+                            ) => {
+                              return (
+                                <div key={uuidv4()}>
+                                  {" "}
+                                  <div key={index} className={styles.cart}>
+                                    <Image
+                                      src={
+                                        e.media?.length
+                                          ? ` ${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}`
+                                          : "/images/14.png"
+                                      }
+                                      width={58}
+                                      height={58}
+                                      alt="hello"
+                                      style={{
+                                        width: "auto",
+                                        height: 58,
+                                      }}
+                                    />
+                                    <div className={styles.cartTitle}>
+                                      <h3>{e.product.name}</h3>
+                                      <div className={styles.const}>
+                                        <div className={styles.constTag}>
+                                          <p>Кол-во:</p>
+                                          <p>{2}</p>
+                                        </div>
+                                        <div className={styles.priceTitle}>
+                                          <p>Стоимость:</p>
+                                          <p>{e.product.price[0].price}</p>
+                                        </div>
+                                      </div>
                                     </div>
                                   </div>
+                                  <div className={styles.line}></div>
                                 </div>
-                              </div>
-                              <div className={styles.line}></div>
-                            </>
-                          );
-                        })}
+                              );
+                            }
+                          )}
                       </div>
                       <div className={styles.rightOrder}>
                         <div className={styles.total}>
@@ -353,7 +389,7 @@ const Profile = () => {
           )}
           <TopHeader />
           <Header />
-          <Categories />
+          <Categories categories={categories} subcategories={subCategories} />
           <div className={styles.profileTitle}>
             <h1 style={{ fontSize: 20, fontWeight: 700 }}>Профиль</h1>
             <div
@@ -512,35 +548,52 @@ const Profile = () => {
                     </div>
                     <div className={styles.orderSection}>
                       <div>
-                        {objCard.map((e: any, index: number) => {
-                          return (
-                            <>
-                              {" "}
-                              <div key={index} className={styles.cart}>
-                                <Image
-                                  src={e.image}
-                                  width={e.w}
-                                  height={e.w}
-                                  alt="hello"
-                                />
-                                <div className={styles.cartTitle}>
-                                  <h3>{e.title}</h3>
-                                  <div className={styles.const}>
-                                    <div className={styles.constTag}>
-                                      <p>Кол-во:</p>
-                                      <p>{e.const}</p>
-                                    </div>
-                                    <div className={styles.priceTitle}>
-                                      <p>Стоимость:</p>
-                                      <p>{e.price}</p>
+                        {selectedCard.map(
+                          (
+                            e: {
+                              product: {
+                                name: string;
+                                price: {
+                                  price: number;
+                                }[];
+                                media: {
+                                  name: string;
+                                  fileId: string;
+                                }[];
+                              };
+                            },
+                            index: number
+                          ) => {
+                            return (
+                              <div key={uuidv4()}>
+                                {" "}
+                                <div key={index} className={styles.cart}>
+                                  <Image
+                                    src={`${process.env.NEXT_PUBLIC_IMAGE_API}/${e.product.media[0].name}`}
+                                    width={58}
+                                    height={58}
+                                    style={{ width: "auto", height: 58 }}
+                                    alt="hello"
+                                  />
+                                  <div className={styles.cartTitle}>
+                                    <h3>{e.product.name}</h3>
+                                    <div className={styles.const}>
+                                      <div className={styles.constTag}>
+                                        <p>Кол-во:</p>
+                                        <p>{2}</p>
+                                      </div>
+                                      <div className={styles.priceTitle}>
+                                        <p>Стоимость:</p>
+                                        <p>{e.product.price[0].price}</p>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
+                                <div className={styles.line}></div>
                               </div>
-                              <div className={styles.line}></div>
-                            </>
-                          );
-                        })}
+                            );
+                          }
+                        )}
                       </div>
                       <div className={styles.rightOrder}>
                         <div className={styles.total}>

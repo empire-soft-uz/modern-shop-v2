@@ -10,14 +10,22 @@ import CardBurger from "./components/local/CardBurger";
 import axios from "axios";
 import Loader from "./components/local/Loader";
 import { useRouter } from "next/router";
+import ICategory from "@/interfaces/ICategory";
+import IProduct from "@/interfaces/Product/IProduct";
+import CategoryProp from "./components/local/CategoryProp";
+import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
 
 export default function Categoriy() {
   const [cardBurger, setCardBurger] = useState<boolean>(false);
-  const [subcategor, setSubcategory] = useState<any[] | any>([]);
+  const [subcategor, setSubcategory] = useState<any[] | any>();
   const [load, setLoad] = useState<boolean>(true);
   const [selectedProps, setSelectedProps] = useState<any[] | any>([]);
-  const [selectedProduct, setSelectedProduct] = useState<any[] | any>([]);
+  const [selectedProduct, setSelectedProduct] = useState<
+    { page: number; products: IProduct[]; limit: number } | undefined
+  >();
   const [likedObj, setLikedObj] = useState<any[]>([]);
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [subCategories, setSubCategories] = useState<ISubCategories[]>([]);
 
   const cardBurgerHandler = () => {
     setCardBurger(!cardBurger);
@@ -29,36 +37,7 @@ export default function Categoriy() {
 
   useEffect(() => {
     setLoad(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/subcategories/${subcategory}`)
-      .then((res: any) => {
-        setSubcategory(res.data);
-      })
-      .catch((e: string) => console.log(e))
-      .finally(() => {
-        setLoad(false);
-      });
-  }, []);
-
-  const handlerFilter = () => {
-    const p = new Set(selectedProps);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API}/api/products/`, {
-        params: {
-          props: selectedProps,
-        },
-      })
-      .then((res: any) => {
-        setSelectedProps(res.data);
-      })
-      .catch((e: string) => console.log(e))
-      .finally(() => {
-        setLoad(false);
-      });
-    console.log(selectedProps);
-  };
-
-  useEffect(() => {
+    console.log(subcategory);
     axios
       .get(`${process.env.NEXT_PUBLIC_API}/api/products/`, {
         params: {
@@ -74,14 +53,56 @@ export default function Categoriy() {
       });
   }, []);
 
-  const storage =
-    subcategor &&
-    subcategor.props?.filter((e: any) => e.prop.name === "Storage");
-  const color =
-    subcategor && subcategor.props?.filter((e: any) => e.prop.name === "Color");
-  const manif =
-    subcategor &&
-    subcategor.props?.filter((e: any) => e.prop.name === "Manufacturer");
+  useEffect(() => {
+    setLoad(true)
+    const fetchData = async () => {
+      try {
+        const categories = await axios.get("/categories")
+        const subCategories = await axios.get("/subcategories")
+        const [res1, res2] = await axios.all([categories, subCategories])
+        setCategories(res1.data)
+        setSubCategories(res2.data)
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoad(false)
+      }
+    }
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    if (subcategory) {
+      axios
+        .get(`${process.env.NEXT_PUBLIC_API}/api/subcategories/${subcategory}`)
+        .then((res: any) => {
+          console.log(res.data);
+          setSubcategory(res.data);
+        })
+        .catch((e: string) => console.log(e))
+        .finally(() => {
+          setLoad(false);
+        });
+    }
+  }, []);
+
+  const handlerFilter = () => {
+    const p = new Set(selectedProps);
+    axios
+      .get<IProduct[]>(`${process.env.NEXT_PUBLIC_API}/api/products/`, {
+        params: {
+          subcategory: subcategory,
+          props: selectedProps,
+        },
+      })
+      .then((res: any) => {
+        setSelectedProduct(res.data);
+      })
+      .catch((e: string) => console.log(e))
+      .finally(() => {
+        setLoad(false);
+      });
+  };
 
   if (!load && selectedProps) {
     return (
@@ -89,7 +110,7 @@ export default function Categoriy() {
         <div className={styles.container}>
           <TopHeader />
           <Header />
-          <Categories />
+          <Categories categories={categories} subcategories={subCategories} />
           <div className={styles.phone}>
             <h1 style={{ fontSize: 20, fontWeight: 700 }}>Телефоны</h1>
           </div>
@@ -109,166 +130,40 @@ export default function Categoriy() {
                 cardBurger={cardBurger}
                 selectedProps={selectedProps}
                 setSelectedProps={setSelectedProps}
-                color={color}
-                storage={storage}
-                manif={manif}
                 handlerFilter={handlerFilter}
+                subcategor={subcategor}
               />
             )}
-            <section className={styles.sectionLeft}>
-              {manif && (
-                <div className={styles.manufacturer}>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <p className={styles.manufacturerTitle}>
-                      {manif[0].prop.name}
-                    </p>
-                    <Image
-                      src={"/toparrow.svg"}
-                      width={15}
-                      height={12}
-                      alt="toparrow"
-                    />
-                  </div>
-
-                  {manif.map((e: any) => {
-                    return (
-                      <div
-                        className={styles.radioInput}
-                        onClick={() => {
-                          setSelectedProps([e.id]);
-                        }}
-                      >
-                        <input type="radio" name={e.prop.name} />
-                        <label>{e.value}</label>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-              {storage && (
-                <div className={styles.operative}>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <p className={styles.operativeTitle}>
-                      {storage[0].prop.name}
-                    </p>
-                    <Image
-                      src={"/toparrow.svg"}
-                      width={15}
-                      height={12}
-                      alt="toparrow"
-                    />
-                  </div>
-                  {storage.map((e: any) => {
-                    return (
-                      <div
-                        className={styles.checkBoxInput}
-                        onClick={() => {
-                          setSelectedProps([...selectedProps, e.id]);
-                        }}
-                      >
-                        <input type="radio" name={e.prop.name} />
-                        <label>{e.value}</label>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-              {color && (
-                <div className={styles.operative}>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <p className={styles.operativeTitle}>
-                      {color[0].prop.name}
-                    </p>
-                    <Image
-                      src={"/toparrow.svg"}
-                      width={15}
-                      height={12}
-                      alt="toparrow"
-                    />
-                  </div>
-                  {color.map((e: any) => {
-                    return (
-                      <div
-                        className={styles.checkBoxInput}
-                        onClick={() => {
-                          setSelectedProps([...selectedProps, e.id]);
-                        }}
-                      >
-                        <input type="radio" name={e.prop.name} />
-                        <label>{e.value}</label>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-              <button onClick={handlerFilter} className={styles.apply}>
-                Apply
-              </button>
-            </section>
+            <CategoryProp
+              selectedProps={selectedProps}
+              setSelectedProps={setSelectedProps}
+              handlerFilter={handlerFilter}
+              subcategor={subcategor}
+            />
             <section className={styles.sectionRight}>
-              {selectedProps.length === 0 && selectedProduct
-                ? selectedProduct.products?.map((e: any, index: number) => {
-                    return (
-                      <Card
-                        animation="fade-down"
-                        cat={e.subcategory.name}
-                        url={e.id}
-                        height={300}
-                        width={300}
-                        image={
-                          e.media.length
-                            ? ` ${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}`
-                            : "/images/14.png"
-                        }
-                        title={e.name}
-                        price={e.price[0].price}
-                        key={index}
-                        isLiked
-                        likedObj={likedObj}
-                        setLikedObj={setLikedObj}
-                      />
-                    );
-                  })
-                : selectedProps.products?.map((e: any, index: number) => {
-                    return (
-                      <Card
-                        animation="fade-down"
-                        cat={e.subcategory.name}
-                        url={e.id}
-                        height={300}
-                        width={300}
-                        image={
-                          e.media.length
-                            ? ` ${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}`
-                            : "/images/14.png"
-                        }
-                        title={e.name}
-                        price={e.price[0].price}
-                        key={index}
-                        isLiked
-                        likedObj={likedObj}
-                        setLikedObj={setLikedObj}
-                      />
-                    );
-                  })}
+              {selectedProduct &&
+                selectedProduct.products.map((e, index: number) => (
+                  <Card
+                    animation="fade-down"
+                    // @ts-ignore
+                    cat={subcategory.id}
+                    url={e.id}
+                    height={300}
+                    width={300}
+                    image={
+                      e.media.length
+                        ? ` ${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}`
+                        : "/images/14.png"
+                    }
+                    title={e.name}
+                    // @ts-ignore
+                    price={e.price[0].price}
+                    key={e.id}
+                    isLiked
+                    likedObj={likedObj}
+                    setLikedObj={setLikedObj}
+                  />
+                ))}
             </section>
           </section>
           <div className={styles.carusel}>

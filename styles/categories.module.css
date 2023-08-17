@@ -57,6 +57,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
+  transition: .4s linear;
 }
 
 .selectList h3 {
@@ -74,7 +75,8 @@
 .selectList>li>img {
   position: relative;
   top: 3px;
-}
+    transition: .4s linear;
+  }
 
 
 .just {
@@ -88,7 +90,7 @@
 
 .selectItem:hover {
   color: #e4b717;
-  transition: 0.4s;
+  transition: 0.4s linear;
 }
 
 
