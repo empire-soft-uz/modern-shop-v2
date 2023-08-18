@@ -15,12 +15,9 @@ const categoryProp = ({
   handlerFilter,
   subcategor,
 }: card) => {
-
   const employee = {
-    name: 'Water Resistance',
+    name: "Water Resistance",
   };
-
-  
 
   return (
     <div className={styles.categoryProp}>
@@ -165,7 +162,7 @@ const categoryProp = ({
               })}
           </div>
         )}
-        {/* {subcategor && subcategor.props?.WaterResistance.props && (
+        {subcategor && subcategor.props.Water_Resistance.props && (
           <div className={styles.operative}>
             <div
               style={{
@@ -175,7 +172,7 @@ const categoryProp = ({
               }}
             >
               <p className={styles.operativeTitle}>
-                {subcategor.props.WaterResistance[0].prop.name}
+                {subcategor.props.Water_Resistance.props[0].prop.name}
               </p>
               <Image
                 src={"/toparrow.svg"}
@@ -185,7 +182,7 @@ const categoryProp = ({
               />
             </div>
             {subcategor &&
-              subcategor.props.WaterResistancey?.map((e: any) => {
+              subcategor.props.Water_Resistance.props?.map((e: any) => {
                 return (
                   <div
                     className={styles.checkBoxInput}
@@ -199,7 +196,7 @@ const categoryProp = ({
                 );
               })}
           </div>
-        )} */}
+        )}
         <button onClick={handlerFilter} className={styles.apply}>
           Apply
         </button>
