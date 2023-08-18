@@ -15,9 +15,6 @@ const categoryProp = ({
   handlerFilter,
   subcategor,
 }: card) => {
-  const employee = {
-    name: "Water Resistance",
-  };
 
   return (
     <div className={styles.categoryProp}>
