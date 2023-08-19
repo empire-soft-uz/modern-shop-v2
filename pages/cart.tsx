@@ -14,11 +14,13 @@ import Counter from "@/utils/Counter";
 import ICategory from "@/interfaces/ICategory";
 import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
 
+
 const Cart = () => {
   const [order, setOrder] = useState<boolean>(false);
   const [load, setLoad] = useState(true);
   const [count, setCount] = useState(0);
   const [selectedType, setSelectedType] = useState<any[] | any>([]);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
   const [data, setData] = useState<any | any[]>([]);
   const [categories, setCategories] = useState<ICategory[]>([]);
@@ -37,22 +39,22 @@ const Cart = () => {
   }, [order]);
 
   useEffect(() => {
-    setLoad(true)
+    setLoad(true);
     const fetchData = async () => {
       try {
-        const categories = await axios.get("/categories")
-        const subCategories = await axios.get("/subcategories")
-        const [res1, res2] = await axios.all([categories, subCategories])
-        setCategories(res1.data)
-        setSubCategories(res2.data)
+        const categories = await axios.get("/categories");
+        const subCategories = await axios.get("/subcategories");
+        const [res1, res2] = await axios.all([categories, subCategories]);
+        setCategories(res1.data);
+        setSubCategories(res2.data);
       } catch (err) {
         console.log(err);
       } finally {
-        setLoad(false)
+        setLoad(false);
       }
-    }
-    fetchData()
-  }, [])
+    };
+    fetchData();
+  }, []);
 
   if (!load) {
     return (
@@ -119,7 +121,11 @@ const Cart = () => {
                           Кол-во:
                         </p>
                         <div className={styles.countButton}>
-                          <Counter count={count} setCount={setCount} />
+                          <Counter
+                            price={card.product.price[0].price}
+                            count={count}
+                            setCount={setCount}
+                          />
                         </div>
                       </div>
                       <div className={styles.countPrice}>
@@ -136,7 +142,6 @@ const Cart = () => {
                           {card.product
                             ? `${card.product.price[0].price}`
                             : "900"}
-                          .0000 сум
                         </h1>
                       </div>
                     </div>
@@ -147,7 +152,7 @@ const Cart = () => {
               <div className={styles.allPrice}>
                 <h1>Ваш заказ</h1>
                 <div style={{ display: "flex", gap: 15, marginTop: 12 }}>
-                  <label>Товары {count}:</label>
+                  <label>Товары:</label>
                   <p>8.000.000 сум</p>
                 </div>
                 <div
@@ -161,28 +166,19 @@ const Cart = () => {
                   <label>Доставка:</label>
                   <p>Текст</p>
                 </div>
-                {selectedCard &&
-                  selectedCard?.map((card: any, index: number) => {
-                    return (
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: 38,
-                          alignItems: "center",
-                          marginTop: 30,
-                        }}
-                      >
-                        <label>Итого:</label>
-                        <h3>
-                          {" "}
-                          {card.product
-                            ? `${count * card.product.price[0].price}`
-                            : "900"}
-                          .0000 сум
-                        </h3>
-                      </div>
-                    );
-                  })}
+
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 38,
+                    alignItems: "center",
+                    marginTop: 30,
+                  }}
+                >
+                  <label>Итого:</label>
+                  <h3>{count}</h3>
+                </div>
+
                 <button
                   onClick={() => {
                     setOrder(true);
@@ -194,7 +190,9 @@ const Cart = () => {
             </section>
           </section>
         ) : (
-          <h2 style={{textAlign: "center"}}>You didnt ordered anything yet</h2>
+          <h2 style={{ textAlign: "center" }}>
+            You didnt ordered anything yet
+          </h2>
         )}
         <Footer />
       </div>
@@ -205,3 +203,6 @@ const Cart = () => {
 };
 
 export default Cart;
+{
+  /* <TotalAmount count={count} setCount={setCount}/> */
+}

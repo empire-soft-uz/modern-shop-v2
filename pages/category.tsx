@@ -15,6 +15,7 @@ import IProduct from "@/interfaces/Product/IProduct";
 import CategoryProp from "./components/local/CategoryProp";
 import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
 
+
 export default function Categoriy() {
   const [cardBurger, setCardBurger] = useState<boolean>(false);
   const [subcategor, setSubcategory] = useState<any[] | any>();
