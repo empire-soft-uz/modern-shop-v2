@@ -28,8 +28,6 @@
 
 .profileUser:hover {
     cursor: pointer;
-    background-color: #E4B717;
-    color: #FFFFFF;
 }
 
 .profileOrder {
@@ -49,8 +47,6 @@
 
 .profileOrder:hover {
     cursor: pointer;
-    background-color: #E4B717;
-    color: #FFFFFF;
 }
 
 .profileClose {

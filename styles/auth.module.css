@@ -103,3 +103,33 @@
     width: 100%;
   }
 }
+
+
+@media screen and (max-width: 530px) {
+  .authent {
+    width: 100%;
+  }
+
+  .auth {
+    width: 100%;
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+  .authent {
+    width: 100%;
+  }
+
+  .auth {
+    width: 100%;
+  }
+
+  .authForm {
+    width: 300px;
+  }
+
+  .signUp {
+    margin-top: 1rem;
+  }
+}

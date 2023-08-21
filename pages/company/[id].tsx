@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use, useRef } from "react";
 import styles from "../../styles/company.module.css";
 import TopHeader from "../components/global/TopHeader";
 import Header from "../components/global/Header";
@@ -16,8 +16,10 @@ const Company = () => {
   const [nav, setNav] = useState<number>(0);
   const [data, setData] = useState<object[] | any>([])
   const [load, setLoad] = useState<boolean>(true)
-
+  const [likedObj, setLikedObj] = useState<any[] | any>([]);
+  
   const { id }: any = useRouter()
+  const scrollRef = useRef<any>()
 
   useEffect(() => {
     setLoad(true)
@@ -27,6 +29,11 @@ const Company = () => {
       setLoad(false)
     })
   }, [id])
+
+  useEffect(()=> {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" })
+    console.log("wefw");
+  }, [])
 
   const cardObj = [
     {
@@ -160,6 +167,7 @@ const Company = () => {
   ];
 
 
+
   if (load === false && data) {
     const selectedVendor = data.find((vendor: any) => vendor.id === id)
     return (
@@ -192,14 +200,15 @@ const Company = () => {
               </p>
             </div>
           </section>
-          <section className={styles.companyCards}>
-            <h2>Товары поставщика</h2>
-            <div className={styles.card}>
+          <section  className={styles.companyCards}>
+            <h2 >Товары поставщика</h2>
+            <div className={styles.card}> 
               {selectedVendor ? selectedVendor.products.map((e:any, index:number)=> {
-                return <Card url={`${index}`} animation="zoom-in" image={e.image} width={300} height={300} title={e.title} price={e.price} cat={e.cat} />
+                return <Card isLiked key={index} likedObj={likedObj} setLikedObj={setLikedObj} url={`${index}`} animation="zoom-in" image={e.image} width={300} height={300} title={e.title} price={e.price} cat={e.cat} />
               }) : cardObj.map((card, index) => {
-                return <Card url={`${index}`} animation="zoom-in" image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat} />
+                return <Card isLiked likedObj={likedObj} key={index} setLikedObj={setLikedObj} url={`${index}`} animation="zoom-in" image={card.image} width={card.w} height={card.h} title={card.title} price={card.price} cat={card.cat} />
               })}
+              <div ref={scrollRef}/>
             </div>
           </section>
           <div className={styles.carusel}>

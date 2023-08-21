@@ -101,3 +101,20 @@
     font-size: 18px;
     border-radius: 200px;
 }
+
+
+@media screen and (max-width: 1180px)  {
+    .order {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 565px)  {
+    .order {
+        width: 100%;
+    }
+
+    .orderSide {
+        width: 100%;
+    }
+}

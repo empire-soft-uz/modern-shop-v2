@@ -3,15 +3,23 @@ import styles from "@/styles/topnav.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import Auth from "./Auth";
+import { useCookies } from "react-cookie";
+import { useRouter } from "next/router";
 
 const TopHeader = () => {
   const [isAuthOpen, setIsAuthOpen] = useState<boolean>(false);
 
   const [fromWhere, setFromWhere] = useState<number>(0)
 
+  const closed = !isAuthOpen
+
+  const [cookie] = useCookies(["userInfo"])
+  const { userInfo } = cookie
+  const router = useRouter()
+
   useEffect(() => {
     document.body.style.overflow = "auto"
-  }, [!isAuthOpen])
+  }, [closed])
 
   return (
     <div className={styles.topNavBar}>
@@ -24,20 +32,14 @@ const TopHeader = () => {
             <Link href="/delivery">Доставка</Link>
           </li>
           <li>
-            <Link href="#">Блог</Link>
+            <Link href="/aboutUs">О нас</Link>
           </li>
           <li>
-            <Link href="#">О нас</Link>
-          </li>
-          <li>
-            <Link href="/profile">Профиль</Link>
-          </li>
-          <li>
-            <Link href="#">Контакты</Link>
+            <Link href="/contact">Контакты</Link>
           </li>
         </ul>
       </nav>
-      <div className={styles.auth}>
+      {userInfo === undefined ? <div className={styles.auth}>
         <Image src={"/icons/user.svg"} width={14} height={18} alt="user icon" />
         <button onClick={() => {
           setIsAuthOpen(true)
@@ -48,7 +50,11 @@ const TopHeader = () => {
           setIsAuthOpen(true)
           setFromWhere(2)
         }}>Зарегестрироваться</button>
-      </div>
+      </div> : <div className={styles.auth} onClick={() => {
+        router.push("/profile")
+      }}>
+        <Image src={"/icons/user.svg"} width={14} height={18} alt="user icon" />
+        <button>Профиль</button></div>}
       {isAuthOpen && <Auth fromWhere={fromWhere} setFromWhere={setFromWhere} isAuthOpen={isAuthOpen} setIsAuthOpen={setIsAuthOpen} />}
     </div>
   );
