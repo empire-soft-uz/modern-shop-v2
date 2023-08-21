@@ -225,8 +225,9 @@ const Detail = () => {
                 <div className={styles.costSide}>
                   <div className={styles.costTop}>
                     <div className={styles.cost}>
-                      <div className={styles.costP}>
-                        <h3>18.000.000 сум</h3>
+                      {selectedProduct && selectedProduct.price.map((price: any) => {
+                        return <div className={styles.costP}>
+                        <h3>{price.price} $</h3>
                         <h4
                           style={{
                             textDecoration: "line-through",

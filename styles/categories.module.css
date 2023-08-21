@@ -36,7 +36,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
+  gap: 2rem;
+  transition: .4s linear;
 }
 
 .selectList h3 {
@@ -54,7 +55,8 @@
 .selectList>li>img {
   position: relative;
   top: 3px;
-}
+    transition: .4s linear;
+  }
 
 
 .just {
@@ -66,13 +68,9 @@
   transition: 0.4s;
 }
 
-.selectItem > h3 {
-  transition: 0.4s;
-
-}
-
-.selectItem > h3:hover {
+.selectItem:hover {
   color: #e4b717;
+  transition: 0.4s linear;
 }
 
 

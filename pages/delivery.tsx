@@ -14,9 +14,25 @@ const Delivery = () => {
   const [isOpened, setIsOpened] = useState<boolean>(false)
   const [isSelected, setIsSelected] = useState<number>(0)
 
-  useEffect(() => {
-    Aos.init()
-  }, [])
+
+    useEffect(() => {
+      setLoad(true)
+      const fetchData = async () => {
+        try {
+          const req2 = axios.get("/categories")
+          const req1 = axios.get("/subcategories")
+          const [res1, res2] = await axios.all([req1,req2])
+          setSubCategories(res1.data)
+          setCategories(res2.data)
+        } catch (err) {
+          console.error(err)
+        } finally {
+          setLoad(false)
+        }
+      }
+      fetchData()
+    }, [])
+
 
   return (
     <>

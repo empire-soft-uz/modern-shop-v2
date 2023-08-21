@@ -1,38 +1,23 @@
 import React from "react";
+import styles from "@/styles/category.module.css";
 import Image from "next/image";
-import MultiRangeSlider from "./MultiRangeSlider";
-import styles from "@/styles/cardBurger.module.css";
-import { v4 as uuidv4 } from "uuid";
+
 interface card {
-  setCardBurger: Function;
-  cardBurger: boolean;
   selectedProps: string[];
   setSelectedProps: Function;
   handlerFilter: any;
   subcategor: any;
 }
 
-const CardBurger = ({
-  setCardBurger,
-  cardBurger,
+const categoryProp = ({
   selectedProps,
   setSelectedProps,
   handlerFilter,
   subcategor,
 }: card) => {
+
   return (
-    <div className={styles.cardBurger}>
-      <button onClick={() => {
-        setCardBurger(false)
-      }}>
-        <Image
-          className={styles.close}
-          src={"icons/close.svg"}
-          width={24}
-          height={24}
-          alt="close"
-        />
-      </button>
+    <div className={styles.categoryProp}>
       <section className={styles.sectionLeft}>
         {subcategor && subcategor.props.Manufacturer.props && (
           <div className={styles.manufacturer}>
@@ -174,7 +159,7 @@ const CardBurger = ({
               })}
           </div>
         )}
-        {subcategor && subcategor.props?.Warranty && (
+        {subcategor && subcategor.props.Water_Resistance.props && (
           <div className={styles.operative}>
             <div
               style={{
@@ -184,7 +169,7 @@ const CardBurger = ({
               }}
             >
               <p className={styles.operativeTitle}>
-                {subcategor.props.Warranty[0].prop.name}
+                {subcategor.props.Water_Resistance.props[0].prop.name}
               </p>
               <Image
                 src={"/toparrow.svg"}
@@ -194,7 +179,7 @@ const CardBurger = ({
               />
             </div>
             {subcategor &&
-              subcategor.props.Warranty?.map((e: any) => {
+              subcategor.props.Water_Resistance.props?.map((e: any) => {
                 return (
                   <div
                     className={styles.checkBoxInput}
@@ -208,13 +193,13 @@ const CardBurger = ({
                 );
               })}
           </div>
-        </div>
+        )}
         <button onClick={handlerFilter} className={styles.apply}>
           Apply
         </button>
-      </div>
+      </section>
     </div>
   );
 };
 
-export default CardBurger;
+export default categoryProp;

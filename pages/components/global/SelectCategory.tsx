@@ -5,12 +5,29 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 
+const SelectCategory = ({ categories, selected }: Categories) => {
+  const [subcategory, setSubcategory] = useState<any[] | any>([]);
+  const [load, setLoad] = useState(true);
+  const [hovered, setHovered] = useState<any>("")
 
 const SelectCategory = () => {
   useEffect(() => {
-    AOS.init();
+    setLoad(true);
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API}/api/subcategories`)
+      .then((res: any) => {
+        setSubcategory(res.data);
+      })
+      .catch((e: string) => console.log(e))
+      .finally(() => {
+        setLoad(false);
+      });
+
   }, []);
 
+  if (hovered && subcategory) {
+    const hvd = subcategory.find((dt: any) => dt.id === hovered.id);
+  }
   return (
     <div data-aos="zoom-in" className={styles.selectCategory}>
       <section className={styles.categorSection}>
@@ -33,41 +50,11 @@ const SelectCategory = () => {
           </div>
         </div>
         <div className={styles.categorRight}>
-          <div className={styles.table}>
-            <ul>
-              <li>
-                <a href="#">Платья</a>
-              </li>
-              <li>
-                <a href="#">Платья</a>
-              </li>
-              <li>
-                <a href="#">Платья</a>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <a href="#">Футболки</a>
-              </li>
-              <li>
-                <a href="#">Футболки</a>
-              </li>
-              <li>
-                <a href="#">Футболки</a>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <a href="#">Обувь</a>
-              </li>
-              <li>
-                <a href="#">Обувь</a>
-              </li>
-              <li>
-                <a href="#">Обувь</a>
-              </li>
-            </ul>
-          </div>
+          <ul>
+            {hovered !== "" && hovered.subcategories.map((e: any, index: number) => {
+              return <li key={index}><Link key={index} style={{ color: "#666565" }} href={`/category?subcategory=${e.id.toLocaleLowerCase()}`}>{e.name}</Link></li>
+            })}
+          </ul>
         </div>
       </section>
     </div>

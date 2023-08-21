@@ -1,6 +1,6 @@
 .cardBurger {
-    position: fixed;
-    top: 26%;
+    position: absolute;
+    top: 43%;
     background-color: #FFFFFF;
     box-shadow: 0px 5px 20px 10px rgba(163, 162, 162, 0.19);
     z-index: 999;
@@ -91,4 +91,15 @@
 
 .close {
     margin: 10px 1px;
+    margin-left: 200px;
+}
+
+.apply {
+    width: 227px;
+    height: 40px;
+    background-color: #E4B717;
+    color: #FFFFFF;
+    margin-top: 20px;
+    border-radius: 15px;
+    font-size: 18px;
 }
