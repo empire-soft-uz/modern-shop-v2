@@ -126,7 +126,7 @@
 }
 
 
-@media screen and (max-width:380px) {
+@media screen and (max-width:360px) {
     .ChangePass {
         width: 100%;
     }
@@ -164,9 +164,9 @@
     }
 
     .Changebutton {
-        margin-left: -35px;
+        margin-left: -40px;
 
-        width: 243px;
+        width: 250px;
     }
 
 }

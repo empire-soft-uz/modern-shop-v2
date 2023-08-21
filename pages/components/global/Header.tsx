@@ -3,13 +3,13 @@ import styles from "@/styles/head.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import Burger from "./Burger";
-import { v4 as uuidv4 } from "uuid"
+
 const Header = () => {
   const [isBurgerOpen, setIsBurgerOpen] = useState<boolean | any>(false)
   const [mouseOver, setMouseOver] = useState<boolean>(false)
   const [language, setLanguage] = useState<string>("RU")
 
-  const languges: string[] = ["RU", "UZ"]
+  const languges: string[] = ["RU", "EN", "UZ"]
 
   useEffect(()=> {
     isBurgerOpen ? document.body.style.overflow = "auto" : document.body.style.overflow = "auto"
@@ -63,7 +63,7 @@ const Header = () => {
               display: "none"
             } : {}}>
               {languges.map((e: string)=> {
-                return <h4 key={uuidv4()} onClick={()=> {
+                return <h4 key={e} onClick={()=> {
                   setLanguage(e)
                   setMouseOver(false)
                 }}>{e}</h4>

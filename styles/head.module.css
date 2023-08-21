@@ -166,7 +166,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .contraLeft .select {
+  .contraLeft {
     display: none;
   }
   .contraRight {

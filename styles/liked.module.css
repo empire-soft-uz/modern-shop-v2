@@ -8,10 +8,18 @@
 }
 
 .Favorites {
-    width: 1180px;
     display: flex;
     padding: 10px 0;
     margin: auto;
+}
+
+.likedCards {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .Card {
@@ -56,35 +64,39 @@
     border: none;
 }
 
-.newProductsWrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.7%;
-    row-gap: 1rem;
-    width: 100%;
-  }
-  
-
 @media screen and (max-width:1180px) {
     .likedSection {
         padding: 10px 10px;
         width: 100%;
     }
+    .Card {
+        width:  30%;
+    }
 
     .Favorites {
+        padding: 10px 10px;
+    }
+}
+@media screen and (max-width:768px) {
+    .likedSection {
+        padding: 10px 10px;
         width: 100%;
+    }
+    .Card {
+        width: 42%;
+    }
+
+    .Favorites {
         padding: 10px 10px;
     }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:480px) {
     .likedSection {
         width: 100%;
     }
 
-
-    .Favorites {
+    .Card {
         width: 100%;
     }
-}
-
+} 

@@ -38,7 +38,6 @@
 .top {
   background: #fff;
   padding: 23px;
-  z-index: 1000;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -55,10 +54,11 @@
 }
 
 .mainChat {
+  display: flex;
   padding: 10px;
+  justify-content: flex-end;
   height: 87%;
-  max-height: 86%;
-  overflow-y: scroll;
+  flex-direction: column;
 }
 
 .message,
