@@ -1,19 +1,17 @@
-import React from "react";
+// import ICategory from "@/interfaces/ICategory";
+// import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
 import styles from "@/styles/cart.module.css";
-import Image from "next/image";
-import Footer from "./components/global/Footer";
-import AOS from "aos";
-import { useState, useEffect } from "react";
-import TopHeader from "./components/global/TopHeader";
-import Header from "./components/global/Header";
-import Categories from "./components/global/Categories";
-import Order from "./components/global/Order";
-import axios from "axios";
-import { useCookies } from "react-cookie";
-import Loader from "./components/local/Loader";
 import Counter from "@/utils/Counter";
-import ICategory from "@/interfaces/ICategory";
-import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
+import axios from "axios";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import Categories from "./components/global/Categories";
+import Footer from "./components/global/Footer";
+import Header from "./components/global/Header";
+import Order from "./components/global/Order";
+import TopHeader from "./components/global/TopHeader";
+import Loader from "./components/local/Loader";
 
 
 const Cart = () => {
@@ -22,8 +20,16 @@ const Cart = () => {
   const [count, setCount] = useState(0);
   const [selectedType, setSelectedType] = useState<any[] | any>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
-
-    console.log(selectedCard);
+  const [countCookie, setCountCookie] = useCookies(["count"])
+  const [data, setData] = useState<any | any[]>([]);
+  const [categories, setCategories] = useState<[]>([]);
+  const [subCategories, setSubCategories] = useState<[]>([]);
+  const [cookie] = useCookies(["aboutUser"]);
+  const [userInform] = useCookies(["userInfo"]);
+  const [selectedCards] = useCookies(["selectedCard"]);
+  const { aboutUser } = cookie;
+  const { selectedCard } = selectedCards;
+  const { userInfo } = userInform;
 
   useEffect(() => {
     order
@@ -55,7 +61,7 @@ const Cart = () => {
       <div className={styles.Delivery}>
         <TopHeader />
         <Header />
-        <Categories />
+        <Categories categories={categories} subcategories={subCategories} />
         <Order selectedProduct={selectedCard} order={order} setOrder={setOrder} />
         <div className={styles.cart}>
           <h1 style={{ fontSize: 20, fontWeight: 700 }}>Корзина</h1>
@@ -172,6 +178,9 @@ const Cart = () => {
                 <button
                   onClick={() => {
                     setOrder(true);
+                    setCountCookie("count", {
+                      
+                    })
                   }}
                 >
                   Заказать

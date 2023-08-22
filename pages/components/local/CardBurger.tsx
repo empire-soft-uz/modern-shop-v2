@@ -34,7 +34,7 @@ const CardBurger = ({
         />
       </button>
       <section className={styles.sectionLeft}>
-        {subcategor && subcategor.props.Manufacturer.props && (
+        {subcategor && subcategor.props.Manufacturer?.props && (
           <div className={styles.manufacturer}>
             <div
               style={{
@@ -69,7 +69,7 @@ const CardBurger = ({
               })}
           </div>
         )}
-        {subcategor && subcategor.props.Storage.props && (
+        {subcategor && subcategor.props.Storage?.props && (
           <div className={styles.operative}>
             <div
               style={{
@@ -104,7 +104,7 @@ const CardBurger = ({
               })}
           </div>
         )}
-        {subcategor && subcategor.props.Color.props && (
+        {subcategor && subcategor.props.Color?.props && (
           <div className={styles.operative}>
             <div
               style={{
@@ -139,7 +139,7 @@ const CardBurger = ({
               })}
           </div>
         )}
-        {subcategor && subcategor.props.Warranty.props && (
+        {subcategor && subcategor.props.Warranty?.props && (
           <div className={styles.operative}>
             <div
               style={{
@@ -174,7 +174,7 @@ const CardBurger = ({
               })}
           </div>
         )}
-        {subcategor && subcategor.props?.Warranty && (
+        {subcategor && subcategor.props.Water_Resistance?.props && (
           <div className={styles.operative}>
             <div
               style={{
@@ -184,7 +184,7 @@ const CardBurger = ({
               }}
             >
               <p className={styles.operativeTitle}>
-                {subcategor.props.Warranty[0].prop.name}
+                {subcategor.props.Water_Resistance.props[0].prop.name}
               </p>
               <Image
                 src={"/toparrow.svg"}
@@ -194,7 +194,7 @@ const CardBurger = ({
               />
             </div>
             {subcategor &&
-              subcategor.props.Warranty?.map((e: any) => {
+              subcategor.props.Water_Resistance.props?.map((e: any) => {
                 return (
                   <div
                     className={styles.checkBoxInput}
