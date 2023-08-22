@@ -42,10 +42,19 @@ const Card = ({
   const [like, setLike] = useState(false);
 
   const [cookies, setCookie] = useCookies(['likedObj']);
+  const [animate, setAnimation] = useState<boolean>(true)
 
+  // useEffect(() => {
+  //   if(router.pathname === "/category") {
+  //     setAnimation(false)
+  //   }
+  // }, [])
+  // console.log("dcscsd", router)
 
+  // duration={0.3} animateOut={animate === true ? "animate__zoomOut" : ""} animateOnce={animate} animateIn={animate === true ? "animate__zoomIn" : ""}
+  
   return (
-    <AnimationOnScroll key={uuidv4()} className={styles.card} duration={0.3} animateOut="animate__zoomOut" animateOnce animateIn={"animate__zoomIn"}>
+    <div key={uuidv4()} className={styles.card}>
       <Link className={styles.imageOfCard} href={`/detail/${url}`}>
         <Image src={image} alt="products image" width={width} height={height} />
         <div className={styles.somevalues}>
@@ -96,7 +105,7 @@ const Card = ({
           height={45}
         />
       </div>
-    </AnimationOnScroll>
+    </div>
   );
 };
 

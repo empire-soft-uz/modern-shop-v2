@@ -11,7 +11,7 @@ interface Categories {
 }
 
 const SelectCategory = ({ categories, selected }: Categories) => {
-  const [data, setData] = useState<any[] | any>([]);
+  const [subcategory, setSubcategory] = useState<any[] | any>([]);
   const [load, setLoad] = useState(true);
   const [hovered, setHovered] = useState<any>("")
 
@@ -20,7 +20,7 @@ const SelectCategory = ({ categories, selected }: Categories) => {
     axios
       .get(`${process.env.NEXT_PUBLIC_API}/api/subcategories`)
       .then((res: any) => {
-        setData(res.data);
+        setSubcategory(res.data);
       })
       .catch((e: string) => console.log(e))
       .finally(() => {
@@ -29,8 +29,8 @@ const SelectCategory = ({ categories, selected }: Categories) => {
 
   }, []);
 
-  if (hovered && data) {
-    const hvd = data.find((dt: any) => dt.id === hovered.id);
+  if (hovered && subcategory) {
+    const hvd = subcategory.find((dt: any) => dt.id === hovered.id);
   }
   return (
     <div className={styles.selectCategory}>
@@ -52,7 +52,7 @@ const SelectCategory = ({ categories, selected }: Categories) => {
         <div className={styles.categorRight}>
           <ul>
             {hovered !== "" && hovered.subcategories.map((e: any, index: number) => {
-              return <li key={uuidv4()}><Link key={index} style={{ color: "#666565" }} href={`/category?q=${e.name.toLocaleLowerCase()}`}>{e.name}</Link></li>
+              return <li key={index}><Link key={index} style={{ color: "#666565" }} href={`/category?subcategory=${e.id.toLocaleLowerCase()}`}>{e.name}</Link></li>
             })}
           </ul>
         </div>

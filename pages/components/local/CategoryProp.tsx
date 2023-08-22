@@ -1,40 +1,23 @@
 import React from "react";
+import styles from "@/styles/category.module.css";
 import Image from "next/image";
-import MultiRangeSlider from "./MultiRangeSlider";
-import styles from "@/styles/cardBurger.module.css";
-import { v4 as uuidv4 } from "uuid";
+
 interface card {
-  setCardBurger: Function;
-  cardBurger: boolean;
   selectedProps: string[];
   setSelectedProps: Function;
   handlerFilter: any;
   subcategor: any;
 }
 
-const CardBurger = ({
-  setCardBurger,
-  cardBurger,
+const categoryProp = ({
   selectedProps,
   setSelectedProps,
   handlerFilter,
   subcategor,
 }: card) => {
+
   return (
-    <div className={styles.cardBurger}>
-      <button
-        onClick={() => {
-          setCardBurger(false);
-        }}
-      >
-        <Image
-          className={styles.close}
-          src={"icons/close.svg"}
-          width={24}
-          height={24}
-          alt="close"
-        />
-      </button>
+    <div className={styles.categoryProp}>
       <section className={styles.sectionLeft}>
         {subcategor && subcategor.props.Manufacturer?.props && (
           <div className={styles.manufacturer}>
@@ -219,4 +202,4 @@ const CardBurger = ({
   );
 };
 
-export default CardBurger;
+export default categoryProp;

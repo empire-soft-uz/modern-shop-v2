@@ -20,12 +20,12 @@ const Delivery = () => {
   const [categories, setCategories] = useState<ICategory[]>([])
   const [subCategories, setSubCategories] = useState<ISubCategories[]>([])
 
-  useEffect(()=> {
+
     useEffect(() => {
       setLoad(true)
       const fetchData = async () => {
         try {
-          const req2 = axios.get(`/categories`)
+          const req2 = axios.get("/categories")
           const req1 = axios.get("/subcategories")
           const [res1, res2] = await axios.all([req1,req2])
           setSubCategories(res1.data)
@@ -38,7 +38,7 @@ const Delivery = () => {
       }
       fetchData()
     }, [])
-  }, [])
+
 
   if (!load) {
     return (

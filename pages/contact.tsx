@@ -12,7 +12,7 @@ const Contact = () => {
     <div className={styles.container}>
       <TopHeader />
       <Header />
-      <Categories />
+      <Categories categories={[]} subcategories={[]}/>
       <div className={styles.contactTitle}>
         <h3>Контакты</h3>
       </div>

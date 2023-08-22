@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react";
-import styles from "@/styles/delivery.module.css";
-
+import styles from "@/styles/cart.module.css";
+import { useCookies } from "react-cookie";
 
 interface Counts {
-    count: number;
-    setCount: Function
+  count: number;
+  setCount: Function;
+  price: number
 }
 
-const Counter = ({count, setCount}: Counts) => {
-  const [counts, setCounts] = useState<number>(1);
-  
-  useEffect(()=> {
-    setCount(count + counts)
-  }, [])
+const Counter = ({ count, setCount, price }: Counts) => {
+  const [counts, setCounts] = useState<number>(0);
+
+
+
   const increment = () => {
     setCounts(counts + 1);
-    setCount(counts + 1)
+    setCount(count + price); 
   };
 
   const decrement = () => {
-    setCounts(counts > 1 ? counts - 1 : 1);
-    setCount(counts > 1 ? counts -  1 : 1)
+    setCounts(count > 1 ? counts - 1 : 1);
+    setCount(count - price);
   };
 
   return (

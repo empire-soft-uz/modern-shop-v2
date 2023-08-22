@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "@/styles/aboutUs.module.css";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
 import Image from "next/image";
 import Footer from "./components/global/Footer";
+import ICategory from "@/interfaces/ICategory";
 
 const AboutUs = () => {
   return (
     <div className={styles.container}>
       <TopHeader />
       <Header />
-      <Categories />
+      <Categories categories={[]} subcategories={[]}/>
       <div className={styles.aboutUs}>
         <div className={styles.aboutUsTitle}>
           <h3>О нас</h3>
