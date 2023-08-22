@@ -21,9 +21,7 @@ const Profile = () => {
   const [buttonColor, setButtonColor] = useState<number>(0);
   const [profile, setProfile] = useState<any | any[]>([]);
   const [selectedCards] = useCookies(["selectedCard"]);
-
   const { selectedCard } = selectedCards;
-  console.log(selectedCard);
 
   const AuthOpen = () => {
     setIsChangePassOpen(!isChangePassOpen);
@@ -53,8 +51,6 @@ const Profile = () => {
         setLoad(false);
       });
   }, [userInfo]);
-
-  console.log(profile);
 
   const [categories, setCategories] = useState<any[] | any>([]);
   const [subCategories, setSubCategories] = useState<any[] | any>([]);
