@@ -2,8 +2,6 @@ import styles from "@/styles/order.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import check from '@/public/icons/check.svg'
-import AOS from "aos"
-import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -23,15 +21,10 @@ const Order = ({ setOrder, order, selectedProduct }: Order) => {
   const { aboutUser } = cookie
   const { userInfo } = userInform
 
-  console.log(router.pathname);
-
   const [selectedCard, setSelectedCard] = useCookies(["selectedCard"]);
 
   const [array, setArray] = useState(selectedCard.selectedCard || []);
 
-  useEffect(() => {
-    AOS.init()
-  }, [])
   const handlePushToCart = () => {
     const updatedArray = [...array, {
       product: selectedProduct,
