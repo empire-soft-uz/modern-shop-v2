@@ -12,7 +12,7 @@
   width: 1180px;
   padding: 12px 0;
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
   align-items: center;
 }
 
@@ -28,15 +28,36 @@
   user-select: none;
 }
 
+.close {
+  background-color: #e4b717;
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 50px;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: .20s ease-in-out;
+}
+
+.close > h3 {
+  color: #fff;
+  font-size: 18px;
+}
+
 .categ>h3 {
   font-size: 18px;
+  color: #E4B717;
 }
 
 .selectList {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
+  gap: 2rem;
+  transition: .4s linear;
 }
 
 .selectList h3 {
@@ -54,7 +75,8 @@
 .selectList>li>img {
   position: relative;
   top: 3px;
-}
+    transition: .4s linear;
+  }
 
 
 .just {
@@ -66,13 +88,9 @@
   transition: 0.4s;
 }
 
-.selectItem > h3 {
-  transition: 0.4s;
-
-}
-
-.selectItem > h3:hover {
+.selectItem:hover {
   color: #e4b717;
+  transition: 0.4s linear;
 }
 
 

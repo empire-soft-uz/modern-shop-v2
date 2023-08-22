@@ -1,14 +1,9 @@
 import React, { Ref, RefAttributes, useEffect, useRef, useState } from "react";
-
 import styles from "@/styles/auth.module.css";
 import Image from "next/image";
 import axios from "axios";
-import DatePicker from "react-datepicker";
-
 import { useCookies } from "react-cookie";
 
-import "react-datepicker/dist/react-datepicker.css";
-import { time } from "console";
 
 interface Auth {
   setIsAuthOpen: Function;
@@ -21,17 +16,21 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
 
   const [queue, setQueue] = useState<number | any>(0);
   const [timer, setTimer] = useState<number>(62);
+  const [load, setLoad] = useState<boolean>(true);
+  const [data, setData] = useState<any[] | any>([])
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
   }, []);
+
+  const dum = queue === 2.5
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((timer) => timer - 1);
     }, 1000);
     return () => clearInterval(interval);
-  }, [queue === 2.5]);
+  }, [dum]);
 
 
   const phoneRef = useRef<HTMLInputElement | any>()
@@ -49,11 +48,10 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
 
   const [] = useState<string>()
 
-  const [cookie, setCookie] = useCookies()
-
+  const [cookie, setCookie] = useCookies(['userInfo'])
   const handleCheckUserAtLogin = () => {
     if (passwordRef && numberRef) {
-      axios.post(`${process.env.NEXT_PUBLIC_API}/api/users/login`, {
+      axios.post(`/users/login`, {
         phoneNumber: `998${numberRef?.current?.value}`,
         password: `${passwordRef?.current?.value}`,
       }, {
@@ -61,10 +59,12 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
           "Content-Type": "application/json",
         }
       }).then((res: any) => {
-        setCookie("aboutUser", {
+        setCookie("userInfo", {
+          userPhoneNumber: res.data.phoneNumber,
           userId: res.data.id,
-          userToken: res.data.token
-        }, { path: "/" })
+          userToken: res.data.token,
+        })
+        setIsAuthOpen(false)
       }).catch(err => console.log(err))
     }
   }
@@ -73,13 +73,13 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
     if (numRef && numRef.current) {
       const isNumber = /\d/.test(numRef.current.value)
       if (isNumber === true) {
-        axios.post(`${process.env.NEXT_PUBLIC_API}/api/users/get-code`, {
+        axios.post(`/users/get-code`, {
           phoneNumber: `998${numRef.current.value}`
         }, {
           headers: {
             "Content-Type": "application/json"
           }
-        }).then((res) => console.log(res.data)).catch(err => console.log(err))
+        }).then((res) => console.log(res)).catch(err => console.log(err))
         setFromWhere(0)
         setQueue(2)
         sessionStorage.setItem("userPhoneNumber", `998${numRef.current.value}`)
@@ -96,36 +96,42 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
     if (codeRef && codeRef.current) {
       const isNumber = /\d/.test(codeRef.current.value)
       if (isNumber === true) {
-        axios.post(`${process.env.NEXT_PUBLIC_API}/api/users/register`, {
+        axios.put(`/users/verify`, {
           phoneNumber: sessionStorage.getItem("userPhoneNumber"),
           code: codeRef.current.value
         }, {
           headers: {
             "Content-Type": "application/json"
           }
+        }).catch(err => console.log(err)).then(res => setCookie("userInfo", {
+          userToken: res?.data.token,
+        }))
+        setQueue(2.5)
+        codeRef.current.value = null
+      }
+    }
+  }
+
+  const handleCreatePassword = () => {
+    if (passRef.current && passRef2.current && lastNameRef.current && userNameRef.current) {
+      if (passRef.current.value === passRef2.current.value) {
+        axios.post(`/users/register`, {
+          password: passRef.current.value,
+          phoneNumber: sessionStorage.getItem("userPhoneNumber"),
+          fullName: `${userNameRef.current.value} ${lastNameRef.current.value}`
+        }, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: cookie.userInfo.userToken
+          }
         }).then((res) => {
+          console.log(res);
           setCookie("userInfo", {
             userPhoneNumber: res.data.phoneNumber,
             userId: res.data.id,
             userToken: res.data.token,
           })
         }).catch(err => console.log(err))
-        setQueue(2.5)
-      }
-    }
-  }
-
-  const handleCreatePassword = () => {
-    if (passRef && passRef2 && lastNameRef && userNameRef) {
-      if (passRef.current.value === passRef2.current.value) {
-        axios.put(`${process.env.NEXT_PUBLIC_API}/api/users/update`, {
-          password: passRef.current.value
-        }, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: cookie.userInfo.userToken
-          }
-        }).then((res) => console.log(res.data)).catch(err => console.log(err))
         localStorage.setItem("userName", userNameRef.current.value)
         localStorage.setItem("lastname", lastNameRef.current.value)
         localStorage.setItem("password", passRef.current.value)
@@ -138,7 +144,6 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
       }
     }
   }
-
 
 
   return (
@@ -209,6 +214,7 @@ const Auth = ({ setIsAuthOpen, isAuthOpen, fromWhere, setFromWhere }: Auth) => {
             />
             <button onClick={() => {
               handleUserGetCode()
+              // console.log("object");
             }} className={styles.enter}>Подтвердить</button>
           </> : queue === 2 ?
             <>

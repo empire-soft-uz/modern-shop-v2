@@ -3,7 +3,14 @@ import Image from "next/image";
 import styles from "@/styles/card.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Aos from "aos";
+import likes from "../../../public/icons/like2.svg";
+import likeBlue from "../../../public/likeBlue.svg";
+import { useCookies } from 'react-cookie';
+import { Cookies } from "react-cookie";
+
+import { AnimationOnScroll } from 'react-animation-on-scroll';
+import "animate.css/animate.min.css";
+import { v4 as uuidv4 } from "uuid"
 
 interface Card {
   price: string;
@@ -13,49 +20,92 @@ interface Card {
   height: number;
   cat: string;
   animation: string;
-  url : string
+  url: string | number;
+  likedObj: any[] | any;
+  setLikedObj: Function;
+  isLiked: boolean;
 }
 
-const Card = ({ price, title, width, height, image, cat, animation, url }: Card) => {
 
-  const router = useRouter()
+const Card = ({
+  price,
+  title,
+  width,
+  height,
+  image,
+  cat,
+  animation,
+  url,
+  likedObj,
+}: Card) => {
+  const router = useRouter();
+  const [like, setLike] = useState(false);
 
-  const [liked, setLiked] = useState(false)
+  const [cookies, setCookie] = useCookies(['likedObj']);
+  const [animate, setAnimation] = useState<boolean>(true)
 
-  useEffect(() => {
-    setLiked(true)
-  }, [router.pathname === "/liked"])
+  // useEffect(() => {
+  //   if(router.pathname === "/category") {
+  //     setAnimation(false)
+  //   }
+  // }, [])
+  // console.log("dcscsd", router)
 
-  useEffect(()=> {
-    Aos.init()
-  }, [])
-
+  // duration={0.3} animateOut={animate === true ? "animate__zoomOut" : ""} animateOnce={animate} animateIn={animate === true ? "animate__zoomIn" : ""}
+  
   return (
-    <Link data-aos={animation} href={`/detail/${url}`} className={styles.card}>
-      <Image src={image} alt="products image" width={width} height={height} />
-      <div className={styles.like}>
-        <Image src={"/icons/liked.svg"} alt="like icon" width={20.5} height={20} />
-      </div>
-      <h3
-        style={{
-          color: "#000",
+    <div key={uuidv4()} className={styles.card}>
+      <Link className={styles.imageOfCard} href={`/detail/${url}`}>
+        <Image src={image} alt="products image" width={width} height={height} />
+        <div className={styles.somevalues}>
+          <h3
+            style={{
+              color: "#000",
+            }}
+          >
+            {title}
+          </h3>
+          <h4>{cat}</h4>
+          <div className={styles.cart}>
+            <h3>{price}</h3>
+            <div className={styles.box}>
+              <Image
+                src={"/icons/buyW.svg"}
+                alt="add cart icon"
+                width={21}
+                height={20.5}
+              />
+            </div>
+          </div>
+        </div>
+      </Link>
+      <div
+        className={styles.like}
+        onClick={() => {
+          likedObj.push({
+            price,
+            title,
+            width,
+            height,
+            image,
+            cat,
+            animation,
+            url
+          })
+          setCookie("likedObj", likedObj, { path: "/" })
         }}
       >
-        {title}
-      </h3>
-      <h4>{cat}</h4>
-      <div className={styles.cart}>
-        <h3>{typeof price === "string" ? price : `${price} сум`}</h3>
-        <div className={styles.box}>
-          <Image
-            src={"/icons/buyW.svg"}
-            alt="add cart icon"
-            width={21}
-            height={20.5}
-          />
-        </div>
+        <Image
+          onClick={() => {
+            setLike(!like);
+          }}
+          src={!like ? likes : likeBlue}
+          alt="like icon"
+          width={45}
+          height={45}
+        />
       </div>
-    </Link>
+    </div>
   );
 };
 

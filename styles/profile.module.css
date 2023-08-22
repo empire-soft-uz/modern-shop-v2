@@ -32,6 +32,10 @@
     border-radius: 20px;
 }
 
+.profileCard:hover {
+    cursor: pointer;
+}
+
 .profileRight {
     width: 793px;
     height: 512px;
@@ -56,11 +60,6 @@
 
 }
 
-.profileUser:hover {
-    cursor: pointer;
-    background-color: #E4B717;
-    color: #FFFFFF;
-}
 
 .profileOrder {
     gap: 15px;
@@ -77,11 +76,7 @@
     transition: .5s ease-in-out;
 }
 
-.profileOrder:hover {
-    cursor: pointer;
-    background-color: #E4B717;
-    color: #FFFFFF;
-}
+
 
 .profileClose {
     cursor: pointer;
@@ -158,7 +153,6 @@
     align-items: flex-end;
     justify-content: flex-end;
     flex-direction: row;
-
 }
 
 .profileButton button {
@@ -176,6 +170,194 @@
 
 .profileButton button:active {
     transform: scale(0.9);
+}
+
+.order {
+    background-color: #FFFFFF;
+    width: 880px;
+    height: 100%;
+    border-radius: 20px;
+    padding: 19px 27px;
+    padding-bottom: 20px;
+}
+
+.orderTitle {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 160%
+}
+
+.cardOrder {
+    width: 823px;
+    height: 100%;
+    margin-top: 19px auto;
+    /* margin-bottom: 50px; */
+    position: relative;
+    border-radius: 20px;
+    background: #FAF8F8;
+}
+
+.orderNumber {
+    padding-left: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.orderNumber p {
+    cursor: pointer;
+    font-size: 17px;
+    padding-top: 13px;
+    font-weight: 700;
+    line-height: 160%;
+}
+
+.orderNumber div {
+    display: flex;
+    gap: 23px;
+}
+
+.orderNumber div button {
+    width: 194px;
+    height: 50px;
+    padding: 11px 49px;
+    border-radius: 20px;
+    background: #E4B717;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 160%;
+    color: #FFFFFF;
+    transition: .2s ease;
+}
+
+
+.orderNumber div button:active {
+    transform: scale(0.9);
+}
+
+.cart {
+    display: flex;
+    padding-top: 19.97px;
+    padding-bottom: 19.97px;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(136, 136, 136, 0.12);
+}
+
+.orderSection {
+    position: relative;
+    justify-content: space-between;
+    padding: 11px 25px;
+    display: flex;
+}
+
+.cartTitle {
+    padding-left: 14px;
+}
+
+.cartTitle h3 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 160%;
+}
+
+.const {
+    display: flex;
+    align-items: center;
+    gap: 1.7rem;
+}
+
+.constTag {
+    display: flex;
+    gap: 8px;
+    color: #363636;
+    padding-top: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 160%;
+}
+
+
+.constTag p:nth-child(2) {
+    font-size: 16px;
+    font-weight: 450;
+    color: #8A8A8A;
+}
+
+.priceTitle {
+    padding-top: 10px;
+    display: flex;
+    gap: 7px;
+    color: #363636;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 160%;
+}
+
+.priceTitle p:nth-child(2) {
+    font-size: 16px;
+    font-weight: 450;
+    color: #8A8A8A;
+}
+
+.rightOrder {
+    justify-content: space-between;
+    align-items: flex-end;
+    display: block;
+}
+
+.button {
+    margin: auto;
+    justify-content: flex-end;
+    align-items: flex-end;
+    display: flex;
+    position: relative;
+    height: 100%;
+}
+
+.rightOrder button {
+    width: 238px;
+    height: 50px;
+    position: absolute;
+    top: 100%;
+    margin-top: -100px;
+    flex-shrink: 0;
+    background: #FAF8F8;
+    border-radius: 50px;
+    border: 1px solid #E4B717;
+    box-shadow: 0px 1px 17px 0px rgba(228, 183, 23, 0.25);
+    color: #E4B717;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 160%;
+    transition: .2s ease;
+}
+
+.rightOrder button:active {
+    transform: scale(0.9);
+}
+
+.total {
+    cursor: pointer;
+    padding-left: 85px;
+}
+
+.total h4 {
+    color: #E4B717;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.total h5 {
+    color: #363636;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 120%;
 }
 
 @media screen and (max-width:1180px) {
@@ -271,7 +453,7 @@
         font-size: 14.5px;
     }
 
-        
+
     .profileRight {
         height: 600px;
         padding: 27px 0px;
@@ -402,7 +584,7 @@
         gap: 0;
     }
 
-    
+
     .input input {
         padding: 16px 28px;
         width: 336px;
@@ -445,6 +627,93 @@
         transition: .2s ease;
         font-weight: 700;
         font-size: 13px;
+    }
+
+}
+
+
+@media screen and (max-width:1200px) {
+    .order {
+        width: 100%;
+    }
+
+    .cardOrder {
+        width: 100%;
+    }
+}
+
+
+@media screen and (max-width:1040px) {
+    .orderSection {
+        display: block;
+    }
+
+    .rightOrder {
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+    }
+
+    .rightOrder button {
+        justify-content: center;
+        display: flex;
+        text-align: center;
+        margin: auto;
+        padding-top: 10px;
+    }
+
+    .total {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+}
+
+@media screen and (max-width:900px) {
+    .orderNumber {
+        display: block;
+    }
+}
+
+
+@media screen and (max-width: 835px) {
+    .orderNumber div {
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+        display: block;
+        padding-left: 0%;
+    }
+}
+
+@media screen and (max-width: 797px) {
+    .const {
+        display: block;
+    }
+    .cart {
+        align-items: center;
+    }
+
+}
+
+
+@media screen and (max-width: 750px) {
+    .const {
+        display: flex;
+    }
+    .cart {
+        align-items: normal;
+    }
+
+}
+
+
+@media screen and (max-width: 495px) {
+    .const {
+        display: block;
+    }
+    .cart {
+        align-items: center;
     }
 
 }
