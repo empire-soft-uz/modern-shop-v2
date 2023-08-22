@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid"
+import { uuid as uuidv4 } from 'uuidv4';
+
 interface Categories {
   categories: any | any[];
   selected: string;

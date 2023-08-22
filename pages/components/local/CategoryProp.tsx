@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "@/styles/category.module.css";
 import Image from "next/image";
-import { v4 as uuidv4 } from "uuid";
+import { uuid as uuidv4 } from 'uuidv4';
+
 
 interface card {
   selectedProps: string[];

@@ -6,11 +6,8 @@ import { useRouter } from "next/router";
 import likes from "../../../public/icons/like2.svg";
 import likeBlue from "../../../public/likeBlue.svg";
 import { useCookies } from 'react-cookie';
-import { Cookies } from "react-cookie";
+import { uuid as uuidv4 } from 'uuidv4';
 
-import { AnimationOnScroll } from 'react-animation-on-scroll';
-import "animate.css/animate.min.css";
-import { v4 as uuidv4 } from "uuid"
 
 interface Card {
   price: string;

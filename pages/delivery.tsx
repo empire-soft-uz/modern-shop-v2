@@ -8,7 +8,8 @@ import Categories from "./components/global/Categories";
 import Header from "./components/global/Header";
 import TopHeader from "./components/global/TopHeader";
 import Footer from "./components/global/Footer";
-import { v4 as uuidv4 } from "uuid";
+import { uuid as uuidv4 } from 'uuidv4';
+
 import axios from "axios";
 import Loader from "./components/local/Loader";
 const Delivery = () => {

@@ -14,7 +14,8 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Loader from "../components/local/Loader";
 import { socket } from "../components/local/socket";
-import { v4 as uuidv4 } from "uuid"
+import { uuid as uuidv4 } from 'uuidv4';
+
 
 const Detail = () => {
   const [likedObj, setLikedObj] = useState<any | any[]>([]);

@@ -11,7 +11,8 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import Loader from "./components/local/Loader";
-import { v4 as uuidv4 } from "uuid";
+import { uuid as uuidv4 } from 'uuidv4';
+
 
 const Profile = () => {
   const [isChangePassOpen, setIsChangePassOpen] = useState(false);

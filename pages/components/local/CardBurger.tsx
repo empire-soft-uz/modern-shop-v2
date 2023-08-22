@@ -2,7 +2,8 @@ import React from "react";
 import Image from "next/image";
 import MultiRangeSlider from "./MultiRangeSlider";
 import styles from "@/styles/cardBurger.module.css";
-import { v4 as uuidv4 } from "uuid";
+import { uuid as uuidv4 } from 'uuidv4';
+
 interface card {
   setCardBurger: Function;
   cardBurger: boolean;

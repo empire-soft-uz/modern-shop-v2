@@ -15,7 +15,9 @@ const Liked = () => {
 
   const [categories, setCategories] = useState<any[] | any>([]);
   const [subCategories, setSubCategories] = useState<any[] | any>([]);
+  const [likedObj, setLikedObj] = useState([])
   const [load, setLoad] = useState<boolean>(true);
+
   useEffect(() => {
     setLoad(true);
     const fetchData = async () => {
@@ -80,7 +82,7 @@ const Liked = () => {
         <div className={styles.likedCards}>
           {cardObj.map((card, index) => {
             return (
-              <Card url={`/${index}`} animation="zoom-in" cat={card.cat} height={card.h} image={card.image} price={card.price} title={card.title} width={card.w} key={index} />
+              <Card url={`/${index}`} animation="zoom-in" cat={card.cat} height={card.h} image={card.image} price={card.price} title={card.title} width={card.w} key={index} isLiked setLikedObj={setLikedObj} likedObj={likedObj}/>
             );
           })}
         </div>

@@ -16,8 +16,9 @@ import "swiper/css/navigation";
 import { useRouter } from "next/router";
 import "swiper/css/pagination";
 import axios from "axios";
+import { uuid as uuidv4 } from 'uuidv4';
 import Loader from "./components/local/Loader";
-import { v4 as uuidv4 } from "uuid"
+
 
 export default function Home() {
   const [buttonColor, setButtonColor] = useState<number>(0);
