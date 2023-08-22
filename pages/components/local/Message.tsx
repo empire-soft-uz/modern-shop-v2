@@ -3,7 +3,7 @@ import Image from 'next/image'
 import styles from "@/styles/chat.module.css"
 import axios from 'axios'
 import { uuid as uuidv4 } from 'uuidv4';
-import { socket } from './socket'
+import { io } from 'socket.io-client';
 
 interface UserInfo {
   userId: string;
@@ -19,6 +19,10 @@ interface ChatHandler {
 }
 
 const Message = ({ setChatListOpener, setIsChatOpen, chat, userInfo }: ChatHandler) => {
+  const URL = process.env.NEXT_PUBLIC_LOCAL_API;
+
+  // @ts-ignore
+  const socket = io(URL, { autoConnect: false });
   const [messages, setMessages] = useState([])
   const [message, setMesage] = useState<string | undefined>("")
   const endRef = useRef<any>()

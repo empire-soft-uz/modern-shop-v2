@@ -13,7 +13,7 @@ import Order from "../components/global/Order";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Loader from "../components/local/Loader";
-import { socket } from "../components/local/socket";
+import { io } from "socket.io-client";
 import { uuid as uuidv4 } from 'uuidv4';
 
 
@@ -33,7 +33,10 @@ const Detail = () => {
   const [subCategories, setSubCategories] = useState<any[] | any>([])
   const router = useRouter();
   const { id } = router.query;
+  const URL = process.env.NEXT_PUBLIC_LOCAL_API;
 
+  // @ts-ignore
+  const socket = io(URL, { autoConnect: false });
   useEffect(() => {
     order !== true
       ? (document.body.style.overflow = "auto")

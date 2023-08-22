@@ -6,8 +6,9 @@ import { useCookies } from "react-cookie";
 import { headers } from "next/dist/client/components/headers";
 import { useRouter } from "next/router";
 import Message from "./Message";
-import { socket } from "./socket";
 import { uuid as uuidv4 } from 'uuidv4';
+import { io } from "socket.io-client";
+
 
 interface SelectedProduct {
   author: string
@@ -28,7 +29,10 @@ const Chat = ({ setIsChatOpen, selectedProduct }: Chat) => {
   const [cookie] = useCookies(["userInfo"])
 
   const { userInfo } = cookie
+  const URL = process.env.NEXT_PUBLIC_LOCAL_API;
 
+  // @ts-ignore
+  const socket = io(URL, { autoConnect: false });
   useEffect(() => {
     axios.get("/chats/user", {
       headers: {
