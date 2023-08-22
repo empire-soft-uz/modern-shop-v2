@@ -1,9 +1,7 @@
 import React, { useEffect, useReducer, useRef, useState } from 'react'
 import Image from 'next/image'
 import styles from "@/styles/chat.module.css"
-import IChat from '@/interfaces/IChat'
 import axios from 'axios'
-import IMessage from '@/interfaces/IMessages'
 import { v4 as uuidv4 } from "uuid"
 import { socket } from './socket'
 
@@ -16,12 +14,12 @@ interface UserInfo {
 interface ChatHandler {
   setChatListOpener: React.Dispatch<React.SetStateAction<boolean>>
   setIsChatOpen: React.Dispatch<React.SetStateAction<boolean>>
-  chat: IChat
+  chat: any
   userInfo: UserInfo
 }
 
 const Message = ({ setChatListOpener, setIsChatOpen, chat, userInfo }: ChatHandler) => {
-  const [messages, setMessages] = useState<IMessage[]>([])
+  const [messages, setMessages] = useState([])
   const [message, setMesage] = useState<string | undefined>("")
   const endRef = useRef<any>()
   useEffect(() => {
@@ -39,8 +37,9 @@ const Message = ({ setChatListOpener, setIsChatOpen, chat, userInfo }: ChatHandl
     });
   }, [setMessages])
 
-  const sendMessage = (msg: IMessage) => {
-    setMessages(prev => [...prev, msg])
+  const sendMessage = (msg: any) => {
+    // @ts-ignore
+    setMessages((prev) => [...prev, msg])
   }
 
   useEffect(() => {

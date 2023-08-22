@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "@/styles/category.module.css";
 import Image from "next/image";
+import { v4 as uuidv4 } from "uuid";
 
 interface card {
   selectedProps: string[];
@@ -42,6 +43,7 @@ const categoryProp = ({
               subcategor.props.Manufacturer.props?.map((e: any) => {
                 return (
                   <div
+                  key={uuidv4()}
                     className={styles.radioInput}
                     onClick={() => {
                       setSelectedProps([e.id]);
@@ -78,7 +80,8 @@ const categoryProp = ({
                 return (
                   <div
                     className={styles.checkBoxInput}
-                    onClick={() => {
+                  key={uuidv4()}
+                  onClick={() => {
                       setSelectedProps([...selectedProps, e.id]);
                     }}
                   >
@@ -113,7 +116,8 @@ const categoryProp = ({
                 return (
                   <div
                     className={styles.checkBoxInput}
-                    onClick={() => {
+                  key={uuidv4()}
+                  onClick={() => {
                       setSelectedProps([...selectedProps, e.id]);
                     }}
                   >
@@ -147,7 +151,8 @@ const categoryProp = ({
               subcategor.props.Warranty.props?.map((e: any) => {
                 return (
                   <div
-                    className={styles.checkBoxInput}
+                  key={uuidv4()}
+                  className={styles.checkBoxInput}
                     onClick={() => {
                       setSelectedProps([...selectedProps, e.id]);
                     }}
@@ -183,7 +188,8 @@ const categoryProp = ({
                 return (
                   <div
                     className={styles.checkBoxInput}
-                    onClick={() => {
+                  key={uuidv4()}
+                  onClick={() => {
                       setSelectedProps([...selectedProps, e.id]);
                     }}
                   >

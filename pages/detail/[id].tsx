@@ -285,7 +285,7 @@ const Detail = () => {
                   <div className={styles.costTop}>
                     <div className={styles.cost}>
                       {selectedProduct && selectedProduct.price.map((price: any) => {
-                        return <div className={styles.costP}>
+                        return <div className={styles.costP} key={uuidv4()}>
                         <h3>{price.price} $</h3>
                         <h4
                           style={{
