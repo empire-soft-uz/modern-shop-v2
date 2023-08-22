@@ -19,7 +19,7 @@ const categoryProp = ({
   return (
     <div className={styles.categoryProp}>
       <section className={styles.sectionLeft}>
-        {subcategor && subcategor.props.Manufacturer.props && (
+        {subcategor && subcategor.props.Manufacturer?.props && (
           <div className={styles.manufacturer}>
             <div
               style={{
@@ -54,7 +54,7 @@ const categoryProp = ({
               })}
           </div>
         )}
-        {subcategor && subcategor.props.Storage.props && (
+        {subcategor && subcategor.props.Storage?.props && (
           <div className={styles.operative}>
             <div
               style={{
@@ -89,7 +89,7 @@ const categoryProp = ({
               })}
           </div>
         )}
-        {subcategor && subcategor.props.Color.props && (
+        {subcategor && subcategor.props.Color?.props && (
           <div className={styles.operative}>
             <div
               style={{
@@ -124,7 +124,7 @@ const categoryProp = ({
               })}
           </div>
         )}
-        {subcategor && subcategor.props.Warranty.props && (
+        {subcategor && subcategor.props.Warranty?.props && (
           <div className={styles.operative}>
             <div
               style={{
@@ -159,7 +159,7 @@ const categoryProp = ({
               })}
           </div>
         )}
-        {subcategor && subcategor.props.Water_Resistance.props && (
+        {subcategor && subcategor.props.Water_Resistance?.props && (
           <div className={styles.operative}>
             <div
               style={{

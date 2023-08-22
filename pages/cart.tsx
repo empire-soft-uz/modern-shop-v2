@@ -21,7 +21,7 @@ const Cart = () => {
   const [count, setCount] = useState(0);
   const [selectedType, setSelectedType] = useState<any[] | any>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
-
+  const [countCookie, setCountCookie] = useCookies(["count"])
   const [data, setData] = useState<any | any[]>([]);
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [subCategories, setSubCategories] = useState<ISubCategories[]>([]);
@@ -182,6 +182,9 @@ const Cart = () => {
                 <button
                   onClick={() => {
                     setOrder(true);
+                    setCountCookie("count", {
+                      
+                    })
                   }}
                 >
                   Заказать
