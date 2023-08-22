@@ -10,10 +10,9 @@ import CardBurger from "./components/local/CardBurger";
 import axios from "axios";
 import Loader from "./components/local/Loader";
 import { useRouter } from "next/router";
-import ICategory from "@/interfaces/ICategory";
+
 import IProduct from "@/interfaces/Product/IProduct";
 import CategoryProp from "./components/local/CategoryProp";
-import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
 
 
 export default function Categoriy() {
@@ -25,8 +24,8 @@ export default function Categoriy() {
     { page: number; products: IProduct[]; limit: number } | undefined
   >();
   const [likedObj, setLikedObj] = useState<any[]>([]);
-  const [categories, setCategories] = useState<ICategory[]>([]);
-  const [subCategories, setSubCategories] = useState<ISubCategories[]>([]);
+  const [categories, setCategories] = useState<any[] | any>([]);
+  const [subCategories, setSubCategories] = useState<any[] | any>([]);
 
   const cardBurgerHandler = () => {
     setCardBurger(!cardBurger);
@@ -153,7 +152,7 @@ export default function Categoriy() {
                     width={300}
                     image={
                       e.media.length
-                        ? ` ${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}`
+                        ?  `${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}`
                         : "/images/14.png"
                     }
                     title={e.name}

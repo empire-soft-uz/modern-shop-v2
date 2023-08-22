@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
+import styles from "@/styles/home.module.css";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
@@ -17,9 +17,6 @@ import { useRouter } from "next/router";
 import "swiper/css/pagination";
 import axios from "axios";
 import Loader from "./components/local/Loader";
-
-import ICategory from "@/interfaces/ICategory";
-import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
 import { v4 as uuidv4 } from "uuid"
 
 export default function Home() {
@@ -29,8 +26,8 @@ export default function Home() {
   const [popularProducts, setPopularProducts] = useState<any[] | any>([]);
   const [slides, setSlides] = useState<any[] | any>([]);
   const [isLiked, setIsLiked] = useState<any[] | any>([]);
-  const [categories, setCategories] = useState<ICategory[]>([]);
-  const [subCategories, setSubCategories] = useState<ISubCategories[]>([])
+  const [categories, setCategories] = useState<any[]>([]);
+  const [subCategories, setSubCategories] = useState<any[]>([])
   const [load, setLoad] = useState<boolean>(true);
   const [likedObj, setLikedObj] = useState<any[]>([]);
   const [vendor, setVendor] = useState<any[] | any>([]);
@@ -106,7 +103,6 @@ export default function Home() {
         ? setSlidesPerView(2)
         : setSlidesPerView(4);
   }, []);
-
   const pagination: object = {
     clickable: true,
     renderBullet: function (index: number, className: string) {
@@ -188,7 +184,7 @@ export default function Home() {
                     modules={[Navigation]}
                     navigation={true}
                   >
-                    {categories && categories.map((val: ICategory) => {
+                    {categories && categories.map((val: any) => {
                       return <SwiperSlide key={uuidv4()} className={styles.categoriesSlide}>
                         <Link className={styles.categoryItem} href={"/category"}>
                           <div className={styles.categoriesTop}>
@@ -297,7 +293,7 @@ export default function Home() {
                             ex ea commodo consequat.
                           </p>
                         </div>
-                      </div>
+                        </div>
                       <div className={styles.card__right}>
                         <div className={styles.cards__button}>
                           <button

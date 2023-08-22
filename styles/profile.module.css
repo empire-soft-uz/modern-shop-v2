@@ -196,6 +196,7 @@
     position: relative;
     border-radius: 20px;
     background: #FAF8F8;
+    position: relative;
 }
 
 .orderNumber {
@@ -228,6 +229,7 @@
     line-height: 160%;
     color: #FFFFFF;
     transition: .2s ease;
+
 }
 
 
@@ -314,6 +316,8 @@
     justify-content: flex-end;
     align-items: flex-end;
     display: flex;
+    position: relative;
+    height: 100%;
 }
 
 .rightOrder button {
@@ -321,6 +325,8 @@
     height: 50px;
     flex-shrink: 0;
     background: #FAF8F8;
+    top: 100%;
+    margin-top: -100px;
     border-radius: 50px;
     border: 1px solid #E4B717;
     box-shadow: 0px 1px 17px 0px rgba(228, 183, 23, 0.25);
@@ -329,6 +335,7 @@
     font-weight: 700;
     line-height: 160%;
     transition: .2s ease;
+    position: absolute;
 }
 
 .rightOrder button:active {

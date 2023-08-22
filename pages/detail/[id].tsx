@@ -15,8 +15,7 @@ import axios from "axios";
 import Loader from "../components/local/Loader";
 import { socket } from "../components/local/socket";
 import { v4 as uuidv4 } from "uuid"
-import ICategory from "@/interfaces/ICategory";
-import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
+
 const Detail = () => {
   const [likedObj, setLikedObj] = useState<any | any[]>([]);
   const [controllerC, setControllerC] = useState<number>(0);
@@ -29,8 +28,8 @@ const Detail = () => {
   const [props, setProps] = useState<any | any[]>([]);
   const [selectedMemory, setSelectedMemory] = useState<string>("256GB");
   const [selectedColor, setSelectedColor] = useState<string>("Gold");
-  const [categories, setCategories] = useState<ICategory[]>([])
-  const [subCategories, setSubCategories] = useState<ISubCategories[]>([])
+  const [categories, setCategories] = useState<any[] | any>([])
+  const [subCategories, setSubCategories] = useState<any[] | any>([])
   const router = useRouter();
   const { id } = router.query;
 

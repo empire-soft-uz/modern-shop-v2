@@ -5,7 +5,7 @@ import Header from "./components/global/Header";
 import Categories from "./components/global/Categories";
 import Image from "next/image";
 import Footer from "./components/global/Footer";
-import ICategory from "@/interfaces/ICategory";
+
 
 const AboutUs = () => {
   return (

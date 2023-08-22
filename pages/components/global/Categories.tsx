@@ -5,13 +5,11 @@ import Link from "next/link";
 import SelectCategory from "./SelectCategory";
 import axios, { AxiosError } from "axios";
 import Loader from "../local/Loader";
-import ICategory from "@/interfaces/ICategory";
-import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
 import { v4 as uuidv4 } from "uuid";
 
 interface ISelectCategory {
-  categories: ICategory[];
-  subcategories: ISubCategories[];
+  categories: any[];
+  subcategories: any[];
 }
 
 const Categories = ({ categories, subcategories }: ISelectCategory) => {

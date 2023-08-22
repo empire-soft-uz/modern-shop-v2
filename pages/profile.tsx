@@ -12,15 +12,13 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import Loader from "./components/local/Loader";
 import { v4 as uuidv4 } from "uuid";
-import ICategory from "@/interfaces/ICategory";
-import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
+
 const Profile = () => {
   const [isChangePassOpen, setIsChangePassOpen] = useState(false);
   const [profileBurger, setProfileBurger] = useState(false);
   const [button, setButton] = useState<number>(0);
-  const [buttonColor, setButtonColor] = useState<number>(0);
+  const [buttonColor, setButtonColor] = useState(0);
   const [profile, setProfile] = useState<any | any[]>([]);
-
   const [selectedCards] = useCookies(["selectedCard"]);
 
   const { selectedCard } = selectedCards;
@@ -43,7 +41,7 @@ const Profile = () => {
   useEffect(() => {
     setLoad(true);
     axios
-      .get(`/users/current`, {
+      .get("/users/current", {
         headers: {
           Authorization: userInfo ? userInfo.userToken : "",
         },
@@ -57,8 +55,8 @@ const Profile = () => {
 
   console.log(profile);
 
-  const [categories, setCategories] = useState<ICategory[]>([]);
-  const [subCategories, setSubCategories] = useState<ISubCategories[]>([]);
+  const [categories, setCategories] = useState<any[] | any>([]);
+  const [subCategories, setSubCategories] = useState<any[] | any>([]);
   const [load, setLoad] = useState<boolean>(true);
   useEffect(() => {
     setLoad(true);
@@ -129,9 +127,7 @@ const Profile = () => {
                     >
                       <Image
                         src={
-                          !buttonColor
-                            ? "icons/user.svg"
-                            : "icons/userWhite.svg"
+                          !buttonColor ? "icons/user.svg" : "icons/userWhite.svg"
                         }
                         width={16}
                         height={21}
@@ -332,7 +328,7 @@ const Profile = () => {
                                     <Image
                                       src={
                                         e.media?.length
-                                          ? ` ${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}`
+                                          ? `${process.env.NEXT_PUBLIC_IMAGE_API}/${e.media[1]?.name}`
                                           : "/images/14.png"
                                       }
                                       width={58}

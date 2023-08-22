@@ -2,6 +2,7 @@ import React from "react";
 import styles from "@/styles/cart.module.css";
 import Image from "next/image";
 import Footer from "./components/global/Footer";
+import AOS from "aos";
 import { useState, useEffect } from "react";
 import TopHeader from "./components/global/TopHeader";
 import Header from "./components/global/Header";
@@ -11,8 +12,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import Loader from "./components/local/Loader";
 import Counter from "@/utils/Counter";
-import ICategory from "@/interfaces/ICategory";
-import ISubCategories from "@/interfaces/subinterfaces/ISubCategories";
+
 
 
 const Cart = () => {
@@ -23,8 +23,8 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [countCookie, setCountCookie] = useCookies(["count"])
   const [data, setData] = useState<any | any[]>([]);
-  const [categories, setCategories] = useState<ICategory[]>([]);
-  const [subCategories, setSubCategories] = useState<ISubCategories[]>([]);
+  const [categories, setCategories] = useState<any[] | any>([]);
+  const [subCategories, setSubCategories] = useState<any[] | any>([]);
   const [cookie] = useCookies(["aboutUser"]);
   const [userInform] = useCookies(["userInfo"]);
   const [selectedCards] = useCookies(["selectedCard"]);
@@ -37,6 +37,7 @@ const Cart = () => {
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "auto");
   }, [order]);
+
 
   useEffect(() => {
     setLoad(true);
@@ -56,17 +57,46 @@ const Cart = () => {
     fetchData();
   }, []);
 
+  const OrderObj = [
+    {
+      image: "/icons/phone.svg",
+      title: "Iphone 14 PRO",
+      kategoriya: "Телефоны",
+      color: "Зеленый",
+      memory: "256 гб",
+      price: "8.000.0000 сум",
+      width: 94,
+      height: 110,
+    },
+    {
+      image: "/icons/phone.svg",
+      title: "Iphone 14 PRO",
+      kategoriya: "Телефоны",
+      color: "Зеленый",
+      memory: "256 гб",
+      price: "8.000.0000 сум",
+      width: 94,
+      height: 110,
+    },
+    {
+      image: "/icons/phone.svg",
+      title: "Iphone 14 PRO",
+      kategoriya: "Телефоны",
+      color: "Зеленый",
+      memory: "256 гб",
+      price: "8.000.0000 сум",
+      width: 94,
+      height: 110,
+    },
+  ];
+
   if (!load) {
     return (
       <div className={styles.Delivery}>
         <TopHeader />
         <Header />
-        <Categories categories={categories} subcategories={subCategories} />
-        <Order
-          selectedProduct={selectedCard}
-          order={order}
-          setOrder={setOrder}
-        />
+        <Categories categories={categories} subcategories={subCategories}/>
+        <Order selectedProduct={selectedCard} order={order} setOrder={setOrder} />
         <div className={styles.cart}>
           <h1 style={{ fontSize: 20, fontWeight: 700 }}>Корзина</h1>
         </div>
@@ -201,7 +231,7 @@ const Cart = () => {
       </div>
     );
   } else {
-    return <Loader />;
+    return <Loader />
   }
 };
 
