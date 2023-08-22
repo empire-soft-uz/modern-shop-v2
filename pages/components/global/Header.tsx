@@ -3,7 +3,8 @@ import styles from "@/styles/head.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import Burger from "./Burger";
-import { v4 as uuidv4 } from "uuid"
+import { uuid as uuidv4 } from 'uuidv4';
+
 const Header = () => {
   const [isBurgerOpen, setIsBurgerOpen] = useState<boolean | any>(false)
   const [mouseOver, setMouseOver] = useState<boolean>(false)

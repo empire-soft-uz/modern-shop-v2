@@ -3,12 +3,12 @@ import styles from "@/styles/chat.module.css";
 import Image from "next/image";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import IChat from "@/interfaces/IChat";
 import { headers } from "next/dist/client/components/headers";
 import { useRouter } from "next/router";
 import Message from "./Message";
 import { socket } from "./socket";
-import { v4 as uuidv4 } from "uuid"
+import { uuid as uuidv4 } from 'uuidv4';
+
 interface SelectedProduct {
   author: string
 }
@@ -20,8 +20,8 @@ interface Chat {
 
 const Chat = ({ setIsChatOpen, selectedProduct }: Chat) => {
   const [chatListOpener, setChatListOpener] = useState<boolean>(false)
-  const [chats, setChats] = useState<IChat[]>([])
-  const [selectedChat, setSelectedChat] = useState<IChat | undefined>()
+  const [chats, setChats] = useState<any[]>([])
+  const [selectedChat, setSelectedChat] = useState<any | undefined>()
 
   const router = useRouter()
 

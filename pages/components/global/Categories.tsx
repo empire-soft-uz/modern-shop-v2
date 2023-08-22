@@ -5,7 +5,7 @@ import Link from "next/link";
 import SelectCategory from "./SelectCategory";
 import axios, { AxiosError } from "axios";
 import Loader from "../local/Loader";
-import { v4 as uuidv4 } from "uuid";
+
 
 interface ISelectCategory {
   categories: any[];
@@ -13,6 +13,7 @@ interface ISelectCategory {
 }
 
 const Categories = ({ categories, subcategories }: ISelectCategory) => {
+  const { v4: uuid } = require('uuidv4');
   const [mouseOver, setMouseOver] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>("");
   const [isCategoryOpen, setCategoryOpen] = useState<boolean>(false);
@@ -77,7 +78,7 @@ const Categories = ({ categories, subcategories }: ISelectCategory) => {
                     return (
                       <li
                         className={styles.selectItem}
-                        key={uuidv4()}
+                        key={uuid()}
                         onMouseOver={() => {
                           setMouseOver(true);
                           setSelected(e.name);

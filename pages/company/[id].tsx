@@ -9,7 +9,7 @@ import Card from "../components/global/Card";
 import Footer from "../components/global/Footer";
 import Link from "next/link";
 import axios from "axios";
-import {v4 as uuidv4} from "uuid"
+import { uuid as uuidv4 } from 'uuidv4';
 import Loader from "../components/local/Loader";
 import { NextRouter, useRouter } from "next/router";
 
@@ -17,6 +17,7 @@ const Company = () => {
   const [categories, setCategories] = useState<any[] | any>([]);
   const [subCategories, setSubCategories] = useState<any[] | any>([]);
   const [load, setLoad] = useState<boolean>(true);
+  const [likedObj, setLikedObj] = useState([])
   useEffect(() => {
     setLoad(true);
     const fetchData = async () => {
@@ -180,7 +181,7 @@ const Company = () => {
       <div className={styles.company}>
         <TopHeader />
         <Header />
-        <Categories categories={} />
+        <Categories categories={categories} subcategories={subCategories} />
         <div className={styles.container}>
           <section className={styles.companyTitle}>
             <div className={styles.companyProfile}>
@@ -237,6 +238,9 @@ const Company = () => {
                         price={e.price}
                         cat={e.cat}
                         key={uuidv4()}
+                        isLiked
+                        setLikedObj={setLikedObj}
+                        likedObj={likedObj}
                       />
                     );
                   })
@@ -251,6 +255,9 @@ const Company = () => {
                         title={card.title}
                         price={card.price}
                         cat={card.cat}
+                        isLiked
+                        setLikedObj={setLikedObj}
+                        likedObj={likedObj}
                         key={uuidv4()}
                       />
                     );

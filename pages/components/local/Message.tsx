@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useRef, useState } from 'react'
 import Image from 'next/image'
 import styles from "@/styles/chat.module.css"
 import axios from 'axios'
-import { v4 as uuidv4 } from "uuid"
+import { uuid as uuidv4 } from 'uuidv4';
 import { socket } from './socket'
 
 interface UserInfo {
@@ -97,7 +97,7 @@ const Message = ({ setChatListOpener, setIsChatOpen, chat, userInfo }: ChatHandl
         </button>
       </div>
       <div className={styles.mainChat}>
-        {messages && messages.map((m) => {
+        {messages && messages.map((m: any) => {
           return <div key={uuidv4()} className={m.reciever !== userInfo.userId ? styles.message : styles.messageS}>
             <p>{m.message}</p>
             <div className={styles.createdAt}>

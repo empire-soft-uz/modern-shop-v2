@@ -12,6 +12,8 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import Loader from "./components/local/Loader";
 import Counter from "@/utils/Counter";
+import { uuid as uuidv4 } from 'uuidv4';
+
 
 
 
@@ -77,7 +79,7 @@ const Cart = () => {
               {selectedCard &&
                 selectedCard?.map((card: any, index: number) => {
                   return (
-                    <div key={index} className={styles.card}>
+                    <div key={uuidv4()} className={styles.card}>
                       <input className={styles.input} type="checkbox" />
                       <Image
                         src={
