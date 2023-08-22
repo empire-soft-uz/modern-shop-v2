@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/liked.module.css";
 import Header from "./components/global/Header";
 import Buy from "@/public/images/Buy.png";
@@ -9,9 +9,30 @@ import AOS from "aos";
 import TopHeader from "./components/global/TopHeader";
 import Categories from "./components/global/Categories";
 import Card from "./components/global/Card";
+import axios from "axios";
 
 const Liked = () => {
 
+  const [categories, setCategories] = useState<any[] | any>([]);
+  const [subCategories, setSubCategories] = useState<any[] | any>([]);
+  const [load, setLoad] = useState<boolean>(true);
+  useEffect(() => {
+    setLoad(true);
+    const fetchData = async () => {
+      try {
+        const categories = await axios.get("/categories");
+        const subCategories = await axios.get("/subcategories");
+        const [res1, res2] = await axios.all([categories, subCategories]);
+        setCategories(res1.data);
+        setSubCategories(res2.data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoad(false);
+      }
+    };
+    fetchData();
+  }, []);
   const cardObj = [
     {
       image: "/images/productPhone.png",
@@ -51,7 +72,7 @@ const Liked = () => {
     <div className={styles.liked} data-aos="zoom-in-up">
       <TopHeader />
       <Header />
-      <Categories />
+      <Categories categories={categories} subcategories={subCategories} />
       <div className={styles.Favorites}>
         <h1 style={{ fontSize: 20, fontWeight: 700 }}>Избранное</h1>
       </div>

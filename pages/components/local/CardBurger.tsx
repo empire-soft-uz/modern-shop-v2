@@ -63,6 +63,7 @@ const CardBurger = ({
                     onClick={() => {
                       setSelectedProps([e.id]);
                     }}
+                    key={uuidv4()}
                   >
                     <input type="radio" name={e.prop.name} />
                     <label>{e.value}</label>
@@ -94,6 +95,7 @@ const CardBurger = ({
               subcategor.props.Storage.props?.map((e: any) => {
                 return (
                   <div
+                  key={uuidv4()}
                     className={styles.checkBoxInput}
                     onClick={() => {
                       setSelectedProps([...selectedProps, e.id]);
@@ -129,6 +131,7 @@ const CardBurger = ({
               subcategor.props.Color.props?.map((e: any) => {
                 return (
                   <div
+                  key={uuidv4()}
                     className={styles.checkBoxInput}
                     onClick={() => {
                       setSelectedProps([...selectedProps, e.id]);
@@ -164,6 +167,7 @@ const CardBurger = ({
               subcategor.props.Warranty.props?.map((e: any) => {
                 return (
                   <div
+                  key={uuidv4()}
                     className={styles.checkBoxInput}
                     onClick={() => {
                       setSelectedProps([...selectedProps, e.id]);
@@ -199,6 +203,7 @@ const CardBurger = ({
               subcategor.props.Water_Resistance.props?.map((e: any) => {
                 return (
                   <div
+                  key={uuidv4()}
                     className={styles.checkBoxInput}
                     onClick={() => {
                       setSelectedProps([...selectedProps, e.id]);

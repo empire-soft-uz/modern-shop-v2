@@ -468,7 +468,7 @@ const Profile = () => {
               </section>
               <section className={styles.profileRight}>
                 <h1 style={{ textAlign: "center" }}>
-                  You don't have account yet!
+                  You dont have account yet!
                 </h1>
               </section>
             </section>
